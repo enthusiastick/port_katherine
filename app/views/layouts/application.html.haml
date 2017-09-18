@@ -1,0 +1,17 @@
+!!! 5
+%html{ lang: "en"}
+  %head
+    %meta{ charset: "utf-8" }
+
+    %meta{ name: "description", content: "Port Katherine is a New England Live-Action Roleplaying (LARP) game launching in 2018." }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+
+    %title= content_for?(:title) ? yield(:title) : "Port Katherine"
+    = csrf_meta_tags
+
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+  %body
+    = yield
+
