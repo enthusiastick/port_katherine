@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  validates_inclusion_of :admin, in: [true, false]
   validates_format_of :email, with: EMAIL_REGEXP
   validates_format_of :handle, with: HANDLE_REGEXP
   validates_length_of :handle, in: 3..30
@@ -46,6 +47,10 @@ class User < ApplicationRecord
   def generate_reset_digest
     self.password_reset_token = User.new_token
     update_attributes(password_reset_digest: User.digest(password_reset_token), password_reset_sent_at: Time.current)
+  end
+
+  def locked?
+    failed_sign_in_attempts > 5
   end
 
   def password_reset_expired?
