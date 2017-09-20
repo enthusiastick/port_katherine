@@ -1,0 +1,5 @@
+Hi #{@user.first_name},
+
+Welcome to Port Katherine! Click on the link below to confirm your email address and activate your account:
+
+= edit_account_confirmation_url(@token, email: @user.email)
