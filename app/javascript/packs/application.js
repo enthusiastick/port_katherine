@@ -12,19 +12,24 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
-import AccountConfirmation    from '../react/subApps/userAuthentication/connectors/AccountConfirmation'
 import LandingPage            from '../react/sharedResources/components/LandingPage'
-import EditUser               from '../react/subApps/userAuthentication/connectors/EditUser'
-import NavigationBar          from '../react/subApps/navigation/connectors/NavigationBar'
 import Notices                from '../react/sharedResources/connectors/Notices'
-import PasswordReset          from '../react/subApps/userAuthentication/connectors/PasswordReset'
-import RequestPasswordReset   from '../react/subApps/userAuthentication/connectors/RequestPasswordReset'
-import SignIn                 from '../react/subApps/userAuthentication/connectors/SignIn'
-import SignOut                from '../react/subApps/userAuthentication/connectors/SignOut'
-import SignUp                 from '../react/subApps/userAuthentication/connectors/SignUp'
 
+import AdminEventsIndex       from '../react/subApps/admin/eventManager/connectors/AdminEventsIndex'
+
+import NavigationBar          from '../react/subApps/navigation/connectors/NavigationBar'
+
+import AccountConfirmation    from '../react/subApps/userAuthenticator/connectors/AccountConfirmation'
+import EditUser               from '../react/subApps/userAuthenticator/connectors/EditUser'
+import PasswordReset          from '../react/subApps/userAuthenticator/connectors/PasswordReset'
+import RequestPasswordReset   from '../react/subApps/userAuthenticator/connectors/RequestPasswordReset'
+import SignIn                 from '../react/subApps/userAuthenticator/connectors/SignIn'
+import SignOut                from '../react/subApps/userAuthenticator/connectors/SignOut'
+import SignUp                 from '../react/subApps/userAuthenticator/connectors/SignUp'
+
+import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import currentUser from '../react/sharedResources/reducers/currentUser'
-import notices from '../react/sharedResources/reducers/notices'
+import notices     from '../react/sharedResources/reducers/notices'
 
 const history = createBrowserHistory()
 
@@ -32,6 +37,7 @@ const middlewares = [thunkMiddleware, routerMiddleware(history)]
 
 const store = createStore(
   combineReducers({
+    adminEvents,
     currentUser,
     notices,
     form: formReducer,
@@ -54,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/' component={LandingPage} />
               <Route path='/account_confirmations/:confirmationToken/edit' component={AccountConfirmation} />
               <Route path='/password_resets/:passwordResetId/edit' component={PasswordReset} />
+              <Route exact path='/admin/events' component={AdminEventsIndex} />
               <Route exact path='/edit-user' component={EditUser} />
               <Route exact path='/password_resets/new' component={RequestPasswordReset} />
               <Route exact path='/sign-in' component={SignIn} />

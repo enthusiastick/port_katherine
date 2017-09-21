@@ -8,9 +8,10 @@ class User < ApplicationRecord
   before_create :generate_confirmation_digest, :generate_identifier
   before_save :downcase_email
 
+  enum role: { user: 0, collaborator: 5, admin: 9 }
+
   has_secure_password
 
-  validates_inclusion_of :admin, in: [true, false]
   validates_format_of :email, with: EMAIL_REGEXP
   validates_format_of :handle, with: HANDLE_REGEXP
   validates_length_of :handle, in: 3..30

@@ -10,6 +10,11 @@ const signedInNavigationLinks = [
     url: 'edit-user'
   },
   {
+    icon: 'calendar',
+    label: 'Events',
+    url: 'admin/events'
+  },
+  {
     icon: 'sign-out',
     label: 'Sign Out',
     url: 'sign-out'
@@ -26,6 +31,11 @@ const signedOutNavigationLinks = [
     icon: 'compass',
     label: 'Home',
     url: ''
+  },
+  {
+    icon: 'calendar',
+    label: 'Events',
+    url: 'admin/events'
   }
 ]
 
