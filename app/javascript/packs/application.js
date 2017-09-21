@@ -12,19 +12,19 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
-import AccountConfirmation    from '../react/connectors/AccountConfirmation'
-import LandingPage            from '../react/components/LandingPage'
-import EditUser               from '../react/connectors/EditUser'
-import NavigationBar          from '../react/connectors/NavigationBar'
-import Notices                from '../react/connectors/Notices'
-import PasswordReset          from '../react/connectors/PasswordReset'
-import RequestPasswordReset   from '../react/connectors/RequestPasswordReset'
-import SignIn                 from '../react/connectors/SignIn'
-import SignOut                from '../react/connectors/SignOut'
-import SignUp                 from '../react/connectors/SignUp'
+import AccountConfirmation    from '../react/subApps/userAuthentication/connectors/AccountConfirmation'
+import LandingPage            from '../react/sharedResources/components/LandingPage'
+import EditUser               from '../react/subApps/userAuthentication/connectors/EditUser'
+import NavigationBar          from '../react/subApps/navigation/connectors/NavigationBar'
+import Notices                from '../react/sharedResources/connectors/Notices'
+import PasswordReset          from '../react/subApps/userAuthentication/connectors/PasswordReset'
+import RequestPasswordReset   from '../react/subApps/userAuthentication/connectors/RequestPasswordReset'
+import SignIn                 from '../react/subApps/userAuthentication/connectors/SignIn'
+import SignOut                from '../react/subApps/userAuthentication/connectors/SignOut'
+import SignUp                 from '../react/subApps/userAuthentication/connectors/SignUp'
 
-import currentUser from '../react/reducers/currentUser'
-import notices from '../react/reducers/notices'
+import currentUser from '../react/sharedResources/reducers/currentUser'
+import notices from '../react/sharedResources/reducers/notices'
 
 const history = createBrowserHistory()
 
