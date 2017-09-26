@@ -8,7 +8,7 @@ import { clearNotices, flashNotice } from '../../../sharedResources/actions/flas
 import { createUser } from '../actions/createUser'
 
 let validate = values => {
-  const errors = {}
+  let errors = {}
 
   if (!values.handle) {
     errors.handle = 'can\'t be blank'

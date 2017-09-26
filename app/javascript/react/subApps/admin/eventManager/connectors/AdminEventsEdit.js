@@ -2,32 +2,34 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
-import EventsIndexContainer from '../containers/EventsIndexContainer'
-import { deleteAdminEvent } from '../actions/deleteAdminEvent'
+import EditEventForm from '../forms/EditEventForm'
 import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
-const mapStateToProps = state => {
-  console.log(state.adminEvents)
+const mapStateToProps = (state, ownProps) => {
+  let event = state.adminEvents.items.filter(event =>
+    { if (event.slug == ownProps.match.params.eventSlug)
+      { return event }
+    }
+  )[0]
+
   return {
-    adminEvents: state.adminEvents.items,
-    currentUser: state.currentUser.item
+    currentUser: state.currentUser.item,
+    event: event
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteAdminEvent: (eventSlug) => { dispatch(deleteAdminEvent(eventSlug)) },
     flashNotice: (notice) => { dispatch(flashNotice(notice)) },
     getAdminEvents: () => { dispatch(getAdminEvents()) },
     push: (path) => { dispatch(push(path)) }
   }
 }
 
-const AdminEventsIndex = connect(
+const AdminEventsEdit = connect(
   mapStateToProps,
   mapDispatchToProps
-)(EventsIndexContainer)
+)(EditEventForm)
 
-export default AdminEventsIndex
-
+export default AdminEventsEdit

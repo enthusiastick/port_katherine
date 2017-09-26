@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
 import NavigationButton from '../components/NavigationButton'
-import { signedInNavigationLinks, signedOutNavigationLinks } from '../constants/navigationLinks'
+
+import {
+  signedInAdminNavigationLinks,
+  signedInNavigationLinks,
+  signedOutNavigationLinks
+} from '../constants/navigationLinks'
 
 class Navigation extends Component {
   constructor(props) {
@@ -16,7 +21,11 @@ class Navigation extends Component {
     let links = signedOutNavigationLinks
 
     if (this.props.currentUser.id) {
-      links = signedInNavigationLinks
+      if (this.props.currentUser.role === 'admin') {
+        links = signedInAdminNavigationLinks
+      } else {
+        links = signedInNavigationLinks
+      }
     }
 
     let buttons = links.map(link => {

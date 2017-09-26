@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Milonga|Open+Sans');
+@import 'colors';
 //  Foundation for Sites Settings
 //  -----------------------------
 //
@@ -70,19 +71,13 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #5F567C,
+  primary: $twilight,
   secondary: #423637,
   success: #A7C1A8,
-  warning: #ffae00,
+  warning: $solarized-yellow,
   alert: #B57678,
 );
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
-$black: #0a0a0a;
-$white: #fefefe;
-$navy : #1D2951;
-$sand : #DBD1B4;
+
 $body-background: $navy;
 $body-font-color: $sand;
 $body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -172,7 +167,7 @@ $code-padding: rem-calc(2 5 1);
 $anchor-color: $sand;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
-$anchor-text-decoration-hover: underline dotted;
+$anchor-text-decoration-hover: none;
 $hr-width: $global-width;
 $hr-border: 1px solid $medium-gray;
 $hr-margin: rem-calc(20) auto;
@@ -435,7 +430,7 @@ $input-font-family: inherit;
 $input-font-size: rem-calc(16);
 $input-font-weight: $global-weight-normal;
 $input-line-height: $global-lineheight;
-$input-background: $white;
+$input-background: $sand;
 $input-background-focus: $white;
 $input-background-disabled: $light-gray;
 $input-border: 1px solid $medium-gray;
@@ -767,7 +762,7 @@ $switch-paddle-transition: all 0.25s ease-out;
 // 50. Table
 // ---------
 
-$table-background: $white;
+$table-background: lighten($sand, 5%);
 $table-color-scale: 5%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
@@ -781,8 +776,8 @@ $table-head-background: smart-scale($table-background, $table-color-scale / 2);
 $table-head-row-hover: darken($table-head-background, $table-hover-scale);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-foot-row-hover: darken($table-foot-background, $table-hover-scale);
-$table-head-font-color: $body-font-color;
-$table-foot-font-color: $body-font-color;
+$table-head-font-color: $solarized-base01;
+$table-foot-font-color: $solarized-base01;
 $show-header-for-stacked: false;
 $table-stack-breakpoint: medium;
 

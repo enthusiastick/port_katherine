@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170920190050) do
 
   create_table "events", force: :cascade do |t|
     t.string "address"
+    t.boolean "archived", default: false
     t.text "description"
     t.datetime "end_time", null: false
     t.float "latitude"

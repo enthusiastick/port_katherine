@@ -1,3 +1,31 @@
+const signedInAdminNavigationLinks = [
+  {
+    icon: 'compass',
+    label: 'Home',
+    url: ''
+  },
+  {
+    icon: 'user',
+    label: 'Account',
+    url: 'edit-user'
+  },
+  {
+    icon: 'gavel',
+    label: 'Admin',
+    url: 'admin'
+  },
+  {
+    icon: 'calendar',
+    label: 'Events',
+    url: 'events'
+  },
+  {
+    icon: 'sign-out',
+    label: 'Sign Out',
+    url: 'sign-out'
+  }
+]
+
 const signedInNavigationLinks = [
   {
     icon: 'compass',
@@ -12,7 +40,7 @@ const signedInNavigationLinks = [
   {
     icon: 'calendar',
     label: 'Events',
-    url: 'admin/events'
+    url: 'events'
   },
   {
     icon: 'sign-out',
@@ -35,8 +63,12 @@ const signedOutNavigationLinks = [
   {
     icon: 'calendar',
     label: 'Events',
-    url: 'admin/events'
+    url: 'events'
   }
 ]
 
-export { signedInNavigationLinks, signedOutNavigationLinks }
+export {
+  signedInAdminNavigationLinks,
+  signedInNavigationLinks,
+  signedOutNavigationLinks
+}

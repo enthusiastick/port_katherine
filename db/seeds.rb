@@ -3,26 +3,26 @@ description = "h4. From points East/North\r\n * Take Route 2 towards Fitchburg.\
 latitude = 42.665532
 longitude = -71.819273
 
-event1 = Event.find_or_initialize_by(name: "Spring One 2018")
+event1 = Event.find_or_initialize_by(name: "Spring 2018")
 unless event1.persisted?
-  event1.assign_attributes(start_time: Time.new(2017, 5, 4, 20), end_time: Time.new(2018, 5, 6, 14), address: address, description: description, latitude: latitude, longitude: longitude)
+  event1.assign_attributes(start_time: Time.new(2017, 5, 4, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 5, 6, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
   event1.save
 end
 
-event2 = Event.find_or_initialize_by(name: "Spring Two 2018")
+event2 = Event.find_or_initialize_by(name: "Summer 2018")
 unless event2.persisted?
-  event2.assign_attributes(start_time: Time.new(2018, 6, 15, 20), end_time: Time.new(2018, 6, 17, 14), address: address, description: description, latitude: latitude, longitude: longitude)
+  event2.assign_attributes(start_time: Time.new(2018, 6, 15, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 6, 17, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
   event2.save
 end
 
-event3 = Event.find_or_initialize_by(name: "Fall One 2018")
+event3 = Event.find_or_initialize_by(name: "Fall 2018")
 unless event3.persisted?
-  event3.assign_attributes(start_time: Time.new(2018, 9, 14, 20), end_time: Time.new(2018, 9, 16, 14), address: address, description: description, latitude: latitude, longitude: longitude)
+  event3.assign_attributes(start_time: Time.new(2018, 9, 14, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 9, 16, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
   event3.save
 end
 
-event4 = Event.find_or_initialize_by(name: "Fall Two 2018")
+event4 = Event.find_or_initialize_by(name: "Winter 2018")
 unless event4.persisted?
-  event4.assign_attributes(start_time: Time.new(2018, 10, 19, 20), end_time: Time.new(2018, 10, 21, 14), address: address, description: description, latitude: latitude, longitude: longitude)
+  event4.assign_attributes(start_time: Time.new(2018, 10, 19, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 10, 21, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
   event4.save
 end

@@ -8,7 +8,7 @@ import { clearNotices, flashNotice } from '../../../sharedResources/actions/flas
 import { updatePasswordReset } from '../actions/updatePasswordReset'
 
 let validate = values => {
-  const errors = {}
+  let errors = {}
 
   if (!values.password) {
     errors.password = 'can\'t be blank'

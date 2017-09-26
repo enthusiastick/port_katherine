@@ -1,9 +1,11 @@
+@import 'colors';
+
 .bottomless {
   margin-bottom: 0;
 }
 
 .button.navy {
-  background-color: #1D2951;
+  background-color: $navy;
 }
 
 .google-recaptcha {
@@ -16,4 +18,11 @@
 
 .top-spacer {
   padding-top: 7em;
+}
+
+td {
+  color: $solarized-base01;
+  a {
+    color: $solarized-base01
+  }
 }

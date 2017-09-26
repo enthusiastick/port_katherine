@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
   root "pages#index"
 
+  get "admin", to: "pages#index"
   get "edit-user", to: "users#edit", as: :edit_user
   get "sign-in", to: "sessions#new", as: :sign_in
   get "sign-out", to: "sessions#edit", as: :sign_out
   get "sign-up", to: "users#new", as: :sign_up
 
   namespace :admin do
-    resources :events, only: [:index]
+    resources :events, only: [:edit, :index, :new]
   end
 
   namespace :api do
     namespace :v1 do
       namespace :admin do
-        resources :events, only: [:index]
+        resources :events, only: [:create, :destroy, :index, :update]
       end
       resources :account_confirmations, only: [:create]
-      resources :events, only: [:index]
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create, :update] do
