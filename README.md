@@ -1,24 +1,16 @@
-# README
+*[Port Katherine](https://www.portkatherine.com)* is a LARP (Live Action Role-Play) administration web app using **Ruby on Rails** and **React.js** (via `webpacker` and `yarn`.) User authentication is gated behind Google's reCAPTCHA (for which you'll need keys, as referenced in the .env.example file.) To get it up and running locally:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+$ git clone git@github.com:enthusiastick/port_katherine.git
+$ bundle install
+$ rake db:create
+$ rake db:migrate
+$ rails server
+```
 
-Things you may want to cover:
+And then, in a separate terminal tab:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+$ yarn install
+$ yarn start
+```
