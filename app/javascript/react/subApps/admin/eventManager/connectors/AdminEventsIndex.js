@@ -8,7 +8,6 @@ import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
 const mapStateToProps = state => {
-  console.log(state.adminEvents)
   return {
     adminEvents: state.adminEvents.items,
     currentUser: state.currentUser.item

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
+import { Link } from 'react-router-dom'
 
 import restrictAccess from '../../constants/restrictAccess'
 
+import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import DateTime from '../../../../sharedResources/components/formFields/DateTime'
 import NumberInput from '../../../../sharedResources/components/formFields/NumberInput'
 import TextArea from '../../../../sharedResources/components/formFields/TextArea'
@@ -22,10 +24,21 @@ class EventFormContainer extends Component {
   }
 
   render() {
+    let breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
+
+    let label
+
+    if (this.props.eventSlug) {
+      label = this.props.event.name
+    } else {
+      label = 'New Event'
+    }
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
-        <h1 className='text-center top-padded'>Event Form</h1>
+        <BreadcrumbsNav breadcrumbs={breadcrumbs} current={label} />
+        <h1 className='text-center'>{label}</h1>
         <form onSubmit={this.props.handleSubmit}>
           <div className='form-inputs'>
             <Field name='name' label='Name' component={TextInput} />
