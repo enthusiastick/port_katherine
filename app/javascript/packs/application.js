@@ -19,9 +19,9 @@ import AdminEventsEdit        from '../react/subApps/admin/eventManager/connecto
 import AdminEventsIndex       from '../react/subApps/admin/eventManager/connectors/AdminEventsIndex'
 import AdminEventsNew         from '../react/subApps/admin/eventManager/connectors/AdminEventsNew'
 
-import EventsIndex            from '../react/subApps/eventRegistration/connectors/EventsIndex'
+import EventsIndex            from '../react/subApps/eventRegistrar/connectors/EventsIndex'
 
-import NavigationBar          from '../react/subApps/navigation/connectors/NavigationBar'
+import NavigationBar          from '../react/subApps/navigator/connectors/NavigationBar'
 
 import AccountConfirmation    from '../react/subApps/userAuthenticator/connectors/AccountConfirmation'
 import EditUser               from '../react/subApps/userAuthenticator/connectors/EditUser'
@@ -35,7 +35,7 @@ import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex
 
 import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import currentUser from '../react/sharedResources/reducers/currentUser'
-import events from '../react/subApps/eventRegistration/reducers/events'
+import events from '../react/subApps/eventRegistrar/reducers/events'
 import notices     from '../react/sharedResources/reducers/notices'
 
 const history = createBrowserHistory()
