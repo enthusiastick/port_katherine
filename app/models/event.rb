@@ -1,6 +1,11 @@
 class Event < ApplicationRecord
   before_validation :generate_slug
 
+  has_many :event_passes
+  has_many :passes, through: :event_passes
+  has_many :bookings, through: :passes
+  has_many :users, through: :passes
+
   default_scope { where(archived: false) }
 
   scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).order(:start_time) }
@@ -8,6 +13,7 @@ class Event < ApplicationRecord
   validates_inclusion_of :archived, in: [true, false]
   validates_presence_of :name, :start_time, :end_time
   validates_uniqueness_of :slug
+  validate :end_after_start
 
   def archive!
     update(archived: true)
@@ -21,8 +27,16 @@ class Event < ApplicationRecord
     end
   end
 
+  def end_after_start
+    unless end_time.nil?
+      if end_time < start_time
+        errors.add(:end_time, "can't be before start date")
+      end
+    end
+  end
+
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= name.parameterize if name.present?
   end
 
   def regenerate_slug

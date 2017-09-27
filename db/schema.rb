@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920190050) do
+ActiveRecord::Schema.define(version: 20170927194222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "checked_in_at"
+    t.boolean "paid", default: false
+    t.integer "pass_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pass_id", "user_id"], name: "index_bookings_on_pass_id_and_user_id", unique: true
+    t.index ["pass_id"], name: "index_bookings_on_pass_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "event_passes", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "pass_id"
+    t.index ["event_id", "pass_id"], name: "index_event_passes_on_event_id_and_pass_id", unique: true
+    t.index ["event_id"], name: "index_event_passes_on_event_id"
+    t.index ["pass_id"], name: "index_event_passes_on_pass_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "address"
@@ -28,6 +48,17 @@ ActiveRecord::Schema.define(version: 20170920190050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_events_on_slug", unique: true
+  end
+
+  create_table "passes", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.boolean "earlybird_discount", default: true
+    t.string "name", null: false
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_passes_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
