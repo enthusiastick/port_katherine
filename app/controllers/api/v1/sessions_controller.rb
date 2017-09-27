@@ -6,18 +6,7 @@ class Api::V1::SessionsController < Api::ApiController
       remember(authenticator.user) if authenticator.remember_me?
       render json: authenticator.user, status: :created
     else
-      if !authenticator.user.present?
-        render json: { error: "Invalid email/username & password combination." }, status: :unauthorized
-      elsif authenticator.confirmed?
-        if authenticator.locked?
-          render json: { error: "Your account has been locked. Please contact a site administrator to unlock it."}
-        else
-          authenticator.user.increment! :failed_sign_in_attempts
-          render json: { error: "Invalid email/username & password combination." }, status: :unauthorized
-        end
-      else
-        render json: { error: "You need to confirm your email address before continuing." }, status: :unprocessable_entity
-      end
+      render json: authenticator.error, status: authenticator.status
     end
   end
 
