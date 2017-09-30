@@ -9,6 +9,7 @@
     "babel-preset-react": "^6.24.1",
     "dotenv": "^4.0.0",
     "humps": "^2.0.1",
+    "marked": "^0.3.6",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-async-script": "^0.9.1",

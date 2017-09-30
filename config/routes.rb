@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   end
 
   resources :account_confirmations, only: [:edit]
-  resources :events, only: [:index]
+  resources :events, only: [:index, :show] do
+    get "register", to: "bookings#new"
+  end
   resources :password_resets, only: [:edit, :new]
 end

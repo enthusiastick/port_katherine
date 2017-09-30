@@ -20,6 +20,7 @@ import AdminEventsIndex       from '../react/subApps/admin/eventManager/connecto
 import AdminEventsNew         from '../react/subApps/admin/eventManager/connectors/AdminEventsNew'
 
 import EventsIndex            from '../react/subApps/eventRegistrar/connectors/EventsIndex'
+import EventShow              from '../react/subApps/eventRegistrar/connectors/EventShow'
 
 import NavigationBar          from '../react/subApps/navigator/connectors/NavigationBar'
 
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/admin/events/new' component={AdminEventsNew} />
 
               <Route exact path='/events' component={EventsIndex} />
+              <Route path='/events/:eventSlug' component={EventShow} />
             </div>
           </ConnectedRouter>
         </Provider>,

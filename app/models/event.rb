@@ -1,12 +1,12 @@
 class Event < ApplicationRecord
   before_validation :generate_slug
 
+  default_scope { where(archived: false) }
+
   has_many :event_passes
   has_many :passes, through: :event_passes
   has_many :bookings, through: :passes
   has_many :users, through: :passes
-
-  default_scope { where(archived: false) }
 
   scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).order(:start_time) }
 

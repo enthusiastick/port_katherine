@@ -18,21 +18,17 @@ ActiveRecord::Schema.define(version: 20170927194222) do
   create_table "bookings", force: :cascade do |t|
     t.datetime "checked_in_at"
     t.boolean "paid", default: false
-    t.integer "pass_id"
-    t.integer "user_id"
+    t.integer "pass_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pass_id", "user_id"], name: "index_bookings_on_pass_id_and_user_id", unique: true
-    t.index ["pass_id"], name: "index_bookings_on_pass_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "event_passes", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "pass_id"
+    t.integer "event_id", null: false
+    t.integer "pass_id", null: false
     t.index ["event_id", "pass_id"], name: "index_event_passes_on_event_id_and_pass_id", unique: true
-    t.index ["event_id"], name: "index_event_passes_on_event_id"
-    t.index ["pass_id"], name: "index_event_passes_on_pass_id"
   end
 
   create_table "events", force: :cascade do |t|

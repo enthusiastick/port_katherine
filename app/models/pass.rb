@@ -1,10 +1,14 @@
 class Pass < ApplicationRecord
   before_validation :generate_slug
 
+  default_scope { active }
+
   has_many :bookings
   has_many :users, through: :bookings
   has_many :event_passes
   has_many :events, through: :event_passes
+
+  scope :active, -> { where(active: true).order(:price) }
 
   validates_inclusion_of :active, in: [true, false]
   validates_inclusion_of :earlybird_discount, in: [true, false]
