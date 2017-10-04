@@ -2,7 +2,7 @@ import marked from 'marked'
 import React from 'react'
 import { Link } from 'react-router-redux'
 
-import MapWithAMarker from '../../../sharedResources/components/MapWithAMarker'
+import PassList from './PassList'
 
 const Event = props => {
   let markdownParsedDescription, renderedHTML
@@ -19,8 +19,13 @@ const Event = props => {
           <h3>{props.dates}</h3>
         </div>
         <div className='row'>
+          <div className='small-10 medium-7 large-5 small-centered columns'>
+            <PassList event={props.slug} passes={props.passes} />
+          </div>
+        </div>
+        <div className='row'>
           <div className='small-11 medium-10 large-9 small-centered columns'>
-            <MapWithAMarker latitude={props.latitude} longitude={props.longitude} zoom={15} />
+            <div className='callout' id='mapCanvas' />
             <p className='text-center'>
               <strong>
                 Address:

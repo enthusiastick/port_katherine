@@ -7,6 +7,7 @@ end
 
 gem "active_model_serializers", "~> 0.10.0"
 gem "bcrypt", "~> 3.1.7"
+gem "braintree", "~> 2.47"
 gem "coffee-rails", "~> 4.2"
 gem "font-awesome-rails"
 gem "foundation-rails"

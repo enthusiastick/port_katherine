@@ -45,7 +45,6 @@ let onSubmit = (values, dispatch) => {
   .catch(errors => {
     dispatch(clearNotices())
     dispatch(flashNotice({ alert: 'This event could not be saved.' }))
-    console.log(errors)
     let submissionErrors = {}
     for (let prop of Object.keys(errors)) {
       submissionErrors[prop] = errors[prop]

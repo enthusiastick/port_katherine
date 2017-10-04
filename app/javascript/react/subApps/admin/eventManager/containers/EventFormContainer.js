@@ -28,7 +28,7 @@ class EventFormContainer extends Component {
 
     let label
 
-    if (this.props.eventSlug) {
+    if (this.props.eventSlug && this.props.event) {
       label = this.props.event.name
     } else {
       label = 'New Event'

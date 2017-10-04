@@ -21,6 +21,7 @@ import AdminEventsNew         from '../react/subApps/admin/eventManager/connecto
 
 import EventsIndex            from '../react/subApps/eventRegistrar/connectors/EventsIndex'
 import EventShow              from '../react/subApps/eventRegistrar/connectors/EventShow'
+import Register               from '../react/subApps/eventRegistrar/connectors/Register'
 
 import NavigationBar          from '../react/subApps/navigator/connectors/NavigationBar'
 
@@ -68,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route path='/' component={Notices} />
               <Route exact path='/' component={LandingPage} />
 
-              <Route path='/account_confirmations/:confirmationToken/edit' component={AccountConfirmation} />
+              <Route exact path='/account_confirmations/:confirmationToken/edit' component={AccountConfirmation} />
               <Route exact path='/edit-user' component={EditUser} />
-              <Route path='/password_resets/:passwordResetId/edit' component={PasswordReset} />
+              <Route exact path='/password_resets/:passwordResetId/edit' component={PasswordReset} />
               <Route exact path='/password_resets/new' component={RequestPasswordReset} />
               <Route exact path='/sign-in' component={SignIn} />
               <Route exact path='/sign-out' component={SignOut} />
@@ -78,11 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <Route exact path='/admin' component={AdminIndex} />
               <Route exact path='/admin/events' component={AdminEventsIndex} />
-              <Route path='/admin/events/:eventSlug/edit' component={AdminEventsEdit} />
+              <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventsEdit} />
               <Route exact path='/admin/events/new' component={AdminEventsNew} />
 
               <Route exact path='/events' component={EventsIndex} />
-              <Route path='/events/:eventSlug' component={EventShow} />
+              <Route exact path='/events/:eventSlug' component={EventShow} />
+              <Route exact path='/events/:eventSlug/register' component={Register} />
             </div>
           </ConnectedRouter>
         </Provider>,

@@ -12,6 +12,17 @@
   background-color: $navy;
 }
 
+.card-section {
+  border-bottom: 1px solid $twilight;
+  h5 {
+    color: $navy;
+  }
+}
+
+.input-group-label {
+  background-color: $twilight;
+}
+
 .google-recaptcha {
   padding-bottom: 1rem;
 }

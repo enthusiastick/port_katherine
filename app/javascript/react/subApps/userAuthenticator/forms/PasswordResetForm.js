@@ -43,10 +43,10 @@ const PasswordResetForm = props => {
   }
 
   const ConnectedPasswordResetForm = reduxForm({
-    form: 'passwordReset',
-    validate,
-    onSubmit,
-    initialValues
+      form: 'passwordReset',
+      validate,
+      onSubmit,
+      initialValues
   })(PasswordResetFormContainer)
 
   return(
