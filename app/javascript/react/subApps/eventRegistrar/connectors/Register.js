@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { getEvents } from '../actions/getEvents'
+import { getToken } from '../actions/getToken'
 import RegistrationForm from '../forms/RegistrationForm'
 
 const mapStateToProps = (state, ownProps) => {
@@ -23,13 +24,15 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.currentUser.item,
     event: event,
-    pass: pass
+    pass: pass,
+    token: state.token.item
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getEvents: () => { dispatch(getEvents()) }
+    getEvents: () => { dispatch(getEvents()) },
+    getToken: () => { dispatch(getToken()) }
   }
 }
 

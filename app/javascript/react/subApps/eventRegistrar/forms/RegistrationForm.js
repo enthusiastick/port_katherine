@@ -1,6 +1,8 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
 
+import { createRegistration } from '../actions/createRegistration'
+
 import RegistrationFormContainer from '../containers/RegistrationFormContainer'
 
 let validate = values => {
@@ -25,14 +27,17 @@ let validate = values => {
 }
 
 let onSubmit = (values, dispatch) => {
-  console.log(values)
+  return dispatch(createRegistration(values))
+  .then(data => { console.log(data) })
+  .catch(errors => { console.log(errors) })
 }
 
 
 const RegistrationForm = props => {
   let initialValues = {
     cardholderName: `${props.currentUser.firstName} ${props.currentUser.lastName}`,
-    user: props.currentUser.handle
+    user: props.currentUser.handle,
+    token: props.token
   }
 
   if (props.pass) {
@@ -52,6 +57,8 @@ const RegistrationForm = props => {
       event={props.event}
       eventSlug={props.match.params.eventSlug}
       getEvents={props.getEvents}
+      getToken={props.getToken}
+      token={props.token}
     />
   )
 }

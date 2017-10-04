@@ -3,6 +3,8 @@ import { Field } from 'redux-form'
 
 import CreditCardInput from '../../../sharedResources/components/formFields/CreditCardInput'
 import monthOptions from '../../../sharedResources/constants/monthOptions'
+import normalizeCardVerification from '../../../sharedResources/constants/normalizeCardVerification'
+import normalizeCreditCard from '../../../sharedResources/constants/normalizeCreditCard'
 import Select from '../../../sharedResources/components/formFields/Select'
 import TextArea from '../../../sharedResources/components/formFields/TextArea'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
@@ -16,6 +18,10 @@ class RegistrationFormContainer extends Component {
   componentWillMount() {
     if (this.props.eventSlug && !this.props.event) {
       this.props.getEvents()
+    }
+
+    if (!this.props.token) {
+      this.props.getToken()
     }
   }
 
@@ -45,8 +51,17 @@ class RegistrationFormContainer extends Component {
                 />
                 <hr />
                   <h5>Credit Card Information</h5>
-                  <Field name='cardholderName' label='Cardholder Name' component={TextInput} />
-                  <Field name='cardNumber' label='Card Number' component={CreditCardInput} />
+                  <Field
+                    name='cardholderName'
+                    label='Cardholder Name'
+                    component={TextInput}
+                  />
+                  <Field
+                    name='cardNumber'
+                    label='Card Number'
+                    component={CreditCardInput}
+                    normalize={normalizeCreditCard}
+                  />
                   <div className='row'>
                     <div className='small-12 medium-4 columns'>
                       <Select
@@ -67,11 +82,20 @@ class RegistrationFormContainer extends Component {
                       />
                     </div>
                     <div className='small-12 medium-4 columns'>
-                      <Field name='cardVerification' label='Card Verification' component={TextInput} />
+                      <Field
+                        name='cardVerification'
+                        label='Card Verification'
+                        component={TextInput}
+                        normalize={normalizeCardVerification}
+                      />
                     </div>
                   </div>
                 <hr />
-                <Field name='userSelfReport' label='Food allergies and other information' component={TextArea} />
+                <Field
+                  name='userSelfReport'
+                  label='Food allergies and other information'
+                  component={TextArea}
+                />
               </div>
               <div className='form-actions'>
                 <button className='button' disabled={pristine || submitting} type='submit'>Register</button>

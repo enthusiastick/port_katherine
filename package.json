@@ -7,6 +7,7 @@
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
     "babel-preset-react": "^6.24.1",
+    "braintree-web": "^3.23.0",
     "dotenv": "^4.0.0",
     "humps": "^2.0.1",
     "marked": "^0.3.6",

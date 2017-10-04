@@ -2,6 +2,22 @@
 # yarn lockfile v1
 
 
+"@braintree/browser-detection@1.6.0", "@braintree/browser-detection@^1.5.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@braintree/browser-detection/-/browser-detection-1.6.0.tgz#92b382db04a7ce8915c75e5350e5a77fc111edb4"
+
+"@braintree/iframer@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@braintree/iframer/-/iframer-1.0.3.tgz#21dd1fd4cebd4154aeab1efa4d5b0d5f4384364e"
+
+"@braintree/sanitize-url@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-2.0.2.tgz#2b37caa50687ac47370520a502f5226ee31a5ab1"
+
+"@braintree/wrap-promise@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@braintree/wrap-promise/-/wrap-promise-1.1.1.tgz#d22c76855e6d4b4012610060421fae1a37ec90b0"
+
 "@rails/webpacker@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-3.0.1.tgz#54da0c2a0d2b7c482cd4eb2eca73beb28150c45d"
@@ -937,6 +953,21 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
+braintree-web@^3.23.0:
+  version "3.23.0"
+  resolved "https://registry.yarnpkg.com/braintree-web/-/braintree-web-3.23.0.tgz#a2ef59490e4a750141dfe067f54e247744779ada"
+  dependencies:
+    "@braintree/browser-detection" "1.6.0"
+    "@braintree/iframer" "1.0.3"
+    "@braintree/sanitize-url" "2.0.2"
+    "@braintree/wrap-promise" "1.1.1"
+    card-validator "4.1.0"
+    credit-card-type "5.0.4"
+    framebus "2.0.8"
+    inject-stylesheet "1.0.0"
+    promise-polyfill "6.0.2"
+    restricted-input "1.2.6"
+
 brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
@@ -1083,6 +1114,12 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000718, caniuse-lite@^1.0.30000726:
   version "1.0.30000733"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000733.tgz#ebfc48254117cc0c66197a4536cb4397a6cfbccd"
+
+card-validator@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/card-validator/-/card-validator-4.1.0.tgz#1d60ef09dad06432e6c2c0bbc63383ffc126b0e8"
+  dependencies:
+    credit-card-type "^5.0.0"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -1387,6 +1424,10 @@ create-react-class@^15.6.0:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
+
+credit-card-type@5.0.4, credit-card-type@^5.0.0:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/credit-card-type/-/credit-card-type-5.0.4.tgz#2dd9df280411ce2bb91ed95ac31e814605717aed"
 
 cross-spawn@^3.0.0:
   version "3.0.1"
@@ -2094,6 +2135,10 @@ fraction.js@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.0.2.tgz#0eae896626f334b1bde763371347a83b5575d7f0"
 
+framebus@2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/framebus/-/framebus-2.0.8.tgz#01c7ee5f765beb3f9a2e0390ca0b7088b2bf76d3"
+
 fresh@0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.0.tgz#f474ca5e6a9246d6fd8e0953cfa9b9c805afa78e"
@@ -2458,6 +2503,10 @@ inherits@2.0.1:
 ini@~1.3.0:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
+
+inject-stylesheet@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/inject-stylesheet/-/inject-stylesheet-1.0.0.tgz#f673047458ee58f109fee4cfb66b09f362ccc261"
 
 internal-ip@^2.0.2:
   version "2.0.3"
@@ -4194,6 +4243,10 @@ promise-each@^2.2.0:
   dependencies:
     any-promise "^0.1.0"
 
+promise-polyfill@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-6.0.2.tgz#d9c86d3dc4dc2df9016e88946defd69b49b41162"
+
 promise@^7.1.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/promise/-/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
@@ -4636,6 +4689,12 @@ resolve@^1.3.3, resolve@~1.4.0:
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
   dependencies:
     path-parse "^1.0.5"
+
+restricted-input@1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/restricted-input/-/restricted-input-1.2.6.tgz#eee32c181b86d9bd4f2d07fc369b2b9123d4ee36"
+  dependencies:
+    "@braintree/browser-detection" "^1.5.0"
 
 resumer@~0.0.0:
   version "0.0.0"

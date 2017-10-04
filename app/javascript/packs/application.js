@@ -37,8 +37,9 @@ import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex
 
 import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import currentUser from '../react/sharedResources/reducers/currentUser'
-import events from '../react/subApps/eventRegistrar/reducers/events'
+import events      from '../react/subApps/eventRegistrar/reducers/events'
 import notices     from '../react/sharedResources/reducers/notices'
+import token       from '../react/subApps/eventRegistrar/reducers/token'
 
 const history = createBrowserHistory()
 
@@ -50,6 +51,7 @@ const store = createStore(
     currentUser,
     events,
     notices,
+    token,
     form: formReducer,
     router: routerReducer
   }),

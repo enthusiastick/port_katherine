@@ -17,6 +17,8 @@ Rails.application.routes.draw do
         resources :events, only: [:create, :destroy, :index, :update]
       end
       resources :account_confirmations, only: [:create]
+      resources :bookings, only: [:create]
+      resources :client_token, only: [:index]
       resources :events, only: [:index]
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create, :destroy]
