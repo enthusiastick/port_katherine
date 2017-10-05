@@ -4,13 +4,8 @@ class Api::V1::BookingsController < Api::ApiController
   def create
     user = current_user
     pass = Pass.find_by(slug: params[:pass])
-    result = Braintree::Transaction.sale(
-      amount: number_to_currency(pass.price, unit: String.new),
-      payment_method_nonce: params[:payment][:nonce],
-      options: {
-        submit_for_settlement: true
-      }
-    )
+    pk_braintree = PkBraintree::Wrapper.new(params[:payment][:nonce])
+    result = pk_braintree.sale(pass.price)
     binding.pry
   end
 end
