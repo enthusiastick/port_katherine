@@ -4,69 +4,73 @@ latitude = 42.665532
 longitude = -71.819273
 
 # EVENTS
+print "Seeding events: "
 spring = Event.find_or_initialize_by(name: "Spring 2018")
 unless spring.persisted?
   spring.assign_attributes(start_time: Time.new(2018, 5, 4, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 5, 6, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
-  spring.save
+  print "#{spring.name}. " if spring.save
 end
 
 summer = Event.find_or_initialize_by(name: "Summer 2018")
 unless summer.persisted?
   summer.assign_attributes(start_time: Time.new(2018, 6, 15, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 6, 17, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
-  summer.save
+  print "#{summer.name}. " if summer.save
 end
 
 fall = Event.find_or_initialize_by(name: "Fall 2018")
 unless fall.persisted?
   fall.assign_attributes(start_time: Time.new(2018, 9, 14, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 9, 16, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
-  fall.save
+  print "#{fall.name}. " if fall.save
 end
 
 winter = Event.find_or_initialize_by(name: "Winter 2018")
 unless winter.persisted?
   winter.assign_attributes(start_time: Time.new(2018, 10, 19, 20, 0, 0, "-04:00"), end_time: Time.new(2018, 10, 21, 14, 0, 0, "-04:00"), address: address, description: description, latitude: latitude, longitude: longitude)
-  winter.save
+  print "#{winter.name}. " if winter.save
 end
+print "... Seeding complete."
 
 # PASSES
+print "\nSeeding passes: "
 spring_pass = Pass.find_or_initialize_by(name: "Spring Pass (2018)")
 unless spring_pass.persisted?
   spring_pass.assign_attributes(price: 80, events: [spring])
-  spring_pass.save
+  print "#{spring_pass.name}. " if spring_pass.save
 end
 
 summer_pass = Pass.find_or_initialize_by(name: "Summer Pass (2018)")
 unless summer_pass.persisted?
   summer_pass.assign_attributes(price: 80, events: [summer])
-  summer_pass.save
+  print "#{summer_pass.name}. " if summer_pass.save
 end
 
 fall_pass = Pass.find_or_initialize_by(name: "Fall Pass (2018)")
 unless fall_pass.persisted?
   fall_pass.assign_attributes(price: 80, events: [fall])
-  fall_pass.save
+  print "#{fall_pass.name}. " if fall_pass.save
 end
 
 winter_pass = Pass.find_or_initialize_by(name: "Winter Pass (2018)")
 unless winter_pass.persisted?
   winter_pass.assign_attributes(price: 80, events: [winter])
-  winter_pass.save
+  print "#{winter_pass.name}. " if winter_pass.save
 end
 
 spring_summer_pass = Pass.find_or_initialize_by(name: "Spring & Summer Pass (2018)")
 unless spring_summer_pass.persisted?
   spring_summer_pass.assign_attributes(price: 130, earlybird_discount: false, events: [spring, summer])
-  spring_summer_pass.save
+  print "#{spring_summer_pass.name}. " if spring_summer_pass.save
 end
 
 fall_winter_pass = Pass.find_or_initialize_by(name: "Fall & Winter Pass (2018)")
 unless fall_winter_pass.persisted?
   fall_winter_pass.assign_attributes(price: 130, earlybird_discount: false, events: [fall, winter])
-  fall_winter_pass.save
+  print "#{fall_winter_pass.name}. " if fall_winter_pass.save
 end
 
 annual_pass = Pass.find_or_initialize_by(name: "Annual Pass (2018)")
 unless annual_pass.persisted?
   annual_pass.assign_attributes(price: 240, earlybird_discount: false, events: [spring, summer, fall, winter])
-  annual_pass.save
+  print "#{annual_pass.name}. " if annual_pass.save
 end
+print "... Seeding complete."

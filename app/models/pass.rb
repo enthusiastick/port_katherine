@@ -3,10 +3,10 @@ class Pass < ApplicationRecord
 
   default_scope { active }
 
-  has_many :bookings
-  has_many :users, through: :bookings
   has_many :event_passes
   has_many :events, through: :event_passes
+  has_many :receipts
+  has_many :users, through: :receipts
 
   scope :active, -> { where(active: true).order(:price) }
 

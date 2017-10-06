@@ -5,8 +5,8 @@ class Event < ApplicationRecord
 
   has_many :event_passes
   has_many :passes, through: :event_passes
-  has_many :bookings, through: :passes
-  has_many :users, through: :passes
+  has_many :bookings
+  has_many :users, through: :bookings
 
   scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).order(:start_time) }
 

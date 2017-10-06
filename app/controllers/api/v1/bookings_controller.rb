@@ -4,8 +4,8 @@ class Api::V1::BookingsController < Api::ApiController
   def create
     user = current_user
     pass = Pass.find_by(slug: params[:pass])
-    pk_braintree = PkBraintree::Wrapper.new(params[:payment][:nonce])
-    result = pk_braintree.sale(pass.price)
+    registrar = Registrar.new(user, pass, request.remote_ip, params[:payment][:nonce])
+    registrar.register!
     binding.pry
   end
 end

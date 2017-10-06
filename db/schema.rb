@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927194222) do
+ActiveRecord::Schema.define(version: 20171005014142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,13 @@ ActiveRecord::Schema.define(version: 20170927194222) do
   create_table "bookings", force: :cascade do |t|
     t.datetime "checked_in_at"
     t.boolean "paid", default: false
-    t.integer "pass_id", null: false
+    t.integer "event_id", null: false
+    t.integer "category", default: 0, null: false
+    t.integer "receipt_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pass_id", "user_id"], name: "index_bookings_on_pass_id_and_user_id", unique: true
+    t.index ["event_id", "user_id"], name: "index_bookings_on_event_id_and_user_id", unique: true
   end
 
   create_table "event_passes", force: :cascade do |t|
@@ -55,6 +57,19 @@ ActiveRecord::Schema.define(version: 20170927194222) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_passes_on_slug", unique: true
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.decimal "amount", precision: 8, scale: 2, null: false
+    t.string "braintree_transaction_id", null: false
+    t.string "cardholder_name"
+    t.string "image_url"
+    t.inet "ip_address"
+    t.integer "pass_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pass_id", "user_id"], name: "index_receipts_on_pass_id_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

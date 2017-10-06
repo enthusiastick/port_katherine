@@ -14,12 +14,14 @@ class BookingsAndPasses < ActiveRecord::Migration[5.1]
     create_table :bookings do |t|
       t.datetime :checked_in_at
       t.boolean :paid, default: false
-      t.integer :pass_id, null: false
+      t.integer :event_id, null: false
+      t.integer :category, default: 0, null: false
+      t.integer :receipt_id, null: false
       t.integer :user_id, null: false
 
       t.timestamps
     end
-    add_index :bookings, [:pass_id, :user_id], unique: true
+    add_index :bookings, [:event_id, :user_id], unique: true
 
     create_table :event_passes do |t|
       t.integer :event_id, null: false
