@@ -1,6 +1,11 @@
+import {
+  FETCH_ADMIN_EVENTS,
+  FETCH_ADMIN_EVENTS_SUCCESS,
+  FETCH_ADMIN_EVENTS_FAILURE
+} from '../actions/getAdminEvents'
+
 import { CREATE_ADMIN_EVENT_SUCCESS } from '../actions/createAdminEvent'
 import { DELETE_ADMIN_EVENT_REQUEST_SUCCESS } from '../actions/deleteAdminEvent'
-import { FETCH_ADMIN_EVENTS, FETCH_ADMIN_EVENTS_SUCCESS, FETCH_ADMIN_EVENTS_FAILURE } from '../actions/getAdminEvents'
 import { UPDATE_ADMIN_EVENT_SUCCESS } from '../actions/updateAdminEvent'
 
 let initialState = {
@@ -31,7 +36,9 @@ const adminEvents = (state = initialState, action) => {
       return Object.assign({}, state, { items: removedAdminEvents })
     case UPDATE_ADMIN_EVENT_SUCCESS:
       newAdminEvents = state.items
-      patchedEventIndex = newAdminEvents.findIndex(event => { if (event.id === action.event.id) { return event } })
+      patchedEventIndex = newAdminEvents.findIndex(event => {
+        if (event.id === action.event.id) { return event }
+      })
       newAdminEvents.splice(patchedEventIndex, 1, action.event)
       return Object.assign({}, state, { items: newAdminEvents })
     default:

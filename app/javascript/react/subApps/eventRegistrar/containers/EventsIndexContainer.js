@@ -1,6 +1,26 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+const EventTile = props => {
+  let linkTo = `/events/${props.slug}`
+
+  return(
+    <div className='callout secondary' key={props.slug}>
+      <div className='text-center'>
+        <h3>
+          <Link to={linkTo}>
+            {props.name}
+            { props.userBooking && <span>&nbsp;<i className='fa fa-check' /></span> }
+          </Link>
+        </h3>
+        <p className='bottomless'>
+          {props.dates}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 class EventsIndexContainer extends Component {
   constructor(props) {
     super(props)
@@ -19,34 +39,25 @@ class EventsIndexContainer extends Component {
       eventTiles = <div className='callout secondary'><div className='text-center'><h3>No events currently scheduled.</h3><p className='bottomless'>Check back soon!</p></div></div>
     } else {
       eventTiles = this.props.events.map(event => {
-        return(
-          <div className='callout secondary' key={event.slug}>
-            <div className='text-center'>
-              <h3>
-                <Link to={`/events/${event.slug}`}>
-                  {event.name}
-                </Link>
-              </h3>
-              <p className='bottomless'>
-                {event.dates}
-              </p>
-            </div>
-          </div>
-        )
+        return(<EventTile key={event.slug} {...event} />)
       })
     }
 
-    return(
-      <div className='row'>
-        <div className='small-11 medium-7 small-centered columns'>
-          <div className='text-center'>
-            <h1 className='top-padded'>Port Katherine</h1>
-            <h3>Upcoming Events</h3>
-            {eventTiles}
+    if (this.props.events.isFetching) {
+      return null
+    } else {
+      return(
+        <div className='row'>
+          <div className='small-11 medium-7 small-centered columns'>
+            <div className='text-center'>
+              <h1 className='top-padded'>Port Katherine</h1>
+              <h3>Upcoming Events</h3>
+              {eventTiles}
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

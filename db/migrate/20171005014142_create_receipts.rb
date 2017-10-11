@@ -11,6 +11,5 @@ class CreateReceipts < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :receipts, [:pass_id, :user_id], unique: true
   end
 end

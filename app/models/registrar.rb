@@ -1,14 +1,21 @@
 class Registrar
-  def initialize(user, pass, request_ip, nonce)
+  def initialize(user, pass, nonce, request_ip)
     @user = user
-    @pass = pass
-    @request_ip = request_ip
+    @pass = Pass.find_by(slug: pass)
     @nonce = nonce
+    @request_ip = request_ip
   end
+
+  attr_reader :response, :status
 
   def register!
     @sale = pk_braintree.sale(@pass.price)
-    persist_bookings_and_receipt if @sale.success?
+    if @sale.success? && persist_bookings_and_receipt
+      @response = @pass.events.soonest_first
+      @status = :created
+    else
+      binding.pry
+    end
   end
 
   private

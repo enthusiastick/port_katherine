@@ -7,7 +7,11 @@ const CREATE_REGISTRATION = 'CREATE_REGISTRATION'
 const CREATE_REGISTRATION_SUCCESS = 'CREATE_REGISTRATION_SUCCESS'
 const CREATE_REGISTRATION_FAILURE = 'CREATE_REGISTRATION_FAILURE'
 
-export { CREATE_REGISTRATION, CREATE_REGISTRATION_SUCCESS, CREATE_REGISTRATION_FAILURE }
+export {
+  CREATE_REGISTRATION,
+  CREATE_REGISTRATION_SUCCESS,
+  CREATE_REGISTRATION_FAILURE
+}
 
 let fetchCreateRegistration = () => {
   return {
@@ -15,10 +19,10 @@ let fetchCreateRegistration = () => {
   }
 }
 
-let fetchCreateRegistrationSuccess = registration => {
+let fetchCreateRegistrationSuccess = events => {
   return {
     type: CREATE_REGISTRATION_SUCCESS,
-    registration
+    events
   }
 }
 
@@ -42,7 +46,19 @@ let createRegistration = values => dispatch => {
     })
   })
   .then(response => { return response.json() })
-  .then(data => { console.log(data) })
+  .then(data => {
+    if (data.error) {
+      throw data.error
+    } else {
+      dispatch(fetchCreateRegistrationSuccess(humps.camelizeKeys(data.events)))
+    }
+    return data
+  })
+  .catch(errors => {
+    dispatch(fetchCreateRegistrationFailure())
+    throw errors
+  })
+
 }
 export {
   fetchCreateRegistration,

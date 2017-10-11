@@ -8,7 +8,8 @@ class Event < ApplicationRecord
   has_many :bookings
   has_many :users, through: :bookings
 
-  scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).order(:start_time) }
+  scope :soonest_first, -> { order(:start_time) }
+  scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).soonest_first }
 
   validates_inclusion_of :archived, in: [true, false]
   validates_presence_of :name, :start_time, :end_time

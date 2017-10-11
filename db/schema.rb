@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20171005014142) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pass_id", "user_id"], name: "index_receipts_on_pass_id_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

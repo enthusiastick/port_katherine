@@ -4,8 +4,7 @@ class PassSerializer < ActiveModel::Serializer
   attributes :name, :price, :slug
 
   def price
-    puts foo_bar?
-    if object.earlybird_discount? && foo_bar?
+    if object.earlybird_discount? && first_event_two_weeks_away?
       price = object.price - 10
     else
       price = object.price
@@ -15,7 +14,7 @@ class PassSerializer < ActiveModel::Serializer
 
   private
 
-  def foo_bar?
-    object.events.first.start_time.at_end_of_day > Time.now + 2.weeks + 1.day
+  def first_event_two_weeks_away?
+    object.events.soonest_first.first.start_time.at_end_of_day > Time.now + 2.weeks + 1.day
   end
 end

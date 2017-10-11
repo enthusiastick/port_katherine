@@ -3,9 +3,13 @@ class Api::V1::BookingsController < Api::ApiController
 
   def create
     user = current_user
-    pass = Pass.find_by(slug: params[:pass])
-    registrar = Registrar.new(user, pass, request.remote_ip, params[:payment][:nonce])
+    registrar = Registrar.new(
+      user,
+      params[:pass],
+      params[:payment][:nonce],
+      request.remote_ip
+    )
     registrar.register!
-    binding.pry
+    render json: registrar.response, status: registrar.status
   end
 end

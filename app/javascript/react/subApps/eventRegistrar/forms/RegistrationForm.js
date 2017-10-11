@@ -1,9 +1,11 @@
 import React from 'react'
-import { reduxForm } from 'redux-form'
-
-import { createRegistration } from '../actions/createRegistration'
+import { reduxForm, SubmissionError } from 'redux-form'
+import { push } from 'react-router-redux'
 
 import RegistrationFormContainer from '../containers/RegistrationFormContainer'
+
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
+import { createRegistration } from '../actions/createRegistration'
 
 let validate = values => {
   let errors = {}
@@ -28,8 +30,20 @@ let validate = values => {
 
 let onSubmit = (values, dispatch) => {
   return dispatch(createRegistration(values))
-  .then(data => { console.log(data) })
-  .catch(errors => { console.log(errors) })
+  .then(data => {
+    dispatch(clearNotices())
+    dispatch(flashNotice({ success: 'Registration completed successfully.' }))
+    dispatch(push('/events'))
+  })
+  .catch(errors => {
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem with your registration.' }))
+    let submissionErrors = {}
+    for (let prop of Object.keys(errors)) {
+      submissionErrors[prop] = errors[prop]
+    }
+    throw new SubmissionError(submissionErrors)
+  })
 }
 
 
