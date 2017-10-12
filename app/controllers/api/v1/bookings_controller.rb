@@ -5,8 +5,7 @@ class Api::V1::BookingsController < Api::ApiController
     user = current_user
     registrar = Registrar.new(
       user,
-      params[:pass],
-      params[:payment][:nonce],
+      params,
       request.remote_ip
     )
     registrar.register!

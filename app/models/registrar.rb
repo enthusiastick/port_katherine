@@ -1,20 +1,34 @@
 class Registrar
-  def initialize(user, pass, nonce, request_ip)
+  def initialize(user, params, request_ip)
     @user = user
-    @pass = Pass.find_by(slug: pass)
-    @nonce = nonce
+    @pass = Pass.find_by(slug: params[:pass])
+    @nonce = params[:payment][:nonce]
     @request_ip = request_ip
+    @self_report = params[:user_self_report]
   end
 
   attr_reader :response, :status
 
   def register!
-    @sale = pk_braintree.sale(@pass.price)
-    if @sale.success? && persist_bookings_and_receipt
+    @sale = pk_braintree.sale(@pass.price_including_earlybird_discount)
+    if @sale.success? && persist_records_to_database
       @response = @pass.events.soonest_first
       @status = :created
     else
-      binding.pry
+      if @sale.success?
+        PkBraintree::Wrapper.void(@sale.transaction.id)
+        @response = { error: {} }
+        @bookings.each do |booking|
+          @response = { error: { pass: "Registration #{booking.errors.full_messages}" } } unless booking.valid?
+        end
+      else
+        if @sale.transaction.processor_response_code.empty?
+          @response = { error: { card_number: @sale.transaction.status.humanize } }
+        else
+          @response = { error: { card_number: @sale.transaction.processor_response_text } }
+        end
+        @status = :unprocessable_entity
+      end
     end
   end
 
@@ -24,13 +38,13 @@ class Registrar
     @pk_braintree ||= PkBraintree::Wrapper.new(@nonce)
   end
 
-  def persist_bookings_and_receipt
-    persist_receipt && persist_bookings
+  def persist_records_to_database
+    persist_receipt && persist_bookings && update_user
   end
 
   def persist_bookings
     @bookings = []
-    @pass.events.each do |event|
+    @pass.events.soonest_first.each do |event|
       booking = Booking.new(
         event: event,
         paid: true,
@@ -39,7 +53,12 @@ class Registrar
       )
       @bookings << booking
     end
-    Booking.transaction { @bookings.each(&:save) }
+    Booking.transaction do
+      begin
+        @bookings.each(&:save!)
+      rescue ActiveRecord::RecordInvalid
+      end
+    end
   end
 
   def persist_receipt
@@ -52,5 +71,9 @@ class Registrar
       pass: @pass,
       user: @user
     )
+  end
+
+  def update_user
+    @user.update(self_report: @self_report)
   end
 end

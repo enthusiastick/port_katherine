@@ -20,7 +20,11 @@ const Event = props => {
         </div>
         <div className='row'>
           <div className='small-10 medium-7 large-5 small-centered columns'>
-            <PassList event={props.slug} passes={props.passes} />
+            <PassList
+              event={props.slug}
+              passes={props.passes}
+              userBooking={props.userBooking}
+            />
           </div>
         </div>
         <div className='row'>

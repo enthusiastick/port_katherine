@@ -12,4 +12,12 @@ class PkBraintree::Wrapper
   def sale(amount)
     @pk_braintree.sale(amount)
   end
+
+  def self.void(braintree_id)
+    if Rails.env.test?
+      PkBraintree::Fake.void(braintree_id)
+    else
+      PkBraintree::Gem.void(braintree_id)
+    end
+  end
 end

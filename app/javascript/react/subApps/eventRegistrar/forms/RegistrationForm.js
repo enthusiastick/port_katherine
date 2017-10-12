@@ -46,12 +46,12 @@ let onSubmit = (values, dispatch) => {
   })
 }
 
-
 const RegistrationForm = props => {
   let initialValues = {
     cardholderName: `${props.currentUser.firstName} ${props.currentUser.lastName}`,
     user: props.currentUser.handle,
-    token: props.token
+    token: props.token,
+    userSelfReport: props.currentUser.selfReport
   }
 
   if (props.pass) {
@@ -67,11 +67,14 @@ const RegistrationForm = props => {
 
   return(
     <ConnectedRegistrationForm
+      clearNotices={props.clearNotices}
       currentUser={props.currentUser}
       event={props.event}
       eventSlug={props.match.params.eventSlug}
+      flashNotice={props.flashNotice}
       getEvents={props.getEvents}
       getToken={props.getToken}
+      push={props.push}
       token={props.token}
     />
   )

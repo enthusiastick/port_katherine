@@ -5,4 +5,8 @@ class PkBraintree::Fake
   def sale(amount)
     Braintree::SuccessfulResult.new
   end
+
+  def self.void(braintree_id)
+    nil
+  end
 end

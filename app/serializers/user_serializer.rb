@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :first_name, :handle, :last_name, :name, :role
+  attributes :id, :email, :first_name, :handle, :last_name, :name, :role, :self_report
 
   def id
     object.non_sequential_id

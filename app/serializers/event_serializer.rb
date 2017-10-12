@@ -4,10 +4,14 @@ class EventSerializer < ActiveModel::Serializer
   has_many :passes
 
   def current_user
-    @current_suer ||= scope
+    current_user ||= scope
   end
 
   def user_booking
-    current_user.present? ? Booking.find_by(event: object, user: current_user) : nil
+    user_booking ||= user_booking_object.present? ? BookingSerializer.new(user_booking_object).as_json : nil
+  end
+
+  def user_booking_object
+    user_booking_object ||= current_user.present? ? Booking.find_by(event: object, user: current_user) : nil
   end
 end

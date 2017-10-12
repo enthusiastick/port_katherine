@@ -39,7 +39,9 @@ class EventsIndexContainer extends Component {
       eventTiles = <div className='callout secondary'><div className='text-center'><h3>No events currently scheduled.</h3><p className='bottomless'>Check back soon!</p></div></div>
     } else {
       eventTiles = this.props.events.map(event => {
-        return(<EventTile key={event.slug} {...event} />)
+        if (event.slug) {
+          return(<EventTile key={event.slug} {...event} />)
+        }
       })
     }
 

@@ -1,9 +1,11 @@
 import queryString from 'query-string'
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import { getEvents } from '../actions/getEvents'
 import { getToken } from '../actions/getToken'
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
 import RegistrationForm from '../forms/RegistrationForm'
 
 const mapStateToProps = (state, ownProps) => {
@@ -31,8 +33,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    clearNotices: () => { dispatch(clearNotices()) },
     getEvents: () => { dispatch(getEvents()) },
-    getToken: () => { dispatch(getToken()) }
+    getToken: () => { dispatch(getToken()) },
+    flashNotice: (notice) => { dispatch(flashNotice(notice)) },
+    push: (path) => { dispatch(push(path)) }
   }
 }
 

@@ -20,7 +20,19 @@ class RegistrationFormContainer extends Component {
       this.props.getEvents()
     }
 
-    if (!this.props.token) {
+    if (this.props.event && !this.props.currentUser.id) {
+      this.props.clearNotices()
+      this.props.flashNotice({ alert: 'You must be signed in to register.' })
+      this.props.push('/sign-in')
+    }
+
+    if (this.props.event && this.props.event.userBooking) {
+      this.props.clearNotices()
+      this.props.flashNotice({ alert: 'You are already registered for this event.' })
+      this.props.push('/events')
+    }
+
+    if (this.props.currentUser.id && !this.props.token) {
       this.props.getToken()
     }
   }

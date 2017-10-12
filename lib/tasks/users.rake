@@ -13,7 +13,7 @@ namespace :users do
         password: "password",
         role: :admin
       )
-      print "Foob created." if user.save
+      print "\nFoob created." if user.save
     end
   end
 end

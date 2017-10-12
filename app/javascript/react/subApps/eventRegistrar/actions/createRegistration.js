@@ -56,7 +56,7 @@ let createRegistration = values => dispatch => {
   })
   .catch(errors => {
     dispatch(fetchCreateRegistrationFailure())
-    throw errors
+    throw (humps.camelizeKeys(errors))
   })
 
 }

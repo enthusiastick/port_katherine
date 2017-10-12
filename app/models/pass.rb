@@ -29,7 +29,21 @@ class Pass < ApplicationRecord
     end
   end
 
+  def price_including_earlybird_discount
+    if earlybird_discount? && first_event_two_weeks_away?
+      price - 10
+    else
+      price
+    end
+  end
+
   def to_param
     slug
+  end
+
+  private
+
+  def first_event_two_weeks_away?
+    events.soonest_first.first.start_time.at_end_of_day > Time.now + 2.weeks + 1.day
   end
 end

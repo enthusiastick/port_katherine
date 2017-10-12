@@ -2,7 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const PassList = props => {
-  if (props.passes && props.passes.length != 0) {
+  if (props.userBooking) {
+    return(
+      <div className='callout primary'>
+        <p className='text-center'>
+          You
+          <strong>
+            &nbsp;are&nbsp;
+          </strong>
+          registered for this event.
+        </p>
+      </div>
+    )
+  } else if (props.passes && props.passes.length != 0) {
     let passes = props.passes.map(pass => {
       return(
         <Link to={`/events/${props.event}/register?pass=${pass.slug}`} className='button' key={pass.slug}>
@@ -11,7 +23,6 @@ const PassList = props => {
         </Link>
       )
     })
-
 
     return(
       <div className='callout primary'>

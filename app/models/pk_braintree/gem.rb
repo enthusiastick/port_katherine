@@ -12,4 +12,8 @@ class PkBraintree::Gem
       }
     )
   end
+
+  def self.void(braintree_id)
+    Braintree::Transaction.void(braintree_id)
+  end
 end
