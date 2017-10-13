@@ -12,8 +12,12 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
+import Contact                from '../react/sharedResources/components/Contact'
+import HomePage               from '../react/sharedResources/components/HomePage'
 import LandingPage            from '../react/sharedResources/components/LandingPage'
+import License                from '../react/sharedResources/components/License'
 import Notices                from '../react/sharedResources/connectors/Notices'
+import Values                 from '../react/sharedResources/components/Values'
 
 import AdminEventsEdit        from '../react/subApps/admin/eventManager/connectors/AdminEventsEdit'
 import AdminEventsIndex       from '../react/subApps/admin/eventManager/connectors/AdminEventsIndex'
@@ -69,7 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>
               <Route path='/' component={NavigationBar} />
               <Route path='/' component={Notices} />
-              <Route exact path='/' component={LandingPage} />
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/contact' component={Contact} />
+              <Route exact path='/values' component={Values} />
 
               <Route exact path='/account_confirmations/:confirmationToken/edit' component={AccountConfirmation} />
               <Route exact path='/edit-user' component={EditUser} />
@@ -87,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/events' component={EventsIndex} />
               <Route exact path='/events/:eventSlug' component={EventShow} />
               <Route exact path='/events/:eventSlug/register' component={Register} />
+              <Route path='/' component={License} />
             </div>
           </ConnectedRouter>
         </Provider>,

@@ -25,7 +25,10 @@ class SignInFormContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='text-center top-padded'>Sign In</h1>
+          <div className='text-center'>
+            <h1 className='top-padded'>Port Katherine</h1>
+            <h2>Sign In</h2>
+          </div>
           <form onSubmit={this.props.handleSubmit}>
             <div className='form-inputs'>
               <Field name='login' label='Email or username' component={TextInput} />
