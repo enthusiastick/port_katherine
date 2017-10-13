@@ -35,7 +35,7 @@ let fetchCreateRegistrationFailure = () => {
 let createRegistration = values => dispatch => {
   return getNonce(values)
   .then(cc => {
-    let valueSlice = (({ user, pass, userSelfReport }) => ({ user, pass, userSelfReport }))(values)
+    let valueSlice = (({ user, newPlayerDiscount, pass, userSelfReport }) => ({ user, newPlayerDiscount, pass, userSelfReport }))(values)
     valueSlice.payment = cc
     let payload = JSON.stringify(humps.decamelizeKeys(valueSlice))
     return fetch(`${baseUrl}/api/v1/bookings.json`, {

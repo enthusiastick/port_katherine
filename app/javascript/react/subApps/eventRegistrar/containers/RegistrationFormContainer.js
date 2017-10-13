@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
 import CreditCardInput from '../../../sharedResources/components/formFields/CreditCardInput'
-import monthOptions from '../../../sharedResources/constants/monthOptions'
-import normalizeCardVerification from '../../../sharedResources/constants/normalizeCardVerification'
-import normalizeCreditCard from '../../../sharedResources/constants/normalizeCreditCard'
 import Select from '../../../sharedResources/components/formFields/Select'
+import Switch from '../../../sharedResources/components/formFields/Switch'
 import TextArea from '../../../sharedResources/components/formFields/TextArea'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
+
+import normalizeCardVerification from '../../../sharedResources/constants/normalizeCardVerification'
+import normalizeCreditCard from '../../../sharedResources/constants/normalizeCreditCard'
+
+import monthOptions from '../../../sharedResources/constants/monthOptions'
 import yearOptions from '../../../sharedResources/constants/yearOptions'
 
 class RegistrationFormContainer extends Component {
@@ -40,10 +43,25 @@ class RegistrationFormContainer extends Component {
   render() {
     if (this.props.event) {
       let { pristine, submitting } = this.props
+      let newPlayerDiscountSwitch
+      let passObjects = this.props.event.passes
 
       let heading = `Register for ${this.props.event.name}`
 
-      let passOptions = this.props.event.passes.map(pass => {
+
+      if (!this.props.currentUser.newPlayerDiscountedAt) {
+        newPlayerDiscountSwitch = <Switch
+          name='newPlayerDiscount'
+          label='I am a new player and this is my first event. Discount my pass to $40.'
+          switchHandler={(this.props.newPlayerDiscountHandler)}
+        />
+      }
+
+      if (this.props.newPlayerDiscount) {
+        passObjects = passObjects.filter(pass => { if (!pass['multiEvent?']) { return pass } })
+      }
+
+      let passOptions = passObjects.map(pass => {
         return({ value: pass.slug, label: `[${pass.price}] ${pass.name}` })
       })
 
@@ -61,6 +79,7 @@ class RegistrationFormContainer extends Component {
                   name='pass'
                   options={passOptions}
                 />
+                {newPlayerDiscountSwitch}
                 <hr />
                   <h5>Credit Card Information</h5>
                   <Field

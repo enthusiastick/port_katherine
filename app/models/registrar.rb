@@ -5,12 +5,14 @@ class Registrar
     @nonce = params[:payment][:nonce]
     @request_ip = request_ip
     @self_report = params[:user_self_report]
+    @new_player_discount = params[:new_player_discount]
   end
 
   attr_reader :response, :status
 
   def register!
-    @sale = pk_braintree.sale(@pass.price_including_earlybird_discount)
+    sale_amount = @new_player_discount ? 40.0 : @pass.price_including_earlybird_discount
+    @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
       @response = @pass.events.soonest_first
       @status = :created
@@ -75,5 +77,6 @@ class Registrar
 
   def update_user
     @user.update(self_report: @self_report)
+    @user.touch(:new_player_discounted_at) if @new_player_discount
   end
 end

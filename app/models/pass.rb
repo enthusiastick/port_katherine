@@ -21,9 +21,13 @@ class Pass < ApplicationRecord
     self.slug ||= name.parameterize if name.present?
   end
 
+  def multi_event?
+    events.length > 1
+  end
+
   def only_discount_singles
     if earlybird_discount?
-      if events.length > 1
+      if multi_event?
         errors.add(:earlybird_discount, "can't be applied to multi-event passes")
       end
     end

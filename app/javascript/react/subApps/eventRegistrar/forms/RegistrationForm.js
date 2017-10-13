@@ -47,6 +47,10 @@ let onSubmit = (values, dispatch) => {
 }
 
 const RegistrationForm = props => {
+  const newPlayerDiscountHandler = value => {
+    props.change('register', 'newPlayerDiscount', value)
+  }
+
   let initialValues = {
     cardholderName: `${props.currentUser.firstName} ${props.currentUser.lastName}`,
     user: props.currentUser.handle,
@@ -74,6 +78,7 @@ const RegistrationForm = props => {
       flashNotice={props.flashNotice}
       getEvents={props.getEvents}
       getToken={props.getToken}
+      newPlayerDiscountHandler={newPlayerDiscountHandler}
       push={props.push}
       token={props.token}
     />
