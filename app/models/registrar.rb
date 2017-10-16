@@ -5,17 +5,16 @@ class Registrar
     @nonce = params[:payment][:nonce]
     @request_ip = request_ip
     @self_report = params[:user_self_report]
-    @new_player_discount = params[:new_player_discount]
   end
 
   attr_reader :response, :status
 
   def register!
-    sale_amount = @new_player_discount ? 50.0 : @pass.price_including_earlybird_discount
+    sale_amount = new_player_discount? ? 50.0 : @pass.price_including_earlybird_discount
     @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
       @pass.send_purchase_notification(@user.id)
-      @user.touch(:new_player_discounted_at) if @new_player_discount
+      @user.touch(:new_player_discounted_at) if user_new_player_discount_eligible?
       @response = @pass.events.soonest_first
       @status = :created
     else
@@ -38,12 +37,15 @@ class Registrar
 
   private
 
+  def new_player_discount?
+    @new_player_discount ||= user_new_player_discount_eligible? && !@pass.multi_event?
+  end
+
   def pk_braintree
     @pk_braintree ||= PkBraintree::Wrapper.new(@nonce)
   end
 
   def persist_records_to_database
-    return false if @new_player_discount && @pass.multi_event?
     persist_receipt && persist_bookings && update_user
   end
 
@@ -80,5 +82,9 @@ class Registrar
 
   def update_user
     @user.update(self_report: @self_report)
+  end
+
+  def user_new_player_discount_eligible?
+    @user_new_player_discount_eligible ||= @user.new_player_discounted_at.nil?
   end
 end

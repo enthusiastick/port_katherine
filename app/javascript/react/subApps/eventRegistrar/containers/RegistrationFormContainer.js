@@ -3,7 +3,6 @@ import { Field } from 'redux-form'
 
 import CreditCardInput from '../../../sharedResources/components/formFields/CreditCardInput'
 import Select from '../../../sharedResources/components/formFields/Select'
-import Switch from '../../../sharedResources/components/formFields/Switch'
 import TextArea from '../../../sharedResources/components/formFields/TextArea'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
 
@@ -43,22 +42,16 @@ class RegistrationFormContainer extends Component {
   render() {
     if (this.props.event) {
       let { pristine, submitting } = this.props
-      let newPlayerDiscountSwitch
+      let newPlayerDiscountNotice
       let passObjects = this.props.event.passes
 
       let heading = `Register for ${this.props.event.name}`
 
-
       if (!this.props.currentUser.newPlayerDiscountedAt) {
-        newPlayerDiscountSwitch = <Switch
-          name='newPlayerDiscount'
-          label='I am a new player and this is my first event. Discount my pass to $50.'
-          switchHandler={this.props.newPlayerDiscountHandler}
-        />
-      }
-
-      if (this.props.newPlayerDiscount) {
-        passObjects = passObjects.filter(pass => { if (!pass['multiEvent?']) { return pass } })
+        newPlayerDiscountNotice =
+          <p className='callout warning'><strong>Notice:</strong>
+          &nbsp;As a new player, single event passes will automatically be
+          discounted to $50</p>
       }
 
       let passOptions = passObjects.map(pass => {
@@ -79,7 +72,7 @@ class RegistrationFormContainer extends Component {
                   name='pass'
                   options={passOptions}
                 />
-                {newPlayerDiscountSwitch}
+                {newPlayerDiscountNotice}
                 <hr />
                   <h5>Credit Card Information</h5>
                   <Field

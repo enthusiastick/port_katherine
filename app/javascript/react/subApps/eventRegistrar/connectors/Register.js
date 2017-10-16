@@ -2,7 +2,6 @@ import queryString from 'query-string'
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { change } from 'redux-form'
 
 import { getEvents } from '../actions/getEvents'
 import { getToken } from '../actions/getToken'
@@ -34,7 +33,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    change: (form, field, value) => { dispatch(change(form, field, value)) },
     clearNotices: () => { dispatch(clearNotices()) },
     getEvents: () => { dispatch(getEvents()) },
     getToken: () => { dispatch(getToken()) },
