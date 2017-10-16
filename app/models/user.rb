@@ -51,6 +51,10 @@ class User < ApplicationRecord
     update_attributes(password_reset_digest: User.digest(password_reset_token), password_reset_sent_at: Time.current)
   end
 
+  def label
+    "#{full_name} (#{handle})"
+  end
+
   def locked?
     failed_sign_in_attempts > 5
   end
