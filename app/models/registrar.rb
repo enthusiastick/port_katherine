@@ -14,6 +14,7 @@ class Registrar
     sale_amount = @new_player_discount ? 50.0 : @pass.price_including_earlybird_discount
     @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
+      @user.touch(:new_player_discounted_at) if @new_player_discount
       @response = @pass.events.soonest_first
       @status = :created
     else
@@ -41,6 +42,7 @@ class Registrar
   end
 
   def persist_records_to_database
+    return false if @new_player_discount && @pass.multi_event?
     persist_receipt && persist_bookings && update_user
   end
 
@@ -77,6 +79,5 @@ class Registrar
 
   def update_user
     @user.update(self_report: @self_report)
-    @user.touch(:new_player_discounted_at) if @new_player_discount
   end
 end
