@@ -13,17 +13,23 @@ const HomePage = props => {
             </strong>
             is a new weekend-long boffer larp launching in May of 2018, to be run out of Camp Middlesex in Ashby, Massachusetts (about an hour and a half northwest of Boston).
           </p>
-        </div>
-        <div className="bottomless button-group expanded stacked-for-small">
-          <Link className='button' to='/contact'>
-              <i className='fa fa-envelope' /> Contact
-            </Link>
-            <a className='button' href='https://s3-us-west-2.amazonaws.com/portkatherine/rules/Port_Katherine_Rules_v1.0.pdf' target='_blank'>
-              <i className='fa fa-book' /> Rules
-            </a>
-            <Link className='button' to='/values'>
-              <i className='fa fa-balance-scale' /> Values
-            </Link>
+          <ul className='menu icons expanded'>
+            <li>
+              <Link to='/contact'>
+                <h3><i className='fa fa-envelope' /><span>&nbsp;Contact</span></h3>
+              </Link>
+            </li>
+            <li>
+              <h3><a href='https://s3-us-west-2.amazonaws.com/portkatherine/rules/Port_Katherine_Rules_v1.0.pdf' target='_blank'>
+                <i className='fa fa-book' /><span>&nbsp;Rules</span>
+              </a></h3>
+            </li>
+            <li>
+              <h3><Link to='/values'>
+                <i className='fa fa-balance-scale' /><span>&nbsp;Values</span>
+              </Link></h3>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
