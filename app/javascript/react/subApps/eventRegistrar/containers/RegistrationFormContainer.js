@@ -52,8 +52,8 @@ class RegistrationFormContainer extends Component {
       if (!this.props.currentUser.newPlayerDiscountedAt) {
         newPlayerDiscountSwitch = <Switch
           name='newPlayerDiscount'
-          label='I am a new player and this is my first event. Discount my pass to $40.'
-          switchHandler={(this.props.newPlayerDiscountHandler)}
+          label='I am a new player and this is my first event. Discount my pass to $50.'
+          switchHandler={this.props.newPlayerDiscountHandler}
         />
       }
 

@@ -11,7 +11,7 @@ class Registrar
   attr_reader :response, :status
 
   def register!
-    sale_amount = @new_player_discount ? 40.0 : @pass.price_including_earlybird_discount
+    sale_amount = @new_player_discount ? 50.0 : @pass.price_including_earlybird_discount
     @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
       @response = @pass.events.soonest_first
