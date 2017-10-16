@@ -19,6 +19,7 @@
 .env
 .ruby-version
 .byebug_history
+latest.dump
 /public/packs
 /public/packs-test
 /node_modules

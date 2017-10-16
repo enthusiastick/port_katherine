@@ -8,15 +8,23 @@ const Row = props => {
     }
   }
 
+  let showLink = `/admin/events/${props.event.slug}`
+  let editLink = showLink + '/edit'
+
   return(
     <tr>
       <td>
-        <Link to={`/admin/events/${props.event.slug}/edit`}>
+        <Link to={showLink}>
           {props.event.name}
         </Link>
       </td>
       <td>
         {props.event.dates}
+      </td>
+      <td className='text-right'>
+        <Link className='button bottomless' to={editLink}>
+          Edit
+        </Link>
       </td>
       <td className='text-right'>
         <a className='button alert bottomless' onClick={handleClick}>

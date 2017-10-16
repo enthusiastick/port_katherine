@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
-import EditEventForm from '../forms/EditEventForm'
+import EventShowContainer from '../containers/EventShowContainer'
 import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
@@ -15,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     currentUser: state.currentUser.item,
-    event: event
+    event: event,
+    eventSlug: ownProps.match.params.eventSlug
   }
 }
 
@@ -27,9 +28,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const AdminEventsEdit = connect(
+const AdminEventsShow = connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditEventForm)
+)(EventShowContainer)
 
-export default AdminEventsEdit
+export default AdminEventsShow

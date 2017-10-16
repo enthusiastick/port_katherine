@@ -19,7 +19,8 @@ import License                from '../react/sharedResources/components/License'
 import Notices                from '../react/sharedResources/connectors/Notices'
 import Values                 from '../react/sharedResources/components/Values'
 
-import AdminEventsEdit        from '../react/subApps/admin/eventManager/connectors/AdminEventsEdit'
+import AdminEventEdit         from '../react/subApps/admin/eventManager/connectors/AdminEventEdit'
+import AdminEventShow         from '../react/subApps/admin/eventManager/connectors/AdminEventShow'
 import AdminEventsIndex       from '../react/subApps/admin/eventManager/connectors/AdminEventsIndex'
 import AdminEventsNew         from '../react/subApps/admin/eventManager/connectors/AdminEventsNew'
 
@@ -92,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/admin' component={AdminIndex} />
 
               <Route exact path='/admin/events' component={AdminEventsIndex} />
-              <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventsEdit} />
+              <Route exact path='/admin/events/:eventSlug' component={AdminEventShow} />
+              <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
               <Route exact path='/admin/events/new' component={AdminEventsNew} />
 
               <Route exact path='/admin/users' component={AdminUsersIndex} />

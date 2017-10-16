@@ -21,7 +21,7 @@ class UsersIndexContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='top-padded'>Users</h1>
+          <h1 className='text-center top-padded'>Users</h1>
           <Table users={this.props.adminUsers} />
         </div>
       </div>
