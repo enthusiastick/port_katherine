@@ -1,1 +1,6 @@
+- content_for :title do
+  Port Katherine:
+  = "#{@event.name} (#{@event.dates})"
+- content_for :description do
+  = "#{@event.dates}. Address: #{@event.address}."
 #react

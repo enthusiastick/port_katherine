@@ -1,1 +1,6 @@
+- content_for :title do
+  Port Katherine: Upcoming Events
+- content_for :description do
+  - @events.each do |event|
+    = "#{event.name} (#{event.dates})."
 #react
