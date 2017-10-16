@@ -14,6 +14,7 @@ class Registrar
     sale_amount = @new_player_discount ? 50.0 : @pass.price_including_earlybird_discount
     @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
+      @pass.send_purchase_notification(@user.id)
       @user.touch(:new_player_discounted_at) if @new_player_discount
       @response = @pass.events.soonest_first
       @status = :created

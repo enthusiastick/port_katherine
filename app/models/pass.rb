@@ -41,6 +41,10 @@ class Pass < ApplicationRecord
     end
   end
 
+  def send_purchase_notification(user_id)
+    PassMailer.purchase_notification(self.id, user_id).deliver_now
+  end
+
   def to_param
     slug
   end
