@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  scope :by_handle, -> { order(:handle) }
+
   validates_format_of :email, with: EMAIL_REGEXP
   validates_format_of :handle, with: HANDLE_REGEXP
   validates_length_of :handle, in: 3..30

@@ -12,12 +12,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events, only: [:edit, :index, :new]
+    resources :users, only: [:index]
   end
 
   namespace :api do
     namespace :v1 do
       namespace :admin do
         resources :events, only: [:create, :destroy, :index, :update]
+        resources :users, only: [:index]
       end
       resources :account_confirmations, only: [:create]
       resources :bookings, only: [:create]

@@ -1,0 +1,29 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+
+import AdminIndexContainer from '../containers/UsersIndexContainer'
+import { getAdminUsers } from '../actions/getAdminUsers'
+import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+
+const mapStateToProps = state => {
+  return {
+    adminUsers: state.adminUsers.items,
+    currentUser: state.currentUser.item
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    flashNotice: (notice) => { dispatch(flashNotice(notice)) },
+    getAdminUsers: () => { dispatch(getAdminUsers()) },
+    push: (path) => { dispatch(push(path)) }
+  }
+}
+
+const AdminUsersIndex = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminIndexContainer)
+
+export default AdminUsersIndex

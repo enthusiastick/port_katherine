@@ -23,6 +23,8 @@ import AdminEventsEdit        from '../react/subApps/admin/eventManager/connecto
 import AdminEventsIndex       from '../react/subApps/admin/eventManager/connectors/AdminEventsIndex'
 import AdminEventsNew         from '../react/subApps/admin/eventManager/connectors/AdminEventsNew'
 
+import AdminUsersIndex        from '../react/subApps/admin/userManager/connectors/AdminUsersIndex'
+
 import EventsIndex            from '../react/subApps/eventRegistrar/connectors/EventsIndex'
 import EventShow              from '../react/subApps/eventRegistrar/connectors/EventShow'
 import Register               from '../react/subApps/eventRegistrar/connectors/Register'
@@ -40,6 +42,7 @@ import SignUp                 from '../react/subApps/userAuthenticator/connector
 import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex'
 
 import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
+import adminUsers  from '../react/subApps/admin/userManager/reducers/adminUsers'
 import currentUser from '../react/sharedResources/reducers/currentUser'
 import events      from '../react/subApps/eventRegistrar/reducers/events'
 import notices     from '../react/sharedResources/reducers/notices'
@@ -52,6 +55,7 @@ const middlewares = [thunkMiddleware, routerMiddleware(history)]
 const store = createStore(
   combineReducers({
     adminEvents,
+    adminUsers,
     currentUser,
     events,
     notices,
@@ -86,9 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/sign-up' component={SignUp} />
 
               <Route exact path='/admin' component={AdminIndex} />
+
               <Route exact path='/admin/events' component={AdminEventsIndex} />
               <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventsEdit} />
               <Route exact path='/admin/events/new' component={AdminEventsNew} />
+
+              <Route exact path='/admin/users' component={AdminUsersIndex} />
 
               <Route exact path='/events' component={EventsIndex} />
               <Route exact path='/events/:eventSlug' component={EventShow} />
