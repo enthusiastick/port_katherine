@@ -9,7 +9,7 @@ const License = props => {
           <a href='http://creativecommons.org/licenses/by/3.0/deed.en_US' rel='license'>
             <img alt='Creative Commons License' src='https://i.creativecommons.org/l/by/3.0/80x15.png' />
           </a>
-          <p>
+          <p className='small'>
             The works associated with Port Katherine by
             <a href='https://www.redfeatheroleplaying.com/' target='_blank'>
               &nbsp;Red Feather Roleplaying, Inc&nbsp;
