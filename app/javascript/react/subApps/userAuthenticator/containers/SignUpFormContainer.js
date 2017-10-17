@@ -4,6 +4,7 @@ import { push } from 'react-router-redux'
 
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'
 
+import normalizeNoWhiteSpace from '../../../sharedResources/constants/normalizeNoWhiteSpace'
 import Password from '../components/formFields/Password'
 import ReCaptcha from '../components/formFields/ReCaptcha'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
@@ -27,8 +28,8 @@ class SignUpFormContainer extends Component {
           <h1 className='text-center top-padded'>Sign Up</h1>
           <form onSubmit={this.props.handleSubmit}>
             <div className='form-inputs'>
-              <Field name='handle' label='Username' component={TextInput} />
-              <Field name='email' label='Email' component={TextInput} />
+              <Field name='handle' label='Username' normalize={normalizeNoWhiteSpace} component={TextInput} />
+              <Field name='email' label='Email' normalize={normalizeNoWhiteSpace} component={TextInput} />
               <div className='row'>
                 <div className='small-12 medium-6 columns'>
                   <Field name='firstName' label='First name' component={TextInput} />
