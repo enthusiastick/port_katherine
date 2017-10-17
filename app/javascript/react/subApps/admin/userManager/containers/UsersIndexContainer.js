@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { Table, Td, Th, Thead, Tr } from 'reactable'
 
 import restrictAccess from '../../constants/restrictAccess'
@@ -35,10 +34,9 @@ class UsersIndexContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='text-center top-padded'>Users</h1>
+          <h1 className='text-center top-padded'>{`Users (${this.props.adminUsers.length})`}</h1>
           <Table
             className='hover'
-            data={[]}
             filterable={['handle', 'email', 'name']}
             itemsPerPage={25}
             sortable={true}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
+import { Table, Td, Th, Thead, Tr } from 'reactable'
 
 import restrictAccess from '../../constants/restrictAccess'
 
-import BookingsTable from '../components/BookingsTable'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 
 class EventShowContainer extends Component {
@@ -20,11 +20,20 @@ class EventShowContainer extends Component {
 
   render() {
     let breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
-    let bookings, label
+    let label, tableRows
 
     if (this.props.eventSlug && this.props.event) {
-      bookings = <BookingsTable bookings={this.props.event.bookings} />
-      label = `${this.props.event.name} Registrations`
+      label = `${this.props.event.name} Registrations (${this.props.event.bookings.length})`
+      tableRows = this.props.event.bookings.map(booking => {
+        return(
+          <Tr key={booking.id}>
+            <Td column='user' data={booking.user} />
+            <Td column='pass' data={booking.pass} />
+            <Td column='paid' data={booking.paid.toString()} />
+            <Td column='receipt' data={booking.receipt} />
+          </Tr>
+        )
+      })
     }
 
     return(
@@ -32,7 +41,20 @@ class EventShowContainer extends Component {
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current={label} />
           <h1 className='text-center top-padded'>{label}</h1>
-          {bookings}
+          <Table
+            className='hover'
+            filterable={['user', 'pass', 'paid', 'receipt']}
+            itemsPerPage={25}
+            sortable={true}
+          >
+            <Thead>
+              <Th column='user'>User</Th>
+              <Th column='pass'>Pass</Th>
+              <Th column='paid'>Paid?</Th>
+              <Th column='receipt'>Receipt</Th>
+            </Thead>
+            {tableRows}
+          </Table>
         </div>
       </div>
     )
