@@ -4434,6 +4434,10 @@ react@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
+reactable@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/reactable/-/reactable-0.14.1.tgz#2ab9895e3df6da2498625de46d3691592d18c93b"
+
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
