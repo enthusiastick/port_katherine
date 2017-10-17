@@ -1,0 +1,12 @@
+.reactable-page-button {
+  border-radius: 3px;
+  background: $sand;
+  color: $twilight;
+  padding: 0.0625rem 0.625rem 0.0625rem;
+  transition: background-color 300ms ease-out;
+}
+
+.reactable-page-button.reactable-current-page {
+  background: $twilight;
+  color: $white;
+}

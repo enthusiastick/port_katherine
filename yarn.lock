@@ -4434,9 +4434,9 @@ react@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-reactable@^0.14.1:
+reactable@vladnicula/reactable:
   version "0.14.1"
-  resolved "https://registry.yarnpkg.com/reactable/-/reactable-0.14.1.tgz#2ab9895e3df6da2498625de46d3691592d18c93b"
+  resolved "https://codeload.github.com/vladnicula/reactable/tar.gz/9309e880a53989e5c18331f0c9e6f123c5fcb84f"
 
 read-cache@^1.0.0:
   version "1.0.0"
