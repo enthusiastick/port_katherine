@@ -41,7 +41,7 @@ class Api::V1::UsersController < Api::ApiController
   protected
 
   def update_params
-    params.require(:user).permit(:email, :first_name, :last_name)
+    params.require(:user).permit(:email, :first_name, :last_name, :self_report)
   end
 
   def user_params

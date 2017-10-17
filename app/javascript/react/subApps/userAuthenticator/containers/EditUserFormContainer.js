@@ -3,6 +3,7 @@ import { Field } from 'redux-form'
 
 import EditUserEmail from '../components/formFields/EditUserEmail'
 import Password from '../components/formFields/Password'
+import TextArea from '../../../sharedResources/components/formFields/TextArea'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
 
 class EditUserFormContainer extends Component {
@@ -26,6 +27,11 @@ class EditUserFormContainer extends Component {
                   <Field name='lastName' label='Last name' component={TextInput} />
                 </div>
               </div>
+              <Field
+                name='selfReport'
+                label='Food allergies and other information'
+                component={TextArea}
+              />
               <Field name='password' label='Current password' component={Password} />
             </div>
             <div className='form-actions'>

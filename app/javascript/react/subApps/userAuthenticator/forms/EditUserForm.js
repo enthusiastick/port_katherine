@@ -51,7 +51,8 @@ const EditUserForm = props => {
     email: props.currentUser.email,
     handle: props.currentUser.handle,
     firstName: props.currentUser.firstName,
-    lastName: props.currentUser.lastName
+    lastName: props.currentUser.lastName,
+    selfReport: props.currentUser.selfReport
   }
 
   const ConnectedEditUserForm = reduxForm({
