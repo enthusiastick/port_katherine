@@ -37,7 +37,9 @@ Rails.application.routes.draw do
 
   resources :account_confirmations, only: [:edit]
   resources :events, only: [:index, :show] do
-    get "register", to: "bookings#new"
+    ["register", "volunteer"].each do |path|
+      get path, to: "bookings#new"
+    end
   end
   resources :password_resets, only: [:edit, :new]
 end

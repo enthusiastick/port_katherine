@@ -58,11 +58,35 @@ let createRegistration = values => dispatch => {
     dispatch(fetchCreateRegistrationFailure())
     throw (humps.camelizeKeys(errors))
   })
-
 }
+
+let createVolunteerRegistration = values => dispatch => {
+  let payload = JSON.stringify(humps.decamelizeKeys(values))
+  return fetch(`${baseUrl}/api/v1/bookings.json`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: payload
+  })
+  .then(response => { return response.json() })
+  .then(data => {
+    if (data.error) {
+      throw data.error
+    } else {
+      dispatch(fetchCreateRegistrationSuccess(humps.camelizeKeys(data.events)))
+    }
+    return data
+  })
+  .catch(errors => {
+    dispatch(fetchCreateRegistrationFailure())
+    throw (humps.camelizeKeys(errors))
+  })
+}
+
 export {
   fetchCreateRegistration,
   fetchCreateRegistrationSuccess,
   fetchCreateRegistrationFailure,
-  createRegistration
+  createRegistration,
+  createVolunteerRegistration
 }

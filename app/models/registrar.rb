@@ -1,15 +1,26 @@
 class Registrar
   def initialize(user, params, request_ip)
-    @user = user
-    @pass = Pass.find_by(slug: params[:pass])
-    @nonce = params[:payment][:nonce]
+    @event = Event.find_by(slug: params[:event]) if params[:event].present?
+    @nonce = params[:payment][:nonce] if params[:payment].present?
+    @pass = Pass.find_by(slug: params[:pass]) if params[:pass].present?
     @request_ip = request_ip
     @self_report = params[:user_self_report]
+    @user = user
   end
 
   attr_reader :response, :status
 
   def register!
+    if @pass.present? && @nonce.present?
+      register_player!
+    elsif @event.present?
+      register_staff!
+    end
+  end
+
+  private
+
+  def register_player!
     sale_amount = new_player_discount? ? 50.0 : @pass.price_including_earlybird_discount
     @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
@@ -35,7 +46,16 @@ class Registrar
     end
   end
 
-  private
+  def register_staff!
+    @booking = Booking.new(category: :staff, event: @event, user: @user)
+    if @booking.save
+      @response = [@booking.event]
+      @status = :created
+    else
+      @response = { error: { booking: @booking.errors, user_self_report: @user.errors[:self_report] } }
+      @status = :unprocessable_entity
+    end
+  end
 
   def new_player_discount?
     @new_player_discount ||= user_new_player_discount_eligible? && !@pass.multi_event?

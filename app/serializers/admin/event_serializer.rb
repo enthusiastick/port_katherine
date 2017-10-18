@@ -2,8 +2,22 @@ class Admin::EventSerializer < ActiveModel::Serializer
   attributes :id, :name, :slug, :start_time, :end_time, :dates, :address, :description, :latitude, :longitude, :bookings
 
   def bookings
+    {
+      player: player_bookings,
+      staff: staff_bookings
+    }
+  end
+
+  def player_bookings
     ActiveModel::SerializableResource.new(
-      object.bookings,
+      object.bookings.player,
+      each_serializer: Admin::BookingSerializer
+    ).serializable_hash[:bookings]
+  end
+
+  def staff_bookings
+    ActiveModel::SerializableResource.new(
+      object.bookings.staff,
       each_serializer: Admin::BookingSerializer
     ).serializable_hash[:bookings]
   end

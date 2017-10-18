@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
   belongs_to :event
-  belongs_to :receipt
+  belongs_to :receipt, optional: true
   belongs_to :user
 
   enum category: { player: 0, staff: 1 }

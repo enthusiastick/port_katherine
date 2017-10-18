@@ -29,6 +29,7 @@ import AdminUsersIndex        from '../react/subApps/admin/userManager/connector
 import EventsIndex            from '../react/subApps/eventRegistrar/connectors/EventsIndex'
 import EventShow              from '../react/subApps/eventRegistrar/connectors/EventShow'
 import Register               from '../react/subApps/eventRegistrar/connectors/Register'
+import Volunteer              from '../react/subApps/eventRegistrar/connectors/Volunteer'
 
 import NavigationBar          from '../react/subApps/navigator/connectors/NavigationBar'
 
@@ -102,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/events' component={EventsIndex} />
               <Route exact path='/events/:eventSlug' component={EventShow} />
               <Route exact path='/events/:eventSlug/register' component={Register} />
+              <Route exact path='/events/:eventSlug/volunteer' component={Volunteer} />
               <Route path='/' component={License} />
             </div>
           </ConnectedRouter>
