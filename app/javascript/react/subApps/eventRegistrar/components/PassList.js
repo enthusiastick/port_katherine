@@ -2,6 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const PassList = props => {
+  let handleClick = event => {
+    if (confirm('Cancel your registration: are you sure?')) {
+      props.deleteRegistration(props.userBooking.id)
+    }
+  }
+
+  let cancellationButton
+
+  if (props.userBooking && !props.userBooking.paid) {
+    cancellationButton =
+      <div className='text-center'>
+        <a className='button bottomless' onClick={handleClick}>
+          <i className='fa fa-times' />
+          &nbsp;Cancel My Registration
+        </a>
+      </div>
+  }
+
   if (props.userBooking) {
     return(
       <div className='callout primary'>
@@ -12,6 +30,7 @@ const PassList = props => {
           </strong>
           registered for this event.
         </p>
+        {cancellationButton}
       </div>
     )
   } else if (props.passes && props.passes.length != 0) {

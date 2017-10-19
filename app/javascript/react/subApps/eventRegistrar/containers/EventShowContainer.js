@@ -29,7 +29,7 @@ class EventShowContainer extends Component {
     }
 
     return(
-      <Event {...this.props.event} />
+      <Event {...this.props.event} deleteRegistration={this.props.deleteRegistration} />
     )
   }
 }
