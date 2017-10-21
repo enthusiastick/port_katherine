@@ -27,6 +27,43 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.index ["event_id", "user_id"], name: "index_bookings_on_event_id_and_user_id", unique: true
   end
 
+  create_table "character_headers", force: :cascade do |t|
+    t.integer "character_id", null: false
+    t.integer "header_id", null: false
+    t.boolean "true_header", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id", "header_id"], name: "index_character_headers_on_character_id_and_header_id", unique: true
+  end
+
+  create_table "character_skills", force: :cascade do |t|
+    t.integer "character_id", null: false
+    t.integer "skill_id", null: false
+    t.integer "ranks", default: 0, null: false
+    t.boolean "locked", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id", "skill_id"], name: "index_character_skills_on_character_id_and_skill_id", unique: true
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.boolean "archived", default: false
+    t.decimal "available", precision: 6, scale: 2, default: "30.0"
+    t.integer "birthplace", null: false
+    t.integer "cycle_spending_cap", default: 20, null: false
+    t.integer "first_profession_id", null: false
+    t.integer "first_true_header_id", null: false
+    t.text "history"
+    t.string "name", null: false
+    t.string "non_sequential_id", null: false
+    t.integer "spent", default: 0, null: false
+    t.integer "spent_cycle", default: 0, null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["non_sequential_id"], name: "index_characters_on_non_sequential_id", unique: true
+  end
+
   create_table "event_passes", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "pass_id", null: false
@@ -47,6 +84,26 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.datetime "updated_at", null: false
     t.integer "player_cap", default: 75, null: false
     t.index ["slug"], name: "index_events_on_slug", unique: true
+  end
+
+  create_table "header_skills", force: :cascade do |t|
+    t.integer "header_id", null: false
+    t.integer "skill_id", null: false
+    t.boolean "hidden", default: true
+    t.boolean "true_skill", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["header_id", "skill_id"], name: "index_header_skills_on_header_id_and_skill_id", unique: true
+  end
+
+  create_table "headers", force: :cascade do |t|
+    t.integer "category", default: 2, null: false
+    t.integer "season", default: 0, null: false
+    t.string "name", null: false
+    t.integer "parent_header_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_headers_on_name", unique: true
   end
 
   create_table "passes", force: :cascade do |t|
@@ -72,6 +129,17 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "cost_increase_amount", default: 1, null: false
+    t.integer "cost_increase_rank", default: 10, null: false
+    t.integer "max_rank", default: 0, null: false
+    t.integer "starting_cost", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "confirmation_digest"
     t.datetime "confirmed_at"
@@ -92,6 +160,7 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.datetime "updated_at", null: false
     t.text "self_report"
     t.date "new_player_discounted_at"
+    t.decimal "available", precision: 6, scale: 2, default: "0.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["handle"], name: "index_users_on_handle", unique: true
     t.index ["non_sequential_id"], name: "index_users_on_non_sequential_id", unique: true
