@@ -3,22 +3,48 @@ import { Link } from 'react-router-dom'
 
 const EventTile = props => {
   let linkTo = `/events/${props.slug}`
+  let registerLink = `${linkTo}/register`
+  let volunteerLink = `${linkTo}/volunteer`
 
-  return(
-    <div className='callout secondary' key={props.slug}>
-      <div className='text-center'>
-        <h3>
-          <Link to={linkTo}>
-            {props.name}
-            { props.userBooking && <span>&nbsp;<i className='fa fa-check' /></span> }
-          </Link>
-        </h3>
-        <p className='bottomless'>
-          {props.dates}
-        </p>
+  if (props.userBooking) {
+    return(
+      <div className='callout secondary' key={props.slug}>
+        <div className='text-center'>
+          <h3>
+            <Link to={linkTo}>
+              {props.name}
+              <span>&nbsp;<i className='fa fa-check' /></span>
+            </Link>
+          </h3>
+          <p className='bottomless'>
+            {props.dates}
+          </p>
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return(
+      <div className='callout secondary' key={props.slug}>
+        <div className='text-center'>
+          <h3>
+            <Link to={linkTo}>
+              {props.name}
+            </Link>
+          </h3>
+          <p>
+            {props.dates}
+          </p>
+          <p className='bottomless'>
+            <strong>
+              <Link className='button bottomless' to={volunteerLink}>Volunteer</Link>
+              &nbsp;
+              <Link className='button bottomless' to={registerLink}>Register</Link>
+            </strong>
+          </p>
+        </div>
+      </div>
+    )
+  }
 }
 
 class EventsIndexContainer extends Component {
