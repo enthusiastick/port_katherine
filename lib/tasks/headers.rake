@@ -2,10 +2,7 @@ namespace :headers do
   desc "Seed the rulebook headers and professions."
   task seed: :environment do
     print "\nSeeding headers: "
-    print "Open. " if Header.find_or_create_by!(
-      name: "Open",
-      category: :stock
-    )
+    print "Open. " if Header.open
     {
       spring: %w(Apothecary Surgeon),
       summer: %w(Soldier Engineer),

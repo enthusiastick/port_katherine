@@ -24,4 +24,8 @@ class Header < ApplicationRecord
   has_many :skills, through: :header_skills
 
   validates_uniqueness_of :name
+
+  def self.open
+    find_or_create_by(name: "Open", category: :stock)
+  end
 end
