@@ -1,0 +1,13 @@
+Tier/Path,Skill Name,Skill Cost,starred?,Description
+non-true skills,Tend,2,y,"With 1 minute of roleplaying and at least 1 working arm, you can call ``Tend'' to a single body location, e.g. a torso or limb"
+non-true skills,Purify,2,,You can call ``Purify'' once as a touch skill.
+non-true skills,Anaesthetic Cream,2,,You can call ``Sleep'' once with any melee weapon you can wield.
+non-true skills,Healing,1,,"You can call ``Heal'' as a touch skill. You may combine uses of this skill, e.g. ``Heal 2.''"
+true skills,Mend Limb,2,,You can call ``Mend Limb'' once as a touch skill.
+true skills,Healing Refresh,3,," With 5 minutes of appropriate roleplay outside combat, you may expend a use of this skill to refresh all of your natural Healing skills."
+true skills,Basic Surgery,5,y,"You have a basic knowledge of how bodies work and how to fix them when they aren't working anymore. You can read Rank 1 Knowledge: Medicine tags.
+
+You can perform Surgery (see \hyperref[sec:surgery]{Surgery}) on a patient. This requires 10 minutes of roleplay, after which you should place one black bead into their surgery bag, or two black beads if performing surgery outside the hospital---extra beads should be available in the hospital, but feel free to carry some on your person in case you need to perform field surgery. Then draw two beads at random, note their color, and return them to the bag. Two black beads mean the patient dies; one black and one red means they suffer a Major Complication; two white means the surgery succeeds with no issues; any other combination of red, white, and black means a Minor Complication; consult with staff immediately if you draw a bead of a color other than black, white, or red.
+
+Inform the patient what level of complication they experience, if any, then call ``Revive'' if the surgery succeeds. The patient may not use any skills for the next 15 minutes as they recover from surgery--this recovery time may not be resisted or shortened unless an effect specifically states that it works on post-surgery patients."
+true skills,Medical Tent,2,y,"Spend 1 minute setting up your medical equipment. Once this is complete, as long as you stay within 5 feet of where you set up, your natural Healing skills are doubled."

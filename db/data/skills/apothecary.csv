@@ -1,0 +1,9 @@
+Tier/Path,Skill Name,Skill Cost,Starred?,Description
+non-true skills,Purify Tonic Vial,2,,You can create 1 Purify vial between events.
+non-true skills,Heal Tonic Vial,1,,You can create 1 Heal vial between events.
+non-true skills,Venom Vial,2,,You can create 1 Venom vial between events.
+non-true skills,"Elemental ""dart""",1,,"You can call ``<Element>'' once as a packet attack. You may choose the elemental type of your darts (Ice, Fire, Earth, or Air---you can choose to mix and match so you have several different kinds of darts, or keep them all the same type) at the beginning of each event."
+true skills,Efficient Batching,4,y,You can double the number of vials produced by 1 vial skill per BGS period (you may choose a different skill to double each time).
+true skills,1 component chemistry,3,,You may combine 1 component with 1 arcanum during BGS to create 1 elixir.
+true skills,knowledge: chemistry,2,y,"You know a decent amount about the properties of various substances, and can read Rank 1 Knowledge: Chemistry tags."
+true skills,chemist's tools,3,y,"With 5 minutes of roleplay with an appropriate prop outside of combat and the expenditure of 1 arcanum, you can refresh all of your natural Elemental Darts. At this time, you may also choose to change their elemental types."

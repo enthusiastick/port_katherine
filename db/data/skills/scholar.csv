@@ -1,0 +1,9 @@
+Tier/Path,Skill Name,Skill Cost,starred?,Description
+non-true skills,Research,1,,"Use this BGS to find out historical information, search a library, or undertake other efforts to uncover scholarly information that is likely contained in a book."
+non-true skills,Experimentation,1,,"Use this BGS to find out information about the properties of a component or item, gather data on the physical world, or undertake other efforts to uncover scholarly information via the scientific method."
+non-true skills,Perspicacity,2,,"Upon reading a Knowledge tag that allows an action to be taken, you may spend a use of this skill to take that action twice."
+non-true skills,Extract Components,2,y,You can acquire chemical components from dead or unconscious creatures without damaging the components. Say ``Extract Components'' when searching a creature to do so.
+true skills,Research Assistant,2,,"You are skilled at providing assistance to others, making their work more efficient. Once per BGS period, you may choose another player with a header-based BGS skill (i.e. Research, Experimentation, any Schematics skills, any Vial or Component Chemistry skills, and any additional BGS that may be unlocked as advancements in headers) and provide as many additional uses of that skill as you have purchases of Research Assistant."
+true skills,Helpful Advice,2,,"If you spend 1 minute providing suggestions to someone about how to win an upcoming battle, you may pick one of their melee or thrown weapons and place a Cleave augment on it."
+true skills,Knowledge,2,y,Choose a Knowledge skill you do not already have. You can now read Rank 1 tags of that type.
+true skills,Attention to Detail,2,,"Your scholarly pursuits have given you a keen eye for things others might miss. If you spend 1 minute examining someone's armor for weak spots or loose straps, helping them check their fighting stance for blind spots, etc., you may bestow 3 points of virtual armor on them."

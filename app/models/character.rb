@@ -9,11 +9,9 @@ class Character < ApplicationRecord
   enum birthplace: { chepstone: 1, drevnia: 2, tojima: 3, zlota: 4 }
 
   has_many :character_headers
-  has_many :headers, through: :character_headers
+  has_many :headers, -> { alpha_by_name }, through: :character_headers
   has_many :character_skills
   has_many :skills, through: :character_skills
-
-  scope :alpha_by_name, -> { order(:name) }
 
   validates_inclusion_of :archived, in: [true, false]
   validates_numericality_of :available, greater_than_or_equal_to: 0

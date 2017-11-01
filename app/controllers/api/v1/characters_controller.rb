@@ -11,6 +11,11 @@ class Api::V1::CharactersController < Api::ApiController
     end
   end
 
+  def edit
+    character = Character.find_by(non_sequential_id: params[:id])
+    render json: character, serializer: Character::EditSerializer
+  end
+
   def index
     characters = current_user.characters.alpha_by_name
     render json: characters, each_serializer: Character::IndexSerializer

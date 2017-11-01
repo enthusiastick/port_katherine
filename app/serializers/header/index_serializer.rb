@@ -1,4 +1,4 @@
-class HeaderSerializer < ActiveModel::Serializer
+class Header::IndexSerializer < ActiveModel::Serializer
   belongs_to :parent_header
 
   attributes :id, :season, :name

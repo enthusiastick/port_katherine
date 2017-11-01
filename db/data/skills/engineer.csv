@@ -1,0 +1,9 @@
+Tier/Path,Skill Name,Skill Cost,starred?,Description
+non-true skills,Hone Weapon,1,,"With 1 minute of roleplaying, you may apply a Cleave augment to any melee or thrown weapon. If you have a piece of iron, you may expend it to double a use of this skill."
+non-true skills,Envenomed Bullet,2,y,"You can use a Venom vial on a Bullet before loading it into a gun. This expends both the Bullet and the Venom vial, and the next shot from that gun should use the call ``Venom Pierce''."
+non-true skills,Tranquilizer Dart,1,,"With the expenditure of 1 arcanum, you can load a gun. The next shot from that gun should use the ``Sleep'' call."
+non-true skills,Glue Gun,1,,"With the expenditure of 1 arcanum, you can load a gun. The next shot from that gun should use the ``Root'' call."
+true skills,Bullet,2,,You can load 1 bullet into a gun. It takes 1 minute and the expenditure of 1 arcanum.
+true skills,Craft Basic Engineering Schematic,3,,"If you have a Basic Engineering Schematic and the requisite materials, you may craft the item shown in the schematic during BGS. Schematics are not consumed by this process, but materials are. Additional purchases of this skill allow you to craft multiple items, as long as you have the requisite materials and schematic(s).  Schematics can be purchased in game, but every Engineer will start with the schematic for Bullet (which uses 1 Lead and 1 Arcanum to produce an item that refreshes one use of the Bullet skill)"
+true skills,Repair Armor,1,,"With 1 minute of roleplaying, you fully repair one location of costume armor (this can be used to fix Chest Armor). If you have a piece of iron, you may expend it to double a use of this skill. This skill cannot be used on armor that someone is currently wearing."
+true skills,Knowledge: Engineering,2,y,"You know a decent amount about the way things are put together, and can read Rank 1 Knowledge: Engineering tags."

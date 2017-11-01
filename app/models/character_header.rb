@@ -2,6 +2,8 @@ class CharacterHeader < ApplicationRecord
   belongs_to :character
   belongs_to :header
 
+  delegate :name, to: :header
+
   validates_uniqueness_of :character, scope: :header
   validates_inclusion_of :true_header, in: [true, false]
 
