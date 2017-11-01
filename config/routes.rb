@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       end
       resources :account_confirmations, only: [:create]
       resources :bookings, only: [:create, :destroy]
-      resources :characters, only: [:create, :index]
+      resources :characters, only: [:create, :index, :show]
       resources :client_token, only: [:index]
       resources :headers, only: [:index]
       resources :events, only: [:index]

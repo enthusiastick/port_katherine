@@ -28,6 +28,7 @@ import AdminEventsNew         from '../react/subApps/admin/eventManager/connecto
 
 import AdminUsersIndex        from '../react/subApps/admin/userManager/connectors/AdminUsersIndex'
 
+import IndexCharacters        from '../react/subApps/characterBuilder/connectors/IndexCharacters'
 import NewCharacter           from '../react/subApps/characterBuilder/connectors/NewCharacter'
 import ShowCharacter          from '../react/subApps/characterBuilder/connectors/ShowCharacter'
 
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/admin/users' component={AdminUsersIndex} />
 
               <Switch>
+                <Route exact path='/characters' component={IndexCharacters} />
                 <Route exact path='/characters/new' component={NewCharacter} />
                 <Route exact path='/characters/:characterId' component={ShowCharacter} />
               </Switch>

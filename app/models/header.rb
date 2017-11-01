@@ -26,6 +26,6 @@ class Header < ApplicationRecord
   validates_uniqueness_of :name
 
   def self.open
-    find_or_create_by(name: "Open", category: :stock)
+    find_or_create_by(name: "Open")
   end
 end

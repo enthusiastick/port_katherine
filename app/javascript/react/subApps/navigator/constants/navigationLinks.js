@@ -15,6 +15,11 @@ const signedInAdminNavigationLinks = [
     url: 'admin'
   },
   {
+    icon: 'heartbeat',
+    label: 'Characters',
+    url: 'characters'
+  },
+  {
     icon: 'calendar',
     label: 'Events',
     url: 'events'
@@ -41,6 +46,11 @@ const signedInNavigationLinks = [
     icon: 'user',
     label: 'Account',
     url: 'edit-user'
+  },
+  {
+    icon: 'heartbeat',
+    label: 'Characters',
+    url: 'characters'
   },
   {
     icon: 'calendar',

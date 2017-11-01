@@ -13,8 +13,12 @@ class Character < ApplicationRecord
   has_many :character_skills
   has_many :skills, through: :character_skills
 
+  scope :alpha_by_name, -> { order(:name) }
+
   validates_inclusion_of :archived, in: [true, false]
   validates_numericality_of :available, greater_than_or_equal_to: 0
+  validates_inclusion_of :first_true_header, in: Header.stock
+  validates_inclusion_of :first_profession, in: Header.profession
   validates_presence_of :name
   validates_uniqueness_of :non_sequential_id
   validates_numericality_of :spent,

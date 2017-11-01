@@ -1,6 +1,6 @@
 include ActionView::Helpers::NumberHelper
 
-class CharacterSerializer < ActiveModel::Serializer
+class Character::ShowSerializer < ActiveModel::Serializer
   attributes :id, :available, :birthplace, :cycle_spending_cap, :headers,
     :name, :player_available, :spent, :spent_cycle
 

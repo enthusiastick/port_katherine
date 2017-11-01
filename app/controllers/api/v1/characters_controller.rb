@@ -5,15 +5,20 @@ class Api::V1::CharactersController < Api::ApiController
     character = Character.new(new_character_params)
     character.user = current_user
     if character.save
-      render json: character
+      render json: character, serializer: Character::ShowSerializer
     else
       render_object_errors(character)
     end
   end
 
   def index
-    characters = current_user.characters
-    render json: characters
+    characters = current_user.characters.alpha_by_name
+    render json: characters, each_serializer: Character::IndexSerializer
+  end
+
+  def show
+    character = Character.find_by(non_sequential_id: params[:id])
+    render json: character, serializer: Character::ShowSerializer
   end
 
   protected

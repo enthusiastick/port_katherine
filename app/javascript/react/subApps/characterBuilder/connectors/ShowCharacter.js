@@ -2,21 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import ShowCharacterContainer from '../containers/ShowCharacterContainer'
+import { getCharacter } from '../actions/getCharacter'
 
 const mapStateToProps = (state, ownProps) => {
-  let character = state.characters.items.filter(character =>
-    { if (character.id == ownProps.match.params.characterId)
-      { return character }
-    }
-  )[0]
-
   return {
-    character: character
+    character: state.characters.show,
+    characterId: ownProps.match.params.characterId
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    getCharacter: (id) => { dispatch(getCharacter(id)) }
+  }
 }
 
 const ShowCharacter = connect(
