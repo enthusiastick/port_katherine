@@ -17,6 +17,7 @@ import HomePage               from '../react/sharedResources/components/HomePage
 import LandingPage            from '../react/sharedResources/components/LandingPage'
 import License                from '../react/sharedResources/components/License'
 import Notices                from '../react/sharedResources/connectors/Notices'
+import Resources              from '../react/sharedResources/components/Resources'
 import Values                 from '../react/sharedResources/components/Values'
 
 import AdminEventEdit         from '../react/subApps/admin/eventManager/connectors/AdminEventEdit'
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route path='/' component={Notices} />
               <Route exact path='/' component={HomePage} />
               <Route exact path='/contact' component={Contact} />
+              <Route exact path='/links' component={Resources} />
               <Route exact path='/values' component={Values} />
 
               <Route exact path='/account_confirmations/:confirmationToken/edit' component={AccountConfirmation} />

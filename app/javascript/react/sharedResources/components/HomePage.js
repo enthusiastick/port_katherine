@@ -14,6 +14,11 @@ const HomePage = props => {
               </Link>
             </li>
             <li>
+              <Link to='links'>
+                <h3><i className='fa fa-link' /><span>&nbsp;Links</span></h3>
+              </Link>
+            </li>
+            <li>
               <h3><a href='https://s3-us-west-2.amazonaws.com/portkatherine/rules/Port_Katherine_Rules_v1.0.pdf' target='_blank'>
                 <i className='fa fa-book' /><span>&nbsp;Rules</span>
               </a></h3>
