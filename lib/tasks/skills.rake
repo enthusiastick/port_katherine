@@ -22,7 +22,7 @@ namespace :skills do
             description = description.gsub(/---/, " – ")
             skill.description = description
             skill.starting_cost = row["Skill Cost"]
-            skill.max_rank = 1 if row["Starred?"] == "y"
+            skill.max_rank = 1 if row["starred?"] == "y"
             skill.save
           end
           header_skill = HeaderSkill.new(

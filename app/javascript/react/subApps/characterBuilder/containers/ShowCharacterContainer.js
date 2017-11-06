@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 
@@ -33,21 +34,32 @@ class ShowCharacterContainer extends Component {
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current={name} />
           <h1 className='text-center top-padded'>{name}</h1>
-          <p className='bottomless'>
-            <strong>Place of Origin:</strong> {birthplace}
-          </p>
-          <p className='bottomless'>
-            <strong>Player CP Available:</strong> {playerAvailable}
-          </p>
-          <p className='bottomless'>
-            <strong>Character CP Available:</strong> {available}
-          </p>
-          <p className='bottomless'>
-            <strong>CP Spent This Cycle:</strong> {spentCycle} / {cycleSpendingCap}
-          </p>
-          <p>
-            <strong>Total CP Spent:</strong> {spent}
-          </p>
+          <div className='row'>
+            <div className='small-12 medium-9 columns'>
+              <p className='bottomless'>
+                <strong>Place of Origin:</strong> {birthplace}
+              </p>
+              <p className='bottomless'>
+                <strong>Player CP Available:</strong> {playerAvailable}
+              </p>
+              <p className='bottomless'>
+                <strong>Character CP Available:</strong> {available}
+              </p>
+              <p className='bottomless'>
+                <strong>CP Spent This Cycle:</strong> {spentCycle} / {cycleSpendingCap}
+              </p>
+              <p>
+                <strong>Total CP Spent:</strong> {spent}
+              </p>
+            </div>
+            <div className='small-12 medium-3 columns'>
+              <div className='button-group expanded'>
+                <Link className='button' to={`/characters/${this.props.character.id}/edit`}>
+                  <i className='fa fa-edit' /> Edit
+                </Link>
+              </div>
+            </div>
+          </div>
           {headerElements}
         </div>
       </div>

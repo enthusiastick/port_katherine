@@ -15,14 +15,34 @@ class Header::EditCharacterSerializer < ActiveModel::Serializer
 
   def skills
     @skills = Array.new
-    object.header_skills.where(hidden: false, true_skill: false).each do |header_skill|
-      character_skill = CharacterSkill.find_by(character: object, skill: header_skill.skill)
-      if character_skill.present?
-        @skills << CharacterSkillSerializer.new(character_skill).as_json
-      else
-        @skills << SkillSerializer.new(header_skill.skill).as_json
-      end
-    end
+    combined_skills.each { |skill| serialize_skill(skill) }
     @skills
+  end
+
+  def serialize_skill(skill)
+    character_skill = CharacterSkill.find_by(character: character, skill: skill)
+    if character_skill.present?
+      @skills << CharacterSkillSerializer.new(character_skill).as_json
+    else
+      @skills << SkillSerializer.new(skill).as_json
+    end
+  end
+
+  private
+
+  def character
+    @character ||= instance_options[:character]
+  end
+
+  def combined_skills
+    (header_skills_to_serialize.map(&:skill) + character_skills).uniq
+  end
+
+  def header_skills_to_serialize
+    object.header_skills.where(hidden: false, true_skill: false)
+  end
+
+  def character_skills
+    character.skills & object.skills
   end
 end

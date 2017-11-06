@@ -26,6 +26,10 @@ class Api::V1::CharactersController < Api::ApiController
     render json: character, serializer: Character::ShowSerializer
   end
 
+  def update
+    binding.pry
+  end
+
   protected
 
   def new_character_params

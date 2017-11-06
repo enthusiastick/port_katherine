@@ -1,21 +1,26 @@
 class Character::EditSerializer < ActiveModel::Serializer
-  attributes :id, :open, :headers
+  attributes :id, :available, :cycle_spending_cap, :headers, :name, :open,
+    :player_available, :spent, :spent_cycle
+
+  def id
+    object.non_sequential_id
+  end
 
   def headers
     @headers = Array.new
     (Header.stock.alpha_by_name + object.headers).uniq.each do |header|
       character_header = CharacterHeader.find_by(character: object, header: header)
       if character_header.present?
-        @headers << CharacterHeaderSerializer.new(character_header).as_json
+        first_true_header = (character_header.header == object.first_true_header)
+        @headers << CharacterHeaderSerializer.new(character_header, { first_true_header: first_true_header }).as_json
       else
-        @headers << Header::EditCharacterSerializer.new(header).as_json
+        @headers << Header::EditCharacterSerializer.new(header, { character: object }).as_json
       end
     end
     @headers
   end
 
   def open
-    binding.pry
     @open = Array.new
     Header.open.skills.each do |skill|
       character_skill = CharacterSkill.find_by(character: object, skill: skill)
@@ -26,5 +31,9 @@ class Character::EditSerializer < ActiveModel::Serializer
       end
     end
     @open
+  end
+
+  def player_available
+    object.user.available
   end
 end

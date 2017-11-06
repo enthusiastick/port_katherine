@@ -50,7 +50,7 @@ let createCharacter = values => dispatch => {
       dispatch(createCharacterSuccess(humps.camelizeKeys(data.character)))
       dispatch(clearNotices())
       dispatch(flashNotice({ success: `${data.character.name} created successfully.` }))
-      dispatch(push(`/characters/${data.character.id}`))
+      dispatch(push(`/characters/${data.character.id}/edit`))
     }
     return data
   })

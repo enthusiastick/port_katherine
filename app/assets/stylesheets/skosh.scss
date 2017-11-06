@@ -17,6 +17,11 @@
   }
 }
 
+.four-wide {
+  min-width: 3.4rem;
+  max-width: 3.4rem;
+}
+
 .header-font {
   font-family: "Milonga", Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.2rem;
@@ -38,9 +43,12 @@
   padding-top: 7em;
 }
 
+.white {
+  color: $white;
+}
+
 p.large {
   font-size: 1.2rem;
-}
 
 p.small {
   font-size: 0.8rem;
