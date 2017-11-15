@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "pages#index"
 
-  ["admin", "contact", "links", "values"].each do |path|
+  ["admin", "contact", "downloads", "links", "values"].each do |path|
     get path, to: "pages#index"
   end
 

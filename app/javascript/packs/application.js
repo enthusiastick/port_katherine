@@ -13,6 +13,7 @@ import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
 import Contact                from '../react/sharedResources/components/Contact'
+import Downloads              from '../react/sharedResources/components/Downloads'
 import HomePage               from '../react/sharedResources/components/HomePage'
 import LandingPage            from '../react/sharedResources/components/LandingPage'
 import License                from '../react/sharedResources/components/License'
@@ -82,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route path='/' component={Notices} />
               <Route exact path='/' component={HomePage} />
               <Route exact path='/contact' component={Contact} />
+              <Route exact path='/downloads' component={Downloads} />
               <Route exact path='/links' component={Resources} />
               <Route exact path='/values' component={Values} />
 
