@@ -14,6 +14,8 @@ import EditCharacterContainer from '../containers/EditCharacterContainer'
 import { editCharacter } from '../actions/editCharacter'
 import { updateCharacter } from '../actions/updateCharacter'
 
+import { calculateCostOfDelta } from '../selectors/delta'
+
 const mapStateToProps = (state, ownProps) => {
   let availableHeaders = []
   let selectedHeaders = []
@@ -35,6 +37,7 @@ const mapStateToProps = (state, ownProps) => {
     availableHeaders: availableHeaders,
     character: state.characters.edit,
     characterId: ownProps.match.params.characterId,
+    costOfDelta: calculateCostOfDelta(state),
     delta: state.delta,
     selectedHeaders: selectedHeaders
   }
@@ -49,7 +52,7 @@ const mapDispatchToProps = dispatch => {
     removeCharacterSkill: characterSkillId => { dispatch(removeCharacterSkill(characterSkillId)) },
     removeHeader: headerId => { dispatch(removeHeader(headerId)) },
     removeSkill: skillId => { dispatch(removeSkill(skillId)) },
-    updateCharacter: values => { dispatch(updateCharacter(values)) }
+    updateCharacter: values => { dispatch(updateCharacter(values, dispatch)) }
   }
 }
 

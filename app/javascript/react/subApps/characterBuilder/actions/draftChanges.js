@@ -21,9 +21,10 @@ let addHeader = headerId => {
   }
 }
 
-let changeCharacterSkill = (characterSkillId, amount) => {
+let changeCharacterSkill = (skillId, characterSkillId, amount) => {
   return {
     type: CHANGE_CHARACTER_SKILL,
+    skillId,
     characterSkillId,
     amount
   }

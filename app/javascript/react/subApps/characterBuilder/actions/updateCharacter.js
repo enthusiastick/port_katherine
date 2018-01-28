@@ -31,9 +31,9 @@ let updateCharacterFailure = () => {
   }
 }
 
-let updateCharacter = values => dispatch => {
-  dispatch(fetchUpdateCharacter())
+let updateCharacter = (values, dispatch) => {
   debugger
+  dispatch(fetchUpdateCharacter())
 }
 
 export {

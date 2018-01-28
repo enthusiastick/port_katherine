@@ -36,6 +36,7 @@ const delta = (state = initialState, action) => {
       if (characterSkillArray.length === 0) {
         reducedNewCharacterSkills = state.characterSkills.concat(
           {
+            skillId: action.skillId,
             characterSkillId: action.characterSkillId,
             ranks: action.amount
           }

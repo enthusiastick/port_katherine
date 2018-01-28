@@ -10,13 +10,13 @@ const List = props => {
       })[0]
 
       if (deltaSkill) {
-        props.changeCharacterSkill(characterSkillId, amount)
+        props.changeCharacterSkill(skillId, characterSkillId, amount)
       } else {
         let existingSkill = props.skills.filter(skill => {
           return characterSkillId === skill.characterSkillId
         })[0]
 
-        props.changeCharacterSkill(characterSkillId, (existingSkill.ranks + amount))
+        props.changeCharacterSkill(skillId, characterSkillId, (existingSkill.ranks + amount))
       }
     } else {
       props.changeSkill(skillId, amount)

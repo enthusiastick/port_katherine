@@ -22,7 +22,10 @@ import {
 
 let initialState = {
   isFetching: false,
-  edit: {},
+  edit: {
+    headers: [],
+    open: []
+  },
   index: [],
   show: {}
 }
