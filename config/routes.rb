@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get path, to: "pages#index"
   end
 
+  get "discourse/sso", to: "discourse_sso#sso"
   get "edit-user", to: "users#edit", as: :edit_user
   get "sign-in", to: "sessions#new", as: :sign_in
   get "sign-out", to: "sessions#edit", as: :sign_out
