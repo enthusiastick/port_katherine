@@ -20,6 +20,11 @@ const signedInAdminNavigationLinks = [
     url: 'events'
   },
   {
+    icon: 'comments',
+    label: 'Forums',
+    url: `${process.env.FORUMS_URL}`
+  },
+  {
     icon: 'sign-out',
     label: 'Sign Out',
     url: 'sign-out'
@@ -43,6 +48,11 @@ const signedInNavigationLinks = [
     url: 'events'
   },
   {
+    icon: 'comments',
+    label: 'Forums',
+    url: `${process.env.FORUMS_URL}`
+  },
+  {
     icon: 'sign-out',
     label: 'Sign Out',
     url: 'sign-out'
@@ -64,6 +74,11 @@ const signedOutNavigationLinks = [
     icon: 'calendar',
     label: 'Events',
     url: 'events'
+  },
+  {
+    icon: 'comments',
+    label: 'Forums',
+    url: `${process.env.FORUMS_URL}`
   }
 ]
 
