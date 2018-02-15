@@ -5,6 +5,7 @@ import { push } from 'react-router-redux'
 
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'
 
+import normalizeNoWhiteSpace from '../../../sharedResources/constants/normalizeNoWhiteSpace'
 import Password from '../components/formFields/Password'
 import RememberMe from '../components/formFields/RememberMe'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
@@ -31,7 +32,7 @@ class SignInFormContainer extends Component {
           </div>
           <form onSubmit={this.props.handleSubmit}>
             <div className='form-inputs'>
-              <Field name='login' label='Email or username' component={TextInput} />
+              <Field name='login' label='Email or username' normalize={normalizeNoWhiteSpace} component={TextInput} />
               <Field name='password' label='Password' showForgotLink={true} component={Password} />
               <Field name='rememberMe' component={RememberMe} switchHandler={this.props.switchHandler} />
             </div>
