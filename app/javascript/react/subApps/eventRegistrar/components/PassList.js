@@ -20,7 +20,26 @@ const PassList = props => {
       </div>
   }
 
-  if (props.userBooking) {
+  if (props.eventIsCapped) {
+    return(
+      <div className='callout primary'>
+        <p className='text-center'>
+          Player passes to this event are
+          <strong>
+            &nbsp;sold out.
+          </strong>
+        </p>
+        <div className='button-group stacked'>
+          <Link
+            className='button'
+            to={`/events/${props.event}/volunteer`}
+          >
+            Volunteer as Staff
+          </Link>
+        </div>
+      </div>
+    )
+  } else if (props.userBooking) {
     return(
       <div className='callout primary'>
         <p className='text-center'>

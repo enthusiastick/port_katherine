@@ -12,7 +12,12 @@ class Registrar
 
   def register!
     if @pass.present? && @nonce.present?
-      register_player!
+      if @pass.any_event_capped?
+        @response = { error: { pass: "#{@pass.name} is sold out." } }
+        @status = :unprocessable_entity
+      else
+        register_player!
+      end
     elsif @event.present?
       register_staff!
     end

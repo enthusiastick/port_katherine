@@ -21,6 +21,7 @@ const Event = props => {
         <div className='row'>
           <div className='small-10 medium-7 large-5 small-centered columns'>
             <PassList
+              eventIsCapped={props['capped?']}
               deleteRegistration={props.deleteRegistration}
               event={props.slug}
               passes={props.passes}

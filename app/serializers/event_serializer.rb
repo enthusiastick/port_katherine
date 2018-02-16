@@ -1,7 +1,9 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :name, :slug, :dates, :address, :description, :latitude, :longitude, :user_booking
+  attributes :name, :slug, :dates, :address, :capped?, :description, :latitude, :longitude, :user_booking
 
-  has_many :passes
+  has_many :passes do
+    object.passes.select { |pass| !pass.any_event_capped? }
+  end
 
   def current_user
     current_user ||= scope

@@ -38,7 +38,7 @@ const EventTile = props => {
             <strong>
               <Link className='button bottomless' to={volunteerLink}>Volunteer</Link>
               &nbsp;
-              <Link className='button bottomless' to={registerLink}>Register</Link>
+              {!props['capped?'] && <Link className='button bottomless' to={registerLink}>Register</Link>}
             </strong>
           </p>
         </div>

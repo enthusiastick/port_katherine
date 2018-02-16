@@ -20,6 +20,10 @@ class Event < ApplicationRecord
     update(archived: true)
   end
 
+  def capped?
+    player_count >= player_cap
+  end
+
   def dates
     if start_time.to_date == end_time.to_date
       start_time.strftime("%B %-d, %Y")
@@ -38,6 +42,10 @@ class Event < ApplicationRecord
 
   def generate_slug
     self.slug ||= name.parameterize if name.present?
+  end
+
+  def player_count
+    @player_count ||= bookings.where(category: :player).count
   end
 
   def regenerate_slug

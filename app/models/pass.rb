@@ -17,6 +17,10 @@ class Pass < ApplicationRecord
   validates_uniqueness_of :slug
   validate :only_discount_singles
 
+  def any_event_capped?
+    events.any? { |event| event.capped? }
+  end
+
   def generate_slug
     self.slug ||= name.parameterize if name.present?
   end

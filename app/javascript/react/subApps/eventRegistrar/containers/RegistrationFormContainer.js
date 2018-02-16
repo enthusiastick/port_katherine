@@ -28,6 +28,12 @@ class RegistrationFormContainer extends Component {
       this.props.push('/sign-in')
     }
 
+    if (this.props.event && this.props.event['capped?']) {
+      this.props.clearNotices()
+      this.props.flashNotice({ alert: 'Player passes for this event are sold out.' })
+      this.props.push('/events')
+    }
+
     if (this.props.event && this.props.event.userBooking) {
       this.props.clearNotices()
       this.props.flashNotice({ alert: 'You are already registered for this event.' })
