@@ -8,7 +8,7 @@ const PassList = props => {
     }
   }
 
-  let cancellationButton
+  let cancellationButton, passLinks, registrationOptions
 
   if (props.userBooking && !props.userBooking.paid) {
     cancellationButton =
@@ -20,40 +20,8 @@ const PassList = props => {
       </div>
   }
 
-  if (props.eventIsCapped) {
-    return(
-      <div className='callout primary'>
-        <p className='text-center'>
-          Player passes to this event are
-          <strong>
-            &nbsp;sold out.
-          </strong>
-        </p>
-        <div className='button-group stacked'>
-          <Link
-            className='button'
-            to={`/events/${props.event}/volunteer`}
-          >
-            Volunteer as Staff
-          </Link>
-        </div>
-      </div>
-    )
-  } else if (props.userBooking) {
-    return(
-      <div className='callout primary'>
-        <p className='text-center'>
-          You
-          <strong>
-            &nbsp;are&nbsp;
-          </strong>
-          registered for this event.
-        </p>
-        {cancellationButton}
-      </div>
-    )
-  } else if (props.passes && props.passes.length != 0) {
-    let passes = props.passes.map(pass => {
+  if (props.passes) {
+    passLinks = props.passes.map(pass => {
       return(
         <Link
           className='button' key={pass.slug}
@@ -64,12 +32,11 @@ const PassList = props => {
         </Link>
       )
     })
-
-    return(
-      <div className='callout primary'>
+    registrationOptions =
+      <div>
         <h5 className='text-center'><Link to={`/events/${props.event}/register`}>Register for This Event</Link></h5>
         <div className='button-group stacked'>
-          {passes}
+          {passLinks}
           <Link
             className='button'
             to={`/events/${props.event}/volunteer`}
@@ -79,10 +46,52 @@ const PassList = props => {
           </Link>
         </div>
       </div>
-    )
-  } else {
-    return null
   }
+
+  if (props.eventIsCapped) {
+    registrationOptions =
+      <div>
+        <p className='bottomless text-center'>
+          Player passes to this event are
+          <strong>
+            &nbsp;sold out.&nbsp;
+          </strong>
+        </p>
+        <p className='text-center'>
+          Please
+          <a className='white' href='mailto:staff@portkatherine.com'>
+            &nbsp;contact staff&nbsp;
+          </a>
+          about our waiting list.
+        </p>
+        <div className='button-group stacked'>
+          <Link
+            className='button'
+            to={`/events/${props.event}/volunteer`}
+          >
+            Volunteer as Staff
+          </Link>
+        </div>
+      </div>
+  }
+
+  if (props.userBooking) {
+    registrationOptions =
+      <p className='text-center'>
+        You
+        <strong>
+          &nbsp;are&nbsp;
+        </strong>
+        registered for this event.
+      </p>
+  }
+
+  return(
+    <div className='callout primary'>
+      {registrationOptions}
+      {cancellationButton}
+    </div>
+  )
 }
 
 export default PassList

@@ -30,7 +30,7 @@ class RegistrationFormContainer extends Component {
 
     if (this.props.event && this.props.event['capped?']) {
       this.props.clearNotices()
-      this.props.flashNotice({ alert: 'Player passes for this event are sold out.' })
+      this.props.flashNotice({ alert: 'Player passes for this event are sold out. Please email staff@portkatherine.com about our waiting list.' })
       this.props.push('/events')
     }
 
