@@ -27,7 +27,9 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def update
-    binding.pry
+    advancer = CharacterAdvancer.new(params)
+    advancer.advance!
+    render json: advancer.response, status: advancer.status
   end
 
   protected

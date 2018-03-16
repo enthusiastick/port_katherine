@@ -17,8 +17,11 @@ class EditCharacterContainer extends Component {
   }
 
   saveHandler() {
-    console.log(this.props.delta)
-    this.props.updateCharacter(this.props.delta)
+    if (this.props.saveEligibile.disabled) {
+      alert(this.props.saveEligibile.message)
+    } else {
+      this.props.updateCharacter(this.props.delta)
+    }
   }
 
   render() {
@@ -98,7 +101,7 @@ class EditCharacterContainer extends Component {
                   <strong>&Delta;CP of Selected Changes:</strong> {this.props.costOfDelta}
                 </p>
                 <div className='button-group expanded'>
-                  <a className='button' onClick={this.saveHandler} >
+                  <a className='button' disabled={this.props.saveEligibile.disabled} onClick={this.saveHandler} >
                     <i className='fa fa-save' /> Save
                   </a>
                 </div>

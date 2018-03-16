@@ -74,7 +74,7 @@ export const calculateCostOfDelta = createSelector(
     for (const newSkill of delta.newSkills) {
       cost += calculateSkillDeltaCost({
         deltaRank: newSkill.ranks,
-        skill: skillsBysId[newSkill.skillId]
+        skill: skillsById[newSkill.skillId]
       })
     }
 
@@ -86,6 +86,41 @@ export const calculateCostOfDelta = createSelector(
     }
 
     return cost
+  }
+)
+
+export const determineEligibility = createSelector(
+  [calculateCostOfDelta, delta],
+  (calculateCostOfDelta, delta) => {
+    if (
+      delta.characterSkills.length === 0 &&
+      delta.newHeaders.length === 0 &&
+      delta.newSkills.length === 0
+    ) {
+      return {
+        disabled: true,
+        message: 'No changes selected'
+      }
+    }
+
+    if (calculateCostOfDelta > parseInt(delta.points.available)) {
+      return {
+        disabled: true,
+        message: 'Insufficient character points'
+      }
+    }
+
+    if (calculateCostOfDelta > (delta.points.cycleSpendingCap - delta.points.spentCycle)) {
+      return {
+        disabled: true,
+        message: 'Cycle spending cap exceeded'
+      }
+    }
+
+    return {
+      disabled: false,
+      message: null
+    }
   }
 )
 
