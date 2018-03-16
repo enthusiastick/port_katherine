@@ -29,22 +29,23 @@ const delta = (state = initialState, action) => {
       let newNewHeaders = state.newHeaders.concat(action.headerId)
       return Object.assign({}, state, { newHeaders: newNewHeaders })
     case CHANGE_CHARACTER_SKILL:
+      const { amount, characterSkillId, skillId } = action.payload
       let reducedNewCharacterSkills
       let characterSkillArray = state.characterSkills.filter(characterSkill => {
-        return characterSkill.characterSkillId === action.characterSkillId
+        return characterSkill.characterSkillId === characterSkillId
       })
       if (characterSkillArray.length === 0) {
         reducedNewCharacterSkills = state.characterSkills.concat(
           {
-            skillId: action.skillId,
-            characterSkillId: action.characterSkillId,
-            ranks: action.amount
+            skillId: skillId,
+            characterSkillId: characterSkillId,
+            ranks: amount
           }
         )
       } else {
         let existingCharacterSkill = characterSkillArray[0]
         let characterSkillIndex = state.characterSkills.indexOf(existingCharacterSkill)
-        let updatedRanks = existingCharacterSkill.ranks += action.amount
+        let updatedRanks = existingCharacterSkill.ranks += amount
         reducedNewCharacterSkills = state.characterSkills
         reducedNewCharacterSkills[characterSkillIndex] = Object.assign(
           {},

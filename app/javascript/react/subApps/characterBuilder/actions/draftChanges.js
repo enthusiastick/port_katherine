@@ -21,12 +21,10 @@ let addHeader = headerId => {
   }
 }
 
-let changeCharacterSkill = (skillId, characterSkillId, amount) => {
+let changeCharacterSkill = (payload) => {
   return {
     type: CHANGE_CHARACTER_SKILL,
-    skillId,
-    characterSkillId,
-    amount
+    payload
   }
 }
 

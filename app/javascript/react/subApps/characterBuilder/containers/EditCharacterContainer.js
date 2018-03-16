@@ -94,6 +94,9 @@ class EditCharacterContainer extends Component {
                 </p>
               </div>
               <div className='small-12 medium-3 columns'>
+                <p className='bottomless text-center'>
+                  <strong>&Delta;CP of Selected Changes:</strong> {this.props.costOfDelta}
+                </p>
                 <div className='button-group expanded'>
                   <a className='button' onClick={this.saveHandler} >
                     <i className='fa fa-save' /> Save

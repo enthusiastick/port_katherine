@@ -5,18 +5,20 @@ import Tile from './Tile'
 const List = props => {
   let skillChangeHandler = (skillId, characterSkillId, amount) => {
     if (characterSkillId) {
+      const payload = { skillId, characterSkillId, amount }
       let deltaSkill = props.deltaCharacterSkills.filter(characterSkill => {
         return characterSkillId === characterSkill.characterSkillId
       })[0]
 
       if (deltaSkill) {
-        props.changeCharacterSkill(skillId, characterSkillId, amount)
+        props.changeCharacterSkill(payload)
       } else {
         let existingSkill = props.skills.filter(skill => {
           return characterSkillId === skill.characterSkillId
         })[0]
 
-        props.changeCharacterSkill(skillId, characterSkillId, (existingSkill.ranks + amount))
+        payload.amount += existingSkill.ranks
+        props.changeCharacterSkill(payload)
       }
     } else {
       props.changeSkill(skillId, amount)

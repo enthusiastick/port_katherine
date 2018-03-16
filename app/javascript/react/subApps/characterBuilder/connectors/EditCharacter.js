@@ -14,7 +14,7 @@ import EditCharacterContainer from '../containers/EditCharacterContainer'
 import { editCharacter } from '../actions/editCharacter'
 import { updateCharacter } from '../actions/updateCharacter'
 
-import { calculateCostOfDelta } from '../selectors/delta'
+import { calculateCostOfDelta } from '../selectors/editCharacter'
 
 const mapStateToProps = (state, ownProps) => {
   let availableHeaders = []
