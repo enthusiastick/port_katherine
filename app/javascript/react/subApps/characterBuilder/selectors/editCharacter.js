@@ -24,6 +24,22 @@ const skillsById = createSelector(
   }
 )
 
+const calculateNewHeaderCost = ({character, newHeaderId}) => {
+  const newHeader = character.headers.find(header => header.headerId === newHeaderId)
+
+  if (newHeader.season === "not_applicable") {
+    return 5
+  }
+
+  const seasonalHeaders = character.headers.filter(header => header.season === newHeader.season)
+  const seasonalHeadersPurchased = seasonalHeaders.filter(header => header.characterHeaderId).length
+  if (seasonalHeadersPurchased === 0) {
+    return 6
+  }
+
+  return 3
+}
+
 const calculateSkillCostOfNextRank = ({rank, skill}) => {
   const echelon = parseInt(rank / skill.costIncreaseRank)
   const echelonCostIncrease = skill.costIncreaseAmount * echelon
@@ -58,7 +74,14 @@ export const calculateCostOfDelta = createSelector(
     for (const newSkill of delta.newSkills) {
       cost += calculateSkillDeltaCost({
         deltaRank: newSkill.ranks,
-        skill: skillsById[newSkill.skillId]
+        skill: skillsBysId[newSkill.skillId]
+      })
+    }
+
+    for (const newHeaderId of delta.newHeaders) {
+      cost += calculateNewHeaderCost({
+        character,
+        newHeaderId
       })
     }
 
