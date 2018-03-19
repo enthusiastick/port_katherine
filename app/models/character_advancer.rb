@@ -1,9 +1,10 @@
 class CharacterAdvancer
-  def initialize(params)
+  def initialize(params, user_id)
     @character = Character.find_by(non_sequential_id: params[:id])
     @character_skills = params[:character_skills]
     @new_header_ids = params[:new_headers]
     @new_skills = params[:new_skills]
+    @user = User.find(user_id)
   end
 
   attr_reader :response, :status
@@ -23,8 +24,14 @@ class CharacterAdvancer
   def purchase_headers!
     @new_header_ids.each do |header_id|
       header =  Header.find(header_id)
-      character_header = CharacterHeader.new(character: @character, header: header)
-      character_header.save
+      cost = @character.cost_of_header(header)
+        character_header = CharacterHeader.new(character: @character, header: header)
+      tally = Tally.new(
+        character: @character,
+        description: "#{@user.label} purchased *#{header.name}* for #{cost} CP.",
+        user: @user
+      )
+      @character.spend!(cost) && character_header.save && tally.save && update_tally_annotation(tally)
     end
   end
 
@@ -41,5 +48,9 @@ class CharacterAdvancer
       character_skill.character = @character
       character_skill.save
     end
+  end
+
+  def update_tally_annotation(tally)
+    tally.update(annotation: "[#{@character.available}+#{@character.user.available}]")
   end
 end

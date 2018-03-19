@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216154359) do
+ActiveRecord::Schema.define(version: 20180319154759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.integer "category", default: 2, null: false
     t.integer "season", default: 0, null: false
     t.string "name", null: false
+    t.integer "linked_first_skill_id"
     t.integer "parent_header_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -136,6 +137,15 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.integer "cost_increase_rank", default: 10, null: false
     t.integer "max_rank", default: 0, null: false
     t.integer "starting_cost", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tallies", force: :cascade do |t|
+    t.string "annotation"
+    t.text "description", null: false
+    t.integer "character_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

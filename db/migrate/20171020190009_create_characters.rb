@@ -23,6 +23,7 @@ class CreateCharacters < ActiveRecord::Migration[5.1]
     t.integer :category, default: 2, null: false
     t.integer :season, default: 0, null: false
     t.string :name, null: false
+    t.integer :linked_first_skill_id
     t.integer :parent_header_id
 
     t.timestamps

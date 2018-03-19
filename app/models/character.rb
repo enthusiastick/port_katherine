@@ -12,6 +12,7 @@ class Character < ApplicationRecord
   has_many :headers, -> { alpha_by_name }, through: :character_headers
   has_many :character_skills
   has_many :skills, through: :character_skills
+  has_many :tallies
 
   validates_inclusion_of :archived, in: [true, false]
   validates_numericality_of :available, greater_than_or_equal_to: 0
@@ -22,6 +23,46 @@ class Character < ApplicationRecord
   validates_numericality_of :spent,
     greater_than_or_equal_to: 0, only_integer: true
   validates_numericality_of :spent_cycle, only_integer: true
+
+  def can_spend?(cost)
+    cost <= total_available && (spent_cycle + cost) <= cycle_spending_cap
+  end
+
+  def cost_of_header(header)
+    if header.profession?
+      5
+    else
+      matching_season_headers = Header.send(header.season).reject { |h| h == header }
+      (headers & matching_season_headers).empty? ? 6 : 3
+    end
+  end
+
+  def spend!(cost)
+    case
+      when !can_spend?(cost)
+        raise ActiveRecord::RecordInvalid
+      when cost <= available
+        update(
+          available: (available - cost),
+          spent: (spent + cost),
+          spent_cycle: (spent_cycle + cost)
+        )
+      when cost <= total_available
+        remainder = cost - available
+        update(
+          available: 0,
+          spent: (spent + cost),
+          spent_cycle: (spent_cycle + cost)
+        )
+        user.update(available: (user.available - remainder))
+      else
+        raise ActiveRecord::RecordInvalid
+    end
+  end
+
+  def total_available
+    @total_available ||= available + user.available
+  end
 
   private
 
