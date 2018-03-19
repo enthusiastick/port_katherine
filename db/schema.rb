@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180216154359) do
 
   create_table "characters", force: :cascade do |t|
     t.boolean "archived", default: false
-    t.decimal "available", precision: 6, scale: 2, default: "30.0"
+    t.decimal "available", precision: 6, scale: 2, default: "33.0"
     t.integer "birthplace", null: false
     t.integer "cycle_spending_cap", default: 20, null: false
     t.integer "first_profession_id", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180216154359) do
     t.string "name", null: false
     t.string "non_sequential_id", null: false
     t.integer "spent", default: 0, null: false
-    t.integer "spent_cycle", default: 0, null: false
+    t.integer "spent_cycle", default: -33, null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

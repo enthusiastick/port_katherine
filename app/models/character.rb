@@ -21,8 +21,7 @@ class Character < ApplicationRecord
   validates_uniqueness_of :non_sequential_id
   validates_numericality_of :spent,
     greater_than_or_equal_to: 0, only_integer: true
-  validates_numericality_of :spent_cycle,
-    greater_than_or_equal_to: 0, only_integer: true
+  validates_numericality_of :spent_cycle, only_integer: true
 
   private
 

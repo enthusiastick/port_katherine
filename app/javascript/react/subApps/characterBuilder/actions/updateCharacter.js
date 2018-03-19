@@ -33,7 +33,7 @@ let updateCharacterFailure = () => {
 
 let updateCharacter = (values, dispatch) => {
   dispatch(fetchUpdateCharacter())
-  let payload = JSON.stringify(humps.decamelizeKeys(values))
+  let payload = JSON.stringify(humps.decamelizeKeys({character: values}))
   return fetch(`${baseUrl}/api/v1/characters/${values.id}.json`, {
     credentials: 'same-origin',
     method: 'PATCH',
@@ -47,6 +47,7 @@ let updateCharacter = (values, dispatch) => {
     } else {
       dispatch(updateCharacterSuccess())
     }
+    debugger
     return data
   })
   .catch(errors => {

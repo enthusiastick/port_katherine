@@ -27,7 +27,7 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def update
-    advancer = CharacterAdvancer.new(params)
+    advancer = CharacterAdvancer.new(update_character_params)
     advancer.advance!
     render json: advancer.response, status: advancer.status
   end
@@ -36,5 +36,9 @@ class Api::V1::CharactersController < Api::ApiController
 
   def new_character_params
     params.require(:character).permit(:birthplace, :first_profession_id, :first_true_header_id, :name)
+  end
+
+  def update_character_params
+    params.require(:character).permit(:id, character_skills: [:character_skill_id, :skill_id, :ranks], new_headers: [], new_skills: [:skill_id, :ranks], points: {})
   end
 end
