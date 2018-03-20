@@ -144,7 +144,8 @@ ActiveRecord::Schema.define(version: 20180319154759) do
   create_table "tallies", force: :cascade do |t|
     t.string "annotation"
     t.text "description", null: false
-    t.integer "character_id", null: false
+    t.integer "character_id"
+    t.integer "recipient_id"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
+import { default as HeaderButton } from '../components//header/Button.js'
 import { default as HeaderTile } from '../components/header/Tile'
 import { default as SkillList } from '../components/skill/List'
 
@@ -30,7 +31,7 @@ class EditCharacterContainer extends Component {
       { to: `/characters/${this.props.character.id}`, label: this.props.character.name }
     ]
 
-    let openSkills, headerTiles, availableHeaderTiles
+    let openSkills, headerButtons, headerTiles
 
     if (this.props.character.open) {
       openSkills =
@@ -60,15 +61,14 @@ class EditCharacterContainer extends Component {
           />
         )
       })
-      availableHeaderTiles = this.props.availableHeaders.map(header => {
+      headerButtons = this.props.character.headers.map(header => {
         return(
-          <HeaderTile
+          <HeaderButton
             key={header.headerId}
             addHeader={this.props.addHeader}
-            changeCharacterSkill={this.props.changeCharacterSkill}
-            changeSkill={this.props.changeSkill}
+            availableHeaders={this.props.availableHeaders}
             delta={this.props.delta}
-            removeSkill={this.props.removeSkill}
+            removeHeader={this.props.removeHeader}
             {...header}
           />
         )
@@ -119,10 +119,14 @@ class EditCharacterContainer extends Component {
             </div>
           </div>
           <div className='grid-x grid-margin-x small-up-1 medium-up-2 large-up-3'>
+            <div className='cell card'>
+              <div className='card-section'>
+                <div className='button-group stacked'>
+                  {headerButtons}
+                </div>
+              </div>
+            </div>
             {headerTiles}
-          </div>
-          <div className='grid-x grid-margin-x small-up-1 medium-up-2 large-up-3'>
-            {availableHeaderTiles}
           </div>
         </div>
       </div>
