@@ -9,6 +9,10 @@ import {
   REMOVE_SKILL
 } from '../actions/draftChanges'
 
+import {
+  UPDATE_CHARACTER_SUCCESS
+} from '../actions/updateCharacter'
+
 let initialState = {
   id: null,
   characterSkills: [],
@@ -93,6 +97,8 @@ const delta = (state = initialState, action) => {
         return skill.skillId !== action.skillId
       })
       return Object.assign({}, state, { newSkills: filteredSkills })
+    case UPDATE_CHARACTER_SUCCESS:
+      return initialState
     default:
       return state
   }

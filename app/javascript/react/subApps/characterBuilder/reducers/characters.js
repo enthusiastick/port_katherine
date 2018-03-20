@@ -20,6 +20,11 @@ import {
   CREATE_CHARACTER_SUCCESS
 } from '../actions/createCharacter'
 
+import {
+  UPDATE_CHARACTER_SUCCESS,
+  UPDATE_CHARACTER_FAILURE
+} from '../actions/updateCharacter'
+
 let initialState = {
   isFetching: false,
   edit: {
@@ -66,6 +71,15 @@ const characters = (state = initialState, action) => {
       }
       return Object.assign({}, state, {
         index: state.index.concat(newCharacterIndex),
+        show: action.character
+      })
+    case UPDATE_CHARACTER_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        edit: {
+          headers: [],
+          open: []
+        },
         show: action.character
       })
     default:

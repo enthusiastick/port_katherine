@@ -28,8 +28,11 @@ class Api::V1::CharactersController < Api::ApiController
 
   def update
     advancer = CharacterAdvancer.new(update_character_params, current_user.id)
-    advancer.advance!
-    render json: advancer.response, status: advancer.status
+    if advancer.advance!
+      render json: advancer.character, serializer: Character::ShowSerializer
+    else
+      render json: { error: advancer.character.errors }, status: :unprocessable_entity
+    end
   end
 
   protected

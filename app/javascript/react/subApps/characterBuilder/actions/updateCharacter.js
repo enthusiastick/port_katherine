@@ -1,6 +1,8 @@
 import humps from 'humps'
+import { push } from 'react-router-redux'
 
 import baseUrl from '../../../sharedResources/constants/baseUrl'
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const UPDATE_CHARACTER = 'UPDATE_CHARACTER'
 const UPDATE_CHARACTER_SUCCESS = 'UPDATE_CHARACTER_SUCCESS'
@@ -31,7 +33,7 @@ let updateCharacterFailure = () => {
   }
 }
 
-let updateCharacter = (values, dispatch) => {
+let updateCharacter = values => dispatch => {
   dispatch(fetchUpdateCharacter())
   let payload = JSON.stringify(humps.decamelizeKeys({character: values}))
   return fetch(`${baseUrl}/api/v1/characters/${values.id}.json`, {
@@ -45,9 +47,11 @@ let updateCharacter = (values, dispatch) => {
     if (data.error) {
       throw data.error
     } else {
-      dispatch(updateCharacterSuccess())
+      dispatch(updateCharacterSuccess(humps.camelizeKeys(data.character)))
+      dispatch(clearNotices())
+      dispatch(flashNotice({ success: `${data.character.name} updated successfully.` }))
+      dispatch(push(`/characters/${data.character.id}`))
     }
-    debugger
     return data
   })
   .catch(errors => {

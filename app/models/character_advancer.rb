@@ -1,3 +1,5 @@
+include ActionView::Helpers::TextHelper
+
 class CharacterAdvancer
   def initialize(params, user_id)
     @character = Character.find_by(non_sequential_id: params[:id])
@@ -7,17 +9,11 @@ class CharacterAdvancer
     @user = User.find(user_id)
   end
 
-  attr_reader :response, :status
+  attr_reader :character
 
   def advance!
     ApplicationRecord.transaction do
-      if purchase_headers! && update_character_skills! && purchase_new_skills!
-        @status = :ok
-        @response = @character
-      else
-        @status = :unprocessable_entity
-        @response = { error: "Your changes could not be saved." }
-      end
+      purchase_headers! && update_character_skills! && purchase_new_skills!
     end
   end
 
@@ -25,20 +21,28 @@ class CharacterAdvancer
     @new_header_ids.each do |header_id|
       header =  Header.find(header_id)
       cost = @character.cost_of_header(header)
-        character_header = CharacterHeader.new(character: @character, header: header)
+      character_header = CharacterHeader.new(character: @character, header: header)
       tally = Tally.new(
         character: @character,
-        description: "#{@user.label} purchased *#{header.name}* for #{cost} CP.",
+        description: "opened '#{header.name}' for #{cost} CP.",
         user: @user
       )
-      @character.spend!(cost) && character_header.save && tally.save && update_tally_annotation(tally)
+      @character.spend!(cost) && character_header.save && tally.save && tally.update_annotation_for_character(@character)
     end
   end
 
   def update_character_skills!
     @character_skills.each do |character_skill|
-      updated_character_skill = CharacterSkill.find(character_skill[:character_skill_id])
-      updated_character_skill.update(character_skill.slice(:ranks))
+      skill_to_update = CharacterSkill.find(character_skill[:character_skill_id])
+      starting_rank = skill_to_update.ranks
+      ending_rank = character_skill[:ranks]
+      cost = skill_to_update.cost_of_delta(starting_rank, ending_rank)
+      tally = Tally.new(
+        character: @character,
+        description: "raised '#{skill_to_update.name}' from #{starting_rank} to #{ending_rank} for #{cost} CP.",
+        user: @user
+      )
+      @character.spend!(cost) && skill_to_update.update(character_skill.slice(:ranks)) && tally.save && tally.update_annotation_for_character(@character)
     end
   end
 
@@ -46,11 +50,13 @@ class CharacterAdvancer
     @new_skills.each do |skill|
       character_skill = CharacterSkill.new(skill)
       character_skill.character = @character
-      character_skill.save
+      cost = character_skill.cost_of_delta(0, character_skill.ranks)
+      tally = Tally.new(
+        character: @character,
+        description: "purchased '#{character_skill.name}' #{pluralize(character_skill.ranks, 'time')} for #{cost} CP.",
+        user: @user
+      )
+      @character.spend!(cost) && character_skill.save && tally.save && tally.update_annotation_for_character(@character)
     end
-  end
-
-  def update_tally_annotation(tally)
-    tally.update(annotation: "[#{@character.available}+#{@character.user.available}]")
   end
 end

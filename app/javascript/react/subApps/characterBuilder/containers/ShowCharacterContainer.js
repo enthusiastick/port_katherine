@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
+import TalliesTable from '../components/tallies/TalliesTable'
 
 class ShowCharacterContainer extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class ShowCharacterContainer extends Component {
             </div>
           </div>
           {headerElements}
+          <TalliesTable tallies={this.props.character.tallies} />
         </div>
       </div>
     )
