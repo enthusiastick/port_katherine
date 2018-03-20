@@ -1,11 +1,18 @@
 import React from 'react'
 
+import Control from './Control'
+import Toggle from './Toggle'
+
 const Tile = props => {
   let increaseClass = 'button'
   let decreaseClass = 'button disabled'
   let ranks = 0
   let rankColorClass = 'four-wide hollow button'
   if (props.ranks) { ranks = props.ranks }
+
+  if (props.maxRank != 0 && props.maxRank === ranks) {
+    increaseClass = 'button disabled'
+  }
 
   if (props.deltaSkill) {
     ranks = props.deltaSkill.ranks
@@ -23,9 +30,12 @@ const Tile = props => {
 
   let handleIncrease = () => {
     let existingSkill, maxRank
+
     if (props.maxRank !== 0) { maxRank = props.maxRank }
     if (props.deltaCharacterSkill) { existingSkill = props.deltaCharacterSkill }
     if (props.deltaSkill) { existingSkill = props.deltaSkill }
+
+    if (maxRank === props.ranks) { return }
 
     if (existingSkill) {
       if (maxRank) {
@@ -57,6 +67,8 @@ const Tile = props => {
     }
   }
 
+  let ElementType = (props.maxRank === 1) ? 'Toggle' : 'Control'
+
   return(
     <div className='grid-container'>
       <div className='grid-x grid-margin-x'>
@@ -67,21 +79,24 @@ const Tile = props => {
             </strong>
           </p>
         </div>
-        <div className='auto cell'>
-          <div className='expanded button-group bottomless'>
-            <div className={decreaseClass} onClick={handleDecrease}>
-              <i className='fa fa-minus' />
-            </div>
-            <div className={rankColorClass}>
-              <span className='header-font white'>
-                {ranks}
-              </span>
-            </div>
-            <div className={increaseClass} onClick={handleIncrease}>
-              <i className='fa fa-plus' />
-            </div>
-          </div>
-        </div>
+        {(props.maxRank === 1) &&
+          <Toggle
+            characterSkillId={props.characterSkillId}
+            handleDecrease={handleDecrease}
+            handleIncrease={handleIncrease}
+            ranks={ranks}
+          />
+        }
+        {(props.maxRank != 1) &&
+          <Control
+            decreaseClass={decreaseClass}
+            handleDecrease={handleDecrease}
+            handleIncrease={handleIncrease}
+            increaseClass={increaseClass}
+            rankColorClass={rankColorClass}
+            ranks={ranks}
+          />
+        }
       </div>
     </div>
   )
