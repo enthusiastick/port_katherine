@@ -27,7 +27,7 @@ const skillsById = createSelector(
 const calculateNewHeaderCost = ({character, newHeaderId}) => {
   const newHeader = character.headers.find(header => header.headerId === newHeaderId)
 
-  if (newHeader.season === "not_applicable") {
+  if (newHeader.category === "profession") {
     return 5
   }
 
@@ -103,7 +103,8 @@ export const determineEligibility = createSelector(
       }
     }
 
-    if (calculateCostOfDelta > parseInt(delta.points.available)) {
+    const totalAvailable = parseInt(delta.points.available) + parseInt(delta.points.playerAvailable)
+    if (calculateCostOfDelta > totalAvailable) {
       return {
         disabled: true,
         message: 'Insufficient character points'

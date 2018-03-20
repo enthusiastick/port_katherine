@@ -1,6 +1,10 @@
 class CharacterHeaderSerializer < ActiveModel::Serializer
-  attributes :character_header_id, :header_id, :name, :true_header, :skills,
-    :season
+  attributes :category, :character_header_id, :header_id, :name, :true_header,
+    :skills, :season
+
+  def category
+    object.header.category
+  end
 
   def character_header_id
     object.id

@@ -8,7 +8,7 @@ class Character::EditSerializer < ActiveModel::Serializer
 
   def headers
     @headers = Array.new
-    (Header.stock.alpha_by_name + object.headers).uniq.each do |header|
+    (Header.stock.alpha_by_name + Header.profession.alpha_by_name + object.headers).uniq.each do |header|
       character_header = CharacterHeader.find_by(character: object, header: header)
       if character_header.present?
         first_true_header = (character_header.header == object.first_true_header)

@@ -31,7 +31,7 @@ class EditCharacterContainer extends Component {
       { to: `/characters/${this.props.character.id}`, label: this.props.character.name }
     ]
 
-    let openSkills, headerButtons, headerTiles
+    let openSkills, headerButtons, headerTiles, professionButtons, professionTiles
 
     if (this.props.character.open) {
       openSkills =
@@ -48,30 +48,64 @@ class EditCharacterContainer extends Component {
 
     if (this.props.selectedHeaders) {
       headerTiles = this.props.selectedHeaders.map(header => {
-        return(
-          <HeaderTile
-            key={header.headerId}
-            changeCharacterSkill={this.props.changeCharacterSkill}
-            changeSkill={this.props.changeSkill}
-            delta={this.props.delta}
-            removeCharacterSkill={this.props.removeCharacterSkill}
-            removeHeader={this.props.removeHeader}
-            removeSkill={this.props.removeSkill}
-            {...header}
-          />
-        )
+        if (header.category != 'profession') {
+          return(
+            <HeaderTile
+              key={header.headerId}
+              changeCharacterSkill={this.props.changeCharacterSkill}
+              changeSkill={this.props.changeSkill}
+              delta={this.props.delta}
+              removeCharacterSkill={this.props.removeCharacterSkill}
+              removeHeader={this.props.removeHeader}
+              removeSkill={this.props.removeSkill}
+              {...header}
+            />
+          )
+        }
       })
       headerButtons = this.props.character.headers.map(header => {
-        return(
-          <HeaderButton
-            key={header.headerId}
-            addHeader={this.props.addHeader}
-            availableHeaders={this.props.availableHeaders}
-            delta={this.props.delta}
-            removeHeader={this.props.removeHeader}
-            {...header}
-          />
-        )
+        if (header.category != 'profession') {
+          return(
+            <HeaderButton
+              key={header.headerId}
+              addHeader={this.props.addHeader}
+              availableHeaders={this.props.availableHeaders}
+              delta={this.props.delta}
+              removeHeader={this.props.removeHeader}
+              {...header}
+            />
+          )
+        }
+      })
+      professionTiles = this.props.selectedHeaders.map(header => {
+        if (header.category === 'profession') {
+          return(
+            <HeaderTile
+              key={header.headerId}
+              changeCharacterSkill={this.props.changeCharacterSkill}
+              changeSkill={this.props.changeSkill}
+              delta={this.props.delta}
+              removeCharacterSkill={this.props.removeCharacterSkill}
+              removeHeader={this.props.removeHeader}
+              removeSkill={this.props.removeSkill}
+              {...header}
+            />
+          )
+        }
+      })
+      professionButtons = this.props.character.headers.map(header => {
+        if (header.category === 'profession') {
+          return(
+            <HeaderButton
+              key={header.headerId}
+              addHeader={this.props.addHeader}
+              availableHeaders={this.props.availableHeaders}
+              delta={this.props.delta}
+              removeHeader={this.props.removeHeader}
+              {...header}
+            />
+          )
+        }
       })
     }
 
@@ -118,6 +152,7 @@ class EditCharacterContainer extends Component {
               {openSkills}
             </div>
           </div>
+          <h2>Headers</h2>
           <div className='grid-x grid-margin-x small-up-1 medium-up-2 large-up-3'>
             <div className='cell card'>
               <div className='card-section'>
@@ -127,6 +162,17 @@ class EditCharacterContainer extends Component {
               </div>
             </div>
             {headerTiles}
+          </div>
+          <h2>Professions</h2>
+          <div className='grid-x grid-margin-x small-up-1 medium-up-2 large-up-3'>
+            <div className='cell card'>
+              <div className='card-section'>
+                <div className='button-group stacked'>
+                  {professionButtons}
+                </div>
+              </div>
+            </div>
+            {professionTiles}
           </div>
         </div>
       </div>
