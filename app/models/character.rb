@@ -74,12 +74,22 @@ class Character < ApplicationRecord
     build_first_profession!
     build_first_true_header!
     build_vitality!
+    build_first_tally!
   end
 
   def build_first_profession!
     CharacterHeader.create(
       character: self,
       header: first_profession
+    )
+  end
+
+  def build_first_tally!
+    Tally.create(
+      annotation: tally_annotation,
+      character: self,
+      description: "created.",
+      user: user
     )
   end
 
