@@ -1,0 +1,9 @@
+Tier/Path,Skill Name,Skill Cost,starred?,Description
+non-true skills,Disarm,1,,You can call ``Disarm'' once with any melee weapon you can wield.
+non-true skills,Parry,2,," If you are wielding a melee weapon, you may call ``Parry'' once in response to a weapon call."
+non-true skills,Maim,2,,You can call ``Maim'' once with any melee weapon you can wield.
+non-true skills,Thrown Weapon,2,y,"You can throw any coreless, safe, approved weapon between 6 inches and 24 inches long. You cannot throw skills other than augments."
+true skills,Agility,3,y,"You have 2 points of virtual armor, which takes damage before costume armor. You can refresh this virtual armor with 5 minutes of restful stretching, limbering, or other appropriate roleplay outside of combat."
+true skills,Two Weapon,3,y,"You can pair any combination of one-handed weapons or guns together. You must still have the ability to wield either individually, and you must have an item or effect that allows you to carry multiple loaded guns if you want to dual-wield guns. If you already have Off-Hand Weapon, discount its cost. "
+true skills,Bullet,2,,You can load 1 bullet into a gun. It takes 1 minute and the expenditure of 1 arcanum.
+true skills,Evasive Maneuvers,3,y,"If you are hit with a packet attack (excluding special calls and calls with the ``Arcane'' prefix), you may choose to take 5 damage (which can go against armor) rather than the called packet effect. Say ``Reduce'' if you do so. You cannot use this skill and the Chest Armor skill at the same time---if you have both skills, you must remove your Chest Armor prop in order to use Evasive Maneuvers, even if your armor is currently broken."

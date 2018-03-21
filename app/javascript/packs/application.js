@@ -6,7 +6,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
 import createBrowserHistory from 'history/createBrowserHistory'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
@@ -28,6 +28,11 @@ import AdminEventsNew         from '../react/subApps/admin/eventManager/connecto
 
 import AdminUsersIndex        from '../react/subApps/admin/userManager/connectors/AdminUsersIndex'
 
+import EditCharacter          from '../react/subApps/characterBuilder/connectors/EditCharacter'
+import IndexCharacters        from '../react/subApps/characterBuilder/connectors/IndexCharacters'
+import NewCharacter           from '../react/subApps/characterBuilder/connectors/NewCharacter'
+import ShowCharacter          from '../react/subApps/characterBuilder/connectors/ShowCharacter'
+
 import EventsIndex            from '../react/subApps/eventRegistrar/connectors/EventsIndex'
 import EventShow              from '../react/subApps/eventRegistrar/connectors/EventShow'
 import Register               from '../react/subApps/eventRegistrar/connectors/Register'
@@ -47,7 +52,10 @@ import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex
 
 import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import adminUsers  from '../react/subApps/admin/userManager/reducers/adminUsers'
+import characters  from '../react/subApps/characterBuilder/reducers/characters'
 import currentUser from '../react/sharedResources/reducers/currentUser'
+import delta       from '../react/subApps/characterBuilder/reducers/delta'
+import headers     from '../react/subApps/characterBuilder/reducers/headers'
 import events      from '../react/subApps/eventRegistrar/reducers/events'
 import notices     from '../react/sharedResources/reducers/notices'
 import token       from '../react/subApps/eventRegistrar/reducers/token'
@@ -60,7 +68,10 @@ const store = createStore(
   combineReducers({
     adminEvents,
     adminUsers,
+    characters,
     currentUser,
+    delta,
+    headers,
     events,
     notices,
     token,
@@ -97,12 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <Route exact path='/admin' component={AdminIndex} />
 
-              <Route exact path='/admin/events' component={AdminEventsIndex} />
-              <Route exact path='/admin/events/:eventSlug' component={AdminEventShow} />
-              <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
-              <Route exact path='/admin/events/new' component={AdminEventsNew} />
+              <Switch>
+                <Route exact path='/admin/events' component={AdminEventsIndex} />
+                <Route exact path='/admin/events/new' component={AdminEventsNew} />
+                <Route exact path='/admin/events/:eventSlug' component={AdminEventShow} />
+                <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
+              </Switch>
 
               <Route exact path='/admin/users' component={AdminUsersIndex} />
+
+              <Switch>
+                <Route exact path='/characters' component={IndexCharacters} />
+                <Route exact path='/characters/new' component={NewCharacter} />
+                <Route exact path='/characters/:characterId/edit' component={EditCharacter} />
+                <Route exact path='/characters/:characterId' component={ShowCharacter} />
+              </Switch>
 
               <Route exact path='/events' component={EventsIndex} />
               <Route exact path='/events/:eventSlug' component={EventShow} />

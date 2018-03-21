@@ -9,6 +9,12 @@ class User < ApplicationRecord
 
   enum role: { user: 0, collaborator: 5, admin: 9 }
 
+  has_many :bookings
+  has_many :events, through: :bookings
+  has_many :characters
+  has_many :receipts
+  has_many :passes, through: :receipts
+
   has_secure_password
 
   scope :by_handle, -> { order(:handle) }

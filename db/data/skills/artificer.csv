@@ -1,0 +1,16 @@
+Tier/Path,Skill Name,Skill Cost,starred?,Description
+non-true skills,Device,1,,"You can operate complex bits of technology, like traps and some locks.
+
+\begin{itemize}
+    \item If you have any points of Device, you can pick up popper traps and keep them in a film canister. Spend 1 point of Device to place up to 1 film canister's worth of popper traps in a single area. Other than a film canister of popper traps, a trap without a device number can't be collected or deployed.
+    \item Spend 1 point of Device to clean up 1 patch of contact poison; the petroleum jelly may not be re-used.
+    \item Traps may have device numbers, which are the number of points of Device you use to either disarm or place them. Other than popper traps and contact poison, a trap without a device number can't be disarmed.
+    \item Locks may have device numbers; see \hyperref[sec:locks]{Locks}. Other complicated devices may have device numbers. See the accompanying tags
+\end{itemize}"
+non-true skills,Avoid Trap,1,,You can call ``Resist'' once in response to a trap.
+non-true skills,Elemental Volley,3,y,"You throw a clump of elemental energy in chemical form at a foe. When you take this skill, pick one of the following elements: Ice, Fire, Earth, Air. If you have already purchased Elemental Blade, your Elemental Volley must be of the same type. You may throw an unlimited number of packets with your element's call (``<Element>''). You take double the damage from any attack prefixed by the opposing element.  "
+non-true skills,Elemental Blade,1,,"You may spend 1 minute preparing your melee weapon with the following augment: your next swing is a Strike of the same element as your Elemental Volley (If you don't have Elemental Volley, pick an element the first time you purchase this skill---all your uses of Elemental Blade will be of this type, and you take double damage from any attack prefixed by the opposing element.) You cannot grant this augment to someone else---if you hand them your prepared weapon, the augment dissipates."
+true skills,Lockpicking,2,y,You receive the first number for all combination locks in game in your packet at check-in.
+true skills,Chemical Augmentation,3,y,"With 1 minute of roleplaying and the expenditure of 1 arcanum, you can ``slot'' a vial to affect you automatically as soon as it would be effective (e.g. a Purify Vial will trigger the next time you get poisoned, an Awaken Vial would trigger as soon as you are unconscious, etc.). You can only have 1 vial slotted at a time, and the slotted vial expires at the end of the event if it is not used."
+true skills,Charged Weapon,3,y,"You can spend uses of Elemental Blade instantly, without the 1 minute prep time"
+true skills,Improvised Explosive,5,,You can do the following once per purchase of this skill: Place two foam balls in one hand. Throw both simultaneously and call ``Fireball''.

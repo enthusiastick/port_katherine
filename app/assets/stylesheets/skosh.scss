@@ -2,6 +2,10 @@
   height: 20rem;
 }
 
+.body-font {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+}
+
 .bottomless {
   margin-bottom: 0;
 }
@@ -17,6 +21,11 @@
   }
 }
 
+.four-wide {
+  min-width: 3.4rem;
+  max-width: 3.4rem;
+}
+
 .header-font {
   font-family: "Milonga", Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.2rem;
@@ -30,12 +39,20 @@
   padding-bottom: 1rem;
 }
 
+.left-margin-spacer {
+  margin-left: 1em;
+}
+
 .top-padded {
   padding-top: 1rem;
 }
 
 .top-spacer {
   padding-top: 7em;
+}
+
+.white {
+  color: $white;
 }
 
 p.large {

@@ -24,7 +24,9 @@ Rails.application.routes.draw do
       end
       resources :account_confirmations, only: [:create]
       resources :bookings, only: [:create, :destroy]
+      resources :characters, only: [:create, :edit, :index, :show, :update]
       resources :client_token, only: [:index]
+      resources :headers, only: [:index]
       resources :events, only: [:index]
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create, :destroy]
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
   end
 
   resources :account_confirmations, only: [:edit]
+  resources :characters, only: [:edit, :index, :new, :show]
   resources :events, only: [:index, :show] do
     ["register", "volunteer"].each do |path|
       get path, to: "bookings#new"

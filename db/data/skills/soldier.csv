@@ -1,0 +1,15 @@
+Tier/Path,Skill Name,Skill Cost,starred?,Description
+non-true skills,Maim,2,,You can call ``Maim'' once with any melee weapon you can wield.
+non-true skills,Trip,1,,You can call ``Trip'' once with any melee weapon you can wield.
+non-true skills,Cleave,2,,You can call ``Cleave'' once with any melee weapon you can wield.
+non-true skills,Parry,2,," If you are wielding a melee weapon, you may call ``Parry'' once in response to a weapon call."
+true skills,Pierce,4,,You can call ``Pierce'' once with any melee weapon you can wield.
+true skills,Chest Armor,4,y,"Purchasing this skill allows you to wear chest armor. While worn, chest armor protects the front of your chest from any (called or uncalled) melee, thrown weapon, or bullet hits that do not have a Pierce effect. Call ``Ward'' to such attacks. If you are hit in the front of the chest with a Pierce effect, the attack succeeds and your chest armor is broken---if it is repaired, it regains this effect.
+
+\begin{itemize}
+    \item ``The front of your chest'' is defined as the area covered by a tank top, in front of where your arms hit your sides when they're at rest.
+    \item Chest armor can be represented by many kinds of protective gear---a waistcoat reinforced with arcane technology, a metal breastplate, etc. Talk to staff if you aren't sure whether something is an appropriate chest armor prop.
+    \item Chest armor does not protect you from packet attacks---they still work if they hit you in the front of your chest.
+\end{itemize}"
+true skills,Bullet,2,,You can load 1 bullet into a gun. It takes 1 minute and the expenditure of 1 arcanum.
+true skills,Retreat,3,y,You can say ``Reduce'' and take 10 damage (which can go against armor) in response to a Pierce that hits your torso or a Fireball. You can say ``Reduce'' and take 5 damage (which can go against armor) in response to a Pierce that hits one of your limbs.
