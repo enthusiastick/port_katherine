@@ -3,6 +3,7 @@ import { Field } from 'redux-form'
 
 import birthplaces from '../constants/birthplaces'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
+import VersionLabel from '../components/VersionLabel'
 
 import Select from '../../../sharedResources/components/formFields/Select'
 import TextInput from '../../../sharedResources/components/formFields/TextInput'
@@ -40,7 +41,7 @@ class NewCharacterContainer extends Component {
       <div className='row'>
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='New Character' />
-          <h1 className='text-center top-padded'>New Character</h1>
+          <h1 className='text-center top-padded'>New Character <VersionLabel /></h1>
           <div className='row'>
             <div className='medium-7 small-centered columns'>
               <form onSubmit={this.props.handleSubmit(this.props.createCharacter)}>

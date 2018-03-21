@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import List from '../components/character/List'
+import VersionLabel from '../components/VersionLabel'
 
 class IndexCharactersContainer extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class IndexCharactersContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='text-center top-padded'>Characters</h1>
+          <h1 className='bottomless text-center top-padded'>Characters <VersionLabel /></h1>
           <List characters={this.props.characters} />
         </div>
       </div>
