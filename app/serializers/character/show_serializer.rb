@@ -2,7 +2,7 @@ include ActionView::Helpers::NumberHelper
 
 class Character::ShowSerializer < ActiveModel::Serializer
   attributes :id, :available, :birthplace, :cycle_spending_cap, :headers,
-    :name, :player_available, :spent, :spent_cycle
+    :name, :open, :player_available, :spent, :spent_cycle
 
   has_many :tallies do
     object.tallies.order(created_at: :desc).limit(10)
@@ -21,7 +21,20 @@ class Character::ShowSerializer < ActiveModel::Serializer
   end
 
   def headers
-    object.character_headers.map(&:header_name)
+    @headers = Array.new
+    object.character_headers.alpha_by_header_name.each do |character_header|
+      first_true_header = (character_header.header == object.first_true_header)
+      @headers << CharacterHeaderSerializer.new(character_header, { first_true_header: first_true_header }).as_json
+    end
+    @headers
+  end
+
+  def open
+    @open = Array.new
+    object.character_skills.where(skill: Header.open.skills).each do |character_skill|
+      @open << CharacterSkillSerializer.new(character_skill).as_json
+    end
+    @open
   end
 
   def player_available

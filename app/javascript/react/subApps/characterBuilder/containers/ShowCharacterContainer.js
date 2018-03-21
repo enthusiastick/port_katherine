@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
+import { default as HeaderSummary } from '../components/header/Summary'
 import TalliesTable from '../components/tallies/TalliesTable'
 
 class ShowCharacterContainer extends Component {
@@ -17,8 +18,8 @@ class ShowCharacterContainer extends Component {
 
   render() {
     let {
-      available, birthplace, cycleSpendingCap, headers, name, playerAvailable,
-      spent, spentCycle
+      available, birthplace, cycleSpendingCap, headers, name, open,
+      playerAvailable, spent, spentCycle
     } = this.props.character
 
     let breadcrumbs = [{ to: '/characters', label: 'Characters' }]
@@ -26,9 +27,15 @@ class ShowCharacterContainer extends Component {
     let headerElements
     if (headers) {
       headerElements = headers.map(header => {
-        return(<div key={header} className='callout'>{header}</div>)
+        return(<HeaderSummary key={header.headerId} {...header} />)
       })
     }
+
+    let openElements
+    if (open) {
+      openElements = (<HeaderSummary name="Open" skills={open} />)
+    }
+
 
     return(
       <div className='row'>
@@ -61,6 +68,7 @@ class ShowCharacterContainer extends Component {
               </div>
             </div>
           </div>
+          {openElements}
           {headerElements}
           <TalliesTable tallies={this.props.character.tallies} />
         </div>

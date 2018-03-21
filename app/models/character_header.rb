@@ -4,6 +4,8 @@ class CharacterHeader < ApplicationRecord
 
   delegate :name, to: :header
 
+  scope :alpha_by_header_name, -> { joins(:header).order("name") }
+
   validates_uniqueness_of :character, scope: :header
   validates_inclusion_of :true_header, in: [true, false]
 
