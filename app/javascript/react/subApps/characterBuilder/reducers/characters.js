@@ -78,10 +78,9 @@ const characters = (state = initialState, action) => {
         show: action.character
       })
     case UPDATE_BACKSTORY_SUCCESS:
+      let updatedEdit = Object.assign({}, state.edit, { backstory: action. backstory })
       return Object.assign({}, state, {
-        edit: {
-          backstory: action.backstory
-        }
+        edit: updatedEdit
       })
     case UPDATE_CHARACTER_SUCCESS:
       return Object.assign({}, state, {

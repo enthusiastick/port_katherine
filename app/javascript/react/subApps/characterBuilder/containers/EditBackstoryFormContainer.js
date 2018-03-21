@@ -17,7 +17,6 @@ class EditBackstoryForm extends Component {
 
   render() {
     let { pristine, submitting } = this.props
-
     let breadcrumbs = [
       { to: '/characters', label: 'Characters' },
       { to: `/characters/${this.props.character.id}`, label: this.props.character.name },
@@ -29,7 +28,7 @@ class EditBackstoryForm extends Component {
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Backstory' />
           <h1 className='text-center top-padded'>Edit {this.props.character.name} Backstory</h1>
-          <form onSubmit={this.props.handleSubmit}>
+          <form onSubmit={this.props.handleSubmit(this.props.updateBackstory)}>
             <div className='form-inputs'>
               <Field
                 name='body'

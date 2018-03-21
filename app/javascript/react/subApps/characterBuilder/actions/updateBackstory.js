@@ -1,6 +1,8 @@
 import humps from 'humps'
+import { push } from 'react-router-redux'
 
 import baseUrl from '../../../sharedResources/constants/baseUrl'
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const UPDATE_BACKSTORY = 'UPDATE_BACKSTORY'
 const UPDATE_BACKSTORY_SUCCESS = 'UPDATE_BACKSTORY_SUCCESS'
@@ -42,15 +44,21 @@ let updateBackstory = values => dispatch => {
   })
   .then(response => { return response.json() })
   .then(data => {
+    const camelizedData = humps.camelizeKeys(data)
     if (data.error) {
       throw data.error
+    } else {
+      dispatch(updateBackstorySuccess(camelizedData.backstory))
+      dispatch(clearNotices())
+      dispatch(flashNotice({ success: 'Backstory updated successfully.' }))
+      dispatch(push(`/characters/${camelizedData.characterId}/edit`))
     }
-
-    const camelizedData = humps.camelizeKeys(data)
     return camelizedData
   })
   .catch(errors => {
     dispatch(updateBackstoryFailure())
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem updating your backstory.' }))
     throw errors
   })
 }

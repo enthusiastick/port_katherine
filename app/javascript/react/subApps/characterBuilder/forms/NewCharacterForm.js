@@ -1,7 +1,6 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
 
-
 import NewCharacterContainer from '../containers/NewCharacterContainer'
 
 let validate = values => {

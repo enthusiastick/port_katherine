@@ -7,7 +7,7 @@ class Character::EditSerializer < ActiveModel::Serializer
   end
 
   def backstory
-    object.latest_backstory.body
+    object.latest_backstory.present? ? object.latest_backstory.body : nil
   end
 
   def headers
