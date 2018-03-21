@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Prompt } from 'react-router'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as HeaderButton } from '../components//header/Button.js'
@@ -25,7 +26,16 @@ class EditCharacterContainer extends Component {
     }
   }
 
+
   render() {
+    const unsavedChanges = () => {
+      return (
+        this.props.delta.characterSkills.length != 0 ||
+        this.props.delta.newHeaders.length != 0 ||
+        this.props.delta.newSkills != 0
+      )
+    }
+
     let breadcrumbs = [
       { to: '/characters', label: 'Characters' },
       { to: `/characters/${this.props.character.id}`, label: this.props.character.name }
@@ -116,6 +126,10 @@ class EditCharacterContainer extends Component {
 
     return(
       <div>
+        <Prompt
+          message="You have unsaved changes. Are you sure you wish to continue?"
+          when={unsavedChanges()}
+        />
         <div className='row'>
           <div className='small-12 columns'>
             <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Edit' />

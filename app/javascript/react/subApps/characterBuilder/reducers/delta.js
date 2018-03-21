@@ -27,6 +27,9 @@ const delta = (state = initialState, action) => {
       const { headers, id, name, open, ...points } = action.character
       return Object.assign({}, state, {
         id: action.character.id,
+        characterSkills: [],
+        newHeaders: [],
+        newSkills: [],
         points: points
       })
     case ADD_HEADER:
