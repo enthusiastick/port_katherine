@@ -21,6 +21,10 @@ import {
 } from '../actions/createCharacter'
 
 import {
+  UPDATE_BACKSTORY_SUCCESS
+} from '../actions/updateBackstory'
+
+import {
   UPDATE_CHARACTER_SUCCESS,
   UPDATE_CHARACTER_FAILURE
 } from '../actions/updateCharacter'
@@ -72,6 +76,12 @@ const characters = (state = initialState, action) => {
       return Object.assign({}, state, {
         index: state.index.concat(newCharacterIndex),
         show: action.character
+      })
+    case UPDATE_BACKSTORY_SUCCESS:
+      return Object.assign({}, state, {
+        edit: {
+          backstory: action.backstory
+        }
       })
     case UPDATE_CHARACTER_SUCCESS:
       return Object.assign({}, state, {

@@ -28,6 +28,7 @@ import AdminEventsNew         from '../react/subApps/admin/eventManager/connecto
 
 import AdminUsersIndex        from '../react/subApps/admin/userManager/connectors/AdminUsersIndex'
 
+import EditBackstory          from '../react/subApps/characterBuilder/connectors/EditBackstory'
 import EditCharacter          from '../react/subApps/characterBuilder/connectors/EditCharacter'
 import IndexCharacters        from '../react/subApps/characterBuilder/connectors/IndexCharacters'
 import NewCharacter           from '../react/subApps/characterBuilder/connectors/NewCharacter'
@@ -119,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <Switch>
                 <Route exact path='/characters' component={IndexCharacters} />
+                <Route exact path='/characters/:characterId/backstory' component={EditBackstory} />
                 <Route exact path='/characters/new' component={NewCharacter} />
                 <Route exact path='/characters/:characterId/edit' component={EditCharacter} />
                 <Route exact path='/characters/:characterId' component={ShowCharacter} />

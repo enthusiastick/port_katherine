@@ -8,6 +8,7 @@ class Character < ApplicationRecord
 
   enum birthplace: { chepstone: 1, drevnia: 2, tojima: 3, zlota: 4 }
 
+  has_many :backstories
   has_many :character_headers
   has_many :headers, -> { alpha_by_name }, through: :character_headers
   has_many :character_skills
@@ -35,6 +36,10 @@ class Character < ApplicationRecord
       matching_season_headers = Header.send(header.season).reject { |h| h == header }
       (headers & matching_season_headers).empty? ? 6 : 3
     end
+  end
+
+  def latest_backstory
+    backstories.order(:created_at).last
   end
 
   def spend!(cost)

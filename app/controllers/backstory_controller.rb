@@ -1,0 +1,2 @@
+class BackstoryController < ApplicationController
+end

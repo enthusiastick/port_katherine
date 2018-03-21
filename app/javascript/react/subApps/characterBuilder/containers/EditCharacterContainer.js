@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Prompt } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as HeaderButton } from '../components//header/Button.js'
@@ -35,6 +36,9 @@ class EditCharacterContainer extends Component {
         this.props.delta.newSkills != 0
       )
     }
+
+    let backStoryButtonText = 'Enter Backstory'
+    if (this.props.character.backstory != null) { backStoryButtonText = 'Edit Backstory' }
 
     let breadcrumbs = [
       { to: '/characters', label: 'Characters' },
@@ -153,10 +157,13 @@ class EditCharacterContainer extends Component {
                 <p className='bottomless text-center'>
                   <strong>&Delta;CP of Selected Changes:</strong> {this.props.costOfDelta}
                 </p>
-                <div className='button-group expanded'>
+                <div className='button-group stacked'>
                   <a className='button' disabled={this.props.saveEligible.disabled} onClick={this.saveHandler} >
-                    <i className='fa fa-save' /> Save
+                    <i className='fa fa-save' /> Save Character
                   </a>
+                  <Link className='button' to={`/characters/${this.props.character.id}/backstory`}>
+                    <i className='fa fa-pencil-square-o' /> {backStoryButtonText}
+                  </Link>
                 </div>
               </div>
             </div>

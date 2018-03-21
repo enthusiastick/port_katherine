@@ -56,6 +56,9 @@ let updateCharacter = values => dispatch => {
   })
   .catch(errors => {
     dispatch(updateCharacterFailure())
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem saving your changes.' }))
+
     throw errors
   })
 }

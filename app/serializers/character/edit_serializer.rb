@@ -1,9 +1,13 @@
 class Character::EditSerializer < ActiveModel::Serializer
-  attributes :id, :available, :cycle_spending_cap, :headers, :name, :open,
-    :player_available, :spent, :spent_cycle
+  attributes :id, :available, :backstory, :cycle_spending_cap, :headers,
+    :name, :open, :player_available, :spent, :spent_cycle
 
   def id
     object.non_sequential_id
+  end
+
+  def backstory
+    object.latest_backstory.body
   end
 
   def headers
