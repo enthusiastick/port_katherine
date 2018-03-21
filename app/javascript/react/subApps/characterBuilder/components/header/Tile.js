@@ -15,6 +15,7 @@ const HeaderTile = props => {
         deltaNewSkills={props.delta.newSkills}
         removeCharacterSkill={props.removeCharacterSkill}
         removeSkill={props.removeSkill}
+        saveEligible={props.saveEligible}
         skills={props.skills}
       />
   }

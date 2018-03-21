@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     characterId: ownProps.match.params.characterId,
     costOfDelta: calculateCostOfDelta(state),
     delta: state.delta,
-    saveEligibile: determineEligibility(state),
+    saveEligible: determineEligibility(state),
     selectedHeaders: selectedHeaders
   }
 }

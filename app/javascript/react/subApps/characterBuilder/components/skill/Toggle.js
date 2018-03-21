@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Toggle = ({characterSkillId, handleDecrease, handleIncrease, ranks}) => {
-
+const Toggle = ({characterSkillId, handleDecrease, handleIncrease, ranks, saveEligible}) => {
   let button, className
 
   className = 'four-wide left-margin-spacer button bottomless'
@@ -25,7 +24,12 @@ const Toggle = ({characterSkillId, handleDecrease, handleIncrease, ranks}) => {
   }
 
   if (!characterSkillId && ranks === 1) {
-    className += ' bg-solarized-yellow'
+    if (saveEligible.disabled) {
+      className += ' bg-solarized-orange'
+    } else {
+      className += ' bg-solarized-yellow'
+    }
+
     button = (
       <div
         className={className}
@@ -38,7 +42,7 @@ const Toggle = ({characterSkillId, handleDecrease, handleIncrease, ranks}) => {
 
   return (
     <div className='auto cell'>
-      <div className='text-center'>
+      <div className='text-right'>
         {button}
       </div>
     </div>

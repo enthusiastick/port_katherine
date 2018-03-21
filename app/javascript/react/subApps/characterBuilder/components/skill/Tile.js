@@ -18,14 +18,22 @@ const Tile = props => {
     ranks = props.deltaSkill.ranks
     if (ranks === props.maxRank) { increaseClass += ' disabled'}
     if (ranks !== 0) { decreaseClass = 'button' }
-    rankColorClass += ' bg-solarized-yellow'
+    if (props.saveEligible.disabled) {
+      rankColorClass += ' bg-solarized-orange'
+    } else {
+      rankColorClass += ' bg-solarized-yellow'
+    }
   }
 
   if (props.deltaCharacterSkill) {
     ranks = props.deltaCharacterSkill.ranks
     if (ranks === props.maxRank) { increaseClass += ' disabled'}
     if (ranks !== props.ranks) { decreaseClass = 'button' }
-    rankColorClass += ' bg-solarized-yellow'
+    if (props.saveEligible.disabled) {
+      rankColorClass += ' bg-solarized-orange'
+    } else {
+      rankColorClass += ' bg-solarized-yellow'
+    }
   }
 
   let handleIncrease = () => {
@@ -67,8 +75,6 @@ const Tile = props => {
     }
   }
 
-  let ElementType = (props.maxRank === 1) ? 'Toggle' : 'Control'
-
   return(
     <div className='grid-container'>
       <div className='grid-x grid-margin-x'>
@@ -85,6 +91,7 @@ const Tile = props => {
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
             ranks={ranks}
+            saveEligible={props.saveEligible}
           />
         }
         {(props.maxRank != 1) &&

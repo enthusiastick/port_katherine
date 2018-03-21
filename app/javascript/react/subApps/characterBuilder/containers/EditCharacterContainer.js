@@ -18,8 +18,8 @@ class EditCharacterContainer extends Component {
   }
 
   saveHandler() {
-    if (this.props.saveEligibile.disabled) {
-      alert(this.props.saveEligibile.message)
+    if (this.props.saveEligible.disabled) {
+      alert(this.props.saveEligible.message)
     } else {
       this.props.updateCharacter(this.props.delta)
     }
@@ -42,6 +42,7 @@ class EditCharacterContainer extends Component {
           deltaNewSkills={this.props.delta.newSkills}
           removeCharacterSkill={this.props.removeCharacterSkill}
           removeSkill={this.props.removeSkill}
+          saveEligible={this.props.saveEligible}
           skills={this.props.character.open}
         />
     }
@@ -58,6 +59,7 @@ class EditCharacterContainer extends Component {
               removeCharacterSkill={this.props.removeCharacterSkill}
               removeHeader={this.props.removeHeader}
               removeSkill={this.props.removeSkill}
+              saveEligible={this.props.saveEligible}
               {...header}
             />
           )
@@ -72,6 +74,7 @@ class EditCharacterContainer extends Component {
               availableHeaders={this.props.availableHeaders}
               delta={this.props.delta}
               removeHeader={this.props.removeHeader}
+              saveEligible={this.props.saveEligible}
               {...header}
             />
           )
@@ -88,6 +91,7 @@ class EditCharacterContainer extends Component {
               removeCharacterSkill={this.props.removeCharacterSkill}
               removeHeader={this.props.removeHeader}
               removeSkill={this.props.removeSkill}
+              saveEligible={this.props.saveEligible}
               {...header}
             />
           )
@@ -102,6 +106,7 @@ class EditCharacterContainer extends Component {
               availableHeaders={this.props.availableHeaders}
               delta={this.props.delta}
               removeHeader={this.props.removeHeader}
+              saveEligible={this.props.saveEligible}
               {...header}
             />
           )
@@ -135,7 +140,7 @@ class EditCharacterContainer extends Component {
                   <strong>&Delta;CP of Selected Changes:</strong> {this.props.costOfDelta}
                 </p>
                 <div className='button-group expanded'>
-                  <a className='button' disabled={this.props.saveEligibile.disabled} onClick={this.saveHandler} >
+                  <a className='button' disabled={this.props.saveEligible.disabled} onClick={this.saveHandler} >
                     <i className='fa fa-save' /> Save
                   </a>
                 </div>
@@ -153,7 +158,7 @@ class EditCharacterContainer extends Component {
             </div>
           </div>
           <h2>Headers</h2>
-          <div className='grid-x grid-margin-x small-up-1 medium-up-2 large-up-3'>
+          <div className='grid-x grid-margin-x small-up-1 medium-up-2'>
             <div className='cell card'>
               <div className='card-section'>
                 <div className='button-group stacked'>
@@ -164,7 +169,7 @@ class EditCharacterContainer extends Component {
             {headerTiles}
           </div>
           <h2>Professions</h2>
-          <div className='grid-x grid-margin-x small-up-1 medium-up-2 large-up-3'>
+          <div className='grid-x grid-margin-x small-up-1 medium-up-2'>
             <div className='cell card'>
               <div className='card-section'>
                 <div className='button-group stacked'>

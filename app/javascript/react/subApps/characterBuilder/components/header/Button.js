@@ -12,9 +12,12 @@ const Button = props => {
   }
 
   if (props.delta.newHeaders.includes(props.headerId)) {
+    let className = 'button bg-solarized-yellow'
+    if (props.saveEligible.disabled) { className = 'button bg-solarized-orange'}
+
     return(
       <a
-        className='button bg-solarized-yellow'
+        className={className}
         onClick={handleRemoveHeader}
       >
         <i className='fa fa-minus' />

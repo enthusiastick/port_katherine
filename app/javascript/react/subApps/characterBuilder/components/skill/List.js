@@ -50,6 +50,7 @@ const List = props => {
         key={skill.skillId}
         deltaCharacterSkill={deltaCharacterSkill}
         deltaSkill={deltaSkill}
+        saveEligible={props.saveEligible}
         skillChangeHandler={skillChangeHandler}
         skillRemoveHandler={skillRemoveHandler}
         {...skill}

@@ -4,16 +4,26 @@ namespace :skills do
   desc "Seed the rulebook skills."
   task seed: :environment do
     print "\n---=== Begin Seeding Skills ===---\n"
-      print "Vitality. " if HeaderSkill.find_or_create_by!(
-        header: Header.open,
-        skill: Skill.vitality,
-        hidden: false
-      )
+      print "Open: "
+      CSV.foreach(Rails.root.join("db/data/skills/open.csv"), headers: true) do |row|
+        skill = Skill.find_or_initialize_by(name: row['Name'])
+        unless skill.persisted?
+          skill.starting_cost = row['Cost']
+          skill.max_rank = row['Max']
+          skill.save
+          print "#{row['Name']}. " if HeaderSkill.find_or_create_by!(
+            header: Header.open,
+            skill: skill,
+            hidden: false
+          )
+        end
+      end
+      print "... complete."
 
       Header.stock.each do |header|
         print "\n#{header.name}: "
         filepath = Rails.root.join("db/data/skills/#{header.name.downcase}.csv")
-        CSV.foreach(filepath, headers:true) do |row|
+        CSV.foreach(filepath, headers: true) do |row|
           skill = Skill.find_or_initialize_by(name: row["Skill Name"].titleize)
           unless skill.persisted?
             description = row["Description"]
