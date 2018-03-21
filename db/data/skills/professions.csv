@@ -1,0 +1,29 @@
+Name,Cost,Max,Profession,Hidden,Auto,Refund
+Arcana Mine,3,0,Landowner,FALSE,0,3
+Iron Mine,3,0,Landowner,FALSE,0,0
+Coal Mine,3,0,Landowner,FALSE,0,0
+Copper Mine,3,0,Landowner,FALSE,0,0
+Lead Mine,3,0,Landowner,FALSE,0,0
+Forest,3,0,Landowner,FALSE,0,0
+Field,3,0,Landowner,FALSE,0,0
+Fishery,3,0,Landowner,FALSE,0,0
+Pasture,3,0,Landowner,FALSE,0,0
+Well Regarded,3,0,Socialite,TRUE,1,0
+Bread,3,1,Cook,FALSE,0,3
+Beef Stew,3,1,Cook,FALSE,0,0
+Fish Stew,3,1,Cook,FALSE,0,0
+Trencher,3,1,Cook,FALSE,0,0
+Day Labor Income,0,1,Day Laborer,TRUE,1,0
+Hunting,3,0,Hunter,TRUE,1,0
+Arcane Miner,3,1,Laborer,FALSE,0,3
+Miner,3,1,Laborer,FALSE,0,0
+Lumberjack,3,1,Laborer,FALSE,0,0
+Farmhand,3,1,Laborer,FALSE,0,0
+Fisher,3,1,Laborer,FALSE,0,0
+Rancher,3,1,Laborer,FALSE,0,0
+Farming,3,0,Farmer,TRUE,1,0
+Beekeeping,3,0,Beekeeper,TRUE,1,0
+Gardening,3,0,Gardener,TRUE,1,0
+Lots,3,0,Merchant,TRUE,1,0
+Stockbroking,3,0,Stockbroker,TRUE,1,0
+Crime,3,0,Criminal,TRUE,1,0

@@ -60,6 +60,10 @@ class Character < ApplicationRecord
     end
   end
 
+  def tally_annotation
+    "[#{available}+#{user.available}]"
+  end
+
   def total_available
     @total_available ||= available + user.available
   end

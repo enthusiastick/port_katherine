@@ -2,7 +2,7 @@ class Header < ApplicationRecord
   PUBLIC = [:stock, :profession]
 
   belongs_to :parent_header, class_name: :Header, optional: true
-  belongs_to :linked_first_skill_id, class_name: :Skill, optional: true
+  belongs_to :linked_first_skill, class_name: :Skill, optional: true
 
   enum category: {
     stock: 0,

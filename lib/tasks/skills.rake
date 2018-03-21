@@ -45,6 +45,25 @@ namespace :skills do
         end
         print "... complete."
       end
+
+      print "\nProfession: "
+      CSV.foreach(Rails.root.join("db/data/skills/professions.csv"), headers: true) do |row|
+        skill = Skill.find_or_initialize_by(name: row['Name'])
+        unless skill.persisted?
+          skill.starting_cost = row['Cost']
+          skill.max_rank = row['Max']
+          header = Header.find_by(name: row['Profession'])
+          hidden = row['Hidden'] == 'TRUE' ? true : false
+          print "#{row['Name']}. " if skill.save &&
+          HeaderSkill.find_or_create_by!(
+            header: header,
+            skill: skill,
+            hidden: hidden
+          )
+          header.update(linked_first_skill: skill) if (row['Auto'] == '1' || row['Refund'] != '0')
+        end
+      end
+      print "... complete."
     print "\n---=== Seeding Skills Complete ===---"
   end
 end

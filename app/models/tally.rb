@@ -10,6 +10,6 @@ class Tally < ApplicationRecord
   end
 
   def update_annotation_for_character(character)
-    update(annotation: "[#{character.available}+#{character.user.available}]")
+    update(annotation: character.tally_annotation)
   end
 end
