@@ -40,7 +40,7 @@ const calculateNewHeaderCost = ({character, newHeaderId}) => {
   return 3
 }
 
-const calculateSkillCostOfNextRank = ({rank, skill}) => {
+export const calculateSkillCostOfNextRank = ({rank, skill}) => {
   const echelon = parseInt(rank / skill.costIncreaseRank)
   const echelonCostIncrease = skill.costIncreaseAmount * echelon
   return skill.startingCost + echelonCostIncrease

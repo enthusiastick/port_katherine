@@ -3,6 +3,8 @@ import React from 'react'
 import Control from './Control'
 import Toggle from './Toggle'
 
+import { calculateSkillCostOfNextRank } from '../../selectors/editCharacter'
+
 const Tile = props => {
   let increaseClass = 'button'
   let decreaseClass = 'button disabled'
@@ -35,6 +37,8 @@ const Tile = props => {
       rankColorClass += ' bg-solarized-yellow'
     }
   }
+
+  const costOfNextRank = calculateSkillCostOfNextRank({ rank: ranks, skill: props })
 
   let handleIncrease = () => {
     let existingSkill, maxRank
@@ -78,11 +82,16 @@ const Tile = props => {
   return(
     <div className='grid-container'>
       <div className='grid-x grid-margin-x'>
-        <div className='small-7 cell'>
+        <div className='small-6 cell'>
           <p className='bottomless text-right top-padded'>
             <strong>
               {props.name}
             </strong>
+          </p>
+        </div>
+        <div className='small-1 cell'>
+          <p className='bottomless text-right top-padded'>
+            {costOfNextRank}
           </p>
         </div>
         {(props.maxRank === 1) &&
