@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 
-import restrictAccess from '../../constants/restrictAccess'
+import { restrictToAdmin } from '../../constants/restrictAccess'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import DateTime from '../../../../sharedResources/components/formFields/DateTime'
@@ -16,7 +16,7 @@ class EventFormContainer extends Component {
   }
 
   componentWillMount() {
-    restrictAccess(this.props.currentUser, this.props.push, this.props.flashNotice)
+    restrictToAdmin(this.props.currentUser, this.props.push, this.props.flashNotice)
 
     if (this.props.eventSlug && !this.props.event) {
       this.props.getAdminEvents()

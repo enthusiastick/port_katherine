@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import restrictAccess from '../../constants/restrictAccess'
+import { restrictToPlotStaff } from '../../constants/restrictAccess'
 
 import BookingsTable from '../components/BookingsTable'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
@@ -11,7 +11,7 @@ class EventShowContainer extends Component {
   }
 
   componentWillMount() {
-    restrictAccess(this.props.currentUser, this.props.push, this.props.flashNotice)
+    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
 
     if (this.props.eventSlug && !this.props.event) {
       this.props.getAdminEvents()

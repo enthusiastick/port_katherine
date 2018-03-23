@@ -21,7 +21,7 @@ class Navigation extends Component {
     let links = signedOutNavigationLinks
 
     if (this.props.currentUser.id) {
-      if (this.props.currentUser.role === 'admin') {
+      if (this.props.isCurrentUserPlotStaff) {
         links = signedInAdminNavigationLinks
       } else {
         links = signedInNavigationLinks

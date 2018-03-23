@@ -1,13 +1,18 @@
 class User < ApplicationRecord
   EMAIL_REGEXP = /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   HANDLE_REGEXP = /\A[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*\z/
+  PLOT_STAFF_ROLES = %w(plot_staff admin)
 
   attr_accessor :confirmation_token, :password_reset_token, :remember_token
 
   before_create :generate_confirmation_digest, :generate_identifier
   before_save :downcase_email
 
-  enum role: { user: 0, collaborator: 5, admin: 9 }
+  enum role: {
+    general: 0,
+    plot_staff: 5,
+    admin: 9
+  }
 
   has_many :bookings
   has_many :events, through: :bookings
@@ -67,6 +72,10 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     (password_reset_sent_at + 2.hours).past?
+  end
+
+  def plot_staff?
+    PLOT_STAFF_ROLES.include?(role)
   end
 
   def send_confirmation_email

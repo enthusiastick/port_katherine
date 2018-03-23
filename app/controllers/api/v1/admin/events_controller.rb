@@ -1,5 +1,6 @@
 class Api::V1::Admin::EventsController < Api::ApiController
-  before_action :authenticate_admin_api!
+  before_action :authenticate_plot_staff_api!, only: [:index]
+  before_action :authenticate_admin_api!, except: [:index]
 
   def create
     event = Event.new(event_params)

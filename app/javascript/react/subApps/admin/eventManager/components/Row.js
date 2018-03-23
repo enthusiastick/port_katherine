@@ -21,16 +21,16 @@ const Row = props => {
       <td>
         {props.event.dates}
       </td>
-      <td className='text-right'>
+      {props.isCurrentUserAdmin && <td className='text-right'>
         <Link className='button bottomless' to={editLink}>
           Edit
         </Link>
-      </td>
-      <td className='text-right'>
+      </td>}
+      {props.isCurrentUserAdmin && <td className='text-right'>
         <a className='button alert bottomless' onClick={handleClick}>
           Delete
         </a>
-      </td>
+      </td>}
     </tr>
   )
 }

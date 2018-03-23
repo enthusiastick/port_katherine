@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Table, Td, Th, Thead, Tr } from 'reactable'
 
-import restrictAccess from '../../constants/restrictAccess'
+import { restrictToPlotStaff } from '../../constants/restrictAccess'
 
 class UsersIndexContainer extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class UsersIndexContainer extends Component {
   }
 
   componentWillMount() {
-    restrictAccess(this.props.currentUser, this.props.push, this.props.flashNotice)
+    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
 
     if (this.props.adminUsers.length == 0) {
       this.props.getAdminUsers()

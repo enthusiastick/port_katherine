@@ -1,8 +1,13 @@
-const restrictAccess = (user, push, flashNotice) => {
-  if (user.role != 'admin') {
+export const restrictToAdmin = (user, push, flashNotice) => {
+  if (user.id && user.role != 'admin') {
     push('/')
     flashNotice({ alert: 'Restricted.' })
   }
 }
 
-export default restrictAccess
+export const restrictToPlotStaff = (user, push, flashNotice) => {
+  if (user.id && !['admin', 'plot_staff'].includes(user.role)) {
+    push('/')
+    flashNotice({ alert: 'Restricted.' })
+  }
+}

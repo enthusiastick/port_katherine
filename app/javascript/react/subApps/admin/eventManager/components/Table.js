@@ -9,8 +9,8 @@ const Table = props => {
       <tr className='text-center'>
         <td>Loading&hellip;</td>
         <td />
-        <td />
-        <td />
+        {props.isCurrentUserAdmin && <td />}
+        {props.isCurrentUserAdmin && <td />}
       </tr>
   } else {
     tableRows = props.events.map(event => {
@@ -18,6 +18,7 @@ const Table = props => {
         <Row
           key={event.id}
           deleteAdminEvent={props.deleteAdminEvent}
+          isCurrentUserAdmin={props.isCurrentUserAdmin}
           event={event}
         />
       )
@@ -34,10 +35,10 @@ const Table = props => {
           <th>
             Date
           </th>
-          <th>
-          </th>
-          <th>
-          </th>
+          {props.isCurrentUserAdmin && <th>
+          </th>}
+          {props.isCurrentUserAdmin && <th>
+          </th>}
         </tr>
       </thead>
       <tbody>

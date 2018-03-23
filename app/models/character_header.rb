@@ -22,10 +22,9 @@ class CharacterHeader < ApplicationRecord
             ranks: 1
           )
         else
-          new_spent = (character.spent == 0) ? 0 : character.spent - 3
           character.update(
             available: (character.available + 3),
-            spent: new_spent,
+            spent: (character.spent - 3),
             spent_cycle: (character.spent_cycle - 3)
           ) &&
           tally = Tally.create(

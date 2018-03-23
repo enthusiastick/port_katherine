@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import restrictAccess from '../constants/restrictAccess'
+import { restrictToPlotStaff } from '../constants/restrictAccess'
 
 class AdminIndexContainer extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class AdminIndexContainer extends Component {
   }
 
   componentWillMount() {
-    restrictAccess(this.props.currentUser, this.props.push, this.props.flashNotice)
+    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
   }
 
   render() {

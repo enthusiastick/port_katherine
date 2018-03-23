@@ -13,7 +13,7 @@ class Api::V1::CharactersController < Api::ApiController
 
   def edit
     character = Character.find_by(non_sequential_id: params[:id])
-    if authorize_record_owner_or_collaborator?(character)
+    if authorize_record_owner_or_admin?(character)
       render json: character, serializer: Character::EditSerializer
     else
       render json: { error: "You are not authorized.", status: :forbidden }
@@ -27,7 +27,7 @@ class Api::V1::CharactersController < Api::ApiController
 
   def show
     character = Character.find_by(non_sequential_id: params[:id])
-    if authorize_record_owner_or_collaborator?(character)
+    if authorize_record_owner_or_admin?(character)
       render json: character, serializer: Character::ShowSerializer
     else
       render json: { error: "You are not authorized.", status: :forbidden }
@@ -36,7 +36,7 @@ class Api::V1::CharactersController < Api::ApiController
 
   def update
     advancer = CharacterAdvancer.new(update_character_params, current_user.id)
-    if authorize_record_owner_or_collaborator?(advancer.character) && advancer.advance!
+    if authorize_record_owner_or_admin?(advancer.character) && advancer.advance!
       render json: advancer.character, serializer: Character::ShowSerializer
     else
       render json: { error: advancer.character.errors }, status: :unprocessable_entity

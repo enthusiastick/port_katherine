@@ -7,15 +7,20 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  def authenticate_plot_staff_api!
+    unless user_signed_in? && current_user.plot_staff?
+      render json: { error: "Not authorized" }, status: :unauthorized
+    end
+  end
+
   def authenticate_user_api!
     if !user_signed_in?
       render json: { error: "Not authorized" }, status: :unauthorized
     end
   end
 
-  def authorize_record_owner_or_collaborator?(object)
+  def authorize_record_owner_or_admin?(object)
     current_user.admin? ||
-    current_user.collaborator? ||
     object.user == current_user
   end
 
