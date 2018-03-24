@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Table } from 'reactable'
 
 import { restrictToPlotStaff } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
+import CharactersTable from '../components/characters/CharactersTable'
 
 class UserShowContainer extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class UserShowContainer extends Component {
                 <strong>Sign In Count:</strong> {signInCount}<br />
                 <strong>Player CP Available:</strong> {available}
               </p>
-              <Table data={characters} />
+              <CharactersTable characters={characters} />
             </div>
           </div>
         </div>

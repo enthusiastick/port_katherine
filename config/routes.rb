@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "sign-up", to: "users#new", as: :sign_up
 
   namespace :admin do
+    resources :characters, only: [:index, :show]
     resources :events, only: [:edit, :index, :new, :show]
     resources :users, only: [:index, :show]
   end

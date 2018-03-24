@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
+import { default as CharacterBasics } from '../components/character/Basics'
 import { default as HeaderSummary } from '../components/header/Summary'
 import TalliesTable from '../components/tallies/TalliesTable'
 
@@ -17,10 +18,7 @@ class ShowCharacterContainer extends Component {
   }
 
   render() {
-    let {
-      available, birthplace, cycleSpendingCap, headers, name, open,
-      playerAvailable, spent, spentCycle
-    } = this.props.character
+    let { headers, name, open } = this.props.character
 
     let breadcrumbs = [{ to: '/characters', label: 'Characters' }]
 
@@ -33,7 +31,7 @@ class ShowCharacterContainer extends Component {
 
     let openElements
     if (open) {
-      openElements = (<HeaderSummary name="Open" skills={open} />)
+      openElements = (<HeaderSummary name='Open' skills={open} />)
     }
 
 
@@ -44,21 +42,7 @@ class ShowCharacterContainer extends Component {
           <h1 className='text-center top-padded'>{name}</h1>
           <div className='row'>
             <div className='small-12 medium-9 columns'>
-              <p className='bottomless'>
-                <strong>Place of Origin:</strong> {birthplace}
-              </p>
-              <p className='bottomless'>
-                <strong>Player CP Available:</strong> {playerAvailable}
-              </p>
-              <p className='bottomless'>
-                <strong>Character CP Available:</strong> {available}
-              </p>
-              <p className='bottomless'>
-                <strong>CP Spent This Cycle:</strong> {spentCycle} / {cycleSpendingCap}
-              </p>
-              <p>
-                <strong>Total CP Spent:</strong> {spent}
-              </p>
+              <CharacterBasics {...this.props.character} />
             </div>
             <div className='small-12 medium-3 columns'>
               <div className='button-group expanded'>

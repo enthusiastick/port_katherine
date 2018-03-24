@@ -21,6 +21,8 @@ import Notices                from '../react/sharedResources/connectors/Notices'
 import Resources              from '../react/sharedResources/components/Resources'
 import Values                 from '../react/sharedResources/components/Values'
 
+import AdminShowCharacter     from '../react/subApps/admin/characterManager/connectors/AdminShowCharacter'
+
 import AdminEventEdit         from '../react/subApps/admin/eventManager/connectors/AdminEventEdit'
 import AdminEventShow         from '../react/subApps/admin/eventManager/connectors/AdminEventShow'
 import AdminEventsIndex       from '../react/subApps/admin/eventManager/connectors/AdminEventsIndex'
@@ -52,6 +54,7 @@ import SignUp                 from '../react/subApps/userAuthenticator/connector
 
 import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex'
 
+import adminCharacters from '../react/subApps/admin/characterManager/reducers/adminCharacters'
 import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import adminUsers  from '../react/subApps/admin/userManager/reducers/adminUsers'
 import characters  from '../react/subApps/characterBuilder/reducers/characters'
@@ -68,6 +71,7 @@ const middlewares = [thunkMiddleware, routerMiddleware(history)]
 
 const store = createStore(
   combineReducers({
+    adminCharacters,
     adminEvents,
     adminUsers,
     characters,
@@ -109,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/sign-up' component={SignUp} />
 
               <Route exact path='/admin' component={AdminIndex} />
+
+              <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
 
               <Switch>
                 <Route exact path='/admin/events' component={AdminEventsIndex} />

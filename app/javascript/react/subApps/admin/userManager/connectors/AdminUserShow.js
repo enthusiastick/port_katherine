@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import { connect } from 'react-redux'
 
 import UserShowContainer from '../containers/UserShowContainer'
 import { getAdminUser } from '../actions/getAdminUser'
