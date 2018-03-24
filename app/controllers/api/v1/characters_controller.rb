@@ -16,7 +16,7 @@ class Api::V1::CharactersController < Api::ApiController
     if authorize_record_owner_or_admin?(character)
       render json: character, serializer: Character::EditSerializer
     else
-      render json: { error: "You are not authorized.", status: :forbidden }
+      render json: { error: "You are not authorized." }, status: :forbidden
     end
   end
 

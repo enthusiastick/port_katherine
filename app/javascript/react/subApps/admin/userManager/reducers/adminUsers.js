@@ -4,9 +4,14 @@ import {
   FETCH_ADMIN_USERS_FAILURE
 } from '../actions/getAdminUsers'
 
+import {
+  FETCH_ADMIN_USER_SUCCESS
+} from '../actions/getAdminUser'
+
 let initialState = {
   isFetching: false,
-  items: []
+  items: [],
+  show: {}
 }
 
 const adminUsers = (state = initialState, action) => {
@@ -20,6 +25,8 @@ const adminUsers = (state = initialState, action) => {
       })
     case FETCH_ADMIN_USERS_FAILURE:
       return Object.assign({}, state, { isFetching: false })
+    case FETCH_ADMIN_USER_SUCCESS:
+      return Object.assign({}, state, { show: action.user })
     default:
       return state
   }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # Application routes
   root "pages#index"
 
   ["admin", "contact", "downloads", "links", "values"].each do |path|
@@ -13,14 +14,26 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events, only: [:edit, :index, :new, :show]
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show]
   end
 
+  resources :account_confirmations, only: [:edit]
+  resources :characters, only: [:edit, :index, :new, :show] do
+    resources :backstory, only: [:index]
+  end
+  resources :events, only: [:index, :show] do
+    ["register", "volunteer"].each do |path|
+      get path, to: "bookings#new"
+    end
+  end
+  resources :password_resets, only: [:edit, :new]
+
+  # API routes
   namespace :api do
     namespace :v1 do
       namespace :admin do
         resources :events, only: [:create, :destroy, :index, :update]
-        resources :users, only: [:index]
+        resources :users, only: [:index, :show]
       end
       resources :account_confirmations, only: [:create]
       resources :backstories, only: [:create]
@@ -38,15 +51,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :account_confirmations, only: [:edit]
-  resources :characters, only: [:edit, :index, :new, :show] do
-    resources :backstory, only: [:index]
-  end
-  resources :events, only: [:index, :show] do
-    ["register", "volunteer"].each do |path|
-      get path, to: "bookings#new"
-    end
-  end
-  resources :password_resets, only: [:edit, :new]
 end

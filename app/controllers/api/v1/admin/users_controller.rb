@@ -5,4 +5,13 @@ class Api::V1::Admin::UsersController < Api::ApiController
     users = User.by_handle
     render json: users
   end
+
+  def show
+    user = User.find_by(handle: params[:id])
+    if user.present?
+      render json: user, serializer: ::Admin::UserSerializer
+    else
+      render json: { error: "User not found." }, status: :not_found
+    end
+  end
 end

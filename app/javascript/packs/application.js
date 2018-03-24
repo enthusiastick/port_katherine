@@ -27,6 +27,7 @@ import AdminEventsIndex       from '../react/subApps/admin/eventManager/connecto
 import AdminEventsNew         from '../react/subApps/admin/eventManager/connectors/AdminEventsNew'
 
 import AdminUsersIndex        from '../react/subApps/admin/userManager/connectors/AdminUsersIndex'
+import AdminUserShow          from '../react/subApps/admin/userManager/connectors/AdminUserShow'
 
 import EditBackstory          from '../react/subApps/characterBuilder/connectors/EditBackstory'
 import EditCharacter          from '../react/subApps/characterBuilder/connectors/EditCharacter'
@@ -116,7 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
               </Switch>
 
-              <Route exact path='/admin/users' component={AdminUsersIndex} />
+              <Switch>
+                <Route exact path='/admin/users' component={AdminUsersIndex} />
+                <Route exact path='/admin/users/:userId' component={AdminUserShow} />
+              </Switch>
 
               <Switch>
                 <Route exact path='/characters' component={IndexCharacters} />

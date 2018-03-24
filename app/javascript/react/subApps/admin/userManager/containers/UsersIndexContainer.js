@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Table, Td, Th, Thead, Tr } from 'reactable'
 
 import { restrictToPlotStaff } from '../../constants/restrictAccess'
@@ -22,7 +23,9 @@ class UsersIndexContainer extends Component {
 
       return(
         <Tr key={user.id}>
-          <Td column='handle' data={user.handle} />
+          <Td column='handle' value={user.handle}>
+            <Link to={`/admin/users/${user.handle}`}>{user.handle}</Link>
+          </Td>
           <Td column='name' data={name} />
           <Td column='email' value={user.email}>
             <a href={`mailto:${user.email}`}>{user.email}</a>

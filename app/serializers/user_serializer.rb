@@ -6,6 +6,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def name
-    "#{object.first_name} #{object.last_name} (#{object.handle})"
+    object.label
   end
 end
