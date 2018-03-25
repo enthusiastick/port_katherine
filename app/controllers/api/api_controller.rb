@@ -24,6 +24,11 @@ class Api::ApiController < ApplicationController
     object.user == current_user
   end
 
+  def authorize_record_owner_or_plot_staff?(object)
+    current_user.plot_staff? ||
+    object.user == current_user
+  end
+
   def render_object_errors(object)
     render json: { error: object.errors }, status: :unprocessable_entity
   end

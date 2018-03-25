@@ -27,7 +27,7 @@ class Api::V1::CharactersController < Api::ApiController
 
   def show
     character = Character.find_by(non_sequential_id: params[:id])
-    if authorize_record_owner_or_admin?(character)
+    if authorize_record_owner_or_plot_staff?(character)
       render json: character, serializer: Character::ShowSerializer
     else
       render json: { error: "You are not authorized.", status: :forbidden }

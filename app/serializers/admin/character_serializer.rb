@@ -1,8 +1,8 @@
 include ActiveSupport::Inflector
 
-class Admin::Character::IndexSerializer < ActiveModel::Serializer
+class Admin::CharacterSerializer < ActiveModel::Serializer
   attributes :available, :birthplace, :has_backstory, :id, :name,
-    :first_true_header, :first_profession, :spent
+    :first_true_header, :first_profession, :spent, :user_handle
 
   def id
     object.non_sequential_id
@@ -22,5 +22,9 @@ class Admin::Character::IndexSerializer < ActiveModel::Serializer
 
   def first_profession
     object.first_profession.name
+  end
+
+  def user_handle
+    object.user.handle
   end
 end

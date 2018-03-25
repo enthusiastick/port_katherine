@@ -5,7 +5,7 @@ class Admin::UserSerializer < ActiveModel::Serializer
     :sign_in_count
 
   has_many :characters do
-    object.characters.alpha_by_name.map{ |character| ::Admin::Character::IndexSerializer.new(character).as_json }
+    object.characters.alpha_by_name.map{ |character| ::Admin::CharacterSerializer.new(character).as_json }
   end
 
   def since

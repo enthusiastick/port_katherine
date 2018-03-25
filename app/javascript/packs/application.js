@@ -22,6 +22,7 @@ import Resources              from '../react/sharedResources/components/Resource
 import Values                 from '../react/sharedResources/components/Values'
 
 import AdminShowCharacter     from '../react/subApps/admin/characterManager/connectors/AdminShowCharacter'
+import AdminIndexCharacters   from '../react/subApps/admin/characterManager/connectors/AdminIndexCharacters'
 
 import AdminEventEdit         from '../react/subApps/admin/eventManager/connectors/AdminEventEdit'
 import AdminEventShow         from '../react/subApps/admin/eventManager/connectors/AdminEventShow'
@@ -114,7 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
               <Route exact path='/admin' component={AdminIndex} />
 
-              <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
+              <Switch>
+                <Route exact path='/admin/characters' component={AdminIndexCharacters} />
+                <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
+              </Switch>
 
               <Switch>
                 <Route exact path='/admin/events' component={AdminEventsIndex} />

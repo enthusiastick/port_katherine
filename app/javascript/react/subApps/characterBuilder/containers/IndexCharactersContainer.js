@@ -9,7 +9,7 @@ class IndexCharactersContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.characters.length == 0) {
+    if (this.props.characters.length === 0) {
       this.props.getCharacters()
     }
   }
