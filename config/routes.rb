@@ -40,7 +40,10 @@ Rails.application.routes.draw do
       resources :account_confirmations, only: [:create]
       resources :backstories, only: [:create]
       resources :bookings, only: [:create, :destroy]
-      resources :characters, only: [:create, :edit, :index, :show, :update]
+      resources :characters, only: [:create, :edit, :index, :show, :update] do
+        resources :backstories, only: [:index]
+        resources :tallies, only: [:index]
+      end
       resources :client_token, only: [:index]
       resources :headers, only: [:index]
       resources :events, only: [:index]

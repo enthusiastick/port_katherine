@@ -39,7 +39,7 @@ class Character < ApplicationRecord
   end
 
   def latest_backstory
-    backstories.order(:created_at).last
+    backstories.ordered_old_to_new.last
   end
 
   def spend!(cost)
