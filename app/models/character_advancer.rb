@@ -1,5 +1,3 @@
-include ActionView::Helpers::TextHelper
-
 class CharacterAdvancer
   def initialize(params, user_id)
     @character = Character.find_by(non_sequential_id: params[:id])
@@ -53,7 +51,7 @@ class CharacterAdvancer
       cost = character_skill.cost_of_delta(0, character_skill.ranks)
       tally = Tally.new(
         character: @character,
-        description: "purchased '#{character_skill.name}' #{pluralize(character_skill.ranks, 'time')} for #{cost} CP.",
+        description: "purchased '#{character_skill.name}' #{::ActionController::Base.helpers.pluralize(character_skill.ranks, 'time')} for #{cost} CP.",
         user: @user
       )
       @character.spend!(cost) && character_skill.save && tally.save && tally.update_annotation_for_character(@character)
