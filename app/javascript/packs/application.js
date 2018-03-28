@@ -21,8 +21,9 @@ import Notices                from '../react/sharedResources/connectors/Notices'
 import Resources              from '../react/sharedResources/components/Resources'
 import Values                 from '../react/sharedResources/components/Values'
 
-import AdminShowCharacter     from '../react/subApps/admin/characterManager/connectors/AdminShowCharacter'
+import AdminIndexBackstories  from '../react/subApps/admin/characterManager/connectors/AdminIndexBackstories'
 import AdminIndexCharacters   from '../react/subApps/admin/characterManager/connectors/AdminIndexCharacters'
+import AdminShowCharacter     from '../react/subApps/admin/characterManager/connectors/AdminShowCharacter'
 
 import AdminEventEdit         from '../react/subApps/admin/eventManager/connectors/AdminEventEdit'
 import AdminEventShow         from '../react/subApps/admin/eventManager/connectors/AdminEventShow'
@@ -35,6 +36,7 @@ import AdminUserShow          from '../react/subApps/admin/userManager/connector
 import EditBackstory          from '../react/subApps/characterBuilder/connectors/EditBackstory'
 import EditCharacter          from '../react/subApps/characterBuilder/connectors/EditCharacter'
 import IndexCharacters        from '../react/subApps/characterBuilder/connectors/IndexCharacters'
+import IndexTallies           from '../react/subApps/characterBuilder/connectors/IndexTallies'
 import NewCharacter           from '../react/subApps/characterBuilder/connectors/NewCharacter'
 import ShowCharacter          from '../react/subApps/characterBuilder/connectors/ShowCharacter'
 
@@ -118,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Switch>
                 <Route exact path='/admin/characters' component={AdminIndexCharacters} />
                 <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
+                <Route exact path='/admin/characters/:characterId/backstories' component={AdminIndexBackstories} />
               </Switch>
 
               <Switch>
@@ -136,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <Route exact path='/characters' component={IndexCharacters} />
                 <Route exact path='/characters/:characterId/backstory' component={EditBackstory} />
                 <Route exact path='/characters/new' component={NewCharacter} />
+                <Route exact path='/characters/:characterId/build_logs' component={IndexTallies} />
                 <Route exact path='/characters/:characterId/edit' component={EditCharacter} />
                 <Route exact path='/characters/:characterId' component={ShowCharacter} />
               </Switch>

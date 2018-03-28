@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get "sign-up", to: "users#new", as: :sign_up
 
   namespace :admin do
-    resources :characters, only: [:index, :show]
+    resources :characters, only: [:index, :show] do
+      resources :backstories, only: [:index]
+    end
     resources :events, only: [:edit, :index, :new, :show]
     resources :users, only: [:index, :show]
   end
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   resources :account_confirmations, only: [:edit]
   resources :characters, only: [:edit, :index, :new, :show] do
     resources :backstory, only: [:index]
+    resources :build_logs, only: :index
   end
   resources :events, only: [:index, :show] do
     ["register", "volunteer"].each do |path|

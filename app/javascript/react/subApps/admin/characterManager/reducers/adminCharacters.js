@@ -10,8 +10,16 @@ import {
   FETCH_ADMIN_CHARACTERS_FAILURE
 } from '../actions/getAdminCharacters'
 
+import {
+  FETCH_ADMIN_BACKSTORIES_SUCCESS
+} from '../actions/getAdminBackstories'
+
 let initialState = {
   isFetching: false,
+  backstories: {
+    meta: {},
+    items: []
+  },
   index: [],
   show: {}
 }
@@ -36,6 +44,8 @@ const adminCharacters = (state = initialState, action) => {
       })
     case FETCH_ADMIN_CHARACTERS_FAILURE:
       return Object.assign({}, state, { isFetching: false })
+    case FETCH_ADMIN_BACKSTORIES_SUCCESS:
+      return Object.assign({}, state, { backstories: { meta: action.payload.meta, items: action.payload.backstories } })
     default:
       return state
   }

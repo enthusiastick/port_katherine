@@ -1,0 +1,2 @@
+class BuildLogsController < ApplicationController
+end

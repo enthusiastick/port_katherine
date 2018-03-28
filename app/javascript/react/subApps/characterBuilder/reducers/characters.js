@@ -17,6 +17,10 @@ import {
 } from '../actions/editCharacter'
 
 import {
+  FETCH_TALLIES_SUCCESS
+} from '../actions/getTallies'
+
+import {
   CREATE_CHARACTER_SUCCESS
 } from '../actions/createCharacter'
 
@@ -36,7 +40,11 @@ let initialState = {
     open: []
   },
   index: [],
-  show: {}
+  show: {},
+  tallies: {
+    items: [],
+    name: null
+  }
 }
 
 const characters = (state = initialState, action) => {
@@ -68,6 +76,8 @@ const characters = (state = initialState, action) => {
       })
     case FETCH_EDIT_CHARACTER_FAILURE:
       return Object.assign({}, state, { isFetching: false })
+    case FETCH_TALLIES_SUCCESS:
+      return Object.assign({}, state, { tallies: { name: action.name, items: action.tallies } })
     case CREATE_CHARACTER_SUCCESS:
       let newCharacterIndex = {
         id: action.character.id,

@@ -54,6 +54,7 @@ class ShowCharacterContainer extends Component {
           </div>
           {openElements}
           {headerElements}
+          <h2>Recent Activity <Link to={`/characters/${this.props.character.id}/build_logs`}><i className='fa fa-search' /></Link></h2>
           <TalliesTable tallies={this.props.character.tallies} />
         </div>
       </div>

@@ -54,6 +54,7 @@ class AdminShowCharacterContainer extends Component {
           </div>
           {openElements}
           {headerElements}
+          <h2>Recent Activity</h2>
           <TalliesTable tallies={this.props.character.tallies} />
         </div>
       </div>

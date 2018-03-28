@@ -6,7 +6,7 @@ import AdminIndexCharactersContainer from '../containers/AdminIndexCharactersCon
 import { getAdminCharacters } from '../actions/getAdminCharacters'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     characters: state.adminCharacters.index,
     currentUser: state.currentUser.item

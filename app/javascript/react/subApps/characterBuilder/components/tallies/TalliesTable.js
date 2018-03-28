@@ -18,9 +18,9 @@ const TalliesTable = props => {
 
   return(
     <div>
-      <h2>Recent Activity</h2>
       <Table
         className='hover'
+        itemsPerPage={props.itemsPerPage}
         sortable={true}
       >
         <Thead>
