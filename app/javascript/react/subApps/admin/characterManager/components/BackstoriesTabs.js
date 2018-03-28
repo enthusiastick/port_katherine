@@ -4,10 +4,14 @@ const BackstoriesTabs = props => {
   const backstoryItems = props.backstories.map((backstory, index) => {
     return(
       <div key={backstory.id} className='callout'>
-        <h3 className='bottomless text-center'>Version #{props.backstories.length - index}</h3>
-        <p className='text-center'>{backstory.createdAt}</p>
+        <p className='bottomless float-left'>
+          <strong>Version #{props.backstories.length - index}</strong>
+        </p>
+        <p className='bottomless float-right'>
+          <em>{backstory.createdAt}</em>
+        </p>
         <hr />
-        <div>
+        <div className='pre-line'>
           {backstory.body}
         </div>
       </div>

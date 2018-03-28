@@ -33,7 +33,7 @@ let fetchAdminBackstoriesFailure = () => {
 
 let getAdminBackstories = id => dispatch => {
   dispatch(fetchAdminBackstories())
-  return fetch(`${baseUrl}/api/v1/characters/${id}/backstories.json`, {
+  return fetch(`${baseUrl}/api/v1/admin/characters/${id}/backstories.json`, {
     credentials: 'same-origin',
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }

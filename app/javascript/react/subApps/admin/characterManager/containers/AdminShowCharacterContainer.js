@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import { restrictToPlotStaff } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
@@ -48,8 +49,15 @@ class AdminShowCharacterContainer extends Component {
             &nbsp;{name}
           </h1>
           <div className='row'>
-            <div className='small-12 columns'>
+            <div className='small-12 medium-8 columns'>
               <CharacterBasics {...this.props.character} />
+            </div>
+            <div className='small-12 medium-3 columns'>
+              <div className='button-group expanded'>
+                {this.props.character.backstoriesCount > 0 && <Link className='button' to={`/admin/characters/${this.props.character.id}/backstories`}>
+                  <i className='fa fa-book' /> Backstory
+                </Link>}
+              </div>
             </div>
           </div>
           {openElements}

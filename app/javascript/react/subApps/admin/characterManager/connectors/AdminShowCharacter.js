@@ -4,7 +4,6 @@ import { push } from 'react-router-redux'
 
 import AdminShowCharacterContainer from '../containers/AdminShowCharacterContainer'
 import { getCharacter } from '../../../characterBuilder/actions/getCharacter'
-
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
 const mapStateToProps = (state, ownProps) => {

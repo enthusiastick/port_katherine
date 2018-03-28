@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import { restrictToPlotStaff } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import BackstoriesTabs from '../components/BackstoriesTabs'
 
@@ -9,7 +10,9 @@ class AdminIndexBackstoriesContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.backstories.items.length === 0) {
+    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
+
+    if (this.props.characterId != this.props.backstories.meta.characterId) {
       this.props.getAdminBackstories(this.props.characterId)
     }
   }
@@ -17,15 +20,15 @@ class AdminIndexBackstoriesContainer extends Component {
   render() {
     let breadcrumbs = [
       { to: '/admin/users', label: 'Users'},
-      { to: `/admin/users/${this.props.backstories.meta.user}`, label: this.props.backstories.meta.user },
-      { to: `/admin/characters/${this.props.characterId}`, label: `Character: ${this.props.backstories.meta.character}` }
+      { to: `/admin/users/${this.props.backstories.meta.userId}`, label: this.props.backstories.meta.userId },
+      { to: `/admin/characters/${this.props.characterId}`, label: `Character: ${this.props.backstories.meta.characterName}` }
       ]
 
     return(
       <div className='row'>
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Backstories' />
-          <h1 className='text-center top-padded'>Backstories for {this.props.backstories.meta.character}</h1>
+          <h1 className='text-center top-padded'>Backstories for {this.props.backstories.meta.characterName}</h1>
           <BackstoriesTabs backstories={this.props.backstories.items} />
         </div>
       </div>

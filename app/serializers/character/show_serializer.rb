@@ -1,8 +1,9 @@
 include ActionView::Helpers::NumberHelper
 
 class Character::ShowSerializer < ActiveModel::Serializer
-  attributes :id, :available, :birthplace, :cycle_spending_cap, :headers,
-    :name, :open, :player_available, :spent, :spent_cycle, :user_handle
+  attributes :id, :available, :backstories_count, :birthplace,
+    :cycle_spending_cap, :headers, :name, :open, :player_available, :spent,
+    :spent_cycle, :user_handle
 
   has_many :tallies do
     object.tallies.order(created_at: :desc).limit(10)
@@ -10,6 +11,10 @@ class Character::ShowSerializer < ActiveModel::Serializer
 
   def available
     number_to_human(object.available)
+  end
+
+  def backstories_count
+    object.backstories.count
   end
 
   def birthplace

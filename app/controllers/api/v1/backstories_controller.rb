@@ -13,15 +13,6 @@ class Api::V1::BackstoriesController < Api::ApiController
     end
   end
 
-  def index
-    character = Character.find_by(non_sequential_id: params[:character_id])
-    if character.present? && authorize_record_owner_or_plot_staff?(character)
-      render json: character.backstories.ordered_new_to_old, meta: { character: character.name, user: character.user.handle }
-    else
-      render json: { error: "You are not authorized." }, status: :forbidden
-    end
-  end
-
   protected
 
   def new_backstory_params

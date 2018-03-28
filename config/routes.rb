@@ -36,7 +36,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :admin do
-        resources :characters, only: [:index]
+        resources :characters, only: [:index] do
+          resources :backstories, only: [:index]
+        end
         resources :events, only: [:create, :destroy, :index, :update]
         resources :users, only: [:index, :show]
       end
@@ -44,7 +46,6 @@ Rails.application.routes.draw do
       resources :backstories, only: [:create]
       resources :bookings, only: [:create, :destroy]
       resources :characters, only: [:create, :edit, :index, :show, :update] do
-        resources :backstories, only: [:index]
         resources :tallies, only: [:index]
       end
       resources :client_token, only: [:index]
