@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321231216) do
+ActiveRecord::Schema.define(version: 20180403210522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20180321231216) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.boolean "archived", default: false
     t.decimal "available", precision: 6, scale: 2, default: "33.0"
     t.integer "birthplace", null: false
     t.integer "cycle_spending_cap", default: 20, null: false
@@ -69,6 +68,8 @@ ActiveRecord::Schema.define(version: 20180321231216) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "archived_at"
+    t.integer "archived_by_id"
     t.index ["non_sequential_id"], name: "index_characters_on_non_sequential_id", unique: true
   end
 
@@ -180,6 +181,7 @@ ActiveRecord::Schema.define(version: 20180321231216) do
     t.text "self_report"
     t.date "new_player_discounted_at"
     t.decimal "available", precision: 6, scale: 2, default: "0.0"
+    t.integer "default_character_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["handle"], name: "index_users_on_handle", unique: true
     t.index ["non_sequential_id"], name: "index_users_on_non_sequential_id", unique: true

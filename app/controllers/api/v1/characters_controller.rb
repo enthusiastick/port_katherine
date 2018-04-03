@@ -11,6 +11,15 @@ class Api::V1::CharactersController < Api::ApiController
     end
   end
 
+  def destroy
+    character = Character.find_by(non_sequential_id: params[:id])
+    if authorize_record_owner_or_admin?(character) && character.archive_via!(current_user)
+      render json: current_user.characters, each_serializer: Character::IndexSerializer, status: :accepted
+    else
+      render json: { error: character.errors }, status: :unprocessable_entity
+    end
+  end
+
   def edit
     character = Character.find_by(non_sequential_id: params[:id])
     if authorize_record_owner_or_admin?(character)

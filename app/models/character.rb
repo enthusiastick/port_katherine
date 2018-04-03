@@ -1,10 +1,13 @@
 class Character < ApplicationRecord
+  belongs_to :archived_by, class_name: :User, optional: true
   belongs_to :first_profession, class_name: :Header
   belongs_to :first_true_header, class_name: :Header
   belongs_to :user
 
   after_create :build_associations!
   before_create :generate_identifier
+
+  default_scope { where(archived_at: nil) }
 
   enum birthplace: { chepstone: 1, drevnia: 2, tojima: 3, zlota: 4 }
 
@@ -15,7 +18,6 @@ class Character < ApplicationRecord
   has_many :skills, through: :character_skills
   has_many :tallies
 
-  validates_inclusion_of :archived, in: [true, false]
   validates_numericality_of :available, greater_than_or_equal_to: 0
   validates_inclusion_of :first_true_header, in: Header.stock
   validates_inclusion_of :first_profession, in: Header.profession
@@ -24,6 +26,10 @@ class Character < ApplicationRecord
   validates_numericality_of :spent,
     greater_than_or_equal_to: -3, only_integer: true
   validates_numericality_of :spent_cycle, only_integer: true
+
+  def archive_via!(user)
+    update(archived_at: Time.now, archived_by: user)
+  end
 
   def can_spend?(cost)
     cost <= total_available && (spent_cycle + cost) <= cycle_spending_cap

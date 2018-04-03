@@ -17,6 +17,12 @@ import {
 } from '../actions/editCharacter'
 
 import {
+  DELETE_CHARACTER,
+  DELETE_CHARACTER_SUCCESS,
+  DELETE_CHARACTER_FAILURE
+} from '../actions/deleteCharacter'
+
+import {
   FETCH_TALLIES_SUCCESS
 } from '../actions/getTallies'
 
@@ -75,6 +81,15 @@ const characters = (state = initialState, action) => {
         edit: action.character
       })
     case FETCH_EDIT_CHARACTER_FAILURE:
+      return Object.assign({}, state, { isFetching: false })
+    case DELETE_CHARACTER:
+      return Object.assign({}, state, { isFetching: true })
+    case DELETE_CHARACTER_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        index: action.characters
+      })
+    case DELETE_CHARACTER_FAILURE:
       return Object.assign({}, state, { isFetching: false })
     case FETCH_TALLIES_SUCCESS:
       return Object.assign({}, state, { tallies: { name: action.name, items: action.tallies } })

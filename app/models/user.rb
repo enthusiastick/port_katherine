@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   attr_accessor :confirmation_token, :password_reset_token, :remember_token
 
+  belongs_to :default_character, class_name: :Character, optional: true
+
   before_create :generate_confirmation_digest, :generate_identifier
   before_save :downcase_email
 

@@ -5,11 +5,14 @@ const ListItem = props => {
   const path = `/characters/${props.id}`
 
   return(
-    <li>
-      <Link to={path}>
+    <div className='button-group'>
+      <Link className='button' to={path}>
         {props.name}
       </Link>
-    </li>
+      <a className='button'>
+        <i className='fa fa-times' />
+      </a>
+    </div>
   )
 }
 

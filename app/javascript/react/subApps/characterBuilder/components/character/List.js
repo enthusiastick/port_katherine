@@ -17,9 +17,9 @@ const List = props => {
             &nbsp;New Character
           </Link>
         </div>
-        <ul className='bottomless'>
+        <div className='bottomless'>
           {characters}
-        </ul>
+        </div>
       </div>
     </div>
   )
