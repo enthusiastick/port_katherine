@@ -6,7 +6,7 @@ class Character::ShowSerializer < ActiveModel::Serializer
     :spent_cycle, :user_handle
 
   has_many :tallies do
-    object.tallies.order(created_at: :desc).limit(10)
+    Tally.where(character: object).or(Tally.where(recipient: object.user)).order(created_at: :desc).limit(10)
   end
 
   def available

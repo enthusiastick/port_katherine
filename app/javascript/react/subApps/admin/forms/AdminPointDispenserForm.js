@@ -33,10 +33,10 @@ const AdminPointDispenserForm = ({
           </label>
           <input
             id='number'
-            type='number'
             name='points'
             onChange={handleChange}
             onBlur={handleBlur}
+            type='number'
             value={values.points}
           />
           { touched.points && errors.points && <span className='form-error is-visible'>{errors.points}</span> }
@@ -48,12 +48,12 @@ const AdminPointDispenserForm = ({
           >
             Reason
           </label>
-          <textarea
+          <input
             id='reason'
-            style={ {minHeight: '4rem'} }
             onChange={handleChange}
             onBlur={handleBlur}
-            values={values.reason}
+            type='text'
+            value={values.reason}
           />
           { touched.reason && errors.reason && <span className='form-error is-visible'>{errors.reason}</span> }
          </fieldset>

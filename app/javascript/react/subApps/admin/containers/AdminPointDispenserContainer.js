@@ -3,13 +3,15 @@ import { Formik } from 'formik'
 
 import AdminPointDispenserForm from '../forms/AdminPointDispenserForm'
 
+import { restrictToAdmin } from '../constants/restrictAccess'
+
 class AdminPointDispenserContainer extends Component {
   constructor(props) {
     super(props)
   }
 
-  handleSubmit(values) {
-    debugger
+  componentWillMount() {
+    restrictToAdmin(this.props.currentUser, this.props.push, this.props.flashNotice)
   }
 
   validate(values) {
@@ -36,6 +38,11 @@ class AdminPointDispenserContainer extends Component {
       users: []
     }
 
+    const handleSubmit = (values, actions) => {
+      this.props.awardCP(values)
+      actions.resetForm()
+    }
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
@@ -43,7 +50,7 @@ class AdminPointDispenserContainer extends Component {
           <Formik
             component={AdminPointDispenserForm}
             initialValues={initialValues}
-            onSubmit={this.handleSubmit}
+            onSubmit={handleSubmit}
             validate={this.validate}
           />
         </div>
