@@ -8,22 +8,33 @@ class AdminPointDispenserContainer extends Component {
     super(props)
   }
 
-  componentWillMount() {
-    if (this.props.adminUsers.length == 0) {
-      this.props.getAdminUsers()
-    }
-  }
-
   handleSubmit(values) {
     debugger
   }
 
-  render() {
-    const initialValues = {
-      suggestions: this.props.adminUsers.map(user => user.name),
-      user: ''
+  validate(values) {
+    let errors = {}
+    if (values.points < 1) {
+      errors.points = 'You must award at least 1 CP'
     }
 
+    if (values.reason === null || values.reason === '') {
+      errors.reason = 'You must supply a reason'
+    }
+
+    if (values.users.length < 1) {
+      errors.users = 'You must select at least one user'
+    }
+
+    return errors
+  }
+
+  render() {
+    const initialValues = {
+      points: 0,
+      reason: '',
+      users: []
+    }
 
     return(
       <div className='row'>
@@ -33,6 +44,7 @@ class AdminPointDispenserContainer extends Component {
             component={AdminPointDispenserForm}
             initialValues={initialValues}
             onSubmit={this.handleSubmit}
+            validate={this.validate}
           />
         </div>
       </div>

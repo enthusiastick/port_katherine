@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'
-import { getAdminUsers } from '../actions/getAdminUsers'
 
 import AdminPointDispenserContainer from '../containers/AdminPointDispenserContainer'
 
 const mapStateToProps = state => {
   return {
-    adminUsers: state.adminUsers.items,
     currentUser: state.currentUser.item
   }
 }
@@ -17,7 +15,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     flashNotice: (notice) => { dispatch(flashNotice(notice)) },
-    getAdminUsers: () => { dispatch(getAdminUsers()) },
     push: (path) => { dispatch(push(path)) }
   }
 }
