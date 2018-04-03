@@ -2,7 +2,7 @@ import {
   FETCH_ADMIN_USERS,
   FETCH_ADMIN_USERS_SUCCESS,
   FETCH_ADMIN_USERS_FAILURE
-} from '../actions/getAdminUsers'
+} from '../../actions/getAdminUsers'
 
 import {
   FETCH_ADMIN_USER_SUCCESS

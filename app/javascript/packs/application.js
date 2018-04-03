@@ -21,6 +21,9 @@ import Notices                from '../react/sharedResources/connectors/Notices'
 import Resources              from '../react/sharedResources/components/Resources'
 import Values                 from '../react/sharedResources/components/Values'
 
+import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex'
+import AdminPointDispenser    from '../react/subApps/admin/connectors/AdminPointDispenser'
+
 import AdminIndexBackstories  from '../react/subApps/admin/characterManager/connectors/AdminIndexBackstories'
 import AdminIndexCharacters   from '../react/subApps/admin/characterManager/connectors/AdminIndexCharacters'
 import AdminShowCharacter     from '../react/subApps/admin/characterManager/connectors/AdminShowCharacter'
@@ -54,8 +57,6 @@ import RequestPasswordReset   from '../react/subApps/userAuthenticator/connector
 import SignIn                 from '../react/subApps/userAuthenticator/connectors/SignIn'
 import SignOut                from '../react/subApps/userAuthenticator/connectors/SignOut'
 import SignUp                 from '../react/subApps/userAuthenticator/connectors/SignUp'
-
-import AdminIndex             from '../react/subApps/admin/connectors/AdminIndex'
 
 import adminCharacters from '../react/subApps/admin/characterManager/reducers/adminCharacters'
 import adminEvents from '../react/subApps/admin/eventManager/reducers/adminEvents'
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route exact path='/sign-up' component={SignUp} />
 
               <Route exact path='/admin' component={AdminIndex} />
+              <Route exact path='/admin/award_character_points' component={AdminPointDispenser} />
 
               <Switch>
                 <Route exact path='/admin/characters' component={AdminIndexCharacters} />

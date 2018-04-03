@@ -1,6 +1,6 @@
 import humps from 'humps'
 
-import baseUrl from '../../../../sharedResources/constants/baseUrl'
+import baseUrl from '../../../sharedResources/constants/baseUrl'
 
 const FETCH_ADMIN_USERS = 'FETCH_ADMIN_USERS'
 const FETCH_ADMIN_USERS_SUCCESS = 'FETCH_ADMIN_USERS_SUCCESS'

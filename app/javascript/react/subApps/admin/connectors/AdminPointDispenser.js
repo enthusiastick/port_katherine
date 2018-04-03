@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
-import AdminIndexContainer from '../containers/UsersIndexContainer'
-import { getAdminUsers } from '../../actions/getAdminUsers'
-import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+import { flashNotice } from '../../../sharedResources/actions/flashNotice'
+import { getAdminUsers } from '../actions/getAdminUsers'
+
+import AdminPointDispenserContainer from '../containers/AdminPointDispenserContainer'
 
 const mapStateToProps = state => {
   return {
@@ -21,9 +22,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const AdminUsersIndex = connect(
+const AdminPointDispenser = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AdminIndexContainer)
+)(AdminPointDispenserContainer)
 
-export default AdminUsersIndex
+export default AdminPointDispenser
