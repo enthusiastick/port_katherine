@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180403210522) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "character_id"
     t.index ["event_id", "user_id"], name: "index_bookings_on_event_id_and_user_id", unique: true
   end
 

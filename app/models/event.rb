@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   has_many :event_passes
   has_many :passes, through: :event_passes
   has_many :bookings
+  has_many :characters, through: :bookings
+  has_many :receipts, through: :bookings
   has_many :users, through: :bookings
 
   scope :soonest_first, -> { order(:start_time) }
