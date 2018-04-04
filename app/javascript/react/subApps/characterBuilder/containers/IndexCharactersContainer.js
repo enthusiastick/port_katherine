@@ -19,7 +19,7 @@ class IndexCharactersContainer extends Component {
       <div className='row'>
         <div className='small-12 columns'>
           <h1 className='bottomless text-center top-padded'>Characters <VersionLabel /></h1>
-          <List characters={this.props.characters} />
+          <List characters={this.props.characters} deleteCharacter={this.props.deleteCharacter} />
         </div>
       </div>
     )
