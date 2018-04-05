@@ -9,12 +9,12 @@ const CharactersTable = props => {
     tableRows = props.characters.map(character => {
       return(
         <Tr key={character.id}>
-          <Td column='user'>
+          <Td column='user' value={character.userHandle}>
             <Link to={`/admin/users/${character.userHandle}`}>
               {character.userHandle}
             </Link>
           </Td>
-          <Td column='name'>
+          <Td column='name' value={character.name}>
             <Link to={`/admin/characters/${character.id}`}>
               {character.name}
             </Link>
@@ -33,6 +33,7 @@ const CharactersTable = props => {
   return(
     <Table
       className='hover'
+      filterable={['user', 'name', 'birthplace', 'firstTrueHeader', 'firstProfession']}
       itemsPerPage={25}
       sortable={true}
     >

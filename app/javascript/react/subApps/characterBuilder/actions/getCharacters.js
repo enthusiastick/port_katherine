@@ -18,10 +18,10 @@ let fetchCharacters = () => {
   }
 }
 
-let fetchCharactersSuccess = characters => {
+let fetchCharactersSuccess = payload => {
   return {
     type: FETCH_CHARACTERS_SUCCESS,
-    characters
+    payload
   }
 }
 
@@ -39,7 +39,7 @@ let getCharacters = () => dispatch => {
     headers: { 'Content-Type': 'application/json' }
   })
   .then(response => { return response.json() })
-  .then(data => { dispatch(fetchCharactersSuccess(humps.camelizeKeys(data.characters))) })
+  .then(data => { dispatch(fetchCharactersSuccess(humps.camelizeKeys(data))) })
   .catch(error => {
     dispatch(fetchCharactersFailure())
   })

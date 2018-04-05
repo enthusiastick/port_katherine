@@ -5,10 +5,14 @@ import { Link } from 'react-router-redux'
 import PassList from './PassList'
 
 const Event = props => {
-  let markdownParsedDescription, renderedHTML
+  let markdownParsedDescription, renderedHTML, whosComing
   if (props.description) {
     markdownParsedDescription = marked(props.description)
     renderedHTML = { __html: markdownParsedDescription }
+  }
+
+  if (props.whosComing) {
+    whosComing = `(${props.whosComing.length}) ${props.whosComing.join(', ')}`
   }
 
   return(
@@ -31,6 +35,12 @@ const Event = props => {
         </div>
         <div className='row'>
           <div className='small-11 medium-10 large-9 small-centered columns'>
+            <p>
+              <strong>
+                Who&apos;s Coming?
+              </strong>
+              &nbsp;{whosComing}
+            </p>
             <div className='callout' id='mapCanvas' />
             <p className='text-center'>
               <strong>

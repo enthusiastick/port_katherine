@@ -1,5 +1,6 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :name, :slug, :dates, :address, :capped?, :description, :latitude, :longitude, :user_booking
+  attributes :name, :slug, :dates, :address, :capped?, :description,
+    :latitude, :longitude, :user_booking, :whos_coming
 
   has_many :passes do
     object.passes.select { |pass| !pass.any_event_capped? }
@@ -15,5 +16,9 @@ class EventSerializer < ActiveModel::Serializer
 
   def user_booking_object
     user_booking_object ||= current_user.present? ? Booking.find_by(event: object, user: current_user) : nil
+  end
+
+  def whos_coming
+    object.characters.map(&:name)
   end
 end

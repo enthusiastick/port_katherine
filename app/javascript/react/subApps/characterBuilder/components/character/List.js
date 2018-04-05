@@ -1,10 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ListItem = ({ deleteCharacter, id, name }) => {
+const ListItem = ({
+  deleteCharacter, id, isDefaultCharacter, name, updateDefaultCharacter
+}) => {
   const deleteHandler = () => {
-    if (confirm('If you choose to archive this character, any player CP spent on it will NOT be recovered. Do you wish to proceed?')) {
+    if (confirm('If you delete this character, any player CP spent on it will be lost. Do you wish to proceed?')) {
       deleteCharacter(id)
+    }
+  }
+
+  const favoriteHandler = () => {
+    if (!isDefaultCharacter) {
+      updateDefaultCharacter(id)
     }
   }
 
@@ -14,7 +22,10 @@ const ListItem = ({ deleteCharacter, id, name }) => {
     <div className='callout primary'>
       <div className='row'>
         <div className='small-2 medium-1 columns'>
-          <a><i className='fa fa-heart' /></a>
+          <a onClick={favoriteHandler}>
+            {isDefaultCharacter && <i className='fa fa-heart' />}
+            {!isDefaultCharacter && <i className='fa fa-heart-o' />}
+          </a>
         </div>
         <Link to={path}>
           <div className='small-8 medium-10 columns'>
@@ -31,12 +42,18 @@ const ListItem = ({ deleteCharacter, id, name }) => {
   )
 }
 
-const List = props => {
-  const characters = props.characters.map(character => {
+const List = ({
+  characters, defaultCharacterId, deleteCharacter, updateDefaultCharacter
+}) => {
+  const characterElements = characters.map(character => {
+    const isDefaultCharacter = (character.id === defaultCharacterId)
+
     return(
       <ListItem
         key={character.id}
-        deleteCharacter={props.deleteCharacter}
+        deleteCharacter={deleteCharacter}
+        isDefaultCharacter={isDefaultCharacter}
+        updateDefaultCharacter={updateDefaultCharacter}
         {...character}
       />
     )
@@ -52,7 +69,7 @@ const List = props => {
           </Link>
         </div>
         <div>
-          {characters}
+          {characterElements}
         </div>
       </div>
     </div>

@@ -39,8 +39,13 @@ import {
   UPDATE_CHARACTER_FAILURE
 } from '../actions/updateCharacter'
 
+import {
+  UPDATE_DEFAULT_CHARACTER_SUCCESS
+} from '../actions/updateDefaultCharacter'
+
 let initialState = {
   isFetching: false,
+  defaultCharacterId: null,
   edit: {
     headers: [],
     open: []
@@ -69,7 +74,8 @@ const characters = (state = initialState, action) => {
     case FETCH_CHARACTERS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        index: action.characters
+        defaultCharacterId: action.payload.meta.defaultCharacterId,
+        index: action.payload.characters
       })
     case FETCH_CHARACTERS_FAILURE:
       return Object.assign({}, state, { isFetching: false })
@@ -115,6 +121,10 @@ const characters = (state = initialState, action) => {
           open: []
         },
         show: action.character
+      })
+    case UPDATE_DEFAULT_CHARACTER_SUCCESS:
+      return Object.assign({}, state, {
+        defaultCharacterId: action.defaultCharacterId
       })
     default:
       return state

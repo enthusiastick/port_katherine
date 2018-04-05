@@ -9,7 +9,7 @@ const CharactersTable = props => {
     tableRows = props.characters.map(character => {
       return(
         <Tr key={character.id}>
-          <Td column='name'>
+          <Td column='name' value={character.name}>
             <Link to={`/admin/characters/${character.id}`}>
               {character.name}
             </Link>

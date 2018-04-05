@@ -51,6 +51,7 @@ Rails.application.routes.draw do
         resources :tallies, only: [:index]
       end
       resources :client_token, only: [:index]
+      resources :default_characters, only: [:update]
       resources :headers, only: [:index]
       resources :events, only: [:index]
       resources :password_resets, only: [:create, :update]

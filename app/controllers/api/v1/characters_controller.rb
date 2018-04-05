@@ -14,7 +14,8 @@ class Api::V1::CharactersController < Api::ApiController
   def destroy
     character = Character.find_by(non_sequential_id: params[:id])
     if authorize_record_owner_or_admin?(character) && character.archive_via!(current_user)
-      render json: current_user.characters, each_serializer: Character::IndexSerializer, status: :accepted
+      render json: current_user_characters, each_serializer: Character::IndexSerializer,
+        meta: { default_character_id: default_character_id }, status: :accepted
     else
       render json: { error: character.errors }, status: :unprocessable_entity
     end
@@ -30,8 +31,8 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def index
-    characters = current_user.characters.alpha_by_name
-    render json: characters, each_serializer: Character::IndexSerializer
+    render json: current_user_characters, each_serializer: Character::IndexSerializer,
+      meta: { default_character_id: default_character_id }
   end
 
   def show
@@ -53,6 +54,14 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   protected
+
+  def current_user_characters
+    @current_user_characters ||= current_user.characters.alpha_by_name
+  end
+
+  def default_character_id
+    @default_character_id ||= current_user.default_character.present? ? current_user.default_character.non_sequential_id : nil
+  end
 
   def new_character_params
     params.require(:character).permit(:birthplace, :first_profession_id, :first_true_header_id, :name)
