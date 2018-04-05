@@ -19,6 +19,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def whos_coming
-    object.characters.map(&:name)
+    object.characters.alpha_by_name.map(&:name)
   end
 end
