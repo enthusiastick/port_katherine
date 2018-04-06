@@ -11,3 +11,10 @@ export const restrictToPlotStaff = (user, push, flashNotice) => {
     flashNotice({ alert: 'Restricted.' })
   }
 }
+
+export const authorizePlotStaff = (isPlotStaff, push, flashNotice) => {
+  if (!isPlotStaff) {
+    push('/')
+    flashNotice({ alert: 'Restricted.' })
+  }
+}

@@ -1,13 +1,27 @@
 import { createSelector } from 'reselect'
 
-const userSelector = (state) => state.currentUser.item
+const userSelector = (state) => state.currentUser
 
 export const isAdmin = createSelector(
   userSelector,
-  user => user.role === 'admin'
+  currentUser => {
+    switch(currentUser.isFetching) {
+      case true:
+        return true
+      default:
+        return currentUser.item.role === 'admin'
+    }
+  }
 )
 
 export const isPlotStaff = createSelector(
   userSelector,
-  user => ['admin', 'plot_staff'].includes(user.role)
+  currentUser =>  {
+    switch(currentUser.isFetching) {
+      case true:
+        return true
+      default:
+        return ['admin', 'plot_staff'].includes(currentUser.item.role)
+    }
+  }
 )

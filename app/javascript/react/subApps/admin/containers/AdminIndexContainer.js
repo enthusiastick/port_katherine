@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import { restrictToPlotStaff } from '../constants/restrictAccess'
+import { authorizePlotStaff } from '../constants/restrictAccess'
 
 class AdminIndexContainer extends Component {
   constructor(props) {
     super(props)
   }
 
-  componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
+  componentWillReceiveProps(nextProps) {
+    authorizePlotStaff(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {
+    const { currentUser } = this.props
+
     let awardCPLink = null;
 
-    if (this.props.currentUser.role === 'admin') {
+    if (currentUser.role === 'admin') {
       awardCPLink =
         <Link className='button' to='/admin/award_character_points'>
           <h2>Award CP</h2>
