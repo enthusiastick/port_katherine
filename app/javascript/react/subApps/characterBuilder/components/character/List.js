@@ -43,7 +43,11 @@ const ListItem = ({
 }
 
 const List = ({
-  characters, defaultCharacterId, deleteCharacter, updateDefaultCharacter
+  characters,
+  defaultCharacterId,
+  deleteCharacter,
+  playerCpAvailable,
+  updateDefaultCharacter
 }) => {
   const characterElements = characters.map(character => {
     const isDefaultCharacter = (character.id === defaultCharacterId)
@@ -67,6 +71,9 @@ const List = ({
             <i className='fa fa-plus' />
             &nbsp;New Character
           </Link>
+          <p>
+            <strong>Player CP Available:</strong> {playerCpAvailable}
+          </p>
         </div>
         <div>
           {characterElements}

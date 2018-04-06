@@ -14,6 +14,7 @@ const mapStateToProps = state => {
   return {
     characters: state.characters.index,
     defaultCharacterId: state.characters.defaultCharacterId,
+    playerCpAvailable: state.characters.playerCpAvailable,
     isSignedIn: isSignedIn(state)
   }
 }

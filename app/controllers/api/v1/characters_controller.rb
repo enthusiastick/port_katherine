@@ -15,7 +15,7 @@ class Api::V1::CharactersController < Api::ApiController
     character = Character.find_by(non_sequential_id: params[:id])
     if authorize_record_owner_or_admin?(character) && character.archive_via!(current_user)
       render json: current_user_characters, each_serializer: Character::IndexSerializer,
-        meta: { default_character_id: default_character_id }, status: :accepted
+        meta: meta, status: :accepted
     else
       render json: { error: character.errors }, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class Api::V1::CharactersController < Api::ApiController
 
   def index
     render json: current_user_characters, each_serializer: Character::IndexSerializer,
-      meta: { default_character_id: default_character_id }
+      meta: meta
   end
 
   def show
@@ -61,6 +61,13 @@ class Api::V1::CharactersController < Api::ApiController
 
   def default_character_id
     @default_character_id ||= current_user.default_character.present? ? current_user.default_character.non_sequential_id : nil
+  end
+
+  def meta
+    @meta ||= {
+      default_character_id: default_character_id,
+      player_cp_available: current_user.available
+    }
   end
 
   def new_character_params

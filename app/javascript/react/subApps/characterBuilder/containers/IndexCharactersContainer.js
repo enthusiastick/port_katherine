@@ -28,6 +28,7 @@ class IndexCharactersContainer extends Component {
             characters={this.props.characters}
             defaultCharacterId={this.props.defaultCharacterId}
             deleteCharacter={this.props.deleteCharacter}
+            playerCpAvailable={this.props.playerCpAvailable}
             updateDefaultCharacter={this.props.updateDefaultCharacter}
           />
         </div>

@@ -51,6 +51,7 @@ let initialState = {
     open: []
   },
   index: [],
+  playerCpAvailable: null,
   show: {},
   tallies: {
     items: [],
@@ -75,6 +76,7 @@ const characters = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         defaultCharacterId: action.payload.meta.defaultCharacterId,
+        playerCpAvailable: action.payload.meta.playerCpAvailable,
         index: action.payload.characters
       })
     case FETCH_CHARACTERS_FAILURE:
