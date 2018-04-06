@@ -4,12 +4,14 @@ import { push } from 'react-router-redux'
 
 import { awardCP } from '../actions/awardCharacterPoints'
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'
+import { isAdmin } from '../../../sharedResources/selectors/authorizeUser'
 
 import AdminPointDispenserContainer from '../containers/AdminPointDispenserContainer'
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser.item
+    currentUser: state.currentUser.item,
+    isAdmin: isAdmin(state)
   }
 }
 

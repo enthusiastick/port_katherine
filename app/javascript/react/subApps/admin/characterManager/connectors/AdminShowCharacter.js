@@ -5,12 +5,14 @@ import { push } from 'react-router-redux'
 import AdminShowCharacterContainer from '../containers/AdminShowCharacterContainer'
 import { getCharacter } from '../../../characterBuilder/actions/getCharacter'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     character: state.adminCharacters.show,
     characterId: ownProps.match.params.characterId,
-    currentUser: state.currentUser.item
+    currentUser: state.currentUser.item,
+    isPlotStaff: isPlotStaff(state)
   }
 }
 

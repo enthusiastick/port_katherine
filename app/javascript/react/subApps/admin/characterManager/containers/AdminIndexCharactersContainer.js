@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 import CharactersTable from '../components/CharactersTable'
 
 class AdminIndexCharactersContainer extends Component {
@@ -9,11 +9,13 @@ class AdminIndexCharactersContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.characters.length === 0) {
       this.props.getAdminCharacters()
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

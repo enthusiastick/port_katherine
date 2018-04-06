@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Table, Td, Th, Thead, Tr } from 'reactable'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 
 class UsersIndexContainer extends Component {
   constructor(props) {
@@ -10,11 +10,13 @@ class UsersIndexContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.adminUsers.length == 0) {
       this.props.getAdminUsers()
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

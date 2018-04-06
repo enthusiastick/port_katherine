@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import { default as CharacterBasics } from '../../../characterBuilder/components/character/Basics'
 import { default as HeaderSummary } from '../../../characterBuilder/components/header/Summary'
@@ -13,11 +13,13 @@ class AdminShowCharacterContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.characterId != this.props.character.id) {
       this.props.getCharacter(this.props.characterId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

@@ -3,15 +3,15 @@ import { Formik } from 'formik'
 
 import AdminPointDispenserForm from '../forms/AdminPointDispenserForm'
 
-import { restrictToAdmin } from '../constants/restrictAccess'
+import { authorizeUserRole } from '../constants/restrictAccess'
 
 class AdminPointDispenserContainer extends Component {
   constructor(props) {
     super(props)
   }
 
-  componentWillMount() {
-    restrictToAdmin(this.props.currentUser, this.props.push, this.props.flashNotice)
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isAdmin, this.props.push, this.props.flashNotice)
   }
 
   validate(values) {

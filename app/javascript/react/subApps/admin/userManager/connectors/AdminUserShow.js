@@ -6,12 +6,14 @@ import UserShowContainer from '../containers/UserShowContainer'
 import { getAdminUser } from '../actions/getAdminUser'
 
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.currentUser.item,
     user: state.adminUsers.show,
-    userId: ownProps.match.params.userId
+    userId: ownProps.match.params.userId,
+    isPlotStaff: isPlotStaff(state)
   }
 }
 

@@ -70,6 +70,7 @@ const EditEventForm = props => {
       eventSlug={props.match.params.eventSlug}
       flashNotice={props.flashNotice}
       getAdminEvents={props.getAdminEvents}
+      isAdmin={props.isAdmin}
       push={props.push}
     />
   )

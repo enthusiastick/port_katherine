@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 
 import BookingsTable from '../components/BookingsTable'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
@@ -11,11 +11,13 @@ class EventShowContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.eventSlug && !this.props.event) {
       this.props.getAdminEvents()
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

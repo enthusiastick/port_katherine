@@ -5,6 +5,7 @@ import { push } from 'react-router-redux'
 import EventShowContainer from '../containers/EventShowContainer'
 import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   let event = state.adminEvents.items.filter(event =>
@@ -16,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.currentUser.item,
     event: event,
-    eventSlug: ownProps.match.params.eventSlug
+    eventSlug: ownProps.match.params.eventSlug,
+    isPlotStaff: isPlotStaff(state)
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import { authorizePlotStaff } from '../constants/restrictAccess'
+import { authorizeUserRole } from '../constants/restrictAccess'
 
 class AdminIndexContainer extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class AdminIndexContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    authorizePlotStaff(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

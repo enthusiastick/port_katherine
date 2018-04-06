@@ -4,10 +4,12 @@ import { push } from 'react-router-redux'
 
 import NewEventForm from '../forms/NewEventForm'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+import { isAdmin } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser.item
+    currentUser: state.currentUser.item,
+    isAdmin: isAdmin(state)
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import BackstoriesTabs from '../components/BackstoriesTabs'
 
@@ -10,11 +10,13 @@ class AdminIndexBackstoriesContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.characterId != this.props.backstories.meta.characterId) {
       this.props.getAdminBackstories(this.props.characterId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

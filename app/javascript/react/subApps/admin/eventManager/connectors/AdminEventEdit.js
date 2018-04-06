@@ -5,6 +5,7 @@ import { push } from 'react-router-redux'
 import EditEventForm from '../forms/EditEventForm'
 import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
+import { isAdmin } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   let event = state.adminEvents.items.filter(event =>
@@ -15,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     currentUser: state.currentUser.item,
-    event: event
+    event: event,
+    isAdmin: isAdmin(state)
   }
 }
 

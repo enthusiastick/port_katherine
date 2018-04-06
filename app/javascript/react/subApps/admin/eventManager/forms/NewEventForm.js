@@ -64,6 +64,7 @@ const NewEventForm = props => {
     <ConnectedEventForm
       currentUser={props.currentUser}
       flashNotice={props.flashNotice}
+      isAdmin={props.isAdmin}
       push={props.push}
     />
   )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import CharactersTable from '../components/characters/CharactersTable'
 
@@ -10,11 +10,13 @@ class UserShowContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.userId != this.props.user.id) {
       this.props.getAdminUser(this.props.userId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {

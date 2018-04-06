@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { default as EventsTable } from '../components/Table'
 
-import { restrictToPlotStaff } from '../../constants/restrictAccess'
+import { authorizeUserRole } from '../../constants/restrictAccess'
 
 class EventsIndexContainer extends Component {
   constructor(props) {
@@ -11,11 +11,13 @@ class EventsIndexContainer extends Component {
   }
 
   componentWillMount() {
-    restrictToPlotStaff(this.props.currentUser, this.props.push, this.props.flashNotice)
-
     if (this.props.adminEvents.length == 0) {
       this.props.getAdminEvents()
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
   render() {
