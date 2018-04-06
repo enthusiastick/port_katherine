@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Prompt } from 'react-router'
 import { Link } from 'react-router-dom'
 
+import authenticateUser from '../constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as HeaderButton } from '../components//header/Button.js'
 import { default as HeaderTile } from '../components/header/Tile'
@@ -17,6 +18,10 @@ class EditCharacterContainer extends Component {
     if (this.props.characterId != this.props.character.id) {
       this.props.editCharacter(this.props.characterId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
   }
 
   saveHandler() {

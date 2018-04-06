@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import {
   addHeader,
@@ -15,6 +16,9 @@ import { editCharacter } from '../actions/editCharacter'
 import { updateCharacter } from '../actions/updateCharacter'
 
 import { calculateCostOfDelta, determineEligibility } from '../selectors/editCharacter'
+
+import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
+import { flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const mapStateToProps = (state, ownProps) => {
   let availableHeaders = []
@@ -39,8 +43,9 @@ const mapStateToProps = (state, ownProps) => {
     characterId: ownProps.match.params.characterId,
     costOfDelta: calculateCostOfDelta(state),
     delta: state.delta,
+    isSignedIn: isSignedIn(state),
     saveEligible: determineEligibility(state),
-    selectedHeaders: selectedHeaders
+    selectedHeaders: selectedHeaders,
   }
 }
 
@@ -50,6 +55,8 @@ const mapDispatchToProps = dispatch => {
     changeCharacterSkill: (characterSkillId, amount) => { dispatch(changeCharacterSkill(characterSkillId, amount)) },
     changeSkill: (skillId, amount) => { dispatch(changeSkill(skillId, amount)) },
     editCharacter: id => { dispatch(editCharacter(id)) },
+    flashNotice: notice => {dispatch(flashNotice(notice)) },
+    push: path => { dispatch(push(path)) },
     removeCharacterSkill: characterSkillId => { dispatch(removeCharacterSkill(characterSkillId)) },
     removeHeader: headerId => { dispatch(removeHeader(headerId)) },
     removeSkill: skillId => { dispatch(removeSkill(skillId)) },

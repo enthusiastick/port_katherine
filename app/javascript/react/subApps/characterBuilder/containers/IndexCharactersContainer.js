@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import authenticateUser from '../constants/authenticateUser'
 import List from '../components/character/List'
 import VersionLabel from '../components/VersionLabel'
 
@@ -12,6 +13,10 @@ class IndexCharactersContainer extends Component {
     if (this.props.characters.length === 0) {
       this.props.getCharacters()
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
   }
 
   render() {

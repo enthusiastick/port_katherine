@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
+import authenticateUser from '../constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import TextArea from '../../../sharedResources/components/formFields/TextArea'
 
@@ -13,6 +14,10 @@ class EditBackstoryForm extends Component {
     if (this.props.characterId != this.props.character.id) {
       this.props.editCharacter(this.props.characterId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
   }
 
   render() {

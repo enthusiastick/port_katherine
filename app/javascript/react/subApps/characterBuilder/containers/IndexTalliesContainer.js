@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import authenticateUser from '../constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import TalliesTable from '../components/tallies/TalliesTable'
 
@@ -12,6 +13,10 @@ class IndexTalliesContainer extends Component {
     if (this.props.tallies.items.length === 0) {
       this.props.getTallies(this.props.characterId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
   }
 
   render() {

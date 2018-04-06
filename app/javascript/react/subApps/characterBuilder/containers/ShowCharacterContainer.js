@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import authenticateUser from '../constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as CharacterBasics } from '../components/character/Basics'
 import { default as HeaderSummary } from '../components/header/Summary'
@@ -15,6 +16,10 @@ class ShowCharacterContainer extends Component {
     if (this.props.characterId != this.props.character.id) {
       this.props.getCharacter(this.props.characterId)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
   }
 
   render() {

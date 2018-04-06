@@ -1,9 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import { createCharacter } from '../actions/createCharacter'
 import { getHeaders } from '../actions/getHeaders'
 import NewCharacterForm from '../forms/NewCharacterForm'
+
+import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
+import { flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const mapStateToProps = state => {
   if (Object.keys(state.headers.item).length === 0) {
@@ -19,7 +23,8 @@ const mapStateToProps = state => {
 
     return {
       headers: state.headers.item,
-      initialValues: initialValues
+      initialValues: initialValues,
+      isSignedIn: isSignedIn(state)
     }
   }
 }
@@ -29,7 +34,9 @@ const mapDispatchToProps = dispatch => {
     createCharacter: values => {
       dispatch(createCharacter(values))
     },
-    getHeaders: () => { dispatch(getHeaders()) }
+    flashNotice: (notice) => { dispatch(flashNotice(notice)) },
+    getHeaders: () => { dispatch(getHeaders()) },
+    push: (path) => { dispatch(push(path)) }
   }
 }
 

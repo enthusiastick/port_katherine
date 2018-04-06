@@ -25,3 +25,15 @@ export const isPlotStaff = createSelector(
     }
   }
 )
+
+export const isSignedIn = createSelector(
+  userSelector,
+  currentUser => {
+    switch(currentUser.isFetching) {
+      case true:
+        return true
+      default:
+        return currentUser.item.id !== null
+    }
+  }
+)

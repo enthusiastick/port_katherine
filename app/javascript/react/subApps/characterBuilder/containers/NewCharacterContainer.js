@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
+import authenticateUser from '../constants/authenticateUser'
 import birthplaces from '../constants/birthplaces'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import VersionLabel from '../components/VersionLabel'
@@ -17,6 +18,10 @@ class NewCharacterContainer extends Component {
     if (Object.keys(this.props.headers).length === 0) {
       this.props.getHeaders()
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
   }
 
   render() {
