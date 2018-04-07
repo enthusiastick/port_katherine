@@ -12,11 +12,11 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk'
 
-import HomePage from '../react/sharedResources/components/HomePage'
 import License  from '../react/sharedResources/components/License'
 
 import Admin             from '../react/subApps/admin'
 import CharacterBuilder  from '../react/subApps/characterBuilder'
+import HomePage          from '../react/subApps/homepage'
 import EventRegistrar    from '../react/subApps/eventRegistrar'
 import Navigator         from '../react/subApps/navigator'
 import StaticPages       from '../react/sharedResources'
@@ -29,6 +29,7 @@ import characters      from '../react/subApps/characterBuilder/reducers/characte
 import currentUser     from '../react/sharedResources/reducers/currentUser'
 import delta           from '../react/subApps/characterBuilder/reducers/delta'
 import headers         from '../react/subApps/characterBuilder/reducers/headers'
+import homepage        from '../react/subApps/homepage/reducers/homepage'
 import events          from '../react/subApps/eventRegistrar/reducers/events'
 import notices         from '../react/sharedResources/reducers/notices'
 import token           from '../react/subApps/eventRegistrar/reducers/token'
@@ -46,6 +47,7 @@ const store = createStore(
     currentUser,
     delta,
     headers,
+    homepage,
     events,
     notices,
     token,

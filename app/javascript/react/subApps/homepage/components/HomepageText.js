@@ -1,7 +1,37 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const HomePage = props => {
+const NextEventCounter = ({distanceOfTimeInWordsToNow, name, slug, timeAgoInWords}) => {
+  let text =
+    <strong>
+      {distanceOfTimeInWordsToNow} until&nbsp;
+      <Link to={`/events/${slug}`}>
+        <span className='header-font'>{name}</span>.
+      </Link>
+    </strong>
+
+  if (!name) {
+    return null
+  }
+
+  if (!distanceOfTimeInWordsToNow && timeAgoInWords) {
+    text =
+      <strong>
+        <Link to={`/events/${slug}`}>
+          <span className='header-font'>{name}</span>
+        </Link>
+        &nbsp;is going on now! It began {timeAgoInWords} ago.
+      </strong>
+  }
+
+  return (
+    <div className='callout primary'>
+      <p className='text-center'>{text}</p>
+    </div>
+  )
+}
+
+const HomepageText = ({nextEvent}) => {
   return(
     <div>
       <div className='row'>
@@ -29,6 +59,7 @@ const HomePage = props => {
               </Link></h3>
             </li>
           </ul>
+          <NextEventCounter {...nextEvent} />
           <p>
             <span className='header-font'>Port Katherine</span> is an ongoing
             aetherpunk
@@ -76,4 +107,4 @@ const HomePage = props => {
   )
 }
 
-export default HomePage
+export default HomepageText

@@ -53,7 +53,11 @@ Rails.application.routes.draw do
       resources :client_token, only: [:index]
       resources :default_characters, only: [:update]
       resources :headers, only: [:index]
-      resources :events, only: [:index]
+      resources :events, only: [:index] do
+        collection do
+          resources :next, only: :index
+        end
+      end
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create, :update] do
