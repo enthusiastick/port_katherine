@@ -1,6 +1,8 @@
 import React from 'react'
+import moment from 'moment'
 
 const Post = props => {
+  const createdAt = moment(props.createdAt).fromNow()
   const imageSrc = `${process.env.FORUMS_URL}${props.avatarTemplate.replace('{size}', '45')}`
   const profileLink = `${process.env.FORUMS_URL}/users/${props.username}`
   const postLink = `${process.env.FORUMS_URL}/t/${props.topicSlug}/${props.topicId}/${props.postNumber}`
@@ -15,6 +17,7 @@ const Post = props => {
       <a className='header-font' href={postLink}>
         {props.topicTitle}
       </a>
+      &nbsp;({createdAt})
     </p>
   )
 }
