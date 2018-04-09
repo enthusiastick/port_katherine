@@ -9,10 +9,19 @@ class HomepageContainer extends Component {
 
   componentDidMount() {
     this.props.getNextEvent()
+    if (this.props.posts.length === 0) {
+      this.props.getForumPosts()
+    }
   }
 
   render() {
-    return <HomepageText nextEvent={this.props.nextEvent} />
+    return(
+      <HomepageText
+        isFetchingForumPosts={this.props.isFetchingForumPosts}
+        nextEvent={this.props.nextEvent}
+        posts={this.props.posts}
+      />
+    )
   }
 }
 

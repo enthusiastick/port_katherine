@@ -1,37 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NextEventCounter = ({distanceOfTimeInWordsToNow, name, slug, timeAgoInWords}) => {
-  let text =
-    <strong>
-      {distanceOfTimeInWordsToNow} until&nbsp;
-      <Link to={`/events/${slug}`}>
-        <span className='header-font'>{name}</span>.
-      </Link>
-    </strong>
+import ForumPosts from './ForumPosts'
+import NextEventCounter from './NextEventCounter'
 
-  if (!name) {
-    return null
-  }
-
-  if (!distanceOfTimeInWordsToNow && timeAgoInWords) {
-    text =
-      <strong>
-        <Link to={`/events/${slug}`}>
-          <span className='header-font'>{name}</span>
-        </Link>
-        &nbsp;is going on now! It began {timeAgoInWords} ago.
-      </strong>
-  }
-
-  return (
-    <div className='callout primary'>
-      <p className='text-center'>{text}</p>
-    </div>
-  )
-}
-
-const HomepageText = ({nextEvent}) => {
+const HomepageText = ({isFetchingForumPosts, nextEvent, posts}) => {
   return(
     <div>
       <div className='row'>
@@ -59,48 +32,35 @@ const HomepageText = ({nextEvent}) => {
               </Link></h3>
             </li>
           </ul>
-          <NextEventCounter {...nextEvent} />
-          <p>
-            <span className='header-font'>Port Katherine</span> is an ongoing
-            aetherpunk
-            <strong>
-              &nbsp;live action role playing game (LARP)&nbsp;
-            </strong>
-            that runs in New England. It has daring combat, devious politics,
-            dreadful magic, dangerous monsters, and just about anything our
-            players and staff can dream up. It is set in the fictional world
-            of the
-            <strong>
-              &nbsp;Pan-Aetherium,&nbsp;
-            </strong>
-            on the continent of
-            <strong>
-              &nbsp;Lithos.
-            </strong>
-          </p>
-          <p>
-            <span className='header-font'>Port Katherine</span> runs 4
-            weekend-long events each year: 2 in the Spring cycle and 2 in the
-            Fall cycle (other LARPs usually refer to these as
-            &quot;seasons&quot;; we do not, because seasons are an integral
-            part of the <span className='header-font'>Port Katherine </span>
-            setting and we wish to avoid confusion.) We occasionally run
-            day-long special events in the summer and winter. The game is
-            played at a campsite, mostly outdoors. No one under 18 years of
-            age may play without staff permission.
-          </p>
-          <p>
-            <span className='header-font'>Port Katherine</span> is a game
-            about heroes. The characters exist at a certain time and in a
-            certain place when momentous things are happening. Not all
-            stories will operate on a cosmic scale, but the actions that each
-            person takes will have meaning and can shape the world. Choices
-            matter, and the future is yet unwritten.
-          </p>
-          <h5 className='text-center'>
-            Set sail with us, discover your character’s true self, and leave
-            your mark upon the Pan-Aetherium.
-          </h5>
+          <div className='callout primary large'>
+            <NextEventCounter {...nextEvent} />
+            <p>
+              <span className='header-font'>Port Katherine</span> is an ongoing
+              aetherpunk
+              <strong>
+                &nbsp;live action role playing game (LARP)&nbsp;
+              </strong>
+              that runs in New England. It has daring combat, devious politics,
+              dreadful magic, dangerous monsters, and just about anything our
+              players and staff can dream up. It is set in the fictional world
+              of the
+              <strong>
+                &nbsp;Pan-Aetherium,&nbsp;
+              </strong>
+              on the continent of
+              <strong>
+                &nbsp;Lithos.
+              </strong>
+            </p>
+            <h5 className='text-center'>
+              Set sail with us, discover your character’s true self, and leave
+              your mark upon the Pan-Aetherium.
+            </h5>
+          </div>
+          <ForumPosts
+            isFetchingForumPosts={isFetchingForumPosts}
+            posts={posts}
+          />
         </div>
       </div>
     </div>
