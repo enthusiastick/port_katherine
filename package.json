@@ -5,7 +5,7 @@
     "start": "./bin/webpack-dev-server"
   },
   "dependencies": {
-    "@rails/webpacker": "^3.0.1",
+    "@rails/webpacker": "^3.4.3",
     "babel-preset-react": "^6.24.1",
     "braintree-web": "^3.23.0",
     "dotenv": "^4.0.0",
@@ -31,6 +31,6 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.8.2"
+    "webpack-dev-server": "^2.11.1"
   }
 }
