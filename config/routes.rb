@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     ["register", "volunteer"].each do |path|
       get path, to: "bookings#new"
     end
+    resources :lodgings, only: [:new]
   end
   resources :password_resets, only: [:edit, :new]
 

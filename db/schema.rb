@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403210522) do
+ActiveRecord::Schema.define(version: 2018_04_13_153516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,25 @@ ActiveRecord::Schema.define(version: 20180403210522) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_headers_on_name", unique: true
+  end
+
+  create_table "lodging_preference_users", force: :cascade do |t|
+    t.integer "lodging_preference_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "favored", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lodging_preference_id", "user_id"], name: "index_lodging_preference_users_on_l_p_id_and_user_id", unique: true
+  end
+
+  create_table "lodging_preferences", force: :cascade do |t|
+    t.integer "booking_id", null: false
+    t.integer "user_id", null: false
+    t.text "comments"
+    t.boolean "tenting", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id", "user_id"], name: "index_lodging_preferences_on_booking_id_and_user_id", unique: true
   end
 
   create_table "passes", force: :cascade do |t|
