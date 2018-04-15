@@ -1,8 +1,9 @@
 import React from 'react'
 import EventUserSelect from '../components/formFields/EventUserSelect'
+import Switch from '../../../sharedResources/components/formik/Switch'
 import TextArea from '../../../sharedResources/components/formik/TextArea'
 
-const LodgingSurveyForm = ({
+const LodgingQuestionnaireForm = ({
     values,
     errors,
     touched,
@@ -16,11 +17,19 @@ const LodgingSurveyForm = ({
 
   return(
     <form onSubmit={handleSubmit}>
-      <div className='form-inputs'>
+      <div className='form-inputs stretched'>
+        <Switch
+          label='I will be lodging in a tent that I provide'
+          name='tenting'
+          value={values.tenting}
+          setFieldValue={setFieldValue}
+          touched={touched.tenting}
+        />
         <div className='row'>
           <div className='small-12 medium-6 columns'>
             <EventUserSelect
-              errors={errors.favoredUsers}
+              disabled={values.tenting}
+              error={errors.favoredUsers}
               eventSlug={values.eventSlug}
               label='I would prefer to share lodgings with (select 1 or more)'
               name='favoredUsers'
@@ -32,7 +41,8 @@ const LodgingSurveyForm = ({
           </div>
           <div className='small-12 medium-6 columns'>
             <EventUserSelect
-              errors={errors.undesirableUsers}
+              disabled={values.tenting}
+              error={errors.undesirableUsers}
               eventSlug={values.eventSlug}
               label='I would prefer NOT to share lodgings with (select 1 or more)'
               name='undesirableUsers'
@@ -44,6 +54,7 @@ const LodgingSurveyForm = ({
           </div>
         </div>
         <TextArea
+          disabled={values.tenting}
           error={errors.comments}
           touched={touched.comments}
           handleBlur={handleBlur}
@@ -54,9 +65,12 @@ const LodgingSurveyForm = ({
         />
       </div>
       <div className='form-actions'>
+        <button className='button' type='submit' disabled={isSubmitting}>
+          Submit
+        </button>
       </div>
     </form>
   )
 }
 
-export default LodgingSurveyForm
+export default LodgingQuestionnaireForm

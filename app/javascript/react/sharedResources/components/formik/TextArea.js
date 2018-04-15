@@ -1,6 +1,7 @@
 import React from 'react'
 
 const TextArea = ({
+    disabled,
     error,
     touched,
     handleBlur,
@@ -14,6 +15,7 @@ const TextArea = ({
       <label className={ touched && error && 'is-invalid-label' } htmlFor={name}>{label}</label>
       <textarea
         className={ touched && error && 'is-invalid-input' }
+        disabled={disabled}
         id={name}
         onChange={handleChange}
         onBlur={handleBlur}

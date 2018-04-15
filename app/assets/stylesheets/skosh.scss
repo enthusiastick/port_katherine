@@ -47,6 +47,20 @@
   white-space: pre-line;
 }
 
+.form-inputs.stretched {
+  fieldset {
+    padding-bottom: 1em;
+  }
+
+  fieldset.no-padding {
+    padding-bottom: 0;
+  }
+
+  textarea {
+    min-height: 12rem;
+  }
+}
+
 .top-padded {
   padding-top: 1rem;
 }

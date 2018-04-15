@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 2018_04_13_153516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "character_id"
+    t.text "lodging_comments"
+    t.boolean "tenting", default: false, null: false
+    t.datetime "lodging_questionnaire_completed_at"
     t.index ["event_id", "user_id"], name: "index_bookings_on_event_id_and_user_id", unique: true
   end
 
@@ -118,22 +121,12 @@ ActiveRecord::Schema.define(version: 2018_04_13_153516) do
   end
 
   create_table "lodging_preference_users", force: :cascade do |t|
-    t.integer "lodging_preference_id", null: false
+    t.integer "booking_id", null: false
     t.integer "user_id", null: false
     t.boolean "favored", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lodging_preference_id", "user_id"], name: "index_lodging_preference_users_on_l_p_id_and_user_id", unique: true
-  end
-
-  create_table "lodging_preferences", force: :cascade do |t|
-    t.integer "booking_id", null: false
-    t.integer "user_id", null: false
-    t.text "comments"
-    t.boolean "tenting", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booking_id", "user_id"], name: "index_lodging_preferences_on_booking_id_and_user_id", unique: true
+    t.index ["booking_id", "user_id"], name: "index_lodging_preference_users_on_booking_id_and_user_id", unique: true
   end
 
   create_table "passes", force: :cascade do |t|

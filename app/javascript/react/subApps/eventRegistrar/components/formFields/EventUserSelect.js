@@ -46,6 +46,7 @@ class EventUserSelect extends Component {
 
   render() {
     const {
+      disabled,
       error,
       onBlur,
       onChange,
@@ -68,6 +69,7 @@ class EventUserSelect extends Component {
         >
           {label}
           <Select
+            disabled={disabled}
             id={name}
             options={options}
             multi={true}

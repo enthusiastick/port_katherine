@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
-import LodgingSurveyContainer from '../containers/LodgingSurveyContainer'
+import LodgingQuestionnaireContainer from '../containers/LodgingQuestionnaireContainer'
 import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'
 import { getEvents } from '../actions/getEvents'
@@ -33,9 +33,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const LodgingSurvey = connect(
+const LodgingQuestionnaire = connect(
   mapStateToProps,
   mapDispatchToProps
-)(LodgingSurveyContainer)
+)(LodgingQuestionnaireContainer)
 
-export default LodgingSurvey
+export default LodgingQuestionnaire

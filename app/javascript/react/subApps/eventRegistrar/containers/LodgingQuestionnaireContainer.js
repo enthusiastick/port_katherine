@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 
-import LodgingSurveyForm from '../forms/LodgingSurveyForm'
+import LodgingQuestionnaireForm from '../forms/LodgingQuestionnaireForm'
 
 import authenticateUser from '../../characterBuilder/constants/authenticateUser'
 
-class LodgingSurveyContainer extends Component {
+class LodgingQuestionnaireContainer extends Component {
   constructor(props) {
     super(props)
   }
@@ -21,9 +21,18 @@ class LodgingSurveyContainer extends Component {
   }
 
   validate(values) {
+    const { favoredUsers, undesirableUsers } = values
+    const favoredUserHandles = favoredUsers.map(user => user.value)
+    const undesirableUserHandles = undesirableUsers.map(user => user.value)
     let errors = {}
 
-    console.log(values)
+    const commonUserHandles = favoredUserHandles.filter(handle => {
+      return undesirableUserHandles.includes(handle)
+    })
+
+    if (commonUserHandles.length != 0) {
+      errors.undesirableUsers = 'The same user should not appear in both lists.'
+    }
 
     return errors
   }
@@ -48,7 +57,7 @@ class LodgingSurveyContainer extends Component {
         <div className='small-12 columns'>
           <h1 className='text-center top-padded'>{name} Lodging Questionnaire</h1>
           <Formik
-            component={LodgingSurveyForm}
+            component={LodgingQuestionnaireForm}
             eventSlug={this.props.event.slug}
             initialValues={initialValues}
             onSubmit={handleSubmit}
@@ -60,4 +69,4 @@ class LodgingSurveyContainer extends Component {
   }
 }
 
-export default LodgingSurveyContainer
+export default LodgingQuestionnaireContainer
