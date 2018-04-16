@@ -4,7 +4,8 @@ import { push } from 'react-router-redux'
 
 import LodgingQuestionnaireContainer from '../containers/LodgingQuestionnaireContainer'
 import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
-import { flashNotice } from '../../../sharedResources/actions/flashNotice'
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
+import { answerLodgingQuestionnaire } from '../actions/answerLodgingQuestionnaire'
 import { getEvents } from '../actions/getEvents'
 
 const mapStateToProps = (state, ownProps) => {
@@ -27,6 +28,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    answerLodgingQuestionnaire: (values) => {
+      dispatch(answerLodgingQuestionnaire(values))
+      .catch(error => {
+        dispatch(clearNotices())
+        dispatch(flashNotice({ alert: error }))
+      })
+    },
     flashNotice: (notice) => { dispatch(flashNotice(notice)) },
     getEvents: () => { dispatch(getEvents()) },
     push: (path) => { dispatch(push(path)) }

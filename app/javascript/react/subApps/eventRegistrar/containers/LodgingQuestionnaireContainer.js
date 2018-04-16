@@ -47,7 +47,7 @@ class LodgingQuestionnaireContainer extends Component {
     }
 
     const handleSubmit = (values) => {
-      debugger
+      this.props.answerLodgingQuestionnaire(values)
     }
 
     const { name } = this.props.event

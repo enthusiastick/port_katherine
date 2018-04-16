@@ -59,6 +59,7 @@ Rails.application.routes.draw do
           resources :next, only: :index
         end
       end
+      resources :lodging_questionnaires, only: [:create]
       resources :password_resets, only: [:create, :update]
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create, :update] do

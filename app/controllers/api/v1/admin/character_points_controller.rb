@@ -10,6 +10,8 @@ class Api::V1::Admin::CharacterPointsController < Api::ApiController
     end
   end
 
+  protected
+
   def character_point_params
     params.require(:character_point).permit(:points, :reason, users: [:label, :value])
   end

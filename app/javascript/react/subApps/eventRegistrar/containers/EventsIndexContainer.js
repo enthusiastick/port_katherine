@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import LodgingQuestionnaireLink from '../components/LodgingQuestionnaireLink'
+
 const EventTile = props => {
   let linkTo = `/events/${props.slug}`
   let registerLink = `${linkTo}/register`
   let volunteerLink = `${linkTo}/volunteer`
+  const showLodgingQuestionnaire = (props.showLodgingQuestionnaire && props.userBooking.category === 'player' && !props.userBooking.lodgingQuestionnaireCompletedAt)
 
   if (props.userBooking) {
+    let dateClass
+
+    if (!showLodgingQuestionnaire) { dateClass = 'bottomless' }
+
     return(
       <div className='callout secondary' key={props.slug}>
         <div className='text-center'>
@@ -16,9 +23,10 @@ const EventTile = props => {
               <span>&nbsp;<i className='fa fa-check' /></span>
             </Link>
           </h3>
-          <p className='bottomless'>
+          <p className={dateClass}>
             {props.dates}
           </p>
+          {showLodgingQuestionnaire && <LodgingQuestionnaireLink eventSlug={props.slug} />}
         </div>
       </div>
     )

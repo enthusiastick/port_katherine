@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import LodgingQuestionnaireLink from './LodgingQuestionnaireLink'
+
 const PassList = props => {
   let handleClick = event => {
     if (confirm('Cancel your registration: are you sure?')) {
@@ -8,7 +10,7 @@ const PassList = props => {
     }
   }
 
-  let cancellationButton, passLinks, registrationOptions
+  let cancellationButton, lodgingQuestionnaireLink, passLinks, registrationOptions
 
   if (props.userBooking && !props.userBooking.paid) {
     cancellationButton =
@@ -86,9 +88,17 @@ const PassList = props => {
       </p>
   }
 
+  if (props.showLodgingQuestionnaire) {
+    lodgingQuestionnaireLink =
+      <div className='text-center'>
+        <LodgingQuestionnaireLink eventSlug={props.event} />
+      </div>
+  }
+
   return(
     <div className='callout primary'>
       {registrationOptions}
+      {lodgingQuestionnaireLink}
       {cancellationButton}
     </div>
   )

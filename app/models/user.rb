@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :events, through: :bookings
   has_many :characters
+  has_many :lodging_preferences
   has_many :receipts
   has_many :passes, through: :receipts
 
