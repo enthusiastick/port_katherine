@@ -4,4 +4,8 @@ class LodgingPreference < ApplicationRecord
 
   validates_inclusion_of :favored, in: [true, false]
   validates_uniqueness_of :booking, scope: :user
+
+  def user_label
+    user.label
+  end
 end

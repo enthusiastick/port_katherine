@@ -46,6 +46,26 @@ class Event < ApplicationRecord
     self.slug ||= name.parameterize if name.present?
   end
 
+  def lodging_questionnaire_csv
+    attributes = %w(user email tenting comments friends vetoes)
+    questionnaire_bookings = bookings.where.not(lodging_questionnaire_completed_at: nil)
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      questionnaire_bookings.each do |booking|
+        row = Array.new
+        row << booking.user.label
+        row << booking.user.email
+        row << booking.tenting
+        row << booking.lodging_comments
+        row << booking.lodging_preferences.where(favored: true).map(&:user_label).to_sentence
+        row << booking.lodging_preferences.where(favored: false).map(&:user_label).to_sentence
+        csv << row
+      end
+    end
+  end
+
   def player_count
     @player_count ||= bookings.where(category: :player).count
   end

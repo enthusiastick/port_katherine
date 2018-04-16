@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     resources :characters, only: [:index, :show] do
       resources :backstories, only: [:index]
     end
-    resources :events, only: [:edit, :index, :new, :show]
+    resources :events, only: [:edit, :index, :new, :show] do
+      resources :lodging_questionnaires, only: [:index]
+    end
     resources :users, only: [:index, :show]
   end
 

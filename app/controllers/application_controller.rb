@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_plot_staff!
+    authenticate_user!
+    if user_signed_in?
+      unless current_user.plot_staff?
+        flash[:alert] = "You are not authorized to access this content."
+        redirect_to root_path
+      end
+    end
+  end
+
   def current_user
     if session[:user_id]
       @current_user ||= User.find(session[:user_id]) if session[:user_id]

@@ -22,7 +22,7 @@ class EventShowContainer extends Component {
 
   render() {
     let breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
-    let categories, label, bookingsTables
+    let categories, label, bookingsTables, lodgingQuestionnaireLink
 
     if (this.props.eventSlug && this.props.event) {
       label = `${this.props.event.name} Registrations`
@@ -38,11 +38,25 @@ class EventShowContainer extends Component {
       })
     }
 
+    if (this.props.event && this.props.event.showLodgingQuestionnaire) {
+      lodgingQuestionnaireLink =
+        <div className='text-center'>
+          <a
+            className='button'
+            href={`/admin/events/${this.props.event.slug}/lodging_questionnaires`}
+            target='_blank'
+          >
+            <i className='fa fa-download' /> Download Lodging Questionnaire Results
+          </a>
+        </div>
+    }
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current={label} />
           <h1 className='text-center top-padded'>{label}</h1>
+          {lodgingQuestionnaireLink}
           {bookingsTables}
         </div>
       </div>
