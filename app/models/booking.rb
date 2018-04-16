@@ -11,4 +11,24 @@ class Booking < ApplicationRecord
   validates_inclusion_of :paid, in: [true, false]
   validates_inclusion_of :tenting, in: [true, false]
   validates_uniqueness_of :event, scope: :user
+
+  def lodging_questionnaire_row
+    [user.label, user.email, tenting, lodging_comments, favored_users_list, undesirable_users_list]
+  end
+
+  def favored_users
+    @favored_users ||= lodging_preferences.where(favored: true)
+  end
+
+  def favored_users_list
+    favored_users.map(&:user_label).to_sentence
+  end
+
+  def undesirable_users
+    @undesirable_users ||= lodging_preferences.where(favored: false)
+  end
+
+  def undesirable_users_list
+    undesirable_users.map(&:user_label).to_sentence
+  end
 end

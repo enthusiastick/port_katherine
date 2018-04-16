@@ -36,6 +36,7 @@ const LodgingQuestionnaireForm = ({
               value={values.favoredUsers}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              placeholder='Start typing a friend&apos;s name&hellip;'
               touched={touched.favoredUsers}
             />
           </div>
@@ -49,12 +50,12 @@ const LodgingQuestionnaireForm = ({
               value={values.undesirableUsers}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              placeholder='Start typing a player&apos;s name&hellip;'
               touched={touched.undesirableUsers}
             />
           </div>
         </div>
         <TextArea
-          disabled={values.tenting}
           error={errors.comments}
           touched={touched.comments}
           handleBlur={handleBlur}

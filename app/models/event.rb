@@ -53,16 +53,7 @@ class Event < ApplicationRecord
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      questionnaire_bookings.each do |booking|
-        row = Array.new
-        row << booking.user.label
-        row << booking.user.email
-        row << booking.tenting
-        row << booking.lodging_comments
-        row << booking.lodging_preferences.where(favored: true).map(&:user_label).to_sentence
-        row << booking.lodging_preferences.where(favored: false).map(&:user_label).to_sentence
-        csv << row
-      end
+      questionnaire_bookings.each { |booking| csv << booking.lodging_questionnaire_row }
     end
   end
 

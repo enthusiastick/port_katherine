@@ -48,10 +48,11 @@ class EventUserSelect extends Component {
     const {
       disabled,
       error,
+      label,
+      name,
       onBlur,
       onChange,
-      name,
-      label,
+      placeholder,
       touched,
       users,
       value
@@ -75,6 +76,7 @@ class EventUserSelect extends Component {
             multi={true}
             onChange={this.handleChange}
             onBlur={this.handleBlur}
+            placeholder={placeholder}
             value={value}
           />
           { touched && error && <div style={{ marginTop: '.5rem' }}><span className='form-error is-visible'>{error}</span></div> }
