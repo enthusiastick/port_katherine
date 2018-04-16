@@ -7,20 +7,13 @@ import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
 import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
 import { answerLodgingQuestionnaire } from '../actions/answerLodgingQuestionnaire'
 import { getEvents } from '../actions/getEvents'
+import { eventBySlug, authorizedForLodgingQuestionnaire } from '../selectors/events'
 
 const mapStateToProps = (state, ownProps) => {
-  const filteredEvent = state.events.items.filter(event =>
-    { if (event.slug === ownProps.match.params.eventSlug)
-      { return event }
-    }
-  )[0]
-
-  let event = {}
-  if (filteredEvent) { event = filteredEvent }
-
   return {
+    authorizedForLodgingQuestionnaire: authorizedForLodgingQuestionnaire(state, ownProps),
     currentUser: state.currentUser.item,
-    event: event,
+    event: eventBySlug(state, ownProps),
     eventSlug: ownProps.match.params.eventSlug,
     isSignedIn: isSignedIn(state)
   }

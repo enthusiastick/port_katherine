@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import authenticateUser from '../constants/authenticateUser'
+import authenticateUser from '../../../sharedResources/constants/authenticateUser'
 import List from '../components/character/List'
 import VersionLabel from '../components/VersionLabel'
 

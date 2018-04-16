@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import authenticateUser from '../constants/authenticateUser'
+import authenticateUser from '../../../sharedResources/constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as CharacterBasics } from '../components/character/Basics'
 import { default as HeaderSummary } from '../components/header/Summary'

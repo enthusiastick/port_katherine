@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
-import authenticateUser from '../constants/authenticateUser'
+import authenticateUser from '../../../sharedResources/constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import TextArea from '../../../sharedResources/components/formFields/TextArea'
 

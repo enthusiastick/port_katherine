@@ -3,7 +3,8 @@ import { Formik } from 'formik'
 
 import LodgingQuestionnaireForm from '../forms/LodgingQuestionnaireForm'
 
-import authenticateUser from '../../characterBuilder/constants/authenticateUser'
+import authenticateUser from '../../../sharedResources/constants/authenticateUser'
+import authorizeUserLodgingQuestionnaire from '../constants/authorizeUserLodgingQuestionnaire'
 
 class LodgingQuestionnaireContainer extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class LodgingQuestionnaireContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     authenticateUser(nextProps.isSignedIn, this.props.push, this.props.flashNotice)
+    authorizeUserLodgingQuestionnaire(nextProps.authorizedForLodgingQuestionnaire, this.props.push, this.props.flashNotice)
   }
 
   validate(values) {

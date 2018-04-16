@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Prompt } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import authenticateUser from '../constants/authenticateUser'
+import authenticateUser from '../../../sharedResources/constants/authenticateUser'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as HeaderButton } from '../components//header/Button.js'
 import { default as HeaderTile } from '../components/header/Tile'

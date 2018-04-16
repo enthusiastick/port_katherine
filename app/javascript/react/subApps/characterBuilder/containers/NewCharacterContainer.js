@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
-import authenticateUser from '../constants/authenticateUser'
+import authenticateUser from '../../../sharedResources/constants/authenticateUser'
 import birthplaces from '../constants/birthplaces'
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import VersionLabel from '../components/VersionLabel'
