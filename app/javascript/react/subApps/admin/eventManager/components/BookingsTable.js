@@ -37,7 +37,6 @@ const PlayersTable = props => {
       <Table
         className='hover'
         filterable={['user', 'character', 'pass', 'paid', 'receipt', 'purchaseDate']}
-        itemsPerPage={25}
         sortable={true}
       >
         <Thead>

@@ -8,6 +8,8 @@ class Booking < ApplicationRecord
 
   enum category: { player: 0, staff: 1 }
 
+  scope :alpha_by_user_first_name, -> { joins(:user).order("users.first_name") }
+
   validates_inclusion_of :paid, in: [true, false]
   validates_inclusion_of :tenting, in: [true, false]
   validates_uniqueness_of :event, scope: :user

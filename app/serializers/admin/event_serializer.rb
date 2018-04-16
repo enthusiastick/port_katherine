@@ -11,14 +11,14 @@ class Admin::EventSerializer < ActiveModel::Serializer
 
   def player_bookings
     ActiveModel::SerializableResource.new(
-      object.bookings.player,
+      object.bookings.player.alpha_by_user_first_name,
       each_serializer: Admin::BookingSerializer
     ).serializable_hash[:bookings]
   end
 
   def staff_bookings
     ActiveModel::SerializableResource.new(
-      object.bookings.staff,
+      object.bookings.staff.alpha_by_user_first_name,
       each_serializer: Admin::BookingSerializer
     ).serializable_hash[:bookings]
   end
