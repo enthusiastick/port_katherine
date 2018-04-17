@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import { authorizeUserRole } from '../../constants/restrictAccess'
 
@@ -11,7 +12,7 @@ class EventShowContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.eventSlug && !this.props.event) {
+    if (this.props.eventSlug != this.props.event.slug) {
       this.props.getAdminEvents()
     }
   }
@@ -22,10 +23,9 @@ class EventShowContainer extends Component {
 
   render() {
     let breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
-    let categories, label, bookingsTables, lodgingQuestionnaireLink
+    let categories, label, bookingsTables
 
-    if (this.props.eventSlug && this.props.event) {
-      label = `${this.props.event.name} Registrations`
+    if (this.props.event.slug) {
       categories = Object.keys(this.props.event.bookings)
       bookingsTables = categories.map(category => {
         return(
@@ -38,25 +38,17 @@ class EventShowContainer extends Component {
       })
     }
 
-    if (this.props.event && this.props.event.showLodgingQuestionnaire) {
-      lodgingQuestionnaireLink =
-        <div className='text-center'>
-          <a
-            className='button'
-            href={`/admin/events/${this.props.event.slug}/lodging_questionnaires`}
-            target='_blank'
-          >
-            <i className='fa fa-download' /> Download Lodging Questionnaire Results
-          </a>
-        </div>
-    }
-
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <BreadcrumbsNav breadcrumbs={breadcrumbs} current={label} />
-          <h1 className='text-center top-padded'>{label}</h1>
-          {lodgingQuestionnaireLink}
+          <BreadcrumbsNav breadcrumbs={breadcrumbs} current={this.props.event.name} />
+          <div className='text-center'>
+            <h1 className='top-padded'>{this.props.event.name}</h1>
+            <Link className='button' to={`/admin/events/${this.props.eventSlug}/reports`}>
+              <i className='fa fa-folder-open' /> Reports
+            </Link>
+            <h2>Registrations</h2>
+          </div>
           {bookingsTables}
         </div>
       </div>

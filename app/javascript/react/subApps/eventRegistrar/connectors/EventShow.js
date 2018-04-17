@@ -7,8 +7,6 @@ import { getEvents } from '../actions/getEvents'
 import { eventBySlug } from '../selectors/events'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(eventBySlug(state, ownProps))
-
   return {
     event: eventBySlug(state, ownProps),
     eventSlug: ownProps.match.params.eventSlug

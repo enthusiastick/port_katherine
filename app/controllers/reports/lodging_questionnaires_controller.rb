@@ -1,4 +1,4 @@
-class Admin::LodgingQuestionnairesController < ApplicationController
+class Reports::LodgingQuestionnairesController < ApplicationController
   before_action :authenticate_plot_staff!
 
   def index

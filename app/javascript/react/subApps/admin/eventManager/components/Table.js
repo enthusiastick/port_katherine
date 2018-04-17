@@ -9,6 +9,7 @@ const Table = props => {
       <tr className='text-center'>
         <td>Loading&hellip;</td>
         <td />
+        <td />
         {props.isCurrentUserAdmin && <td />}
         {props.isCurrentUserAdmin && <td />}
       </tr>
@@ -34,6 +35,8 @@ const Table = props => {
           </th>
           <th>
             Date
+          </th>
+          <th>
           </th>
           {props.isCurrentUserAdmin && <th>
           </th>}

@@ -3,20 +3,14 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import EventShowContainer from '../containers/EventShowContainer'
+import { adminEventBySlug } from '../selectors/adminEvents'
 import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
-  let event = state.adminEvents.items.filter(event =>
-    { if (event.slug == ownProps.match.params.eventSlug)
-      { return event }
-    }
-  )[0]
-
   return {
-    currentUser: state.currentUser.item,
-    event: event,
+    event: adminEventBySlug(state, ownProps),
     eventSlug: ownProps.match.params.eventSlug,
     isPlotStaff: isPlotStaff(state)
   }

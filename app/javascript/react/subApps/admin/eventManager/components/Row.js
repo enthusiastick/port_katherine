@@ -2,14 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Row = props => {
-  let handleClick = event => {
+  const handleClick = event => {
     if (confirm('Delete this Event: are you sure?')) {
       props.deleteAdminEvent(props.event.slug)
     }
   }
 
-  let showLink = `/admin/events/${props.event.slug}`
-  let editLink = showLink + '/edit'
+  const showLink = `/admin/events/${props.event.slug}`
+  const editLink = showLink + '/edit'
+  const reportLink = showLink + '/reports'
 
   return(
     <tr>
@@ -20,6 +21,11 @@ const Row = props => {
       </td>
       <td>
         {props.event.dates}
+      </td>
+      <td className='text-right'>
+        <Link className='button bottomless' to={reportLink}>
+          <i className='fa fa-folder-open' /> Reports
+        </Link>
       </td>
       {props.isCurrentUserAdmin && <td className='text-right'>
         <Link className='button bottomless' to={editLink}>
