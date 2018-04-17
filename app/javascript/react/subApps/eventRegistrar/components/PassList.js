@@ -78,6 +78,15 @@ const PassList = props => {
   }
 
   if (props.userBooking) {
+    const showLodgingQuestionnaire = (props.showLodgingQuestionnaire && props.userBooking.category === 'player' && !props.userBooking.lodgingQuestionnaireCompletedAt)
+
+    if (showLodgingQuestionnaire) {
+      lodgingQuestionnaireLink =
+        <div className='text-center'>
+          <LodgingQuestionnaireLink eventSlug={props.event} />
+        </div>
+    }
+
     registrationOptions =
       <p className='text-center'>
         You
@@ -86,13 +95,6 @@ const PassList = props => {
         </strong>
         registered for this event.
       </p>
-  }
-
-  if (props.showLodgingQuestionnaire) {
-    lodgingQuestionnaireLink =
-      <div className='text-center'>
-        <LodgingQuestionnaireLink eventSlug={props.event} />
-      </div>
   }
 
   return(

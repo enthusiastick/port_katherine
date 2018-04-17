@@ -10,7 +10,7 @@ class EventShowContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.eventSlug && !this.props.event) {
+    if (this.props.eventSlug != this.props.event.slug) {
       this.props.getEvents()
     }
   }
