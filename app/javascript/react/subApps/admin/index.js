@@ -8,9 +8,10 @@ import AdminIndexBackstories from './characterManager/connectors/AdminIndexBacks
 import AdminIndexCharacters  from './characterManager/connectors/AdminIndexCharacters'
 import AdminShowCharacter    from './characterManager/connectors/AdminShowCharacter'
 
-import AdminEventEdit        from './eventManager/connectors/AdminEventEdit'
-import AdminEventShow        from './eventManager/connectors/AdminEventShow'
-import AdminEventsIndex      from './eventManager/connectors/AdminEventsIndex'
+import AdminEventEdit         from './eventManager/connectors/AdminEventEdit'
+import AdminEventReportsIndex from './eventManager/connectors/AdminEventReportsIndex'
+import AdminEventShow         from './eventManager/connectors/AdminEventShow'
+import AdminEventsIndex       from './eventManager/connectors/AdminEventsIndex'
 import AdminEventsNew        from './eventManager/connectors/AdminEventsNew'
 
 import AdminUsersIndex       from './userManager/connectors/AdminUsersIndex'
@@ -33,6 +34,7 @@ const Admin = props => {
         <Route exact path='/admin/events/new' component={AdminEventsNew} />
         <Route exact path='/admin/events/:eventSlug' component={AdminEventShow} />
         <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
+        <Route exact path='/admin/events/:eventSlug/reports' component={AdminEventReportsIndex} />
       </Switch>
 
       <Switch>

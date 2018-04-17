@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :backstories, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
-      resources :lodging_questionnaires, only: [:index]
+      resources :reports, only: [:index]
     end
     resources :users, only: [:index, :show]
   end
@@ -69,6 +69,13 @@ Rails.application.routes.draw do
           resources :current, only: :index
         end
       end
+    end
+  end
+
+  # Arbitrary data (e.g. CSV) routes
+  namespace :reports do
+    resources :events, only: [] do
+      resources :lodging_questionnaires, only: [:index]
     end
   end
 end
