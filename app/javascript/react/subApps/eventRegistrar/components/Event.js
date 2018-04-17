@@ -15,8 +15,6 @@ const Event = props => {
     whosComing = `(${props.whosComing.length}) ${props.whosComing.join(', ')}`
   }
 
-  const showLodgingQuestionnaire = (props.showLodgingQuestionnaire && props.userBooking.category === 'player' && !props.userBooking.lodgingQuestionnaireCompletedAt)
-
   return(
     <div className='row'>
       <div className='small-12 columns'>
@@ -32,7 +30,7 @@ const Event = props => {
               event={props.slug}
               passes={props.passes}
               userBooking={props.userBooking}
-              showLodgingQuestionnaire={showLodgingQuestionnaire}
+              showLodgingQuestionnaire={props.showLodgingQuestionnaire}
             />
           </div>
         </div>

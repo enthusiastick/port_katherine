@@ -4,17 +4,13 @@ import { connect } from 'react-redux'
 import EventShowContainer from '../containers/EventShowContainer'
 import { deleteRegistration } from '../actions/deleteRegistration'
 import { getEvents } from '../actions/getEvents'
+import { eventBySlug } from '../selectors/events'
 
 const mapStateToProps = (state, ownProps) => {
-  let event = state.events.items.filter(event =>
-    { if (event.slug === ownProps.match.params.eventSlug)
-      { return event }
-    }
-  )[0]
+  console.log(eventBySlug(state, ownProps))
 
   return {
-    currentUser: state.currentUser.item,
-    event: event,
+    event: eventBySlug(state, ownProps),
     eventSlug: ownProps.match.params.eventSlug
   }
 }
