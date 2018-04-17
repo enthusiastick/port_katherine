@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect'
-
+import paramsSelector from '../../../sharedResources/selectors/paramsSelector'
 const eventsSelector = (state) => state.events.items
-
-const paramsSelector = (state, props) => props.match.params
 
 export const eventBySlug = createSelector(
   eventsSelector,

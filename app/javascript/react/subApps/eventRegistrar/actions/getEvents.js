@@ -36,7 +36,10 @@ let getEvents = () => dispatch => {
     headers: { 'Content-Type': 'application/json' }
   })
   .then(response => { return response.json() })
-  .then(data => { dispatch(fetchEventsSuccess(humps.camelizeKeys(data.events))) })
+  .then(data => {
+    dispatch(fetchEventsSuccess(humps.camelizeKeys(data.events)))
+    return data
+  })
   .catch(error => {
     dispatch(fetchEventsFailure())
   })

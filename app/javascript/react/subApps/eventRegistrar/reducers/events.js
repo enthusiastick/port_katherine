@@ -30,14 +30,21 @@ const events = (state = initialState, action) => {
 
   switch (action.type) {
     case FETCH_EVENTS:
-      return Object.assign({}, state, { isFetching: true })
+      return {
+        ...state,
+        isFetching: true
+      }
     case FETCH_EVENTS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         items: action.events
-      })
+      }
     case FETCH_EVENTS_FAILURE:
-      return Object.assign({}, state, { isFetching: false })
+      return {
+        ...state,
+        isFetching: false
+      }
     case FETCH_CREATE_SESSION_SUCCESS:
       return initialState
     case FETCH_DESTROY_SESSION_SUCCESS:
