@@ -6,9 +6,9 @@ const Downloads = props => {
       <div className='row'>
         <div className='small-11 medium-9 large-7 small-centered columns'>
           <h1 className='text-center top-padded'>Rulebooks</h1>
-          <a href='https://s3-us-west-2.amazonaws.com/portkatherine/rules/Port_Katherine_Rules_v1.1.pdf' target='_blank'>
+          <a href='https://s3.us-west-2.amazonaws.com/portkatherine/rules/Port_Katherine_Rules_v1.1.1.pdf' target='_blank'>
             <h3 className='text-center'>
-              <i className='fa fa-book' />&nbsp;Rulebook (version 1.1)
+              <i className='fa fa-book' />&nbsp;Rulebook (version 1.1.1)
             </h3>
           </a>
           <h1 className='text-center'>Supplements</h1>
