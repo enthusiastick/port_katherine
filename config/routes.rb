@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :backstories, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
+      resources :envelopes, only: [:index]
       resources :reports, only: [:index]
     end
     resources :users, only: [:index, :show]
@@ -44,7 +45,9 @@ Rails.application.routes.draw do
         resources :characters, only: [:index] do
           resources :backstories, only: [:index]
         end
-        resources :events, only: [:create, :destroy, :index, :update]
+        resources :events, only: [:create, :destroy, :index, :update] do
+          resources :envelopes, only: [:index]
+        end
         resources :users, only: [:index, :show]
       end
       resources :account_confirmations, only: [:create]

@@ -29,4 +29,8 @@ class Header < ApplicationRecord
   def self.open
     find_or_create_by(name: "Open")
   end
+
+  def self.military_officer
+    find_or_create_by(name: "Military Officer", category: :profession)
+  end
 end

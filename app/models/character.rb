@@ -46,6 +46,10 @@ class Character < ApplicationRecord
     end
   end
 
+  def has_envelope_skills?
+    skills.any? { |skill| Skill.envelope.include?(skill) }
+  end
+
   def latest_backstory
     backstories.ordered_old_to_new.last
   end

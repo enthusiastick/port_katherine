@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import { authorizeUserRole } from '../../constants/restrictAccess'
 
@@ -32,6 +33,11 @@ class EventReportsIndexContainer extends Component {
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Reports' />
           <h1 className='text-center top-padded'>{event.name} Reports</h1>
+          <div className='button-group'>
+          </div>
+            <Link className='button' to={`/admin/events/${this.props.event.slug}/envelopes`}>
+              <i className='fa fa-envelope-open' /> Envelope Stuffing
+            </Link>
           <h3>Downloads</h3>
           <div className='button-group'>
             <a
