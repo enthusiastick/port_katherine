@@ -3,7 +3,7 @@ class Admin::Envelope::EventSerializer < ActiveModel::Serializer
 
   has_many :characters do
     object.characters.alpha_by_name
-      .select { |character| character.has_envelope_skills? }
+      .select { |character| character.needs_envelope? }
   end
 
   class CharacterSerializer < ActiveModel::Serializer

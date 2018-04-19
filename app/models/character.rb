@@ -46,12 +46,20 @@ class Character < ApplicationRecord
     end
   end
 
+  def has_envelope_header?
+    headers.include?(Header.military_officer)
+  end
+
   def has_envelope_skills?
     skills.any? { |skill| Skill.envelope.include?(skill) }
   end
 
   def latest_backstory
     backstories.ordered_old_to_new.last
+  end
+
+  def needs_envelope?
+    has_envelope_skills? || has_envelope_header?
   end
 
   def spend!(cost)
