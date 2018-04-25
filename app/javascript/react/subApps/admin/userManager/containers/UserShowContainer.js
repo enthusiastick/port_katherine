@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import CharactersTable from '../components/characters/CharactersTable'
+import TalliesTable from '../../../../sharedResources/components/tallies/TalliesTable'
 
 class UserShowContainer extends Component {
   constructor(props) {
@@ -31,18 +32,20 @@ class UserShowContainer extends Component {
       name,
       selfReport,
       signInCount,
-      since
+      since,
+      tallies
     } = this.props.user
 
     const breadcrumbs= [{ to: '/admin/users', label: 'Users' }]
 
     const showCharactersTable = (characters && characters.length > 0)
+    const showTalliesTable = (tallies && tallies.length > 0)
 
     if (selfReport) {
       selfReportElement = (
-        <div className='callout'>
-          <h5><i className='fa fa-medkit' /> Medical Self Report</h5>
-          <div className='top-padded'>
+        <div>
+          <h3><i className='fa fa-medkit' /> Medical Self Report</h3>
+          <div className='callout'>
             {selfReport}
           </div>
         </div>
@@ -64,10 +67,21 @@ class UserShowContainer extends Component {
                 <strong>Sign In Count:</strong> {signInCount}<br />
                 <strong>Player CP Available:</strong> {available}
               </p>
-              {showCharactersTable && <CharactersTable characters={characters} />}
-              {selfReportElement}
             </div>
           </div>
+          {showCharactersTable &&
+            <div>
+              <h3>Characters</h3>
+              <CharactersTable characters={characters} />
+            </div>
+          }
+          {selfReportElement}
+          {showTalliesTable &&
+            <div>
+              <h3>Recent User Activity</h3>
+              <TalliesTable tallies={tallies} />
+            </div>
+          }
         </div>
       </div>
     )

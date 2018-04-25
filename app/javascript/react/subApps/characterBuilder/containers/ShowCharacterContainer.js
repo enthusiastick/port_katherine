@@ -5,7 +5,7 @@ import authenticateUser from '../../../sharedResources/constants/authenticateUse
 import BreadcrumbsNav from '../../../sharedResources/components/BreadcrumbsNav'
 import { default as CharacterBasics } from '../components/character/Basics'
 import { default as HeaderSummary } from '../components/header/Summary'
-import TalliesTable from '../components/tallies/TalliesTable'
+import TalliesTable from '../../../sharedResources/components/tallies/TalliesTable'
 
 class ShowCharacterContainer extends Component {
   constructor(props) {
@@ -38,7 +38,6 @@ class ShowCharacterContainer extends Component {
     if (open) {
       openElements = (<HeaderSummary name='Open' skills={open} />)
     }
-
 
     return(
       <div className='row'>

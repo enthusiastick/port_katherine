@@ -22,6 +22,8 @@ class User < ApplicationRecord
   has_many :lodging_preferences
   has_many :receipts
   has_many :passes, through: :receipts
+  has_many :tallies
+  has_many :tallies_received, class_name: :Tally, foreign_key: :recipient_id
 
   has_secure_password
 

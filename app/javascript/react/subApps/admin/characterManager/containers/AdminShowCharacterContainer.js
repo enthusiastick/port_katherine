@@ -5,7 +5,7 @@ import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import { default as CharacterBasics } from '../../../characterBuilder/components/character/Basics'
 import { default as HeaderSummary } from '../../../characterBuilder/components/header/Summary'
-import TalliesTable from '../../../characterBuilder/components/tallies/TalliesTable'
+import TalliesTable from '../../../../sharedResources/components/tallies/TalliesTable'
 
 class AdminShowCharacterContainer extends Component {
   constructor(props) {

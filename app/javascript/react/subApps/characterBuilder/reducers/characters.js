@@ -56,7 +56,8 @@ let initialState = {
   tallies: {
     items: [],
     name: null
-  }
+  },
+  userTallies: []
 }
 
 const characters = (state = initialState, action) => {
@@ -77,6 +78,7 @@ const characters = (state = initialState, action) => {
         isFetching: false,
         defaultCharacterId: action.payload.meta.defaultCharacterId,
         playerCpAvailable: action.payload.meta.playerCpAvailable,
+        userTallies: action.payload.meta.userTallies,
         index: action.payload.characters
       })
     case FETCH_CHARACTERS_FAILURE:

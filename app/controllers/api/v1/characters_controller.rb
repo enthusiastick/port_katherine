@@ -66,7 +66,8 @@ class Api::V1::CharactersController < Api::ApiController
   def meta
     @meta ||= {
       default_character_id: default_character_id,
-      player_cp_available: current_user.available
+      player_cp_available: current_user.available,
+      user_tallies: user_tallies
     }
   end
 
@@ -76,5 +77,12 @@ class Api::V1::CharactersController < Api::ApiController
 
   def update_character_params
     params.require(:character).permit(:id, character_skills: [:character_skill_id, :skill_id, :ranks], new_headers: [], new_skills: [:skill_id, :ranks], points: {})
+  end
+
+  def user_tallies
+    ActiveModel::SerializableResource.new(
+      current_user.tallies_received.order(created_at: :desc).limit(10),
+      each_serializer: TallySerializer
+    ).serializable_hash[:tallies]
   end
 end

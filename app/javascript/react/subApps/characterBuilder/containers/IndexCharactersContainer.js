@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import authenticateUser from '../../../sharedResources/constants/authenticateUser'
 import List from '../components/character/List'
+import TalliesTable from '../../../sharedResources/components/tallies/TalliesTable'
 import VersionLabel from '../components/VersionLabel'
 
 class IndexCharactersContainer extends Component {
@@ -20,6 +21,8 @@ class IndexCharactersContainer extends Component {
   }
 
   render() {
+    const showUserTallies = (this.props.userTallies && this.props.userTallies.length > 0)
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
@@ -31,6 +34,7 @@ class IndexCharactersContainer extends Component {
             playerCpAvailable={this.props.playerCpAvailable}
             updateDefaultCharacter={this.props.updateDefaultCharacter}
           />
+          {showUserTallies && <div><h2>Recent User Activity</h2><TalliesTable tallies={this.props.userTallies} /></div>}
         </div>
       </div>
     )
