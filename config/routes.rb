@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :events, only: [:edit, :index, :new, :show] do
       resources :envelopes, only: [:index]
       resources :reports, only: [:index]
+      resources :self_reports, only: [:index]
     end
     resources :users, only: [:index, :show]
   end

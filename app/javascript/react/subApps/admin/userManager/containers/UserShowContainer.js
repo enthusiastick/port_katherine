@@ -20,19 +20,34 @@ class UserShowContainer extends Component {
   }
 
   render() {
-    let {
+    let selfReportElement
+
+    const {
       available,
       characters,
       email,
       handle,
       lastSignIn,
       name,
+      selfReport,
       signInCount,
       since
     } = this.props.user
 
-    let breadcrumbs= [{ to: '/admin/users', label: 'Users' }]
+    const breadcrumbs= [{ to: '/admin/users', label: 'Users' }]
 
+    const showCharactersTable = (characters && characters.length > 0)
+
+    if (selfReport) {
+      selfReportElement = (
+        <div className='callout'>
+          <h5><i className='fa fa-medkit' /> Medical Self Report</h5>
+          <div className='top-padded'>
+            {selfReport}
+          </div>
+        </div>
+      )
+    }
     return(
       <div className='row'>
         <div className='small-12 columns'>
@@ -49,7 +64,8 @@ class UserShowContainer extends Component {
                 <strong>Sign In Count:</strong> {signInCount}<br />
                 <strong>Player CP Available:</strong> {available}
               </p>
-              <CharactersTable characters={characters} />
+              {showCharactersTable && <CharactersTable characters={characters} />}
+              {selfReportElement}
             </div>
           </div>
         </div>

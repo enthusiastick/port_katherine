@@ -11,6 +11,7 @@ import AdminShowCharacter    from './characterManager/connectors/AdminShowCharac
 import AdminEventEdit from './eventManager/connectors/AdminEventEdit'
 import AdminEventEnvelopesIndex from './eventManager/connectors/AdminEventEnvelopesIndex'
 import AdminEventReportsIndex from './eventManager/connectors/AdminEventReportsIndex'
+import AdminEventSelfReportsIndex from './eventManager/connectors/AdminEventSelfReportsIndex'
 import AdminEventShow from './eventManager/connectors/AdminEventShow'
 import AdminEventsIndex from './eventManager/connectors/AdminEventsIndex'
 import AdminEventsNew from './eventManager/connectors/AdminEventsNew'
@@ -37,6 +38,7 @@ const Admin = props => {
         <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
         <Route exact path='/admin/events/:eventSlug/envelopes' component={AdminEventEnvelopesIndex} />
         <Route exact path='/admin/events/:eventSlug/reports' component={AdminEventReportsIndex} />
+        <Route exact path='/admin/events/:eventSlug/self_reports' component={AdminEventSelfReportsIndex} />
       </Switch>
 
       <Switch>
