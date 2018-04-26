@@ -20,13 +20,20 @@ import {
   DELETE_REGISTRATION_REQUEST_SUCCESS
 } from '../actions/deleteRegistration'
 
+import {
+  UPDATE_BOOKING_CHARACTER,
+  UPDATE_BOOKING_CHARACTER_SUCCESS,
+  UPDATE_BOOKING_CHARACTER_FAILURE
+} from '../actions/updateBookingCharacter'
+
 let initialState = {
+  hasUpdatedCharacter: false,
   isFetching: false,
   items: []
 }
 
 const events = (state = initialState, action) => {
-  let newEvents, firstPatchedEventIndex, patchedEventIndex
+  let updatedEvents
 
   switch (action.type) {
     case FETCH_EVENTS:
@@ -50,19 +57,51 @@ const events = (state = initialState, action) => {
     case FETCH_DESTROY_SESSION_SUCCESS:
       return initialState
     case CREATE_REGISTRATION_SUCCESS:
-      newEvents = state.items
-      firstPatchedEventIndex = newEvents.findIndex(event => {
-        if (event.id === newEvents[0].id) { return event }
+      updatedEvents = state.items.map(event => {
+        for (const newEvent of action.events) {
+          if (event.slug === newEvent.slug) {
+            return {...event, ...newEvent }
+          }
+          return event
+        }
       })
-      newEvents.splice(firstPatchedEventIndex, newEvents.length, newEvents)
-      return Object.assign({}, state, { items: newEvents })
+      return {
+        ...state,
+        items: updatedEvents
+      }
     case DELETE_REGISTRATION_REQUEST_SUCCESS:
-      newEvents = state.items
-      patchedEventIndex = newEvents.findIndex(event => {
-        if (event.id === action.event.id) { return event }
+      updatedEvents = state.items.map(event => {
+        if (event.slug === action.event.slug) {
+          return { ...event, ...action.event }
+        }
+        return event
       })
-      newEvents.splice(patchedEventIndex, 1, action.event)
-      return Object.assign({}, state, { items: newEvents })
+      return {
+        ...state,
+        items: updatedEvents
+      }
+    case UPDATE_BOOKING_CHARACTER:
+      return {
+        ...state,
+        hasUpdatedCharacter: false
+      }
+    case UPDATE_BOOKING_CHARACTER_SUCCESS:
+      updatedEvents = state.items.map(event => {
+        if (event.slug === action.event.slug) {
+          return { ...event, ...action.event }
+        }
+        return event
+      })
+      return {
+        ...state,
+        hasUpdatedCharacter: true,
+        items: updatedEvents
+      }
+    case UPDATE_BOOKING_CHARACTER_FAILURE:
+      return {
+        ...state,
+        hasUpdatedCharacter: false
+      }
     default:
       return state
   }

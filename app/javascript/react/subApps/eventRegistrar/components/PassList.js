@@ -1,18 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import EventCharacterSelect from '../components/formFields/EventCharacterSelect'
 import LodgingQuestionnaireLink from './LodgingQuestionnaireLink'
 
-const PassList = props => {
-  let handleClick = event => {
+const PassList = ({
+  deleteRegistration,
+  event,
+  eventIsCapped,
+  match,
+  passes,
+  showLodgingQuestionnaire,
+  userBooking
+}) => {
+  const handleClick = e => {
     if (confirm('Cancel your registration: are you sure?')) {
-      props.deleteRegistration(props.userBooking.id)
+      deleteRegistration(userBooking.id)
     }
   }
 
-  let cancellationButton, lodgingQuestionnaireLink, passLinks, registrationOptions
+  let cancellationButton, eventCharacterSelect, lodgingQuestionnaireLink,
+    passLinks, registrationOptions
 
-  if (props.userBooking && !props.userBooking.paid) {
+  if (userBooking && !userBooking.paid) {
     cancellationButton =
       <div className='text-center'>
         <a className='button bottomless' onClick={handleClick}>
@@ -22,12 +32,17 @@ const PassList = props => {
       </div>
   }
 
-  if (props.passes) {
-    passLinks = props.passes.map(pass => {
+  if (userBooking && userBooking.paid) {
+    eventCharacterSelect =
+      <EventCharacterSelect match={match} />
+  }
+
+  if (passes) {
+    passLinks = passes.map(pass => {
       return(
         <Link
           className='button' key={pass.slug}
-          to={`/events/${props.event}/register?pass=${pass.slug}`}
+          to={`/events/${event}/register?pass=${pass.slug}`}
         >
           <span className='float-left'>{pass.name}</span>
           <strong className='float-right'>{pass.price}</strong>
@@ -36,12 +51,12 @@ const PassList = props => {
     })
     registrationOptions =
       <div>
-        <h5 className='text-center'><Link to={`/events/${props.event}/register`}>Register for This Event</Link></h5>
+        <h5 className='text-center'><Link to={`/events/${event}/register`}>Register for This Event</Link></h5>
         <div className='button-group stacked'>
           {passLinks}
           <Link
             className='button'
-            to={`/events/${props.event}/volunteer`}
+            to={`/events/${event}/volunteer`}
           >
             <span className='float-left'>Volunteer as Staff</span>
             <strong className='float-right'>Free</strong>
@@ -50,7 +65,7 @@ const PassList = props => {
       </div>
   }
 
-  if (props.eventIsCapped) {
+  if (eventIsCapped) {
     registrationOptions =
       <div>
         <p className='bottomless text-center'>
@@ -69,7 +84,7 @@ const PassList = props => {
         <div className='button-group stacked'>
           <Link
             className='button'
-            to={`/events/${props.event}/volunteer`}
+            to={`/events/${event}/volunteer`}
           >
             Volunteer as Staff
           </Link>
@@ -77,13 +92,13 @@ const PassList = props => {
       </div>
   }
 
-  if (props.userBooking) {
-    const showLodgingQuestionnaire = (props.showLodgingQuestionnaire && props.userBooking.category === 'player' && !props.userBooking.lodgingQuestionnaireCompletedAt)
+  if (userBooking) {
+    const showLodgingQuestionnaire = (showLodgingQuestionnaire && userBooking.category === 'player' && !userBooking.lodgingQuestionnaireCompletedAt)
 
     if (showLodgingQuestionnaire) {
       lodgingQuestionnaireLink =
         <div className='text-center'>
-          <LodgingQuestionnaireLink eventSlug={props.event} />
+          <LodgingQuestionnaireLink eventSlug={event} />
         </div>
     }
 
@@ -102,6 +117,7 @@ const PassList = props => {
       {registrationOptions}
       {lodgingQuestionnaireLink}
       {cancellationButton}
+      {eventCharacterSelect}
     </div>
   )
 }

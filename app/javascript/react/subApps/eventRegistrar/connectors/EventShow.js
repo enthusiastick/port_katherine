@@ -9,13 +9,14 @@ import { eventBySlug } from '../selectors/events'
 const mapStateToProps = (state, ownProps) => {
   return {
     event: eventBySlug(state, ownProps),
-    eventSlug: ownProps.match.params.eventSlug
+    eventSlug: ownProps.match.params.eventSlug,
+    match: ownProps.match
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteRegistration: (bookingId) => { dispatch(deleteRegistration(bookingId)) },
+    deleteRegistration: bookingId => { dispatch(deleteRegistration(bookingId)) },
     getEvents: () => { dispatch(getEvents()) }
   }
 }

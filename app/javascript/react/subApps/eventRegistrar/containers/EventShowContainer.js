@@ -29,7 +29,11 @@ class EventShowContainer extends Component {
     }
 
     return(
-      <Event {...this.props.event} deleteRegistration={this.props.deleteRegistration} />
+      <Event
+        deleteRegistration={this.props.deleteRegistration}
+        match={this.props.match}
+        {...this.props.event}
+      />
     )
   }
 }

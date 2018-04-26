@@ -61,6 +61,7 @@ Rails.application.routes.draw do
       resources :default_characters, only: [:update]
       resources :headers, only: [:index]
       resources :events, only: [:index] do
+        resources :booking_characters, only: [:update]
         collection do
           resources :next, only: :index
         end

@@ -28,6 +28,7 @@ const Event = props => {
               eventIsCapped={props['capped?']}
               deleteRegistration={props.deleteRegistration}
               event={props.slug}
+              match={props.match}
               passes={props.passes}
               userBooking={props.userBooking}
               showLodgingQuestionnaire={props.showLodgingQuestionnaire}
