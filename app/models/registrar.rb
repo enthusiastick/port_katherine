@@ -83,6 +83,7 @@ class Registrar
         receipt: @receipt,
         user: @user
       )
+      booking.character = @user.default_character if @user.default_character.present?
       @bookings << booking
     end
     Booking.transaction do
