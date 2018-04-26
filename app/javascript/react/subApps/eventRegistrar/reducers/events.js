@@ -33,7 +33,7 @@ let initialState = {
 }
 
 const events = (state = initialState, action) => {
-  let updatedEvents
+  let updatedEvents, updatedEventSlugs
 
   switch (action.type) {
     case FETCH_EVENTS:
@@ -57,13 +57,17 @@ const events = (state = initialState, action) => {
     case FETCH_DESTROY_SESSION_SUCCESS:
       return initialState
     case CREATE_REGISTRATION_SUCCESS:
+      updatedEventSlugs = action.events.map(event => {
+        return event.slug
+      })
       updatedEvents = state.items.map(event => {
-        for (const newEvent of action.events) {
-          if (event.slug === newEvent.slug) {
-            return {...event, ...newEvent }
-          }
-          return event
+        if (updatedEventSlugs.includes(event.slug)) {
+          const foundEvent = action.events.find(newEvent => {
+            return (event.slug === newEvent.slug)
+          })
+          return { ...event, ...foundEvent}
         }
+        return event
       })
       return {
         ...state,
