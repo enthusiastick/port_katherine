@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     eventEnvelopes: state.adminEvents.envelopes,
     eventSlug: ownProps.match.params.eventSlug,
+    isFetchingEnvelopes: state.adminEvents.isFetchingEnvelopes,
     isPlotStaff: isPlotStaff(state)
   }
 }

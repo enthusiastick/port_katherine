@@ -29,6 +29,12 @@ class EventEnvelopesIndexContainer extends Component {
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Envelopes' />
           <h1 className='text-center top-padded'>{eventEnvelopes.name} Envelopes</h1>
           <EnvelopesTable characters={eventEnvelopes.characters} />
+          {
+            this.props.isFetchingEnvelopes &&
+            <div className='text-center'>
+              <i className='fa fa-spinner fa-pulse fa-3x fa-fw' />
+            </div>
+          }
         </div>
       </div>
     )

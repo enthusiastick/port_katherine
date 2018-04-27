@@ -14,6 +14,12 @@ import { CREATE_ADMIN_EVENT_SUCCESS } from '../actions/createAdminEvent'
 import { DELETE_ADMIN_EVENT_REQUEST_SUCCESS } from '../actions/deleteAdminEvent'
 import { UPDATE_ADMIN_EVENT_SUCCESS } from '../actions/updateAdminEvent'
 
+import {
+  CREATE_CHECK_IN,
+  CREATE_CHECK_IN_SUCCESS,
+  CREATE_CHECK_IN_FAILURE
+} from '../actions/createCheckIn'
+
 let initialState = {
   envelopes: { characters: [] },
   isFetching: false,
@@ -22,7 +28,7 @@ let initialState = {
 }
 
 const adminEvents = (state = initialState, action) => {
-  let newAdminEvents, patchedEventIndex, removedAdminEvents
+  let newAdminEvents, patchedEventIndex, removedAdminEvents, updatedAdminEvents
 
   switch (action.type) {
     case FETCH_ADMIN_EVENTS:
@@ -55,6 +61,22 @@ const adminEvents = (state = initialState, action) => {
       })
       newAdminEvents.splice(patchedEventIndex, 1, action.event)
       return Object.assign({}, state, { items: newAdminEvents })
+    case CREATE_CHECK_IN:
+      return { ...state, isFetching: true }
+    case CREATE_CHECK_IN_SUCCESS:
+      updatedAdminEvents = state.items.map(event => {
+        if (event.slug === action.event.slug) {
+          return { ...event, ...action.event }
+        }
+        return event
+      })
+      return {
+        ...state,
+        isFetching: false,
+        items: updatedAdminEvents
+      }
+    case CREATE_CHECK_IN_FAILURE:
+      return { ...state, isFetching: true }
     default:
       return state
   }

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :backstories, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
+      get "check-in", to: "check_ins#index", as: :check_ins
       resources :envelopes, only: [:index]
       resources :reports, only: [:index]
       resources :self_reports, only: [:index]
@@ -42,6 +43,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :admin do
+        resources :bookings, only: [] do
+          resources :check_ins, only: [:create]
+        end
         resources :character_points, only: [:create]
         resources :characters, only: [:index] do
           resources :backstories, only: [:index]
