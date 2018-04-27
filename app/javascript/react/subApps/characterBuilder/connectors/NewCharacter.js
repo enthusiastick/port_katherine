@@ -10,23 +10,20 @@ import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const mapStateToProps = state => {
-  if (Object.keys(state.headers.item).length === 0) {
-    return {
-      headers: state.headers.item
-    }
-  } else {
-    let initialValues = {
+  const mappedState = {
+    headers: state.headers.item,
+    isSignedIn: isSignedIn(state)
+  }
+
+  if (Object.keys(state.headers.item).length != 0) {
+    mappedState.initialValues = {
       birthplace: 'chepstone',
       firstProfessionId: state.headers.item.profession[0]['id'],
       firstTrueHeaderId: state.headers.item.stock[0]['id']
     }
-
-    return {
-      headers: state.headers.item,
-      initialValues: initialValues,
-      isSignedIn: isSignedIn(state)
-    }
   }
+
+  return mappedState
 }
 
 const mapDispatchToProps = dispatch => {
