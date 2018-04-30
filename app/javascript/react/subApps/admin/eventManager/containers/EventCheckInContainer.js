@@ -4,6 +4,7 @@ import { authorizeUserRole } from '../../constants/restrictAccess'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import CheckInList from '../components/CheckInList'
+import { default as CheckInProgress } from '../components/checkIn/Progress'
 
 class AdminEventCheckInContainer extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class AdminEventCheckInContainer extends Component {
   }
 
   render() {
-    const { createCheckIn, event, eventSlug } = this.props
+    const { createCheckIn, event, eventSlug, isFetching } = this.props
 
     const breadcrumbs = [
       { to: '/admin/events', label: 'Events' },
@@ -33,9 +34,10 @@ class AdminEventCheckInContainer extends Component {
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Check-In' />
           <h1 className='text-center top-padded'>{event.name} Check-In</h1>
+          <CheckInProgress bookings={event.bookings} isFetching={isFetching} />
           <CheckInList bookings={event.bookings} characters={event.charactersByUserHandle} createCheckIn={createCheckIn} />
           {
-            this.props.isFetching &&
+            isFetching &&
             <div className='text-center'>
               <i className='fa fa-spinner fa-pulse fa-3x fa-fw' />
             </div>

@@ -1,7 +1,7 @@
 class Admin::EventSerializer < ActiveModel::Serializer
   attributes :id, :name, :slug, :start_time, :end_time, :dates, :address,
     :description, :latitude, :longitude, :bookings, :characters_by_user_handle,
-    :show_lodging_questionnaire
+    :show_check_in, :show_lodging_questionnaire
 
   def bookings
     {

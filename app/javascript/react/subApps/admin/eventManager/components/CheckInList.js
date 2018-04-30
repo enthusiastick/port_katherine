@@ -43,7 +43,6 @@ const CheckInList = ({bookings, characters, createCheckIn}) => {
 
   return(
     <div>
-      <h2>Players</h2>
       {checkInRows}
     </div>
   )

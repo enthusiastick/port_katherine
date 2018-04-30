@@ -57,12 +57,24 @@ class Event < ApplicationRecord
     end
   end
 
+  def players
+    @players ||= bookings.player.map(&:user)
+  end
+
+  def player_characters
+    @player_characters ||= bookings.player.map(&:character).reject!(&:blank?)
+  end
+
   def player_count
-    @player_count ||= bookings.where(category: :player).count
+    @player_count ||= bookings.player.count
   end
 
   def regenerate_slug
     self.slug = name.parameterize
+  end
+
+  def show_check_in
+    Time.now.between?(start_time.at_beginning_of_day - 1.day, end_time.at_end_of_day)
   end
 
   def to_param
