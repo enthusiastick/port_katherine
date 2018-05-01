@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_13_153516) do
+ActiveRecord::Schema.define(version: 2018_05_01_022817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_04_13_153516) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.decimal "available", precision: 6, scale: 2, default: "33.0"
+    t.decimal "available", precision: 6, scale: 2, default: "34.0"
     t.integer "birthplace", null: false
     t.integer "cycle_spending_cap", default: 20, null: false
     t.integer "first_profession_id", null: false
