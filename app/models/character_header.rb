@@ -43,4 +43,16 @@ class CharacterHeader < ApplicationRecord
     header_name.prepend("True ") if true_header?
     header_name
   end
+
+  def skills_hash
+    @skills_hash = {}
+    @skills_hash[header_name] = skills_with_ranks_and_max_rank
+    @skills_hash
+  end
+
+  private
+
+  def skills_with_ranks_and_max_rank
+    (character.skills & header.skills).map { |skill| { skill.name => [character.skill_ranks(skill), skill.max_rank] } }
+  end
 end

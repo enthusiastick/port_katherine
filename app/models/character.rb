@@ -54,12 +54,25 @@ class Character < ApplicationRecord
     skills.any? { |skill| Skill.envelope.include?(skill) }
   end
 
+  def headers_hash
+    character_headers.alpha_by_header_name.map { |character_header| character_header.skills_hash }
+  end
+
   def latest_backstory
     backstories.ordered_old_to_new.last
   end
 
   def needs_envelope?
     has_envelope_skills? || has_envelope_header?
+  end
+
+  def open_skills
+    character_skills.select { |character_skill| Header.open.skills.include?(character_skill.skill) }
+    .map { |character_skill| {character_skill.skill.name => [skill_ranks(character_skill.skill), character_skill.skill.max_rank] } }
+  end
+
+  def skill_ranks(skill)
+    character_skills.find_by(skill: skill).ranks
   end
 
   def spend!(cost)

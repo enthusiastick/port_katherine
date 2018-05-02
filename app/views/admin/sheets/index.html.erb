@@ -1,0 +1,117 @@
+<% @characters.each do |character| %>
+  <div class="page">
+    <div class="text-center">
+      <p class="title"><strong><%= character.name %></strong></p>
+      <p><%= character.user.label %></p>
+    </div>
+    <hr />
+    <div>
+      <p class="leftpad"><strong>Open</strong></p>
+      <ul>
+        <% character.open_skills.each do |skills_array| %>
+          <% skills_array.each do |skill_name, ranks_array| %>
+            <li>
+              <%= skill_name %>
+              <% if ranks_array.second == 1 %>
+                <% if ranks_array.first == 1 %>
+                  &check;
+                <% end %>
+              <% else %>
+                <%= ranks_array.first %>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <hr />
+    <% character.headers_hash.in_groups_of(3).each do |header_group| %>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <% if header_group[0].present? %>
+                <%= header_group[0].keys.first %>
+              <% end %>
+            </th>
+            <th>
+              <% if header_group[1].present? %>
+                <%= header_group[1].keys.first %>
+              <% end %>
+            </th>
+            <th>
+              <% if header_group[2].present? %>
+                <%= header_group[2].keys.first %>
+              <% end %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <% if header_group[0].present? %>
+                <ul>
+                  <% header_group[0].values.first.each do |skills_array| %>
+                    <% skills_array.each do |skill_name, ranks_array| %>
+                      <li>
+                        <%= skill_name %>
+                        <% if ranks_array.second == 1 %>
+                          <% if ranks_array.first == 1 %>
+                            &check;
+                          <% end %>
+                        <% else %>
+                          <%= ranks_array.first %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </td>
+            <td>
+              <% if header_group[1].present? %>
+                <ul>
+                  <% header_group[1].values.first.each do |skills_array| %>
+                    <% skills_array.each do |skill_name, ranks_array| %>
+                      <li>
+                        <%= skill_name %>
+                        <% if ranks_array.second == 1 %>
+                          <% if ranks_array.first == 1 %>
+                            &check;
+                          <% end %>
+                        <% else %>
+                          <%= ranks_array.first %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </td>
+            <td>
+              <% if header_group[2].present? %>
+                <ul>
+                  <% header_group[2].values.first.each do |skills_array| %>
+                    <% skills_array.each do |skill_name, ranks_array| %>
+                      <li>
+                        <%= skill_name %>
+                        <% if ranks_array.second == 1 %>
+                          <% if ranks_array.first == 1 %>
+                            &check;
+                          <% end %>
+                        <% else %>
+                          <%= ranks_array.first %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+    <% end %>
+  </div>
+<% end %>

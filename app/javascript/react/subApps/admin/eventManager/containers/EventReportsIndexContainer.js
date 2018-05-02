@@ -34,6 +34,9 @@ class EventReportsIndexContainer extends Component {
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Reports' />
           <h1 className='text-center top-padded'>{event.name} Reports</h1>
           <div className='button-group'>
+            <a className='button' href={`/admin/events/${this.props.event.slug}/sheets`} target='_blank'>
+              <i className='fa fa-print' /> Character Sheets
+            </a>
             <Link className='button' to={`/admin/events/${this.props.event.slug}/envelopes`}>
               <i className='fa fa-envelope-open' /> Envelope Stuffing
             </Link>

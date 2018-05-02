@@ -1,0 +1,33 @@
+.leftpad {
+  padding-left: 1em;
+}
+
+.page {
+  page-break-after: always;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.title {
+  font-size: large;
+  text-decoration: underline;
+}
+
+p, ul {
+  margin: 0;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  vertical-align: top;
+}
+
+th {
+  text-align: left;
+  padding-left: 1em;
+}

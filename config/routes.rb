@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :envelopes, only: [:index]
       resources :reports, only: [:index]
       resources :self_reports, only: [:index]
+      resources :sheets, only: [:index]
     end
     resources :users, only: [:index, :show]
   end

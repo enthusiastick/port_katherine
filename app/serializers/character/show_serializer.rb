@@ -3,7 +3,7 @@ include ActionView::Helpers::NumberHelper
 class Character::ShowSerializer < ActiveModel::Serializer
   attributes :id, :available, :backstories_count, :birthplace,
     :cycle_spending_cap, :headers, :name, :open, :player_available, :spent,
-    :spent_cycle, :user_handle
+    :spent_cycle, :user_handle, :user_label
 
   has_many :tallies do
     Tally.where(character: object).or(Tally.where(recipient: object.user)).order(created_at: :desc).limit(10)
@@ -48,5 +48,9 @@ class Character::ShowSerializer < ActiveModel::Serializer
 
   def user_handle
     object.user.handle
+  end
+
+  def user_label
+    object.user.label
   end
 end
