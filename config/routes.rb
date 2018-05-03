@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :award_character_points, only: [:index]
     resources :characters, only: [:index, :show] do
       resources :backstories, only: [:index]
+      resources :sheets, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
       get "check-in", to: "check_ins#index", as: :check_ins

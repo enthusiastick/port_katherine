@@ -55,10 +55,17 @@ class AdminShowCharacterContainer extends Component {
               <CharacterBasics {...this.props.character} />
             </div>
             <div className='small-12 medium-3 columns'>
-              <div className='button-group expanded'>
+              <div className='button-group stacked'>
                 {this.props.character.backstoriesCount > 0 && <Link className='button' to={`/admin/characters/${this.props.character.id}/backstories`}>
                   <i className='fa fa-book' /> Backstory
                 </Link>}
+                <a
+                  className='button'
+                  href={`/admin/characters/${this.props.character.id}/sheets`}
+                  target='_blank'
+                >
+                  <i className='fa fa-print' /> Character Sheet
+                </a>
               </div>
             </div>
           </div>
