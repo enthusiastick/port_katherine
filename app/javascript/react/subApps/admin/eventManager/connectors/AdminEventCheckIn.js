@@ -4,6 +4,7 @@ import { push } from 'react-router-redux'
 import EventCheckInContainer from '../containers/EventCheckInContainer'
 import { adminEventBySlug } from '../selectors/adminEvents'
 import { createCheckIn } from '../actions/createCheckIn'
+import { deleteCheckIn } from '../actions/deleteCheckIn'
 import { getAdminEvents } from '../actions/getAdminEvents'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
@@ -20,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     createCheckIn: values => { dispatch(createCheckIn(values)) },
+    deleteCheckIn: values => { dispatch(deleteCheckIn(values)) },
     flashNotice: notice => { dispatch(flashNotice(notice)) },
     getAdminEvents: () => { dispatch(getAdminEvents()) },
     push: path => { dispatch(push(path)) }

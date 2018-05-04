@@ -12,6 +12,15 @@ class Api::V1::Admin::CheckInsController < Api::ApiController
     end
   end
 
+  def destroy
+    booking = Booking.find(params[:booking_id])
+    if booking.update(checked_in_at: nil)
+      render json: booking.event, serializer: Admin::EventSerializer, status: :accepted
+    else
+      render_object_errors(booking)
+    end
+  end
+
   private
 
   def character_params

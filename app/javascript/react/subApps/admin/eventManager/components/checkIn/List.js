@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik } from 'formik'
 import humps from 'humps'
 
-import CheckIn from './CheckIn'
+import Item from './Item'
 
 const CheckInList = ({bookings, characters, createCheckIn}) => {
   const handleSubmit = values => {
@@ -30,7 +30,7 @@ const CheckInList = ({bookings, characters, createCheckIn}) => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
         render={formikProps => (
-          <CheckIn
+          <Item
             playerCharacters={playerCharacters}
             user={booking.user}
             userHandle={booking.userHandle}

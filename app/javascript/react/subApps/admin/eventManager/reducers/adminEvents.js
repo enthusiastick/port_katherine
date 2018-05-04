@@ -20,6 +20,12 @@ import {
   CREATE_CHECK_IN_FAILURE
 } from '../actions/createCheckIn'
 
+import {
+  DESTROY_CHECK_IN,
+  DESTROY_CHECK_IN_SUCCESS,
+  DESTROY_CHECK_IN_FAILURE
+} from '../actions/deleteCheckIn'
+
 let initialState = {
   envelopes: { characters: [] },
   isFetching: false,
@@ -76,6 +82,22 @@ const adminEvents = (state = initialState, action) => {
         items: updatedAdminEvents
       }
     case CREATE_CHECK_IN_FAILURE:
+      return { ...state, isFetching: true }
+    case DESTROY_CHECK_IN:
+      return { ...state, isFetching: true }
+    case DESTROY_CHECK_IN_SUCCESS:
+      updatedAdminEvents = state.items.map(event => {
+        if (event.slug === action.event.slug) {
+          return { ...event, ...action.event }
+        }
+        return event
+      })
+      return {
+        ...state,
+        isFetching: false,
+        items: updatedAdminEvents
+      }
+    case DESTROY_CHECK_IN_FAILURE:
       return { ...state, isFetching: true }
     default:
       return state

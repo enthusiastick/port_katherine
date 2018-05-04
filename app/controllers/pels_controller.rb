@@ -1,0 +1,2 @@
+class PelsController < ApplicationController
+end

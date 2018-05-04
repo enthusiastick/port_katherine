@@ -2,7 +2,7 @@ import React from 'react'
 import humps from 'humps'
 import { Link } from 'react-router-dom'
 
-import CheckInCharacterSelect from './formFields/CheckInCharacterSelect'
+import CheckInCharacterSelect from '../formFields/CheckInCharacterSelect'
 
 const CheckIn = ({
   handleSubmit,

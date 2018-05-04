@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admin do
         resources :bookings, only: [] do
-          resources :check_ins, only: [:create]
+          resources :check_ins, only: [:create, :destroy]
         end
         resources :character_points, only: [:create]
         resources :characters, only: [:index] do

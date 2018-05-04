@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 import { authorizeUserRole } from '../../constants/restrictAccess'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
-import CheckInList from '../components/CheckInList'
+import {default as CheckInList} from '../components/checkIn/List'
 import { default as CheckInProgress } from '../components/checkIn/Progress'
+import { default as CompletedList } from '../components/checkIn/Completed'
 
 class AdminEventCheckInContainer extends Component {
   constructor(props) {
     super(props)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
 
   componentWillMount() {
@@ -21,8 +23,13 @@ class AdminEventCheckInContainer extends Component {
     authorizeUserRole(nextProps.isPlotStaff, this.props.push, this.props.flashNotice)
   }
 
+  handleDeleteClick(bookingId) {
+    const values = { bookingId: bookingId, id: this.props.eventSlug }
+    this.props.deleteCheckIn(values)
+  }
+
   render() {
-    const { createCheckIn, event, eventSlug, isFetching } = this.props
+    const { createCheckIn, deleteCheckIn, event, eventSlug, isFetching } = this.props
 
     const breadcrumbs = [
       { to: '/admin/events', label: 'Events' },
@@ -42,6 +49,11 @@ class AdminEventCheckInContainer extends Component {
               <i className='fa fa-spinner fa-pulse fa-3x fa-fw' />
             </div>
           }
+          <CompletedList
+            bookings={event.bookings}
+            deleteCheckIn={deleteCheckIn}
+            handleDeleteClick={this.handleDeleteClick}
+          />
         </div>
       </div>
     )
