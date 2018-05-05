@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     get "lodging-questionnaire", to: "lodgings#new"
   end
   resources :password_resets, only: [:edit, :new]
+  resources :pels, only: [:new]
 
   # API routes
   namespace :api do
@@ -58,6 +59,7 @@ Rails.application.routes.draw do
         resources :users, only: [:index, :show]
       end
       resources :account_confirmations, only: [:create]
+      resources :between_games, only: [:index]
       resources :backstories, only: [:create]
       resources :bookings, only: [:create, :destroy]
       resources :characters, only: [:create, :destroy, :edit, :index, :show, :update] do

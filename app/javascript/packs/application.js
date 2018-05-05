@@ -15,6 +15,7 @@ import thunkMiddleware from 'redux-thunk'
 import License  from '../react/sharedResources/components/License'
 
 import Admin             from '../react/subApps/admin'
+import BetweenGames     from '../react/subApps/betweenGames'
 import CharacterBuilder  from '../react/subApps/characterBuilder'
 import HomePage          from '../react/subApps/homepage'
 import EventRegistrar    from '../react/subApps/eventRegistrar'
@@ -25,6 +26,7 @@ import UserAuthenticator from '../react/subApps/userAuthenticator'
 import adminCharacters from '../react/subApps/admin/characterManager/reducers/adminCharacters'
 import adminEvents     from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import adminUsers      from '../react/subApps/admin/userManager/reducers/adminUsers'
+import betweenGames    from '../react/subApps/betweenGames/reducers/betweenGames'
 import characters      from '../react/subApps/characterBuilder/reducers/characters'
 import currentUser     from '../react/sharedResources/reducers/currentUser'
 import delta           from '../react/subApps/characterBuilder/reducers/delta'
@@ -43,6 +45,7 @@ const store = createStore(
     adminCharacters,
     adminEvents,
     adminUsers,
+    betweenGames,
     characters,
     currentUser,
     delta,
@@ -69,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <Route exact path='/' component={HomePage} />
 
             <Admin />
+            <BetweenGames />
             <CharacterBuilder />
             <EventRegistrar />
             <StaticPages />

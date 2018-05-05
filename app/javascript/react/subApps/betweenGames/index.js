@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router'
 
 import FeedbackNew from './connectors/FeedbackNew'
 
-const BetweenEvents = props => {
+const BetweenGames = props => {
   return(
     <Switch>
       <Route exact path='/pels/new' component={FeedbackNew} />
@@ -11,4 +11,4 @@ const BetweenEvents = props => {
   )
 }
 
-export default BetweenEvents
+export default BetweenGames
