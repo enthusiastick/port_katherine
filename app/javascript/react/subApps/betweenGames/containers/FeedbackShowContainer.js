@@ -12,6 +12,10 @@ class FeedbackShowContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.authenticateSignedInUser(nextProps.isSignedIn)
+  }
+
   render() {
     let markdownParsedDescription, renderedHTML, pel
     const { feedback, label } = this.props.booking

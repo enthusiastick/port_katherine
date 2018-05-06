@@ -14,6 +14,10 @@ class BetweenGamesContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.authenticateSignedInUser(nextProps.isSignedIn)
+  }
+
   render() {
     const { bookings } = this.props
 

@@ -14,6 +14,10 @@ class FeedbackNewContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.authenticateSignedInUser(nextProps.isSignedIn)
+  }
+
   render() {
     const { bookings, createFeedback, isFetching } = this.props
 
