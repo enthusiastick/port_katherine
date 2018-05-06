@@ -61,6 +61,12 @@
   }
 }
 
+.form-inputs.tall-text {
+  textarea {
+    min-height: 32rem;
+  }
+}
+
 .strikethrough {
   text-decoration: line-through;
 }

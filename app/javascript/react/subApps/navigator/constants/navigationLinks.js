@@ -25,6 +25,11 @@ const signedInAdminNavigationLinks = [
     url: 'events'
   },
   {
+    icon: 'key',
+    label: 'Between Events',
+    url: 'between-events'
+  },
+  {
     icon: 'comments',
     label: 'Forums',
     url: `${process.env.FORUMS_URL}`
@@ -56,6 +61,11 @@ const signedInNavigationLinks = [
     icon: 'calendar',
     label: 'Events',
     url: 'events'
+  },
+  {
+    icon: 'key',
+    label: 'Between Events',
+    url: 'between-events'
   },
   {
     icon: 'comments',

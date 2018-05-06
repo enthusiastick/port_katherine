@@ -15,15 +15,31 @@ class FeedbackNewContainer extends Component {
   }
 
   render() {
-    const { bookings } = this.props
+    const { bookings, createFeedback, isFetching } = this.props
+
+    if (bookings.length === 0) {
+      if (isFetching) {
+        return(
+          <div className='text-center top-padded'>
+            <i className='fa fa-spinner fa-pulse fa-3x fa-fw' />
+          </div>
+        )
+      }
+
+      return(
+        <h1 className='text-center top-padded'>
+          No eligible events found.
+        </h1>
+      )
+    }
 
     const initialValues = {
-      booking: '',
-      feedback: 'blah'
+      booking: bookings[0].id,
+      feedback: '### Things I Liked\nTell us what you liked! :)\n\n### Things I Didn\'t Like\nTell us what you *didn\'t* like. :(\n\n### Journal or Event History\nFrom an in-game or out-of-game perspective.\n\n### Some Things Staff Probably Doesn\'t Know (But Should)\n- We\'re human, we miss things.\n- Tell us about your experience.'
     }
 
     const handleSubmit = (values) => {
-      debugger
+      createFeedback(values)
     }
 
     return(
