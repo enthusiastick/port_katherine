@@ -27,6 +27,10 @@ class Booking < ApplicationRecord
     favored_users.map(&:user_label).to_sentence
   end
 
+  def send_feedback_notification
+    FeedbackMailer.notification(self.id).deliver_now
+  end
+
   def undesirable_users
     @undesirable_users ||= lodging_preferences.where(favored: false)
   end

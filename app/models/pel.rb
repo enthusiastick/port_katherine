@@ -22,6 +22,7 @@ class Pel
         tally.save && @user.update(available: new_available_total)
       end
       @booking.touch(:feedback_entered_at)
+      @booking.send_feedback_notification
     end
   end
 
