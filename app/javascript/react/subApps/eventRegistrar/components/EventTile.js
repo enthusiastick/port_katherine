@@ -8,6 +8,10 @@ const EventTile = props => {
   let registerLink = `${linkTo}/register`
   let volunteerLink = `${linkTo}/volunteer`
 
+  if (props.passes && props.passes.length > 0) {
+    registerLink += `?pass=${props.passes[0].slug}`
+  }
+
   if (props.userBooking) {
     const showLodgingQuestionnaire =
       props.showLodgingQuestionnaire &&
