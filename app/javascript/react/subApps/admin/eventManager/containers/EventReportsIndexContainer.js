@@ -43,6 +43,9 @@ class EventReportsIndexContainer extends Component {
             <Link className='button' to={`/admin/events/${this.props.event.slug}/self_reports`}>
               <i className='fa fa-medkit' /> Medical Self Reports
             </Link>
+            <Link className='button' to={`/admin/events/${this.props.event.slug}/pels`}>
+              <i className='fa fa-key' /> PELs
+            </Link>
           </div>
           <h3>Downloads</h3>
           <div className='button-group'>

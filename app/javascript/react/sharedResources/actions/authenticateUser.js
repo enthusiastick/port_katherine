@@ -16,3 +16,15 @@ export const authenticateSignedInUser = authorized => dispatch => {
 
   return { type: AUTHENTICATE_USER }
 }
+
+export const authenticateSignedInPlotStaff = autorized => dispatch => {
+  if (!autorized) {
+    dispatch(push('/'))
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'Restricted' }))
+
+    return { type: USER_NOT_AUTHENTICATED }
+  }
+
+  return { type: AUTHENTICATE_USER }
+}

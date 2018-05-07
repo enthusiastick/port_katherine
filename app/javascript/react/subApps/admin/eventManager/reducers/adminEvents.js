@@ -10,6 +10,12 @@ import {
   FETCH_ADMIN_EVENT_ENVELOPES_FAILURE
 } from '../actions/getAdminEventEnvelopes'
 
+import {
+  GET_ADMIN_EVENT_PELS,
+  GET_ADMIN_EVENT_PELS_SUCCESS,
+  GET_ADMIN_EVENT_PELS_FAILURE
+} from '../actions/getAdminEventPels'
+
 import { CREATE_ADMIN_EVENT_SUCCESS } from '../actions/createAdminEvent'
 import { DELETE_ADMIN_EVENT_REQUEST_SUCCESS } from '../actions/deleteAdminEvent'
 import { UPDATE_ADMIN_EVENT_SUCCESS } from '../actions/updateAdminEvent'
@@ -28,8 +34,10 @@ import {
 
 let initialState = {
   envelopes: { characters: [] },
+  pels: { bookings: []},
   isFetching: false,
   isFetchingEnvelopes: false,
+  isFetchingPels: false,
   items: []
 }
 
@@ -52,6 +60,12 @@ const adminEvents = (state = initialState, action) => {
       return { ...state, envelopes: action.envelopes, isFetchingEnvelopes: false }
     case FETCH_ADMIN_EVENT_ENVELOPES_FAILURE:
       return { ...state, isFetchingEnvelopes: false }
+    case GET_ADMIN_EVENT_PELS:
+      return { ...state, isFetchingPels: true }
+    case GET_ADMIN_EVENT_PELS_SUCCESS:
+      return { ...state, pels: action.pels, isFetchingPels: false }
+    case GET_ADMIN_EVENT_PELS_FAILURE:
+      return { ...state, isFetchingPels: false }
     case CREATE_ADMIN_EVENT_SUCCESS:
       newAdminEvents = [action.newEvent].concat(state.items)
       return Object.assign({}, state, { items: newAdminEvents })
