@@ -21,15 +21,15 @@ class Pel
         )
         tally.save && @user.update(available: new_available_total)
       end
-      @booking.touch(:feedback_entered_at)
       @booking.send_feedback_notification
+      @booking.touch(:feedback_entered_at) if not_edit?
     end
   end
 
   private
 
   def eligible_for_cp?
-    player? && before_deadline?
+    player? && before_deadline? && not_edit?
   end
 
   def before_deadline?
@@ -38,6 +38,10 @@ class Pel
 
   def deadline
     @deadline ||= @event.end_time.at_beginning_of_day + 2.weeks + 1.day + 6.hours
+  end
+
+  def not_edit?
+    @booking.feedback_entered_at.nil?
   end
 
   def player?

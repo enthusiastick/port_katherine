@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get "lodging-questionnaire", to: "lodgings#new"
   end
   resources :password_resets, only: [:edit, :new]
-  resources :pels, only: [:new, :show]
+  resources :pels, only: [:edit, :new, :show]
 
   # API routes
   namespace :api do
