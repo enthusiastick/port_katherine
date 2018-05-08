@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_07_132923) do
+ActiveRecord::Schema.define(version: 2018_05_08_025615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 2018_05_07_132923) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "between_games", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "category", default: 0, null: false
+    t.integer "character_id", null: false
+    t.integer "event_id", null: false
+    t.string "non_sequential_id", null: false
+    t.text "response"
+    t.string "response_title"
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["non_sequential_id"], name: "index_between_games_on_non_sequential_id", unique: true
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -100,6 +114,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_132923) do
     t.integer "player_cap", default: 75, null: false
     t.boolean "show_lodging_questionnaire", default: false, null: false
     t.datetime "closed_at"
+    t.datetime "bgs_deadline"
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 

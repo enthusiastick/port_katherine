@@ -146,8 +146,4 @@ class Character < ApplicationRecord
       ranks: 1
     )
   end
-
-  def generate_identifier
-    self.non_sequential_id ||= SecureRandom.urlsafe_base64[0..12]
-  end
 end
