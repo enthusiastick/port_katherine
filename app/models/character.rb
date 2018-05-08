@@ -12,6 +12,7 @@ class Character < ApplicationRecord
   enum birthplace: { chepstone: 1, drevnia: 2, tojima: 3, zlota: 4 }
 
   has_many :backstories
+  has_many :between_games
   has_many :bookings
   has_many :events, through: :bookings
   has_many :character_headers

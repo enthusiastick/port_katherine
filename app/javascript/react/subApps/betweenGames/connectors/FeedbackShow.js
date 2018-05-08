@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import FeedbackShowContainer from '../containers/FeedbackShowContainer'
 import { authenticateSignedInUser } from '../../../sharedResources/actions/authenticateUser'
 import { getBetweenGames } from '../actions/getBetweenGames'
-import { bookingByEventSlug } from '../selectors/betweenGames'
+import { pastBookingByEventSlug } from '../selectors/betweenGames'
 import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    booking: bookingByEventSlug(state, ownProps),
+    booking: pastBookingByEventSlug(state, ownProps),
     eventSlug: ownProps.match.params.eventSlug,
     isFetching: state.betweenGames.isFetching,
     isSignedIn: isSignedIn(state)

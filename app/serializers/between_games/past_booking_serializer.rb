@@ -1,4 +1,4 @@
-class BetweenGames::BookingSerializer < ActiveModel::Serializer
+class BetweenGames::PastBookingSerializer < ActiveModel::Serializer
   attributes :id, :category, :checked_in_at, :event_slug, :feedback,
     :feedback_entered_at, :is_pel_eligible, :label
 

@@ -9,7 +9,7 @@ class FeedbackNewContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.bookings.length === 0) {
+    if (this.props.feedbackEligibleBookings.length === 0) {
       this.props.getBetweenGames()
     }
   }
@@ -19,9 +19,9 @@ class FeedbackNewContainer extends Component {
   }
 
   render() {
-    const { bookings, createFeedback, isFetching } = this.props
+    const { feedbackEligibleBookings, createFeedback, isFetching } = this.props
 
-    if (bookings.length === 0) {
+    if (feedbackEligibleBookings.length === 0) {
       if (isFetching) {
         return(
           <div className='text-center top-padded'>
@@ -38,7 +38,7 @@ class FeedbackNewContainer extends Component {
     }
 
     const initialValues = {
-      booking: bookings[0].id,
+      booking: feedbackEligibleBookings[0].id,
       feedback: '### Things I Liked\nTell us what you liked! :)\n\n### Things I Didn\'t Like\nTell us what you *didn\'t* like. :(\n\n### Journal or Event History\nFrom an in-game or out-of-game perspective.\n\n### Some Things Staff Probably Doesn\'t Know (But Should)\n- We\'re human, we miss things.\n- Tell us about your experience.'
     }
 
@@ -55,7 +55,7 @@ class FeedbackNewContainer extends Component {
             onSubmit={handleSubmit}
             render={formikProps => (
               <FeedbackForm
-                bookings={bookings}
+                bookings={feedbackEligibleBookings}
                 {...formikProps}
               />
             )}

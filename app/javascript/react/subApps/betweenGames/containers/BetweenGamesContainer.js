@@ -9,7 +9,7 @@ class BetweenGamesContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.bookings.length === 0) {
+    if (this.props.feedbackCompletedBookings.length === 0) {
       this.props.getBetweenGames()
     }
   }
@@ -19,7 +19,7 @@ class BetweenGamesContainer extends Component {
   }
 
   render() {
-    const { bookings } = this.props
+    const { feedbackCompletedBookings } = this.props
 
     return(
       <div className='row'>
@@ -31,7 +31,7 @@ class BetweenGamesContainer extends Component {
           <Link className='button' to='/pels/new'>
             <i className='fa fa-plus' /> Submit a PEL
           </Link>
-          <PelsList bookings={bookings} />
+          <PelsList bookings={feedbackCompletedBookings} />
         </div>
       </div>
     )

@@ -8,7 +8,7 @@ import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = state => {
   return {
-    bookings: feedbackCompletedBookings(state),
+    feedbackCompletedBookings: feedbackCompletedBookings(state),
     isFetching: state.betweenGames.isFetching,
     isSignedIn: isSignedIn(state)
   }

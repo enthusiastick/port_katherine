@@ -12,7 +12,7 @@ class Admin::EventSerializer < ActiveModel::Serializer
 
   def characters_by_user_handle
     object.bookings.player.alpha_by_user_first_name.map { |booking|
-      [ "#{booking.user.handle}", ActiveModel::SerializableResource.new(
+      [ "#{booking.user.handle}", ActiveModelSerializers::SerializableResource.new(
           booking.user.characters.alpha_by_name,
           each_serializer: Character::IndexSerializer
         ) .serializable_hash[:characters]
@@ -21,14 +21,14 @@ class Admin::EventSerializer < ActiveModel::Serializer
   end
 
   def player_bookings
-    ActiveModel::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       object.bookings.player.alpha_by_user_first_name,
       each_serializer: Admin::BookingSerializer
     ).serializable_hash[:bookings]
   end
 
   def staff_bookings
-    ActiveModel::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       object.bookings.staff.alpha_by_user_first_name,
       each_serializer: Admin::BookingSerializer
     ).serializable_hash[:bookings]

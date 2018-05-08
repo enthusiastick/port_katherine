@@ -80,7 +80,7 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def user_tallies
-    ActiveModel::SerializableResource.new(
+    ActiveModelSerializers::SerializableResource.new(
       current_user.tallies_received.order(created_at: :desc).limit(10),
       each_serializer: TallySerializer
     ).serializable_hash[:tallies]

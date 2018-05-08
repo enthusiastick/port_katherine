@@ -1,24 +1,24 @@
 import { createSelector } from 'reselect'
 import paramsSelector from '../../../sharedResources/selectors/paramsSelector'
 
-const bookingsSelector = (state) => state.betweenGames.bookings
+const pastBookingsSelector = (state) => state.betweenGames.pastBookings
 
 export const feedbackEligibleBookings = createSelector(
-  bookingsSelector,
+  pastBookingsSelector,
   (bookings) => {
     return bookings.filter(booking => { return booking.isPelEligible })
   }
 )
 
 export const feedbackCompletedBookings = createSelector(
-  bookingsSelector,
+  pastBookingsSelector,
   (bookings) => {
     return bookings.filter(booking => { return booking.feedbackEnteredAt != null })
   }
 )
 
-export const bookingByEventSlug = createSelector(
-    bookingsSelector,
+export const pastBookingByEventSlug = createSelector(
+    pastBookingsSelector,
     paramsSelector,
     (bookings, params) => {
       const filteredBookings = bookings.filter(booking => booking.eventSlug === params.eventSlug)

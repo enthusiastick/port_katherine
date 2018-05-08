@@ -16,6 +16,7 @@ class User < ApplicationRecord
     admin: 9
   }
 
+  has_many :between_games
   has_many :bookings
   has_many :events, through: :bookings
   has_many :characters

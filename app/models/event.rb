@@ -3,9 +3,10 @@ class Event < ApplicationRecord
 
   default_scope { where(archived: false) }
 
+  has_many :between_games
+  has_many :bookings
   has_many :event_passes
   has_many :passes, through: :event_passes
-  has_many :bookings
   has_many :characters, through: :bookings
   has_many :receipts, through: :bookings
   has_many :users, through: :bookings
