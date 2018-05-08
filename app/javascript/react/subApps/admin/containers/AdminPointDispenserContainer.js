@@ -16,8 +16,8 @@ class AdminPointDispenserContainer extends Component {
 
   validate(values) {
     let errors = {}
-    if (values.points < 1) {
-      errors.points = 'You must award at least 1 CP'
+    if (values.points < 0.0) {
+      errors.points = 'You must award a positive amount of CP'
     }
 
     if (values.reason === null || values.reason === '') {
