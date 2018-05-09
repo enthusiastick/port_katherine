@@ -58,12 +58,14 @@ const Feedback = ({
                 value={values.feedback}
               />
             </div>
-            <div className='cell card'>
-              <div className='card-divider'>
-                <h4 className='float-center'>Preview</h4>
+            <div className='cell'>
+              <div className='card'>
+                <div className='card-divider'>
+                  <h4 className='float-center'>Preview</h4>
+                </div>
+                <div className='card-section' dangerouslySetInnerHTML={renderedHTML} />
               </div>
-              <div className='card-section' dangerouslySetInnerHTML={renderedHTML} />
-            </div>
+              </div>
           </div>
         </div>
         <div className='callout secondary'>

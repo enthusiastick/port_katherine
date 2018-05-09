@@ -65,6 +65,11 @@
   textarea {
     min-height: 32rem;
   }
+
+  .card-section {
+    overflow-y: scroll;
+    max-height: 28.5rem;
+  }
 }
 
 .strikethrough {
