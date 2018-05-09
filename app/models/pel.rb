@@ -21,9 +21,10 @@ class Pel
         )
         tally.save && @user.update(available: new_available_total)
       end
-      @booking.send_feedback_notification
-      @booking.touch(:feedback_entered_at) if not_edit?
     end
+    @booking.send_feedback_notification
+    @booking.touch(:feedback_entered_at) if not_edit?
+    @booking.errors.empty?
   end
 
   private
