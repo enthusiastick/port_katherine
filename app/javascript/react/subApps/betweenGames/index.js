@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 
-import {default as BetweenGamesIndex} from './connectors/BetweenGames'
+import { default as BetweenGamesIndex } from './connectors/BetweenGames'
 
-import BgsNew from './connectors/BgsNew'
+import BgsNew from './connectors/bgs/New'
 
-import FeedbackEdit from './connectors/FeedbackEdit'
-import FeedbackNew from './connectors/FeedbackNew'
-import FeedbackShow from './connectors/FeedbackShow'
+import FeedbackEdit from './connectors/feedback/Edit'
+import FeedbackNew from './connectors/feedback/New'
+import FeedbackShow from './connectors/feedback/Show'
 
 const BetweenGames = props => {
   return(

@@ -7,8 +7,7 @@ class BetweenGame < ApplicationRecord
   enum category: {
     skill: 0,
     focus: 1,
-    lesson: 2,
-    letter: 3
+    lesson: 2
   }
 
   validates_presence_of :body, :title

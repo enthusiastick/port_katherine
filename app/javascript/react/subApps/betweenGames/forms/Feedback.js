@@ -15,7 +15,6 @@ const Feedback = ({
   isSubmitting
 }) => {
   const bookingOptions = bookings.map(booking => {
-    if (!booking.isPelEligible) { return null }
     const { id, label } = booking
 
     return(

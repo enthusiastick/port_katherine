@@ -63,8 +63,16 @@ class Character < ApplicationRecord
     backstories.ordered_old_to_new.last
   end
 
+  def launched?
+    bookings.any? { |booking| !booking.checked_in_at.nil? }
+  end
+
   def needs_envelope?
     has_envelope_skills? || has_envelope_header?
+  end
+
+  def newbie?
+    !launched?
   end
 
   def open_skills

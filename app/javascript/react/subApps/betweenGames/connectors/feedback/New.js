@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 
-import FeedbackNewContainer from '../containers/FeedbackNewContainer'
-import { authenticateSignedInUser } from '../../../sharedResources/actions/authenticateUser'
-import { createFeedback } from '../actions/createFeedback'
-import { getBetweenGames } from '../actions/getBetweenGames'
-import { feedbackEligibleBookings } from '../selectors/betweenGames'
-import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
+import FeedbackNewContainer from '../../containers/feedback/NewContainer'
+import { authenticateSignedInUser } from '../../../../sharedResources/actions/authenticateUser'
+import { createFeedback } from '../../actions/createFeedback'
+import { getBetweenGames } from '../../actions/getBetweenGames'
+import { feedbackEligibleBookings } from '../../selectors/betweenGames'
+import { isSignedIn } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = state => {
   return {

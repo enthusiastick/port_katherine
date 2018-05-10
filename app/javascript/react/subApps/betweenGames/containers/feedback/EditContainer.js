@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 
-import FeedbackEditForm from '../forms/FeedbackEditForm'
+import FeedbackEditForm from '../../forms/FeedbackEditForm'
 
 class FeedbackEditContainer extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class FeedbackEditContainer extends Component {
       feedback
     }
 
-    const handleSubmit = (values) => {
+    const handleSubmit = values => {
       createFeedback(values)
     }
 

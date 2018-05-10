@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 
-import FeedbackShowContainer from '../containers/FeedbackShowContainer'
-import { authenticateSignedInUser } from '../../../sharedResources/actions/authenticateUser'
-import { getBetweenGames } from '../actions/getBetweenGames'
-import { pastBookingByEventSlug } from '../selectors/betweenGames'
-import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
+import FeedbackShowContainer from '../../containers/feedback/ShowContainer'
+import { authenticateSignedInUser } from '../../../../sharedResources/actions/authenticateUser'
+import { getBetweenGames } from '../../actions/getBetweenGames'
+import { pastBookingByEventSlug } from '../../selectors/betweenGames'
+import { isSignedIn } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {

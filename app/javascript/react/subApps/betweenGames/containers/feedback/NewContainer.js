@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 
-import { default as FeedbackForm } from '../forms/Feedback'
+import { default as FeedbackForm } from '../../forms/Feedback'
+import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class FeedbackNewContainer extends Component {
   constructor(props) {
@@ -23,11 +24,7 @@ class FeedbackNewContainer extends Component {
 
     if (feedbackEligibleBookings.length === 0) {
       if (isFetching) {
-        return(
-          <div className='text-center top-padded'>
-            <i className='fa fa-spinner fa-pulse fa-3x fa-fw' />
-          </div>
-        )
+        return <LoadingSpinner />
       }
 
       return(
@@ -42,7 +39,7 @@ class FeedbackNewContainer extends Component {
       feedback: '### Things I Liked\nTell us what you liked! :)\n\n### Things I Didn\'t Like\nTell us what you *didn\'t* like. :(\n\n### Journal or Event History\nFrom an in-game or out-of-game perspective.\n\n### Some Things Staff Probably Doesn\'t Know (But Should)\n- We\'re human, we miss things.\n- Tell us about your experience.'
     }
 
-    const handleSubmit = (values) => {
+    const handleSubmit = values => {
       createFeedback(values)
     }
 

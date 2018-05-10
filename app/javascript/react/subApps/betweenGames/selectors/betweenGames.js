@@ -1,7 +1,15 @@
 import { createSelector } from 'reselect'
 import paramsSelector from '../../../sharedResources/selectors/paramsSelector'
 
+const futureBookingsSelector = (state) => state.betweenGames.futureBookings
 const pastBookingsSelector = (state) => state.betweenGames.pastBookings
+
+export const bgsEligibleBookings = createSelector(
+  futureBookingsSelector,
+  (bookings) => {
+    return bookings.filter(booking => { return booking.isBgsEligible })
+  }
+)
 
 export const feedbackEligibleBookings = createSelector(
   pastBookingsSelector,

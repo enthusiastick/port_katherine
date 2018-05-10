@@ -1,12 +1,14 @@
-import React from 'react'
 import { connect } from 'react-redux'
 
-import { authenticateSignedInUser } from '../../../sharedResources/actions/authenticateUser'
-import { getBetweenGames } from '../actions/getBetweenGames'
-import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
+import BgsNewContainer from '../../containers/bgs/NewContainer'
+import { authenticateSignedInUser } from '../../../../sharedResources/actions/authenticateUser'
+import { getBetweenGames } from '../../actions/getBetweenGames'
+import { bgsEligibleBookings } from '../../selectors/betweenGames'
+import { isSignedIn } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = state => {
   return {
+    bgsEligibleBookings: bgsEligibleBookings(state),
     isFetching: state.betweenGames.isFetching,
     isSignedIn: isSignedIn(state)
   }
@@ -17,10 +19,6 @@ const mapDispatchToProps = dispatch => {
     authenticateSignedInUser: authorized => { dispatch(authenticateSignedInUser(authorized)) },
     getBetweenGames: () => { dispatch(getBetweenGames()) }
   }
-}
-
-const BgsNewContainer = props => {
-  return <h1>Boo Yaa</h1>
 }
 
 const BgsNew = connect(
