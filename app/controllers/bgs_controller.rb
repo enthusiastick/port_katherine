@@ -1,0 +1,2 @@
+class BgsController < ApplicationController
+end

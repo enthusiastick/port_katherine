@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :account_confirmations, only: [:edit]
+  resources :bgs, only: [:edit, :new, :show]
   resources :characters, only: [:edit, :index, :new, :show] do
     resources :backstory, only: [:index]
     resources :build_logs, only: :index
