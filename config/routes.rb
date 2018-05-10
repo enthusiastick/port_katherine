@@ -62,7 +62,7 @@ Rails.application.routes.draw do
         resources :users, only: [:index, :show]
       end
       resources :account_confirmations, only: [:create]
-      resources :between_games, only: [:index]
+      resources :between_games, only: [:create, :index]
       resources :backstories, only: [:create]
       resources :bookings, only: [:create, :destroy] do
         resources :feedback, only: [:create]

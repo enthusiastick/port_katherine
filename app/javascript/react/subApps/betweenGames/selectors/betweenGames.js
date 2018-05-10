@@ -11,6 +11,13 @@ export const bgsEligibleBookings = createSelector(
   }
 )
 
+export const bookingsWithBgs = createSelector(
+  futureBookingsSelector,
+  (bookings) => {
+    return bookings.filter(booking => { return booking.bgs.length > 0 })
+  }
+)
+
 export const feedbackEligibleBookings = createSelector(
   pastBookingsSelector,
   (bookings) => {

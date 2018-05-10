@@ -15,7 +15,7 @@ const List = ({bookings}) => {
   })
 
   return(
-    <ul className='bottomless'>
+    <ul className='bottomless left-margin-spacer-3'>
       {pelItems}
     </ul>
   )

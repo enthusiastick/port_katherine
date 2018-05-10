@@ -4,7 +4,6 @@ import marked from 'marked'
 
 import TextArea from '../../../sharedResources/components/formik/TextArea'
 
-
 class Bgs extends Component {
   constructor(props) {
     super(props)
@@ -29,35 +28,32 @@ class Bgs extends Component {
       { id: 'skill', name: 'Skill' }
     ]
 
-    if (this.state.showPreview) {
-      const markdownParsedDescription = marked(values.body)
-      const renderedHTML = { __html: markdownParsedDescription }
+    const closePreview = event => { this.setState({showPreview: false}) }
+    const openPreview = event => { this.setState({showPreview: true}) }
 
-      const closePreview = event => { this.setState({showPreview: false}) }
-
-      return(
-        <form onSubmit={handleSubmit}>
-          <div className='form-preview'>
-            <div className='callout primary'>
-              <h1>{values.title}</h1>
-              <div dangerouslySetInnerHTML={renderedHTML} />
-              <div className='close-button' onClick={closePreview}>
-                <span aria-hidden='true'>&times;</span>
-              </div>
-            </div>
-          </div>
-          <div className='form-actions'>
-            <div className='button' onClick={closePreview}>
-              Cancel
-            </div>
-            &nbsp;
-            <button className='button' type='submit' disabled={isSubmitting}>
-              Submit
-            </button>
-          </div>
-        </form>
-      )
-    }
+    let titleAndBodySection = (
+      <div>
+        <fieldset>
+          <label htmlFor='title'>Subject</label>
+          <input
+            id='title'
+            name='title'
+            type='text'
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.title}
+          />
+        </fieldset>
+        <TextArea
+          error={errors.body}
+          touched={touched.body}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+          name='body'
+          value={values.body}
+        />
+      </div>
+    )
 
     const bookingOptions = bookings.map(booking => {
       const { id, label } = booking
@@ -67,17 +63,32 @@ class Bgs extends Component {
       )
     })
 
-    const openPreview = event => { this.setState({showPreview: true}) }
+    if (this.state.showPreview) {
+      const markdownParsedDescription = marked(values.body)
+      const renderedHTML = { __html: markdownParsedDescription }
+
+      titleAndBodySection = (
+        <div className='form-preview'>
+          <div className='callout primary'>
+            <h1>{values.title}</h1>
+            <div dangerouslySetInnerHTML={renderedHTML} />
+            <div className='close-button' onClick={closePreview}>
+              <span aria-hidden='true'>&times;</span>
+            </div>
+          </div>
+        </div>
+      )
+    }
 
     return(
       <form onSubmit={handleSubmit}>
         <div className='form-inputs tall-text'>
           <fieldset className='bottomless'>
             <label
-                className={ touched && errors.booking && 'is-invalid-label' }
-                htmlFor='booking'
+                className={ touched && errors.bookingId && 'is-invalid-label' }
+                htmlFor='bookingId'
               > Event
-              <Field component='select' name='booking'>
+              <Field component='select' name='bookingId'>
                 {bookingOptions}
               </Field>
             </label>
@@ -107,30 +118,15 @@ class Bgs extends Component {
               )}
             />
           </fieldset>
-          <fieldset>
-            <label htmlFor='title'>Subject</label>
-            <input
-              id='title'
-              name='title'
-              type='text'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.title}
-            />
-          </fieldset>
-          <TextArea
-            error={errors.body}
-            touched={touched.body}
-            handleBlur={handleBlur}
-            handleChange={handleChange}
-            name='body'
-            value={values.body}
-          />
+          {titleAndBodySection}
         </div>
         <div className='form-actions'>
-          <div className='button' onClick={openPreview}>
+          {!this.state.showPreview && <div className='button' onClick={openPreview}>
             Preview
-          </div>
+          </div>}
+          {this.state.showPreview && <div className='button' onClick={closePreview}>
+            Cancel
+          </div>}
           &nbsp;
           <button className='button' type='submit' disabled={isSubmitting}>
             Submit

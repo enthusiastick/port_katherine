@@ -1,6 +1,10 @@
 class BetweenGames::FutureBookingSerializer < ActiveModel::Serializer
   attributes :id, :category, :event_slug, :is_bgs_eligible, :label
 
+  has_many :bgs do
+    object.character.present? ? BetweenGame.where(character: object.character, event: object.event) : []
+  end
+
   def event_slug
     object.event.slug
   end

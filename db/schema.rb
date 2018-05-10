@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2018_05_08_025615) do
     t.text "body", null: false
     t.integer "category", default: 0, null: false
     t.integer "character_id", null: false
-    t.integer "event_id", null: false
+    t.integer "event_id"
     t.string "non_sequential_id", null: false
     t.text "response"
     t.string "response_title"

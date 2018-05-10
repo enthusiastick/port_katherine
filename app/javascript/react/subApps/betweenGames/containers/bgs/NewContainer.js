@@ -20,7 +20,7 @@ class BgsNewContainer extends Component {
   }
 
   render() {
-    const { bgsEligibleBookings, isFetching } = this.props
+    const { bgsEligibleBookings, createBgs, isFetching } = this.props
 
     if (bgsEligibleBookings.length === 0) {
       if (isFetching) {
@@ -35,13 +35,14 @@ class BgsNewContainer extends Component {
     }
 
     const initialValues = {
+      bookingId: bgsEligibleBookings[0].id,
       body: '',
       category: 'skill',
       title: ''
     }
 
     const handleSubmit = values => {
-      debugger
+      createBgs(values)
     }
 
     return(

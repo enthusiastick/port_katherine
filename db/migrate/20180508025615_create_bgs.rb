@@ -5,7 +5,7 @@ class CreateBgs < ActiveRecord::Migration[5.2]
       t.text :body, null: false
       t.integer :category, null: false, default: 0
       t.integer :character_id, null: false
-      t.integer :event_id, null: false
+      t.integer :event_id
       t.string :non_sequential_id, null: false
       t.text :response
       t.string :response_title
