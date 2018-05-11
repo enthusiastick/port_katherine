@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import marked from 'marked'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
@@ -50,6 +51,21 @@ class EventPelShowContainer extends Component {
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current={userHandle} />
           <h1 className='text-center top-padded'>{pel.userLabel} PEL for {eventPels.name}</h1>
+          <div className='row'>
+            <div className='small-12 medium-6 columns'>
+              <p className='bottomless'>
+                <strong>Character:&nbsp;</strong>
+                <Link to={`/admin/characters/${pel.characterId}`}>
+                  {pel.characterName}
+                </Link>
+              </p>
+            </div>
+            <div className='small-12 medium-6 columns'>
+              <p className='bottomless'>
+                <strong>Submitted At:&nbsp;</strong>{pel.timestampLabel}
+              </p>
+            </div>
+          </div>
           {pelDiv}
         </div>
       </div>

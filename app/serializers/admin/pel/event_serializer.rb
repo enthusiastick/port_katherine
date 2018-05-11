@@ -6,7 +6,24 @@ class Admin::Pel::EventSerializer < ActiveModel::Serializer
   end
 
   class BookingSerializer < ActiveModel::Serializer
-    attributes :id, :category, :feedback, :user_handle, :user_label
+    attributes :id, :category, :character_id, :character_name, :feedback,
+      :timestamp, :timestamp_label, :user_handle, :user_label
+
+    def character_id
+      object.character.present? ? object.character.non_sequential_id : nil
+    end
+
+    def character_name
+      object.character.present? ? object.character.name : nil
+    end
+
+    def timestamp
+      object.feedback_entered_at.present? ? object.feedback_entered_at.to_i : nil
+    end
+
+    def timestamp_label
+      object.feedback_entered_at.present? ? object.feedback_entered_at.strftime("%d %b %Y %l:%M%P") : nil
+    end
 
     def user_handle
       object.user.handle

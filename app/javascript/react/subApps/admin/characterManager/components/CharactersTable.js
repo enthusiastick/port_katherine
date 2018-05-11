@@ -9,9 +9,9 @@ const CharactersTable = props => {
     tableRows = props.characters.map(character => {
       return(
         <Tr key={character.id}>
-          <Td column='user' value={character.userHandle}>
+          <Td column='user' value={character.userLabel}>
             <Link to={`/admin/users/${character.userHandle}`}>
-              {character.userHandle}
+              {character.userLabel}
             </Link>
           </Td>
           <Td column='name' value={character.name}>
@@ -20,8 +20,6 @@ const CharactersTable = props => {
             </Link>
           </Td>
           <Td column='birthplace' data={character.birthplace} />
-          <Td column='firstTrueHeader' data={character.firstTrueHeader} />
-          <Td column='firstProfession' data={character.firstProfession} />
           <Td column='available' data={character.available} />
           <Td column='spent' data={character.spent} />
           <Td column='hasBackstory' data={character.hasBackstory} />
@@ -41,8 +39,6 @@ const CharactersTable = props => {
         <Th column='user'>User</Th>
         <Th column='name'>Name</Th>
         <Th column='birthplace'>Culture</Th>
-        <Th column='firstTrueHeader'>1st Header</Th>
-        <Th column='firstProfession'>1st Profession</Th>
         <Th column='available'>CP Available</Th>
         <Th column='spent'>CP Spent</Th>
         <Th column='hasBackstory'>Backstory?</Th>
