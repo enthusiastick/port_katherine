@@ -5,12 +5,16 @@ class BetweenGames::FutureBookingSerializer < ActiveModel::Serializer
     object.character.present? ? BetweenGame.where(character: object.character, event: object.event) : []
   end
 
+  def before_deadline?
+    object.event.bgs_deadline.present? && object.event.bgs_deadline.future?
+  end
+
   def event_slug
     object.event.slug
   end
 
   def is_bgs_eligible
-    player? && character? && object.character.launched?
+    player? && character? && object.character.launched? && before_deadline?
   end
 
   def label

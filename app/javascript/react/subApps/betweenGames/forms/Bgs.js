@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Field, FieldArray } from 'formik'
 import marked from 'marked'
 
+import BgsIcon from '../components/bgs/Icon'
 import TextArea from '../../../sharedResources/components/formik/TextArea'
+import TextInput from '../../../sharedResources/components/formik/TextInput'
 
 class Bgs extends Component {
   constructor(props) {
@@ -33,17 +35,14 @@ class Bgs extends Component {
 
     let titleAndBodySection = (
       <div>
-        <fieldset>
-          <label htmlFor='title'>Subject</label>
-          <input
-            id='title'
-            name='title'
-            type='text'
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.title}
-          />
-        </fieldset>
+        <TextInput
+          error={errors.title}
+          touched={touched.title}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+          name='title'
+          value={values.title}
+        />
         <TextArea
           error={errors.body}
           touched={touched.body}
@@ -101,17 +100,19 @@ class Bgs extends Component {
                 <div className='row'>
                   {categories.map(category => (
                     <div className='small-12 medium-4 columns' key={category.id}>
-                      <label className='text-center'>
-                        <input
-                          className='bottomless'
-                          name='category'
-                          type='radio'
-                          value={category.id}
-                          checked={values.category === category.id}
-                          onChange={handleChange}
-                        />
-                        {category.name}
-                      </label>
+                      <div className='text-center'>
+                        <label>
+                          <input
+                            className='bottomless'
+                            name='category'
+                            type='radio'
+                            value={category.id}
+                            checked={values.category === category.id}
+                            onChange={handleChange}
+                          />
+                          <BgsIcon category={category.id} /> {category.name}
+                        </label>
+                      </div>
                     </div>
                   ))}
                 </div>

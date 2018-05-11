@@ -17,6 +17,18 @@ class Api::V1::BetweenGamesController < Api::ApiController
     render json: between_games
   end
 
+  def update
+    booking = Booking.find(params[:booking_id])
+    bgs = BetweenGame.find_by(non_sequential_id: params[:id])
+    bgs.event = booking.event
+    bgs.assign_attributes(between_game_params)
+    if bgs.event.bgs_deadline.future? && bgs.save
+      render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
+    else
+      render_object_errors(bgs)
+    end
+  end
+
   private
 
   def between_game_params

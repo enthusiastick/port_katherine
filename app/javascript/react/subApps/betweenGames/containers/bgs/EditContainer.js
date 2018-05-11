@@ -5,13 +5,13 @@ import { default as BgsForm } from '../../forms/Bgs'
 import validateBgs from '../../constants/validateBgs'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
-class BgsNewContainer extends Component {
+class BgsEditContainer extends Component {
   constructor(props) {
     super(props)
   }
 
   componentWillMount() {
-    if (this.props.bgsEligibleBookings.length === 0) {
+    if (!this.props.bgs.id) {
       this.props.getBetweenGames()
     }
   }
@@ -21,35 +21,28 @@ class BgsNewContainer extends Component {
   }
 
   render() {
-    const { bgsEligibleBookings, createBgs, isFetching } = this.props
+    const { bgsEligibleBookings, bgs, bgsId, isFetching, updateBgs } = this.props
+    const { body, bookingId, category, isDeadlinePast, title } = bgs
 
-    if (bgsEligibleBookings.length === 0) {
-      if (isFetching) {
-        return <LoadingSpinner />
-      }
-
-      return(
-        <h1 className='text-center top-padded'>
-          No eligible events found.
-        </h1>
-      )
-    }
+    if (!this.props.bgs.id && isFetching) { return <LoadingSpinner /> }
+    if (isDeadlinePast) { return <LoadingSpinner /> }
 
     const initialValues = {
-      bookingId: bgsEligibleBookings[0].id,
-      body: '',
-      category: 'skill',
-      title: ''
+      id: bgsId,
+      bookingId,
+      body,
+      category,
+      title
     }
 
     const handleSubmit = values => {
-      createBgs(values)
+      updateBgs(values)
     }
 
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='text-center top-padded'>New Between-Game Skill Submission</h1>
+          <h1 className='text-center top-padded'>Edit Between-Game Skill Submission</h1>
           <Formik
             initialValues={initialValues}
             onSubmit={handleSubmit}
@@ -67,4 +60,4 @@ class BgsNewContainer extends Component {
   }
 }
 
-export default BgsNewContainer
+export default BgsEditContainer
