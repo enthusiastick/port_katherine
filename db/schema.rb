@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_05_08_025615) do
     t.integer "character_id", null: false
     t.integer "event_id"
     t.string "non_sequential_id", null: false
+    t.integer "respondent_id"
     t.text "response"
     t.string "response_title"
     t.string "title", null: false
@@ -91,6 +92,16 @@ ActiveRecord::Schema.define(version: 2018_05_08_025615) do
     t.datetime "archived_at"
     t.integer "archived_by_id"
     t.index ["non_sequential_id"], name: "index_characters_on_non_sequential_id", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.boolean "automated", default: false, null: false
+    t.text "body", null: false
+    t.integer "between_game_id", null: false
+    t.integer "comment_id"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_passes", force: :cascade do |t|

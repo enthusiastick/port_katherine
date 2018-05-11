@@ -6,7 +6,13 @@ class Api::V1::BetweenGamesController < Api::ApiController
     bgs = BetweenGame.new(between_game_params)
     bgs.character = booking.character
     bgs.event = booking.event
-    if bgs.save
+    comment = Comment.new(
+      automated: true,
+      between_game: bgs,
+      body: "#{current_user.handle} created.",
+      user: current_user
+    )
+    if bgs.save && comment.save
       render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
     else
       render_object_errors(bgs)
@@ -22,7 +28,15 @@ class Api::V1::BetweenGamesController < Api::ApiController
     bgs = BetweenGame.find_by(non_sequential_id: params[:id])
     bgs.event = booking.event
     bgs.assign_attributes(between_game_params)
-    if bgs.event.bgs_deadline.future? && bgs.save
+    comment = Comment.new(
+      automated: true,
+      between_game: bgs,
+      body: "#{current_user.handle} edited the #{bgs.changed_attributes.keys.to_sentence}.",
+      user: current_user
+    )
+    if !bgs.changed?
+      render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
+    elsif bgs.event.bgs_deadline.future? && bgs.save && comment.save
       render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
     else
       render_object_errors(bgs)

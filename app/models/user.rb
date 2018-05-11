@@ -16,10 +16,10 @@ class User < ApplicationRecord
     admin: 9
   }
 
-  has_many :between_games
   has_many :bookings
   has_many :events, through: :bookings
   has_many :characters
+  has_many :comments
   has_many :lodging_preferences
   has_many :receipts
   has_many :passes, through: :receipts

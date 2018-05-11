@@ -10,6 +10,8 @@ class BetweenGame < ApplicationRecord
     lesson: 2
   }
 
+  has_many :comments
+
   validates_presence_of :body, :title
   validates_uniqueness_of :non_sequential_id
 
