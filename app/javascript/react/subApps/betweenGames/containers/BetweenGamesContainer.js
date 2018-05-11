@@ -20,13 +20,24 @@ class BetweenGamesContainer extends Component {
   }
 
   render() {
-    const {bookingsWithBgs, feedbackCompletedBookings } = this.props
+    const { bookingsWithBgs, feedbackCompletedBookings, meta } = this.props
+    let bgsDeadline
+
+    if (meta.bgsDeadlineInWords) {
+      const { name, slug, bgsDeadlineInWords } = meta
+      bgsDeadline = (
+        <p>The BGS deadline for&nbsp;
+          <Link className='header-font' to={`/events/${slug}`}>{name}</Link>
+          &nbsp;is in {bgsDeadlineInWords}.</p>
+      )
+    }
 
     return(
       <div className='row'>
         <div className='small-12 columns'>
           <h1 className='text-center top-padded'>Between Events</h1>
           <h3>Between-Games Skills</h3>
+          {bgsDeadline}
           <Link className='button' to='/bgs/new'>
             <i className='fa fa-plus' /> Submit BGS
           </Link>

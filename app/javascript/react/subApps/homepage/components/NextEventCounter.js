@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NextEventCounter = ({distanceOfTimeInWordsToNow, name, slug, timeAgoInWords}) => {
+const NextEventCounter = ({bgsDeadlineInWords, distanceOfTimeInWordsToNow, name, slug, timeAgoInWords}) => {
+  let bgsDeadline
+  let className = 'large text-center'
+
   let text =
     <strong>
       {distanceOfTimeInWordsToNow} until&nbsp;
@@ -24,7 +27,18 @@ const NextEventCounter = ({distanceOfTimeInWordsToNow, name, slug, timeAgoInWord
       </strong>
   }
 
-  return <p className='large text-center'>{text}</p>
+  if (bgsDeadlineInWords) {
+    bgsDeadline = <p className='text-center'>The BGS deadline is in {bgsDeadlineInWords}.</p>
+    className += ' bottomless'
+  }
+
+  return(
+    <div>
+      <p className={className}>{text}</p>
+      {bgsDeadline}
+    </div>
+  )
+
 }
 
 export default NextEventCounter

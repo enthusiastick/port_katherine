@@ -19,6 +19,7 @@ import {
 const initialState = {
   futureBookings: [],
   pastBookings: [],
+  meta: {},
   isFetching: false
 }
 

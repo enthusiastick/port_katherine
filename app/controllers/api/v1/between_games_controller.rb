@@ -53,10 +53,6 @@ class Api::V1::BetweenGamesController < Api::ApiController
     @between_games ||= { between_games:  user_bookings }
   end
 
-  def user_bookings
-    [past_bookings, future_bookings].reduce(&:merge)
-  end
-
   def future_bookings
     ActiveModelSerializers::SerializableResource.new(
       current_user.bookings.future_events.by_soonest_events_first,
@@ -65,11 +61,41 @@ class Api::V1::BetweenGamesController < Api::ApiController
     ).serializable_hash
   end
 
+  def meta
+    {
+      meta: {
+        bgs_deadline_in_words: next_event_bgs_deadline_in_words,
+        name: next_event_name,
+        slug: next_event_slug
+      }
+    }
+  end
+
+  def next_event
+    @next_event ||= Event.where.not(bgs_deadline: nil).upcoming.soonest_first.first
+  end
+
+  def next_event_bgs_deadline_in_words
+    @next_event_bgs_deadline_in_words ||= (next_event.present? && next_event.bgs_deadline.future?) ? ActionController::Base.helpers.distance_of_time_in_words_to_now(next_event.bgs_deadline) : nil
+  end
+
+  def next_event_name
+    @next_event_name ||= next_event.present? ? next_event.name : nil
+  end
+
+  def next_event_slug
+    @next_event_slug ||= next_event.present? ? next_event.slug : nil
+  end
+
   def past_bookings
     ActiveModelSerializers::SerializableResource.new(
       current_user.bookings.past_events.by_soonest_events_first,
       each_serializer: ::BetweenGames::PastBookingSerializer,
       root: "past_bookings"
     ).serializable_hash
+  end
+
+  def user_bookings
+    [meta, past_bookings, future_bookings].reduce(&:merge)
   end
 end

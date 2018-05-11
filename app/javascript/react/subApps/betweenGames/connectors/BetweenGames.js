@@ -10,6 +10,7 @@ const mapStateToProps = state => {
   return {
     bookingsWithBgs: bookingsWithBgs(state),
     feedbackCompletedBookings: feedbackCompletedBookings(state),
+    meta: state.betweenGames.meta,
     isFetching: state.betweenGames.isFetching,
     isSignedIn: isSignedIn(state)
   }
