@@ -5,6 +5,7 @@ import { authorizeUserRole } from '../../constants/restrictAccess'
 
 import BookingsTable from '../components/BookingsTable'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
+import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class EventShowContainer extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class EventShowContainer extends Component {
   }
 
   render() {
+    if (this.props.isFetching) { return <LoadingSpinner /> }
     const breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
     let categories, label, bookingsTables
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { authorizeUserRole } from '../../constants/restrictAccess'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
+import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class EventReportsIndexContainer extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class EventReportsIndexContainer extends Component {
   }
 
   render() {
+    if (this.props.isFetching) { return <LoadingSpinner /> }
     const { event, eventSlug } = this.props
 
     const breadcrumbs = [
