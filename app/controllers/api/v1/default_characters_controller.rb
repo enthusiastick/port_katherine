@@ -13,6 +13,6 @@ class Api::V1::DefaultCharactersController < Api::ApiController
   private
 
   def upcoming_bookings
-    @upcoming_bookings ||= current_user.bookings.where(event: Event.upcoming, category: :player)
+    @upcoming_bookings ||= current_user.bookings.player.where(event: Event.upcoming)
   end
 end

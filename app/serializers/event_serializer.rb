@@ -24,7 +24,7 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def users_json
-    users_except_current_user = object.bookings.where(category: :player).map(&:user) - [current_user]
+    users_except_current_user = object.bookings.player.map(&:user) - [current_user]
     users_except_current_user.sort_by(&:label).map { |user| { handle: user.handle, name: user.label } }
   end
 

@@ -52,7 +52,7 @@ class Registrar
   end
 
   def register_staff!
-    @booking = Booking.new(category: :staff, event: @event, user: @user)
+    @booking = Booking.staff.new(event: @event, user: @user)
     if @booking.save
       @response = [@booking.event]
       @status = :created
