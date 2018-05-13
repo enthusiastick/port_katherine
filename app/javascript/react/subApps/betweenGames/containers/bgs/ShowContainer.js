@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import marked from 'marked'
 
-import BgsIcon from '../../components/bgs/Icon'
+import BgsIcon from '../../../../sharedResources/components/BgsIcon'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class BgsShowContainer extends Component {

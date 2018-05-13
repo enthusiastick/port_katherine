@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Field, FieldArray } from 'formik'
 import marked from 'marked'
 
-import BgsIcon from '../components/bgs/Icon'
+import BgsIcon from '../../../sharedResources/components/BgsIcon'
 import TextArea from '../../../sharedResources/components/formik/TextArea'
 import TextInput from '../../../sharedResources/components/formik/TextInput'
 

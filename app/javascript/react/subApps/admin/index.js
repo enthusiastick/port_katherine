@@ -1,12 +1,15 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 
-import AdminIndex             from './connectors/AdminIndex'
-import AdminPointDispenser    from './connectors/AdminPointDispenser'
+import AdminIndex from './connectors/AdminIndex'
+import AdminPointDispenser from './connectors/AdminPointDispenser'
+
+import AdminBgsIndex from './betweenGames/connectors/Index'
+import AdminBgsShow from './betweenGames/connectors/Show'
 
 import AdminIndexBackstories from './characterManager/connectors/AdminIndexBackstories'
-import AdminIndexCharacters  from './characterManager/connectors/AdminIndexCharacters'
-import AdminShowCharacter    from './characterManager/connectors/AdminShowCharacter'
+import AdminIndexCharacters from './characterManager/connectors/AdminIndexCharacters'
+import AdminShowCharacter from './characterManager/connectors/AdminShowCharacter'
 
 import AdminEventCheckIn from './eventManager/connectors/AdminEventCheckIn'
 import AdminEventEdit from './eventManager/connectors/AdminEventEdit'
@@ -19,14 +22,19 @@ import AdminEventShow from './eventManager/connectors/AdminEventShow'
 import AdminEventsIndex from './eventManager/connectors/AdminEventsIndex'
 import AdminEventsNew from './eventManager/connectors/AdminEventsNew'
 
-import AdminUsersIndex        from './userManager/connectors/AdminUsersIndex'
-import AdminUserShow          from './userManager/connectors/AdminUserShow'
+import AdminUsersIndex from './userManager/connectors/AdminUsersIndex'
+import AdminUserShow from './userManager/connectors/AdminUserShow'
 
 const Admin = props => {
   return(
     <div>
       <Route exact path='/admin' component={AdminIndex} />
       <Route exact path='/admin/award_character_points' component={AdminPointDispenser} />
+
+      <Switch>
+        <Route exact path='/admin/bgs' component={AdminBgsIndex} />
+        <Route exact path='/admin/bgs/:bgsId' component={AdminBgsShow} />
+      </Switch>
 
       <Switch>
         <Route exact path='/admin/characters' component={AdminIndexCharacters} />

@@ -29,6 +29,9 @@ class AdminIndexContainer extends Component {
         <div className='small-11 medium-9 large-7 small-centered columns'>
           <div className='stacked button-group top-padded'>
             {awardCPLink}
+            <Link className='button' to='/admin/bgs'>
+              <h2>Between-Game Skills</h2>
+            </Link>
             <Link className='button' to='/admin/characters'>
               <h2>Characters</h2>
             </Link>

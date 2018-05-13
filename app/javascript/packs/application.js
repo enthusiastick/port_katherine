@@ -23,6 +23,7 @@ import Navigator         from '../react/subApps/navigator'
 import StaticPages       from '../react/sharedResources'
 import UserAuthenticator from '../react/subApps/userAuthenticator'
 
+import adminBgs from '../react/subApps/admin/betweenGames/reducers/adminBgs'
 import adminCharacters from '../react/subApps/admin/characterManager/reducers/adminCharacters'
 import adminEvents     from '../react/subApps/admin/eventManager/reducers/adminEvents'
 import adminUsers      from '../react/subApps/admin/userManager/reducers/adminUsers'
@@ -42,6 +43,7 @@ const middlewares = [thunkMiddleware, routerMiddleware(history)]
 
 const store = createStore(
   combineReducers({
+    adminBgs,
     adminCharacters,
     adminEvents,
     adminUsers,

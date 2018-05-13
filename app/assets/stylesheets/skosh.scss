@@ -10,8 +10,17 @@
   margin-bottom: 0;
 }
 
+.bottom-margin {
+  margin-bottom: 1rem;
+}
+
 .button.navy {
   background-color: $navy;
+}
+
+.button.table-nav {
+  color: $navy;
+  background-color: #e0d7be;
 }
 
 .card-section {

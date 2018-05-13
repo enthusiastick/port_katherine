@@ -28,6 +28,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  scope :alpha_by_name, -> { order(:first_name) }
   scope :by_handle, -> { order(:handle) }
 
   validates_format_of :email, with: EMAIL_REGEXP

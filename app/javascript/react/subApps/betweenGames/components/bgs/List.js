@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import BgsIcon from './Icon'
+import BgsIcon from '../../../../sharedResources/components/BgsIcon'
 
 const List = ({bookings}) => {
   if (bookings.length === 0) { return null }

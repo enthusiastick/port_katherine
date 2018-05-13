@@ -1,0 +1,68 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Table, Td, Th, Thead, Tr } from 'reactable'
+
+import BgsIcon from '../../../../sharedResources/components/BgsIcon'
+
+const BgsTable = ({bgs}) => {
+  const tableRows = bgs.map(betweenGame => {
+    const {
+      id,
+      category,
+      characterId,
+      characterName,
+      eventName,
+      eventSlug,
+      submittedAt,
+      submittedAtLabel,
+      title
+    } = betweenGame
+
+    return(
+      <Tr key={id}>
+        <Td column='title' value={title}>
+          <Link to={`/admin/bgs/${id}`}>
+            <BgsIcon category={category} /> {title}
+          </Link>
+        </Td>
+        <Td column='event' value={eventName}>
+          <Link to={`/admin/events/${eventSlug}`}>{eventName}</Link>
+        </Td>
+        <Td column='character' value={characterName}>
+          <Link to={`/admin/characters/${characterId}`}>{characterName}</Link>
+        </Td>
+        <Td column='submittedAt' value={submittedAt}>
+          {submittedAtLabel}
+        </Td>
+      </Tr>
+    )
+  })
+
+  return(
+    <Table
+      className='hover'
+      filterable={['event', 'character', 'title']}
+      itemsPerPage={100}
+      noDataText='No matching records found.'
+      sortable={true}
+    >
+      <Thead>
+        <Th column='title'>
+          Title
+        </Th>
+        <Th column='event'>
+          Event
+        </Th>
+        <Th column='character'>
+          Character
+        </Th>
+        <Th column='submittedAt'>
+          Submitted At
+        </Th>
+      </Thead>
+      {tableRows}
+    </Table>
+  )
+}
+
+export default BgsTable
