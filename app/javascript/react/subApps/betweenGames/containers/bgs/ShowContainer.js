@@ -45,7 +45,7 @@ class BgsShowContainer extends Component {
                   <i className='fa fa-pencil-square fa-3x' /> Edit
                 </Link>
               </div>}
-              <h1 className='text-center'><BgsIcon category={category} /> {title}</h1>
+              <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
               {bgsDiv}
             </div>
           </div>

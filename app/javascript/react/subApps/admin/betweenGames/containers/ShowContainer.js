@@ -85,7 +85,7 @@ class BgsShowContainer extends Component {
               </div>
             </div>
             <hr className='topless' />
-            <h1 className='text-center'><BgsIcon category={category} /> {title}</h1>
+            <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
             {bgsDiv}
           </div>
           <CommentList comments={comments} />

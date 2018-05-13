@@ -69,7 +69,7 @@ class Bgs extends Component {
       titleAndBodySection = (
         <div className='form-preview'>
           <div className='callout primary'>
-            <h1>{values.title}</h1>
+            <h2 className='text-center'><BgsIcon category={values.category} /> {values.title}</h2>
             <div dangerouslySetInnerHTML={renderedHTML} />
             <div className='close-button' onClick={closePreview}>
               <span aria-hidden='true'>&times;</span>
