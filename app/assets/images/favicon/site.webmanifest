@@ -1,0 +1,14 @@
+{
+    "name": "Port Katherine",
+    "short_name": "Port Katherine",
+    "icons": [
+        {
+            "src": "Dfv87ZbNh2/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#1d2951",
+    "background_color": "#1d2951",
+    "display": "standalone"
+}
