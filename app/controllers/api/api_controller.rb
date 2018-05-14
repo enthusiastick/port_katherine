@@ -19,6 +19,10 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  def authorize_record_owner(object)
+    object.user == current_user
+  end
+
   def authorize_record_owner_or_admin?(object)
     current_user.admin? ||
     object.user == current_user

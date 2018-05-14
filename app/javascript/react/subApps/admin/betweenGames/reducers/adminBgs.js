@@ -16,6 +16,14 @@ import {
   UPDATE_ADMIN_BGS_ASSIGNEE_FAILURE
 } from '../actions/updateAdminBgsAssignee'
 
+import {
+  CREATE_ADMIN_BGS_COMMENT_SUCCESS
+} from '../actions/createAdminBgsComment'
+
+import {
+  UPDATE_ADMIN_BGS_COMMENT_SUCCESS
+} from '../actions/updateAdminBgsComment'
+
 const initialState = {
   hasUpdatedAssignee: false,
   index: [],
@@ -59,6 +67,10 @@ const adminBgs = (state = initialState, action) => {
       }
     case UPDATE_ADMIN_BGS_ASSIGNEE_FAILURE:
       return { ...state, hasUpdatedAssignee: false }
+    case CREATE_ADMIN_BGS_COMMENT_SUCCESS:
+      return { ...state, show: { ...state.show, comments: action.comments } }
+    case UPDATE_ADMIN_BGS_COMMENT_SUCCESS:
+      return { ...state, show: { ...state.show, comments: action.comments } }
     default:
       return state
   }

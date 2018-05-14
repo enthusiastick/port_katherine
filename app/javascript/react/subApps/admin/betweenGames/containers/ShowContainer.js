@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { Formik } from 'formik'
 import { Link } from 'react-router-dom'
 import marked from 'marked'
 
 import AssigneeSelector from '../components/AssigneeSelector'
 import BgsIcon from '../../../../sharedResources/components/BgsIcon'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
+import CommentForm from '../forms/Comment'
 import CommentList from '../components/CommentList'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
+import validateComment from '../constants/validateComment'
 
 class BgsShowContainer extends Component {
   constructor(props) {
@@ -25,8 +28,9 @@ class BgsShowContainer extends Component {
 
   render() {
     let markdownParsedDescription, renderedHTML, bgsDiv
-    const { bgs, meta, hasUpdatedAssignee, isFetching,
-      updateAdminBgsAssignee } = this.props
+    const { bgs, bgsId, createAdminBgsComment, currentUser, meta,
+      hasUpdatedAssignee, isFetching, updateAdminBgsAssignee,
+      updateAdminBgsComment } = this.props
     if (isFetching) { return <LoadingSpinner /> }
 
     const { id, assigneeHandle, assigneeLabel, body, category, characterId,
@@ -45,8 +49,17 @@ class BgsShowContainer extends Component {
       )
     }
 
-    const changeHandler = event => {
+    const handleChange = event => {
       updateAdminBgsAssignee({ bgsId: id, userHandle: event.currentTarget.value })
+    }
+
+    const handleSubmit = values => {
+      createAdminBgsComment(values)
+    }
+
+    const initialCommentValues = {
+      bgsId: bgsId,
+      body: ''
     }
 
     return(
@@ -56,7 +69,7 @@ class BgsShowContainer extends Component {
           <AssigneeSelector
             assigneeHandle={assigneeHandle}
             hasUpdatedAssignee={hasUpdatedAssignee}
-            onChange={changeHandler}
+            onChange={handleChange}
             users={meta.users}
           />
           <div className='bottomless callout primary'>
@@ -88,7 +101,18 @@ class BgsShowContainer extends Component {
             <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
             {bgsDiv}
           </div>
-          <CommentList comments={comments} />
+          <CommentList
+            bgsId={bgsId}
+            comments={comments}
+            currentUser={currentUser}
+            updateAdminBgsComment={updateAdminBgsComment}
+          />
+          <Formik
+            component={CommentForm}
+            onSubmit={handleSubmit}
+            initialValues={initialCommentValues}
+            validate={validateComment}
+          />
         </div>
       </div>
     )

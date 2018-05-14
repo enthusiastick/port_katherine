@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :bgs, only: [:index, :show] do
           resources :assignees, only: [:update]
+          resources :comments, only: [:create, :update]
         end
         resources :bookings, only: [] do
           resources :check_ins, only: [:create, :destroy]
