@@ -22,6 +22,6 @@ class Api::V1::Admin::BgsController < Api::ApiController
   end
 
   def users
-    @users ||= User.where(role: [:admin, :plot_staff]).alpha_by_name
+    @users ||= User.where(role: [:admin, :plot_staff]).alpha_by_first_name
   end
 end
