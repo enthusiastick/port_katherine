@@ -52,6 +52,14 @@ class User < ApplicationRecord
     !confirmed_at.nil?
   end
 
+  def discourse_sso_title
+    if general?
+      @discourse_sso_title ||= default_character.present? ? default_character.name : nil
+    else
+      @discourse_sso_title ||= forum_title.present? ? forum_title : nil
+    end
+  end
+
   def downcase_email
     self.email.downcase!
   end

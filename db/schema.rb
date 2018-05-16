@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_12_221330) do
+ActiveRecord::Schema.define(version: 2018_05_16_170709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(version: 2018_05_12_221330) do
     t.date "new_player_discounted_at"
     t.decimal "available", precision: 6, scale: 2, default: "0.0"
     t.integer "default_character_id"
+    t.string "forum_title"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["handle"], name: "index_users_on_handle", unique: true
     t.index ["non_sequential_id"], name: "index_users_on_non_sequential_id", unique: true
