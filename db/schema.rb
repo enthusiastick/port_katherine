@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_16_170709) do
+ActiveRecord::Schema.define(version: 2018_05_18_174415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_05_16_170709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "assignee_id"
+    t.datetime "response_released_at"
     t.index ["non_sequential_id"], name: "index_between_games_on_non_sequential_id", unique: true
   end
 
@@ -99,7 +100,6 @@ ActiveRecord::Schema.define(version: 2018_05_16_170709) do
     t.boolean "automated", default: false, null: false
     t.text "body", null: false
     t.integer "between_game_id", null: false
-    t.integer "comment_id"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

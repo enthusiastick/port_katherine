@@ -24,4 +24,8 @@ class BetweenGame < ApplicationRecord
   def booking
     event.present? ? Booking.find_by(event: event, user: character.user) : nil
   end
+
+  def user
+    character.user
+  end
 end

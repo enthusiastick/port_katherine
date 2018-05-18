@@ -1,6 +1,6 @@
 class Admin::CommentSerializer < ActiveModel::Serializer
-  attributes :id, :automated, :body, :comment_id, :edited_at, :posted_at,
-    :timestamp, :user_handle, :user_label
+  attributes :id, :automated, :body, :edited_at, :posted_at, :timestamp,
+    :user_handle, :user_label
 
   def edited?
     object.created_at != object.updated_at

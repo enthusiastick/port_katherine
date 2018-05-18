@@ -13,7 +13,7 @@ class Api::V1::BetweenGamesController < Api::ApiController
       user: current_user
     )
     if bgs.save && comment.save
-      render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
+      render json: bgs.booking, serializer: ::Booking::FutureSerializer
     else
       render_object_errors(bgs)
     end
@@ -21,6 +21,17 @@ class Api::V1::BetweenGamesController < Api::ApiController
 
   def index
     render json: between_games
+  end
+
+  def show
+    bgs = BetweenGame.find_by(non_sequential_id: params[:id])
+    if bgs.present? && authorize_record_owner(bgs)
+      render json: bgs, serializer: ::BetweenGame::ShowSerializer
+    elsif bgs.present?
+      render json: { error: "Not authorized" }, status: :unauthorized
+    else
+      render json: { error: "Not found" }, status: :not_found
+    end
   end
 
   def update
@@ -35,9 +46,9 @@ class Api::V1::BetweenGamesController < Api::ApiController
       user: current_user
     )
     if !bgs.changed?
-      render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
+      render json: bgs.booking, serializer: ::Booking::FutureSerializer
     elsif bgs.event.bgs_deadline.future? && bgs.save && comment.save
-      render json: bgs.booking, serializer: ::BetweenGames::FutureBookingSerializer
+      render json: bgs.booking, serializer: ::Booking::FutureSerializer
     else
       render_object_errors(bgs)
     end
@@ -56,7 +67,7 @@ class Api::V1::BetweenGamesController < Api::ApiController
   def future_bookings
     ActiveModelSerializers::SerializableResource.new(
       current_user.bookings.future_events.by_soonest_events_first,
-      each_serializer: ::BetweenGames::FutureBookingSerializer,
+      each_serializer: ::Booking::FutureSerializer,
       root: "future_bookings"
     ).serializable_hash
   end
@@ -90,7 +101,7 @@ class Api::V1::BetweenGamesController < Api::ApiController
   def past_bookings
     ActiveModelSerializers::SerializableResource.new(
       current_user.bookings.past_events.by_soonest_events_first,
-      each_serializer: ::BetweenGames::PastBookingSerializer,
+      each_serializer: ::Booking::PastSerializer,
       root: "past_bookings"
     ).serializable_hash
   end

@@ -2,15 +2,14 @@ import { connect } from 'react-redux'
 
 import BgsShowContainer from '../../containers/bgs/ShowContainer'
 import { authenticateSignedInUser } from '../../../../sharedResources/actions/authenticateUser'
-import { getBetweenGames } from '../../actions/getBetweenGames'
-import { bgsById } from '../../selectors/betweenGames'
+import { getBgs } from '../../actions/getBgs'
 import { isSignedIn } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    bgs: bgsById(state, ownProps),
+    bgs: state.betweenGames.bgs,
     bgsId: ownProps.match.params.bgsId,
-    isFetching: state.betweenGames.isFetching,
+    isFetching: state.betweenGames.isFetchingBgs,
     isSignedIn: isSignedIn(state)
   }
 }
@@ -18,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     authenticateSignedInUser: authorized => { dispatch(authenticateSignedInUser(authorized)) },
-    getBetweenGames: () => { dispatch(getBetweenGames()) }
+    getBgs: id => { dispatch(getBgs(id)) }
   }
 }
 

@@ -11,8 +11,8 @@ class BgsShowContainer extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.bgs.id) {
-      this.props.getBetweenGames()
+    if (this.props.bgsId !== this.props.bgs.id) {
+      this.props.getBgs(this.props.bgsId)
     }
   }
 

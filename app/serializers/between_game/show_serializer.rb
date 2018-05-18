@@ -1,4 +1,4 @@
-class BetweenGameSerializer < ActiveModel::Serializer
+class BetweenGame::ShowSerializer < ActiveModel::Serializer
   attributes :id, :body, :booking_id, :category, :character_id, :event_slug,
     :is_deadline_past, :title
 
@@ -21,6 +21,8 @@ class BetweenGameSerializer < ActiveModel::Serializer
   def is_deadline_past
     has_deadline? && object.event.bgs_deadline.past?
   end
+
+  private
 
   def has_deadline?
     object.event.present? && !object.event.bgs_deadline.nil?

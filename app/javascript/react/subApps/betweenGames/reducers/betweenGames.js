@@ -5,6 +5,12 @@ import {
 } from '../actions/getBetweenGames'
 
 import {
+  GET_BGS,
+  GET_BGS_SUCCESS,
+  GET_BGS_FAILURE
+} from '../actions/getBgs'
+
+import {
   CREATE_FEEDBACK_SUCCESS
 } from '../actions/createFeedback'
 
@@ -17,10 +23,12 @@ import {
 } from '../actions/updateBgs'
 
 const initialState = {
+  bgs: {},
   futureBookings: [],
   pastBookings: [],
   meta: {},
-  isFetching: false
+  isFetching: false,
+  isFetchingBgs: false
 }
 
 const BetweenGames = (state = initialState, action) => {
@@ -33,6 +41,16 @@ const BetweenGames = (state = initialState, action) => {
       return { ...state, ...action.betweenGames, isFetching: false }
     case GET_BETWEEN_GAMES_FAILURE:
       return { ...state, isFetching: false }
+    case GET_BGS:
+      return { ...state, isFetchingBgs: true }
+    case GET_BGS_SUCCESS:
+      return {
+        ...state,
+        bgs: action.result.betweenGame,
+        isFetchingBgs: false
+      }
+    case GET_BGS_FAILURE:
+      return { ...state, isFetchingBgs: false }
     case CREATE_BGS_SUCCESS:
       updatedFutureBookings = state.futureBookings.map(booking => {
         if (booking.id === action.booking.id) {
@@ -64,6 +82,7 @@ const BetweenGames = (state = initialState, action) => {
       })
       return {
         ...state,
+        bgs: {},
         futureBookings: updatedFutureBookings
       }
     default:
