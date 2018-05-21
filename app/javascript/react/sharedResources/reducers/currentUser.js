@@ -1,6 +1,5 @@
 import { FETCH_CURRENT_USER, FETCH_CURRENT_USER_SUCCESS } from '../actions/getCurrentUser'
 import { FETCH_CREATE_SESSION_SUCCESS } from '../../subApps/userAuthenticator/actions/createSession'
-import { FETCH_DESTROY_SESSION_SUCCESS } from '../../subApps/userAuthenticator/actions/destroySession'
 
 let initialState = {
   isFetching: false,
@@ -18,8 +17,6 @@ const currentUser = (state = initialState, action) => {
         isFetching: false,
         item: action.currentUser
       })
-    case FETCH_DESTROY_SESSION_SUCCESS:
-      return initialState
     default:
       return state
   }

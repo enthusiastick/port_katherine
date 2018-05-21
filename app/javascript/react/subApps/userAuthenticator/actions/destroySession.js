@@ -1,4 +1,7 @@
+import { push } from 'react-router-redux'
+
 import baseUrl from '../../../sharedResources/constants/baseUrl'
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const FETCH_DESTROY_SESSION = 'FETCH_DESTROY_SESSION'
 const FETCH_DESTROY_SESSION_SUCCESS = 'FETCH_DESTROY_SESSION_SUCCESS'
@@ -37,11 +40,16 @@ let destroySession = () => dispatch => {
       throw data.error
     } else {
       dispatch(fetchDestroySessionSuccess())
+      dispatch(clearNotices())
+      dispatch(push('/'))
+      dispatch(flashNotice({ success: 'Signed out.' }))
     }
     return data
   })
   .catch(error => {
     dispatch(fetchDestroySessionFailure())
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem signing you out.' }))
     throw error
   })
 }

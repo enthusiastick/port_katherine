@@ -28,13 +28,11 @@ class SignOutContainer extends Component {
 
   componentDidMount() {
     if (this.props.currentUser.id) {
-      this.props.destroySession()
-      this.props.push('/')
-      this.props.flashNotice({ success: 'Signed out.' })
-    } else {
-      this.props.push('/')
-      this.props.flashNotice({ alert: 'You are not signed in.' })
+      return this.props.destroySession()
     }
+
+    this.props.push('/')
+    this.props.flashNotice({ alert: 'You are not signed in.' })
   }
 
   render() { return null }

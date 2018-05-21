@@ -9,10 +9,6 @@ import {
 } from '../../userAuthenticator/actions/createSession'
 
 import {
-  FETCH_DESTROY_SESSION_SUCCESS
-} from '../../userAuthenticator/actions/destroySession'
-
-import {
   CREATE_REGISTRATION_SUCCESS
 } from '../actions/createRegistration'
 
@@ -53,8 +49,6 @@ const events = (state = initialState, action) => {
         isFetching: false
       }
     case FETCH_CREATE_SESSION_SUCCESS:
-      return initialState
-    case FETCH_DESTROY_SESSION_SUCCESS:
       return initialState
     case CREATE_REGISTRATION_SUCCESS:
       updatedEventSlugs = action.events.map(event => {

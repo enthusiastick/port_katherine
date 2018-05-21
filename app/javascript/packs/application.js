@@ -2,20 +2,19 @@ import 'whatwg-fetch'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
 import createBrowserHistory from 'history/createBrowserHistory'
 import { Route, Switch } from 'react-router'
 
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import { reducer as formReducer } from 'redux-form'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
 
 import License  from '../react/sharedResources/components/License'
 
 import Admin             from '../react/subApps/admin'
-import BetweenGames     from '../react/subApps/betweenGames'
+import BetweenGames      from '../react/subApps/betweenGames'
 import CharacterBuilder  from '../react/subApps/characterBuilder'
 import HomePage          from '../react/subApps/homepage'
 import EventRegistrar    from '../react/subApps/eventRegistrar'
@@ -23,42 +22,14 @@ import Navigator         from '../react/subApps/navigator'
 import StaticPages       from '../react/sharedResources'
 import UserAuthenticator from '../react/subApps/userAuthenticator'
 
-import adminBgs from '../react/subApps/admin/betweenGames/reducers/adminBgs'
-import adminCharacters from '../react/subApps/admin/characterManager/reducers/adminCharacters'
-import adminEvents     from '../react/subApps/admin/eventManager/reducers/adminEvents'
-import adminUsers      from '../react/subApps/admin/userManager/reducers/adminUsers'
-import betweenGames    from '../react/subApps/betweenGames/reducers/betweenGames'
-import characters      from '../react/subApps/characterBuilder/reducers/characters'
-import currentUser     from '../react/sharedResources/reducers/currentUser'
-import delta           from '../react/subApps/characterBuilder/reducers/delta'
-import headers         from '../react/subApps/characterBuilder/reducers/headers'
-import homepage        from '../react/subApps/homepage/reducers/homepage'
-import events          from '../react/subApps/eventRegistrar/reducers/events'
-import notices         from '../react/sharedResources/reducers/notices'
-import token           from '../react/subApps/eventRegistrar/reducers/token'
+import rootReducer from '../react/rootReducer'
 
 const history = createBrowserHistory()
 
 const middlewares = [thunkMiddleware, routerMiddleware(history)]
 
 const store = createStore(
-  combineReducers({
-    adminBgs,
-    adminCharacters,
-    adminEvents,
-    adminUsers,
-    betweenGames,
-    characters,
-    currentUser,
-    delta,
-    headers,
-    homepage,
-    events,
-    notices,
-    token,
-    form: formReducer,
-    router: routerReducer
-  }),
+  rootReducer,
   applyMiddleware(...middlewares)
 )
 
