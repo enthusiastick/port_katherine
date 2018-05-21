@@ -9,6 +9,7 @@ import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNa
 import CommentForm from '../forms/Comment'
 import CommentList from '../components/CommentList'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
+import ResponseForm from '../forms/Response'
 import validateComment from '../constants/validateComment'
 
 class BgsShowContainer extends Component {
@@ -27,25 +28,27 @@ class BgsShowContainer extends Component {
   }
 
   render() {
-    let markdownParsedDescription, renderedHTML, bgsDiv
+    let markdownParsedBody, renderedBodyHTML, bgsDiv
+    let responseDiv = <div className='button bottomless expanded'>This is a button</div>
     const { bgs, bgsId, createAdminBgsComment, currentUser, meta,
       hasUpdatedAssignee, isFetching, updateAdminBgsAssignee,
       updateAdminBgsComment } = this.props
     if (isFetching) { return <LoadingSpinner /> }
 
     const { id, assigneeHandle, assigneeLabel, body, category, characterId,
-      characterName, comments, eventName, eventSlug, submittedAtLabel,
-      title } = bgs
+      characterName, comments, eventName, eventSlug, respondentHandle,
+      respondentLabel, response, responseTitle, responseReleasedAt,
+      submittedAtLabel, title } = bgs
 
     const breadcrumbs = [
       { to: '/admin/bgs', label: 'Between-Game Skills'}
       ]
 
     if (body) {
-      markdownParsedDescription = marked(body)
-      renderedHTML = { __html: markdownParsedDescription }
+      markdownParsedBody = marked(body)
+      renderedBodyHTML = { __html: markdownParsedBody }
       bgsDiv = (
-        <div dangerouslySetInnerHTML={renderedHTML} />
+        <div dangerouslySetInnerHTML={renderedBodyHTML} />
       )
     }
 
@@ -53,13 +56,35 @@ class BgsShowContainer extends Component {
       updateAdminBgsAssignee({ bgsId: id, userHandle: event.currentTarget.value })
     }
 
-    const handleSubmit = values => {
+    const handleCommentSubmit = values => {
       createAdminBgsComment(values)
+    }
+
+    const handleResponseSubmit = values => {
+      debugger
     }
 
     const initialCommentValues = {
       bgsId: bgsId,
       body: ''
+    }
+
+    let initialResponseValues = {
+      responseTitle: 'Response'
+    }
+
+    if (response) {
+      initialResponseValues = {
+        responseTitle
+      }
+
+      responseDiv = (
+        <Formik
+          component={ResponseForm}
+          onSubmit={handleResponseSubmit}
+          initialValues={initialResponseValues}
+        />
+      )
     }
 
     return(
@@ -101,6 +126,7 @@ class BgsShowContainer extends Component {
             <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
             {bgsDiv}
           </div>
+          {responseDiv}
           <CommentList
             bgsId={bgsId}
             comments={comments}
@@ -109,7 +135,7 @@ class BgsShowContainer extends Component {
           />
           <Formik
             component={CommentForm}
-            onSubmit={handleSubmit}
+            onSubmit={handleCommentSubmit}
             initialValues={initialCommentValues}
             validate={validateComment}
           />

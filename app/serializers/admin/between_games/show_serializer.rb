@@ -1,10 +1,25 @@
 class Admin::BetweenGames::ShowSerializer < Admin::BetweenGames::IndexSerializer
-  attributes :body
+  attributes :body, :respondent_handle, :respondent_label, :response,
+    :response_title, :response_released_at
 
   has_many :comments do
-    ActiveModelSerializers::SerializableResource.new(
-      object.comments.order(:created_at),
-      each_serializer: ::Admin::CommentSerializer,
-    ).serializable_hash[:comments]
+    object.comments.order(:created_at)
+  end
+
+  def respondent_handle
+    object.respondent.present? ? object.respondent.handle : nil
+  end
+
+  def respondent_label
+    object.respondent.present? ? object.respondent.label : nil
+  end
+
+  def response_released_at
+    object.response_released_at.present? ? object.response_released_at.to_i : nil
+  end
+
+  def self.serializer_for(model, options)
+    return ::Admin::CommentSerializer if model.class.name == "Comment"
+    super
   end
 end

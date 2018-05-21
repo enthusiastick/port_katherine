@@ -21,17 +21,31 @@ class BgsShowContainer extends Component {
   }
 
   render() {
-    let markdownParsedDescription, renderedHTML, bgsDiv
+    let markdownParsedBody, markdownParsedResponse, renderedBodyHTML,
+      renderedResponseHTML, bgsDiv, responseDiv
     const { bgsId, isFetching } = this.props
-    const { body, category, isDeadlinePast, title } = this.props.bgs
+    const { body, category, isDeadlinePast, responseBody, responseTitle, title } = this.props.bgs
 
     if (isFetching) { return <LoadingSpinner /> }
 
     if (body) {
-      markdownParsedDescription = marked(body)
-      renderedHTML = { __html: markdownParsedDescription }
+      markdownParsedBody = marked(body)
+      renderedBodyHTML = { __html: markdownParsedBody }
       bgsDiv = (
-        <div dangerouslySetInnerHTML={renderedHTML} />
+        <div dangerouslySetInnerHTML={renderedBodyHTML} />
+      )
+    }
+
+    if (responseBody) {
+      markdownParsedResponse = marked(responseBody)
+      renderedResponseHTML = { __html: markdownParsedResponse }
+      responseDiv = (
+        <div className='card'>
+          <div className='card-divider'>
+            <h2 className='float-center'>{responseTitle}</h2>
+          </div>
+          <div className='card-section' dangerouslySetInnerHTML={renderedResponseHTML} />
+        </div>
       )
     }
 
@@ -48,6 +62,7 @@ class BgsShowContainer extends Component {
               <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
               {bgsDiv}
             </div>
+            {responseDiv}
           </div>
         </div>
       </div>

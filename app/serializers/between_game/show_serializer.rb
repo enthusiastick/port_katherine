@@ -1,6 +1,6 @@
 class BetweenGame::ShowSerializer < ActiveModel::Serializer
   attributes :id, :body, :booking_id, :category, :character_id, :event_slug,
-    :is_deadline_past, :title
+    :is_deadline_past, :response_body, :response_title, :title
 
   def id
     object.non_sequential_id
@@ -22,7 +22,19 @@ class BetweenGame::ShowSerializer < ActiveModel::Serializer
     has_deadline? && object.event.bgs_deadline.past?
   end
 
+  def response_body
+    response_visible? ? object.response : nil
+  end
+
+  def response_title
+    response_visible? ? object.response_title : nil
+  end
+
   private
+
+  def response_visible?
+    object.response_released_at.present? && object.response_released_at.past?
+  end
 
   def has_deadline?
     object.event.present? && !object.event.bgs_deadline.nil?
