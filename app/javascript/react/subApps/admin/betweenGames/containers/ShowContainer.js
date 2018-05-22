@@ -53,8 +53,9 @@ class BgsShowContainer extends Component {
       updateAdminBgsAssignee({ bgsId: id, userHandle: event.currentTarget.value })
     }
 
-    const handleSubmit = values => {
+    const handleSubmit = (values, {resetForm}) => {
       createAdminBgsComment(values)
+      resetForm()
     }
 
     const initialCommentValues = {
