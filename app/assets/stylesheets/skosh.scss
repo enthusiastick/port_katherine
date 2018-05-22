@@ -74,6 +74,12 @@
   }
 }
 
+.form-inputs.medium-text {
+  textarea {
+    min-height: 18rem;
+  }
+}
+
 .form-inputs.small-text {
   textarea {
     min-height: 6rem;

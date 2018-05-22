@@ -56,7 +56,7 @@ class BgsShowContainer extends Component {
       updateAdminBgsAssignee({ bgsId: id, userHandle: event.currentTarget.value })
     }
 
-    const handleSubmit = (values, {resetForm}) => {
+    const handleCommentSubmit = (values, {resetForm}) => {
       createAdminBgsComment(values)
       resetForm()
     }
@@ -71,12 +71,16 @@ class BgsShowContainer extends Component {
     }
 
     let initialResponseValues = {
-      responseTitle: 'Response'
+      response: '',
+      responseTitle: 'Response',
+      responseReleasedAt: 0
     }
 
     if (response) {
       initialResponseValues = {
-        responseTitle
+        response,
+        responseTitle,
+        responseReleasedAt
       }
 
       responseDiv = (

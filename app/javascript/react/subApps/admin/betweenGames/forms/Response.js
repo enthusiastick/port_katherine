@@ -12,10 +12,12 @@ const ResponseForm = ({
   handleSubmit,
   isSubmitting
 }) => {
+  const pristine = Object.keys(touched).length === 0
+
   return(
     <form onSubmit={handleSubmit}>
       <div className='bottomless card'>
-        <div className='card-section form-inputs'>
+        <div className='card-section form-inputs medium-text'>
           <TextInput
             error={errors.responseTitle}
             touched={touched.responseTitle}
@@ -25,9 +27,18 @@ const ResponseForm = ({
             name='responseTitle'
             value={values.responseTitle}
           />
+          <TextArea
+            error={errors.response}
+            touched={touched.response}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            label='Response'
+            name='response'
+            value={values.response}
+          />
         </div>
         <div className='card-section form-actions'>
-          <button className='button bottomless float-right' type='submit' disabled={isSubmitting}>
+          <button className='button bottomless float-right' type='submit' disabled={pristine || isSubmitting}>
             Submit
           </button>
         </div>
