@@ -51,7 +51,6 @@ const updateBgs = values => dispatch => {
     dispatch(push('/between-events'))
   })
   .catch(error => {
-    debugger
     dispatch(updateBgsFailure())
     dispatch(clearNotices())
     dispatch(flashNotice({ alert: 'There was a problem processing your request.' }))
