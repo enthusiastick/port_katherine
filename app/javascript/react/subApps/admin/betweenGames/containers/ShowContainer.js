@@ -32,7 +32,7 @@ class BgsShowContainer extends Component {
     let responseDiv = <div className='button bottomless expanded'>This is a button</div>
     const { bgs, bgsId, createAdminBgsComment, currentUser, meta,
       hasUpdatedAssignee, isFetching, updateAdminBgsAssignee,
-      updateAdminBgsComment } = this.props
+      updateAdminBgsComment, updateAdminBgsResponse } = this.props
     if (isFetching) { return <LoadingSpinner /> }
 
     const { id, assigneeHandle, assigneeLabel, body, category, characterId,
@@ -62,7 +62,7 @@ class BgsShowContainer extends Component {
     }
 
     const handleResponseSubmit = values => {
-      debugger
+      updateAdminBgsResponse(values)
     }
 
     const initialCommentValues = {
@@ -71,16 +71,16 @@ class BgsShowContainer extends Component {
     }
 
     let initialResponseValues = {
+      category: 'after_event',
       response: '',
-      responseTitle: 'Response',
-      responseReleasedAt: 0
+      responseTitle: 'Response'
     }
 
     if (response) {
       initialResponseValues = {
+        category: 'after_event',
         response,
-        responseTitle,
-        responseReleasedAt
+        responseTitle
       }
 
       responseDiv = (

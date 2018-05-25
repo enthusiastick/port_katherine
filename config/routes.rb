@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admin do
         resources :bgs, only: [:index, :show] do
+          resources :answers, only: [:create]
           resources :assignees, only: [:update]
           resources :comments, only: [:create, :update]
         end

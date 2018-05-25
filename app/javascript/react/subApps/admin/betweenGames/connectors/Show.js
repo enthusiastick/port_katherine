@@ -6,6 +6,7 @@ import { createAdminBgsComment } from '../actions/createAdminBgsComment'
 import { showAdminBgs } from '../actions/showAdminBgs'
 import { updateAdminBgsAssignee } from '../actions/updateAdminBgsAssignee'
 import { updateAdminBgsComment } from '../actions/updateAdminBgsComment'
+import { updateAdminBgsResponse } from '../actions/updateAdminBgsResponse'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
@@ -26,7 +27,8 @@ const mapDispatchToProps = dispatch => {
     createAdminBgsComment: values => { dispatch(createAdminBgsComment(values)) },
     showAdminBgs: id => { dispatch(showAdminBgs(id)) },
     updateAdminBgsAssignee: values => { dispatch(updateAdminBgsAssignee(values)) },
-    updateAdminBgsComment: values => { dispatch(updateAdminBgsComment(values)) }
+    updateAdminBgsComment: values => { dispatch(updateAdminBgsComment(values)) },
+    updateAdminBgsResponse: values => { dispatch(updateAdminBgsResponse(values)) }
   }
 }
 
