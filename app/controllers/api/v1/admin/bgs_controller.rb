@@ -2,8 +2,8 @@ class Api::V1::Admin::BgsController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
   def index
-    bgs = BetweenGame.future_events.by_soonest_events_first
-    render json: bgs, each_serializer: ::Admin::BetweenGames::IndexSerializer
+    bgs = params[:event_id].present? ? Event.find_by(slug: params[:event_id]).between_games : all_bgs
+    render json: bgs, meta: events, each_serializer: ::Admin::BetweenGames::IndexSerializer
   end
 
   def show
@@ -12,6 +12,14 @@ class Api::V1::Admin::BgsController < Api::ApiController
   end
 
   private
+
+  def all_bgs
+    BetweenGame.future_events.by_soonest_events_first
+  end
+
+  def events
+    Event.upcoming.soonest_first.map { |event| { name: event.name, slug: event.slug } }
+  end
 
   def meta
     ActiveModelSerializers::SerializableResource.new(

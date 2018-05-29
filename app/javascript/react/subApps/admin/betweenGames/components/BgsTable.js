@@ -13,6 +13,7 @@ const BgsTable = ({bgs}) => {
       characterName,
       eventName,
       eventSlug,
+      isAnswered,
       submittedAt,
       submittedAtLabel,
       title
@@ -34,6 +35,9 @@ const BgsTable = ({bgs}) => {
         <Td column='submittedAt' value={submittedAt}>
           {submittedAtLabel}
         </Td>
+        <Td column='isAnswered' value={isAnswered ? 'answered' : 'incomplete'}>
+          {isAnswered ? <i className='fa fa-check' /> : <i className='fa fa-times' />}
+        </Td>
       </Tr>
     )
   })
@@ -41,7 +45,7 @@ const BgsTable = ({bgs}) => {
   return(
     <Table
       className='hover'
-      filterable={['event', 'character', 'title']}
+      filterable={['event', 'character', 'title', 'isAnswered']}
       itemsPerPage={100}
       noDataText='No matching records found.'
       sortable={true}
@@ -58,6 +62,9 @@ const BgsTable = ({bgs}) => {
         </Th>
         <Th column='submittedAt'>
           Submitted At
+        </Th>
+        <Th column='isAnswered'>
+          Answered?
         </Th>
       </Thead>
       {tableRows}

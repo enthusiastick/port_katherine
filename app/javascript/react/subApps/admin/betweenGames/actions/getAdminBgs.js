@@ -31,9 +31,10 @@ const getAdminBgsFailure = () => {
   }
 }
 
-const getAdminBgs = () => dispatch => {
+const getAdminBgs = eventSlug => dispatch => {
   dispatch(fetchAdminBgs())
-  return fetch(`${baseUrl}/api/v1/admin/bgs.json`, {
+  const url = (eventSlug) ? `${baseUrl}/api/v1/admin/events/${eventSlug}/bgs.json` : `${baseUrl}/api/v1/admin/bgs.json`
+  return fetch(url, {
     credentials: 'same-origin',
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
@@ -41,7 +42,7 @@ const getAdminBgs = () => dispatch => {
   .then(response => { return response.json() })
   .then(data => {
     const result = humps.camelizeKeys(data)
-    dispatch(getAdminBgsSuccess(result.betweenGames))
+    dispatch(getAdminBgsSuccess(result))
   })
   .catch(error => { dispatch(getAdminBgsFailure()) })
 }

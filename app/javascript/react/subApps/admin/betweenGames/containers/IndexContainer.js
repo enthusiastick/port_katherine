@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import BgsTable from '../components/BgsTable'
+import EventsNav from '../components/EventsNav'
 import NavButton from '../components/NavButton'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
@@ -15,12 +16,8 @@ class BgsIndexContainer extends Component {
 
   componentWillMount() {
     if (this.props.allBgs.length === 0) {
-      this.props.getAdminBgs()
+      this.props.getAdminBgs(this.props.eventSlug)
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.props.authenticateSignedInPlotStaff(nextProps.isPlotStaff)
   }
 
   navigationHandler(event) {
@@ -28,7 +25,8 @@ class BgsIndexContainer extends Component {
   }
 
   render() {
-    const { allBgs, bgsAssignedToCurrentUser, bgsUnassigned, isFetching } = this.props
+    const { allBgs, answeredBgs, bgsAssignedToCurrentUser, bgsUnassigned,
+      events, eventSlug, isFetching } = this.props
     if (isFetching) { return <LoadingSpinner /> }
 
     const navigation = [
@@ -52,6 +50,7 @@ class BgsIndexContainer extends Component {
       <div className='row'>
         <div className='small-12 columns'>
           <h1 className='text-center top-padded'>Between-Games Skills</h1>
+          <EventsNav events={events} eventSlug={eventSlug} />
           <div className='button-group bottomless expanded'>
             {navigationButtons}
           </div>

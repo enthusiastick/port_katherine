@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :sheets, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
+      resources :bgs, only: [:index]
       get "check-in", to: "check_ins#index", as: :check_ins
       resources :envelopes, only: [:index]
       resources :pels, only: [:index, :show]
@@ -62,6 +63,7 @@ Rails.application.routes.draw do
           resources :backstories, only: [:index]
         end
         resources :events, only: [:create, :destroy, :index, :update] do
+          resources :bgs, only: [:index]
           resources :envelopes, only: [:index]
           resources :pels, only: [:index]
         end

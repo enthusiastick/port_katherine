@@ -29,6 +29,7 @@ import {
 } from '../actions/updateAdminBgsResponse'
 
 const initialState = {
+  events: [],
   hasUpdatedAssignee: false,
   index: [],
   show: {
@@ -45,7 +46,12 @@ const adminBgs = (state = initialState, action) => {
     case GET_ADMIN_BGS:
       return { ...state, isFetching: true }
     case GET_ADMIN_BGS_SUCCESS:
-      return { ...state, index: action.index, isFetching: false }
+      return {
+        ...state,
+        events: action.index.meta,
+        index: action.index.betweenGames,
+        isFetching: false
+      }
     case GET_ADMIN_BGS_FAILURE:
       return { ...state, isFetching: false }
     case SHOW_ADMIN_BGS:
@@ -66,6 +72,7 @@ const adminBgs = (state = initialState, action) => {
       return {
         ...state,
         hasUpdatedAssignee: true,
+        index: [],
         show: action.show.betweenGame,
         isFetching: false
       }
@@ -76,7 +83,7 @@ const adminBgs = (state = initialState, action) => {
     case UPDATE_ADMIN_BGS_COMMENT_SUCCESS:
       return { ...state, show: { ...state.show, comments: action.comments } }
     case UPDATE_ADMIN_BGS_RESPONSE_SUCCESS:
-      return { ...state, show: action.show }
+      return { ...state, index: [], show: action.show }
     default:
       return state
   }

@@ -4,13 +4,15 @@ import BgsIndexContainer from '../containers/IndexContainer'
 import { authenticateSignedInPlotStaff } from '../../../../sharedResources/actions/authenticateUser'
 import { getAdminBgs } from '../actions/getAdminBgs'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
-import { bgsAssignedToCurrentUser, bgsUnassigned } from '../selectors/bgs'
+import { answeredBgs, bgsAssignedToCurrentUser, bgsUnassigned } from '../selectors/bgs'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     allBgs: state.adminBgs.index,
     bgsAssignedToCurrentUser: bgsAssignedToCurrentUser(state),
     bgsUnassigned: bgsUnassigned(state),
+    events: state.adminBgs.events,
+    eventSlug: ownProps.match.params.eventSlug,
     isFetching: state.adminBgs.isFetching,
     isPlotStaff: isPlotStaff(state)
   }
@@ -19,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     authenticateSignedInPlotStaff: authorized => { dispatch(authenticateSignedInPlotStaff(authorized)) },
-    getAdminBgs: () => { dispatch(getAdminBgs()) }
+    getAdminBgs: eventSlug => { dispatch(getAdminBgs(eventSlug)) }
   }
 }
 
