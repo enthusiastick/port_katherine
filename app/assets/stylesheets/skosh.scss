@@ -134,6 +134,11 @@ p.small {
   font-size: 0.8rem;
 }
 
+span.normalized {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+  font-size: medium;
+}
+
 td {
   color: $solarized-base01;
   a {

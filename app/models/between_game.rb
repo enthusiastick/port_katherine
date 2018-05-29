@@ -21,11 +21,23 @@ class BetweenGame < ApplicationRecord
   validates_presence_of :body, :title
   validates_uniqueness_of :non_sequential_id
 
+  def after_event_release
+    event.end_time
+  end
+
+  def before_event_release
+    event.start_time.at_beginning_of_day
+  end
+
   def booking
     event.present? ? Booking.find_by(event: event, user: character.user) : nil
   end
 
   def user
     character.user
+  end
+
+  def visible?
+    response_released_at.present? && response_released_at.past?
   end
 end

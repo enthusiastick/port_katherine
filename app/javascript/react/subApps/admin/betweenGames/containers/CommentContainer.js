@@ -34,7 +34,7 @@ class CommentContainer extends Component {
     let className = 'bottomless callout'
     let editButton
 
-    if (currentUser.handle === userHandle && !this.state.editing) {
+    if (!automated && currentUser.handle === userHandle && !this.state.editing) {
       editButton =
         <span className='button bottomless small' onClick={this.clickHandler}>
           Edit

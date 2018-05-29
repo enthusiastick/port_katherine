@@ -36,8 +36,6 @@ const ResponseForm = ({
     }
   ]
 
-  const pristine = Object.keys(touched).length === 0
-
   return(
     <form onSubmit={handleSubmit}>
       <div className='bottomless card'>
@@ -91,7 +89,11 @@ const ResponseForm = ({
           </fieldset>
         </div>
         <div className='card-section form-actions'>
-          <button className='button bottomless float-right' type='submit' disabled={pristine || isSubmitting}>
+          <button
+            className='button bottomless float-right'
+            disabled={isSubmitting}
+            type='submit'
+          >
             Submit
           </button>
         </div>

@@ -43,7 +43,7 @@ const updateAdminBgsResponse = values => dispatch => {
   .then(response => { return response.json() })
   .then(data => {
     const result = humps.camelizeKeys(data)
-    dispatch(updateAdminBgsResponseSuccess(result))
+    dispatch(updateAdminBgsResponseSuccess(result.betweenGame))
   })
   .catch(error => { dispatch(updateAdminBgsResponseFailure()) })
 }

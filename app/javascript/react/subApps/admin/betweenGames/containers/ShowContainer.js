@@ -15,6 +15,7 @@ import validateComment from '../constants/validateComment'
 class BgsShowContainer extends Component {
   constructor(props) {
     super(props)
+    this.state = { editingResponse: false }
   }
 
   componentWillMount() {
@@ -28,21 +29,50 @@ class BgsShowContainer extends Component {
   }
 
   render() {
-    let markdownParsedBody, renderedBodyHTML, bgsDiv
-    let responseDiv = <div className='button bottomless expanded'>This is a button</div>
+    let bgsDiv, markdownParsedBody, markdownParsedResponse, renderedBodyHTML,
+      renderedResponseHTML
     const { bgs, bgsId, createAdminBgsComment, currentUser, meta,
       hasUpdatedAssignee, isFetching, updateAdminBgsAssignee,
       updateAdminBgsComment, updateAdminBgsResponse } = this.props
     if (isFetching) { return <LoadingSpinner /> }
 
-    const { id, assigneeHandle, assigneeLabel, body, category, characterId,
-      characterName, comments, eventName, eventSlug, respondentHandle,
+    const handleToggleEdit = event => {
+      this.setState({ editingResponse: !this.state.editingResponse })
+    }
+
+    let responseDiv = (
+      <div className='button bottomless expanded' onClick={handleToggleEdit}>
+        Respond to BGS
+      </div>
+    )
+
+    const { id, afterEventRelease, assigneeHandle, assigneeLabel,
+      beforeEventRelease, body, category, characterId, characterName,
+      comments, eventName, eventSlug, isVisibleNow, respondentHandle,
       respondentLabel, response, responseTitle, responseReleasedAt,
       submittedAtLabel, title } = bgs
 
     const breadcrumbs = [
       { to: '/admin/bgs', label: 'Between-Game Skills'}
       ]
+
+    let categoryId = 'after_event'
+    let visibleIcon = 'flag-checkered'
+
+    if (responseReleasedAt && responseReleasedAt === beforeEventRelease) {
+      categoryId = 'before_event'
+      visibleIcon = 'bell'
+    }
+
+    if (responseReleasedAt === null) {
+      categoryId = 'do_not_reveal'
+      visibleIcon = 'eye-slash'
+    }
+
+    if (isVisibleNow) {
+      categoryId = 'reveal_immediately'
+      visibleIcon = 'eye'
+    }
 
     if (body) {
       markdownParsedBody = marked(body)
@@ -63,6 +93,7 @@ class BgsShowContainer extends Component {
 
     const handleResponseSubmit = values => {
       updateAdminBgsResponse(values)
+      this.setState({ editingResponse: false })
     }
 
     const initialCommentValues = {
@@ -71,23 +102,68 @@ class BgsShowContainer extends Component {
     }
 
     let initialResponseValues = {
+      bgsId,
       category: 'after_event',
       response: '',
       responseTitle: 'Response'
     }
 
+    const validateResponse = values => {
+      let errors = {}
+
+      if (!values.response) {
+        errors.response = 'Response body cannot be blank.'
+      }
+
+      if (!values.responseTitle) {
+        errors.responseTitle = 'Response title cannot be blank.'
+      }
+
+      return errors
+    }
+
     if (response) {
       initialResponseValues = {
-        category: 'after_event',
+        bgsId,
+        category: categoryId,
         response,
         responseTitle
       }
 
+      markdownParsedResponse = marked(response)
+      renderedResponseHTML = { __html: markdownParsedResponse }
+      responseDiv = (
+        <div className='bottomless card'>
+          <div className='card-divider'>
+            <h3 className='bottomless float-center'>
+              <i className={`fa fa-${visibleIcon}`} />&nbsp;
+              {responseTitle}
+            </h3>
+            <a
+              className='float-right'
+              onClick={handleToggleEdit}
+            >
+              <h3 className='bottomless'>
+                <span className='normalized'>Edit </span>
+                <i className='fa fa-edit' />
+              </h3>
+            </a>
+          </div>
+          <div
+            className='card-section'
+            dangerouslySetInnerHTML={renderedResponseHTML}
+          />
+        </div>
+      )
+    }
+
+    if (this.state.editingResponse) {
       responseDiv = (
         <Formik
           component={ResponseForm}
           onSubmit={handleResponseSubmit}
           initialValues={initialResponseValues}
+          validate={validateResponse}
         />
       )
     }

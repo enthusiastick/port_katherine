@@ -24,6 +24,10 @@ import {
   UPDATE_ADMIN_BGS_COMMENT_SUCCESS
 } from '../actions/updateAdminBgsComment'
 
+import {
+  UPDATE_ADMIN_BGS_RESPONSE_SUCCESS
+} from '../actions/updateAdminBgsResponse'
+
 const initialState = {
   hasUpdatedAssignee: false,
   index: [],
@@ -71,6 +75,8 @@ const adminBgs = (state = initialState, action) => {
       return { ...state, show: { ...state.show, comments: action.comments } }
     case UPDATE_ADMIN_BGS_COMMENT_SUCCESS:
       return { ...state, show: { ...state.show, comments: action.comments } }
+    case UPDATE_ADMIN_BGS_RESPONSE_SUCCESS:
+      return { ...state, show: action.show }
     default:
       return state
   }
