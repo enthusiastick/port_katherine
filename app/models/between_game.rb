@@ -30,7 +30,15 @@ class BetweenGame < ApplicationRecord
   end
 
   def booking
-    event.present? ? Booking.find_by(event: event, user: character.user) : nil
+    @booking ||= event.present? ? Booking.find_by(event: event, user: character.user) : nil
+  end
+
+  def checked_in?
+    booking.checked_in_at.present? && booking.checked_in_at.past?
+  end
+
+  def checked_in_or_before_event?
+    event.end_time.past? ? checked_in? : true
   end
 
   def user
@@ -39,5 +47,9 @@ class BetweenGame < ApplicationRecord
 
   def visible?
     response_released_at.present? && response_released_at.past?
+  end
+
+  def visible_to_player_character?
+    visible? && checked_in_or_before_event?
   end
 end

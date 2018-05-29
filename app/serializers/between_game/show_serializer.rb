@@ -33,7 +33,7 @@ class BetweenGame::ShowSerializer < ActiveModel::Serializer
   private
 
   def response_visible?
-    object.response_released_at.present? && object.response_released_at.past?
+    object.visible_to_player_character?
   end
 
   def has_deadline?
