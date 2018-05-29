@@ -4,7 +4,11 @@ import BgsIndexContainer from '../containers/IndexContainer'
 import { authenticateSignedInPlotStaff } from '../../../../sharedResources/actions/authenticateUser'
 import { getAdminBgs } from '../actions/getAdminBgs'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
-import { answeredBgs, bgsAssignedToCurrentUser, bgsUnassigned } from '../selectors/bgs'
+import {
+  bgsAssignedToCurrentUser,
+  bgsUnassigned,
+  unansweredBgsAssignedToCurrentUser
+} from '../selectors/bgs'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     bgsUnassigned: bgsUnassigned(state),
     events: state.adminBgs.events,
     eventSlug: ownProps.match.params.eventSlug,
+    unansweredBgsAssignedToCurrentUser: unansweredBgsAssignedToCurrentUser(state),
     isFetching: state.adminBgs.isFetching,
     isPlotStaff: isPlotStaff(state)
   }

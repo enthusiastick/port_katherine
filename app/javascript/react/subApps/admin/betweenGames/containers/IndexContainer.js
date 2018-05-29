@@ -9,7 +9,7 @@ class BgsIndexContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selected: 'bgsAssignedToCurrentUser'
+      selected: 'unansweredBgsAssignedToCurrentUser'
     }
     this.navigationHandler = this.navigationHandler.bind(this)
   }
@@ -26,10 +26,11 @@ class BgsIndexContainer extends Component {
 
   render() {
     const { allBgs, answeredBgs, bgsAssignedToCurrentUser, bgsUnassigned,
-      events, eventSlug, isFetching } = this.props
+      events, eventSlug, unansweredBgsAssignedToCurrentUser, isFetching } = this.props
     if (isFetching) { return <LoadingSpinner /> }
 
     const navigation = [
+      { id: 'unansweredBgsAssignedToCurrentUser', label: `Unanswered & Assigned To Me (${unansweredBgsAssignedToCurrentUser.length})`},
       { id: 'bgsAssignedToCurrentUser', label: `Assigned To Me (${bgsAssignedToCurrentUser.length})` },
       { id: 'bgsUnassigned', label: `Unassigned (${bgsUnassigned.length})` },
       { id: 'allBgs', label: `All (${allBgs.length})` }

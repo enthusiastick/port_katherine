@@ -12,15 +12,6 @@ export const answeredBgs = createSelector(
   }
 )
 
-export const unansweredBgs = createSelector(
-  bgsSelector,
-  (bgs) => {
-    return bgs.filter(betweenGame => {
-      return !betweenGame.isAnswered
-    })
-  }
-)
-
 export const bgsAssignedToCurrentUser = createSelector(
   bgsSelector,
   currentUserSelector,
@@ -36,6 +27,25 @@ export const bgsUnassigned = createSelector(
   (bgs) => {
     return bgs.filter(betweenGame => {
       return betweenGame.assigneeHandle === null
+    })
+  }
+)
+
+export const unansweredBgs = createSelector(
+  bgsSelector,
+  (bgs) => {
+    return bgs.filter(betweenGame => {
+      return !betweenGame.isAnswered
+    })
+  }
+)
+
+export const unansweredBgsAssignedToCurrentUser = createSelector(
+  unansweredBgs,
+  currentUserSelector,
+  (bgs, currentUser) => {
+    return bgs.filter(betweenGame => {
+      return betweenGame.assigneeHandle === currentUser.handle
     })
   }
 )
