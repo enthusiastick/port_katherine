@@ -24,7 +24,7 @@ import {
 
 import {
   FETCH_TALLIES_SUCCESS
-} from '../actions/getTallies'
+} from '../../../sharedResources/actions/getTallies'
 
 import {
   CREATE_CHARACTER_SUCCESS
@@ -55,7 +55,7 @@ let initialState = {
   show: {},
   tallies: {
     items: [],
-    name: null
+    meta: {}
   },
   userTallies: []
 }
@@ -102,7 +102,7 @@ const characters = (state = initialState, action) => {
     case DELETE_CHARACTER_FAILURE:
       return Object.assign({}, state, { isFetching: false })
     case FETCH_TALLIES_SUCCESS:
-      return Object.assign({}, state, { tallies: { name: action.name, items: action.tallies } })
+      return Object.assign({}, state, { tallies: { meta: action.meta, items: action.tallies } })
     case CREATE_CHARACTER_SUCCESS:
       let newCharacterIndex = {
         id: action.character.id,

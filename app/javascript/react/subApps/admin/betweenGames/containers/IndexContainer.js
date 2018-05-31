@@ -20,6 +20,10 @@ class BgsIndexContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.authenticateSignedInPlotStaff(nextProps.isPlotStaff)
+  }
+
   navigationHandler(event) {
     this.setState({ selected: event.currentTarget.id })
   }

@@ -9,6 +9,7 @@ import AdminBgsShow from './betweenGames/connectors/Show'
 
 import AdminIndexBackstories from './characterManager/connectors/AdminIndexBackstories'
 import AdminIndexCharacters from './characterManager/connectors/AdminIndexCharacters'
+import AdminIndexTallies from './characterManager/connectors/AdminIndexTallies'
 import AdminShowCharacter from './characterManager/connectors/AdminShowCharacter'
 
 import AdminEventCheckIn from './eventManager/connectors/AdminEventCheckIn'
@@ -40,6 +41,7 @@ const Admin = props => {
         <Route exact path='/admin/characters' component={AdminIndexCharacters} />
         <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
         <Route exact path='/admin/characters/:characterId/backstories' component={AdminIndexBackstories} />
+        <Route exact path='/admin/characters/:characterId/build_logs' component={AdminIndexTallies} />
       </Switch>
 
       <Switch>

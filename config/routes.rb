@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :bgs, only: [:index, :show]
     resources :characters, only: [:index, :show] do
       resources :backstories, only: [:index]
+      resources :build_logs, only: [:index]
       resources :sheets, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
   resources :bgs, only: [:edit, :new, :show]
   resources :characters, only: [:edit, :index, :new, :show] do
     resources :backstory, only: [:index]
-    resources :build_logs, only: :index
+    resources :build_logs, only: [:index]
   end
   resources :events, only: [:index, :show] do
     ["register", "volunteer"].each do |path|
@@ -84,7 +85,7 @@ Rails.application.routes.draw do
       resources :events, only: [:index] do
         resources :booking_characters, only: [:update]
         collection do
-          resources :next, only: :index
+          resources :next, only: [:index]
         end
       end
       resources :lodging_questionnaires, only: [:create]
@@ -92,7 +93,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create, :update] do
         collection do
-          resources :current, only: :index
+          resources :current, only: [:index]
         end
       end
     end
