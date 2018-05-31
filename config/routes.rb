@@ -101,6 +101,7 @@ Rails.application.routes.draw do
   # Arbitrary data (e.g. CSV) routes
   namespace :reports do
     resources :events, only: [] do
+      resources :envelopes, only: [:index]
       resources :lodging_questionnaires, only: [:index]
     end
   end

@@ -53,6 +53,13 @@ class EventReportsIndexContainer extends Component {
           <div className='button-group'>
             <a
               className='button'
+              href={`/reports/events/${this.props.event.slug}/envelopes`}
+              target='_blank'
+            >
+              <i className='fa fa-file-excel-o' /> Envelope Stuffing
+            </a>
+            <a
+              className='button'
               href={`/reports/events/${this.props.event.slug}/lodging_questionnaires`}
               target='_blank'
             >
