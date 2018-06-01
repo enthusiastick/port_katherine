@@ -33,9 +33,10 @@ let updateCharacterFailure = () => {
   }
 }
 
-let updateCharacter = values => dispatch => {
+let updateCharacter = (values, isAdmin) => dispatch => {
   dispatch(fetchUpdateCharacter())
-  let payload = JSON.stringify(humps.decamelizeKeys({character: values}))
+  const payload = JSON.stringify(humps.decamelizeKeys({character: values}))
+  const redirectPath = isAdmin ? `/admin/characters/${values.id}` : `/characters/${values.id}`
   return fetch(`${baseUrl}/api/v1/characters/${values.id}.json`, {
     credentials: 'same-origin',
     method: 'PATCH',
@@ -50,7 +51,7 @@ let updateCharacter = values => dispatch => {
       dispatch(updateCharacterSuccess(humps.camelizeKeys(data.character)))
       dispatch(clearNotices())
       dispatch(flashNotice({ success: `${data.character.name} updated successfully.` }))
-      dispatch(push(`/characters/${data.character.id}`))
+      dispatch(push(redirectPath))
     }
     return data
   })

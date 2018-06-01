@@ -66,6 +66,9 @@ class AdminShowCharacterContainer extends Component {
                 >
                   <i className='fa fa-print' /> Character Sheet
                 </a>
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/edit`}>
+                  <i className='fa fa-edit' /> Spend CP
+                </Link>
               </div>
             </div>
           </div>
