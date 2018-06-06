@@ -20,7 +20,7 @@ class IndexTalliesContainer extends Component {
   }
 
   render() {
-    let breadcrumbs = [{ to: '/characters', label: 'Characters' }, { to: `/characters/${this.props.characterId}`, label: this.props.tallies.name }]
+    let breadcrumbs = [{ to: '/characters', label: 'Characters' }, { to: `/characters/${this.props.characterId}`, label: this.props.tallies.meta.characterName }]
 
     return(
       <div className='row'>

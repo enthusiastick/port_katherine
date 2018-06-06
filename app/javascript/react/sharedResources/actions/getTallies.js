@@ -1,6 +1,6 @@
 import humps from 'humps'
 
-import baseUrl from '../../../sharedResources/constants/baseUrl'
+import baseUrl from '../constants/baseUrl'
 
 const FETCH_TALLIES = 'FETCH_TALLIES'
 const FETCH_TALLIES_SUCCESS = 'FETCH_TALLIES_SUCCESS'
@@ -18,11 +18,11 @@ let fetchTallies = () => {
   }
 }
 
-let fetchTalliesSuccess = (tallies, name) => {
+let fetchTalliesSuccess = (tallies, meta) => {
   return {
     type: FETCH_TALLIES_SUCCESS,
     tallies,
-    name
+    meta
   }
 }
 
@@ -40,7 +40,10 @@ let getTallies = id => dispatch => {
     headers: { 'Content-Type': 'application/json' }
   })
   .then(response => { return response.json() })
-  .then(data => { dispatch(fetchTalliesSuccess(humps.camelizeKeys(data.tallies), data.meta)) })
+  .then(data => {
+    const result = humps.camelizeKeys(data)
+    dispatch(fetchTalliesSuccess(result.tallies, result.meta))
+  })
   .catch(error => {
     dispatch(fetchTalliesFailure())
   })

@@ -1,9 +1,8 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import IndexTalliesContainer from '../containers/IndexTalliesContainer'
-import { getTallies } from '../actions/getTallies'
+import { getTallies } from '../../../sharedResources/actions/getTallies'
 
 import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'
 import { flashNotice } from '../../../sharedResources/actions/flashNotice'

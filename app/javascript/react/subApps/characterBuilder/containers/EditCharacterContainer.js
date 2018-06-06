@@ -28,7 +28,8 @@ class EditCharacterContainer extends Component {
     if (this.props.saveEligible.disabled) {
       alert(this.props.saveEligible.message)
     } else {
-      this.props.updateCharacter(this.props.delta)
+      const isAdmin = (this.props.location.pathname.split('/')[1] === 'admin')
+      this.props.updateCharacter(this.props.delta, isAdmin)
     }
   }
 
@@ -42,6 +43,8 @@ class EditCharacterContainer extends Component {
       )
     }
 
+    const isAdmin = (this.props.location.pathname.split('/')[1] === 'admin')
+
     let backStoryButtonText = 'Enter Backstory'
     if (this.props.character.backstory != null) { backStoryButtonText = 'Edit Backstory' }
 
@@ -49,6 +52,14 @@ class EditCharacterContainer extends Component {
       { to: '/characters', label: 'Characters' },
       { to: `/characters/${this.props.character.id}`, label: this.props.character.name }
     ]
+
+    if (isAdmin) {
+      breadcrumbs = [
+        { to: '/admin/users', label: 'Users' },
+        { to: `/admin/users/${this.props.character.userHandle}`, label: this.props.character.userHandle },
+        { to: `/admin/characters/${this.props.character.id}`, label: `Character: ${this.props.character.name}` }
+      ]
+    }
 
     let openSkills, headerButtons, headerTiles, professionButtons, professionTiles
 
@@ -166,9 +177,9 @@ class EditCharacterContainer extends Component {
                   <a className='button' disabled={this.props.saveEligible.disabled} onClick={this.saveHandler} >
                     <i className='fa fa-save' /> Save Character
                   </a>
-                  <Link className='button' to={`/characters/${this.props.character.id}/backstory`}>
-                    <i className='fa fa-pencil-square-o' /> {backStoryButtonText}
-                  </Link>
+                  {!isAdmin && <Link className='button' to={`/characters/${this.props.character.id}/backstory`}>
+                      <i className='fa fa-pencil-square-o' /> {backStoryButtonText}
+                    </Link>}
                 </div>
               </div>
             </div>

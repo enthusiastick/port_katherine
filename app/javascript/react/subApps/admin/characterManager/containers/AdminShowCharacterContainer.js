@@ -23,7 +23,7 @@ class AdminShowCharacterContainer extends Component {
   }
 
   render() {
-    let { headers, name, open, userHandle } = this.props.character
+    let { headers, id, name, open, userHandle } = this.props.character
 
     let breadcrumbs = [{ to: '/admin/users', label: 'Users' }, { to: `/admin/users/${userHandle}`, label: userHandle }]
 
@@ -66,12 +66,15 @@ class AdminShowCharacterContainer extends Component {
                 >
                   <i className='fa fa-print' /> Character Sheet
                 </a>
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/edit`}>
+                  <i className='fa fa-edit' /> Spend CP
+                </Link>
               </div>
             </div>
           </div>
           {openElements}
           {headerElements}
-          <h2>Recent Activity</h2>
+          <h2>Recent Activity <Link to={`/admin/characters/${id}/build_logs`}><i className='fa fa-search' /></Link></h2>
           <TalliesTable tallies={this.props.character.tallies} />
         </div>
       </div>

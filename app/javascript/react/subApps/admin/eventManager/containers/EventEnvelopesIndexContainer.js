@@ -27,7 +27,15 @@ class EventEnvelopesIndexContainer extends Component {
       <div className='row'>
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Envelopes' />
-          <h1 className='text-center top-padded'>{eventEnvelopes.name} Envelopes</h1>
+          <h1 className='text-center top-padded'>
+            {eventEnvelopes.name} Envelopes&nbsp;
+            <a
+              href={`/reports/events/${eventSlug}/envelopes`}
+              target='_blank'
+            >
+              <i className='fa fa-download' />
+            </a>
+          </h1>
           <EnvelopesTable characters={eventEnvelopes.characters} />
           {
             this.props.isFetchingEnvelopes &&
