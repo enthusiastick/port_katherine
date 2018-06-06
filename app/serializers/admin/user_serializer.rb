@@ -15,10 +15,7 @@ class Admin::UserSerializer < ActiveModel::Serializer
   end
 
   def last_sign_in
-    "#{ActionController::Base.helpers.distance_of_time_in_words_to_now(object.last_signed_in_at)} ago"
-  end
-
-  def last_ip
+    object.last_signed_in_at.present? ? "#{ActionController::Base.helpers.distance_of_time_in_words_to_now(object.last_signed_in_at)} ago" : "Never"
   end
 
   def name
