@@ -21,7 +21,11 @@ Rails.application.routes.draw do
       resources :sheets, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
-      resources :bgs, only: [:index]
+      resources :bgs, only: [:index] do
+        collection do
+          resources :tickets, only: [:index]
+        end
+      end
       get "check-in", to: "check_ins#index", as: :check_ins
       resources :envelopes, only: [:index]
       resources :pels, only: [:index, :show]

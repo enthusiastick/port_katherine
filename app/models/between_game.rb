@@ -15,6 +15,7 @@ class BetweenGame < ApplicationRecord
   has_many :comments
 
   scope :alpha_by_title, -> { order(:title) }
+  scope :answered, -> { where.not(response: nil) }
   scope :by_soonest_events_first, -> { joins(:event).order("events.start_time") }
   scope :future_events, -> { joins(:event).where(["events.end_time > ?", (Time.now)]) }
 

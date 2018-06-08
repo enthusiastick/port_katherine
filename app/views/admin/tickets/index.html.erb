@@ -1,0 +1,22 @@
+<% @bgs.each do |character, tickets| %>
+  <div class="page">
+    <div class="text-center">
+      <p class="title"><strong><%= character.name %></strong></p>
+      <p><%= character.user.label %></p>
+    </div>
+    <hr />
+    <% tickets.each do |ticket| %>
+      <% unless ticket.response_released_at.nil? %>
+        <p>
+          <i class="fa fa-<%= @category_mapping[ticket.category] %>"></i>
+          &nbsp;
+          <span class="title"><%= ticket.title %></span>
+        </p>
+        <%= raw @markdown.render(ticket.body) %>
+        <p class="title"><%= ticket.response_title %></p>
+        <%= raw @markdown.render(ticket.response) %>
+        <hr />
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
