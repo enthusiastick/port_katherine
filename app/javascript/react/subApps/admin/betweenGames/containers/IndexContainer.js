@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import BgsTable from '../components/BgsTable'
+import BgsWithAssigneeTable from '../components/BgsWithAssigneeTable'
 import EventsNav from '../components/EventsNav'
 import NavButton from '../components/NavButton'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
@@ -51,6 +52,12 @@ class BgsIndexContainer extends Component {
       )
     })
 
+    let selectedBgsTable = <BgsTable bgs={this.props[`${this.state.selected}`]} />
+
+    if (this.state.selected === 'allBgs') {
+      selectedBgsTable = <BgsWithAssigneeTable bgs={this.props[`${this.state.selected}`]} />
+    }
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
@@ -59,7 +66,7 @@ class BgsIndexContainer extends Component {
           <div className='button-group bottomless expanded'>
             {navigationButtons}
           </div>
-          <BgsTable bgs={this.props[`${this.state.selected}`]} />
+          {selectedBgsTable}
         </div>
       </div>
     )
