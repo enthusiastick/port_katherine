@@ -24,6 +24,10 @@ class Skill < ApplicationRecord
     where(name: ENVELOPE_NAMES)
   end
 
+  def self.lots
+    find_or_create_by(name: "Lots")
+  end
+
   def self.vitality
     find_or_create_by(name: "Vitality", max_rank: 10)
   end

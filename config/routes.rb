@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       end
       get "check-in", to: "check_ins#index", as: :check_ins
       resources :envelopes, only: [:index]
+      resources :merchants, only: [:index]
       resources :pels, only: [:index, :show]
       resources :reports, only: [:index]
       resources :self_reports, only: [:index]
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
           resources :bgs, only: [:index]
           resources :envelopes, only: [:index]
           resources :pels, only: [:index]
+          resources :merchants, only: [:index]
         end
         resources :users, only: [:index, :show]
       end

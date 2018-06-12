@@ -11,6 +11,12 @@ import {
 } from '../actions/getAdminEventEnvelopes'
 
 import {
+  GET_ADMIN_EVENT_MERCHANTS,
+  GET_ADMIN_EVENT_MERCHANTS_SUCCESS,
+  GET_ADMIN_EVENT_MERCHANTS_FAILURE
+} from '../actions/getAdminEventMerchants'
+
+import {
   GET_ADMIN_EVENT_PELS,
   GET_ADMIN_EVENT_PELS_SUCCESS,
   GET_ADMIN_EVENT_PELS_FAILURE
@@ -34,9 +40,11 @@ import {
 
 let initialState = {
   envelopes: { characters: [] },
+  merchants: { characters: [] },
   pels: { bookings: []},
   isFetching: false,
   isFetchingEnvelopes: false,
+  isFetchingMerchants: false,
   isFetchingPels: false,
   items: []
 }
@@ -60,6 +68,17 @@ const adminEvents = (state = initialState, action) => {
       return { ...state, envelopes: action.envelopes, isFetchingEnvelopes: false }
     case FETCH_ADMIN_EVENT_ENVELOPES_FAILURE:
       return { ...state, isFetchingEnvelopes: false }
+    case GET_ADMIN_EVENT_MERCHANTS:
+      return { ...state, isFetchingMerchants: true }
+    case GET_ADMIN_EVENT_MERCHANTS_SUCCESS:
+      return {
+        ...state,
+        merchants: action.merchants,
+        isFetchingMerchants: false
+      }
+      return state
+    case GET_ADMIN_EVENT_MERCHANTS_FAILURE:
+      return { ...state, isFetchingMerchants: false }
     case GET_ADMIN_EVENT_PELS:
       return { ...state, isFetchingPels: true }
     case GET_ADMIN_EVENT_PELS_SUCCESS:
