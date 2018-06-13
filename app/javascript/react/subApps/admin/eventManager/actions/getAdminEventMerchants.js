@@ -40,7 +40,7 @@ const getAdminEventMerchants = slug => dispatch => {
   })
   .then(response => { return response.json() })
   .then(data => {
-    result = humps.camelizeKeys(data)
+    const result = humps.camelizeKeys(data)
     dispatch(getAdminEventMerchantsSuccess(result))
   })
   .catch(error => {
