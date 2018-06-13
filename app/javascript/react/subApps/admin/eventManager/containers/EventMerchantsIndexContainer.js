@@ -15,6 +15,10 @@ class EventMerchantsIndexContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.authenticateSignedInPlotStaff(nextProps.isPlotStaff)
+  }
+
   render() {
     const { eventMerchants, eventSlug, isFetchingMerchants } = this.props
     const { characters, meta } = eventMerchants
