@@ -59,7 +59,7 @@ const mapDispatchToProps = dispatch => {
     removeCharacterSkill: characterSkillId => { dispatch(removeCharacterSkill(characterSkillId)) },
     removeHeader: headerId => { dispatch(removeHeader(headerId)) },
     removeSkill: skillId => { dispatch(removeSkill(skillId)) },
-    updateCharacter: values => { dispatch(updateCharacter(values, dispatch)) }
+    updateCharacter: (values, isAdmin) => { dispatch(updateCharacter(values, isAdmin)) }
   }
 }
 
