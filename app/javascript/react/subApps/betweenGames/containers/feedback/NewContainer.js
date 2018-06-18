@@ -36,7 +36,7 @@ class FeedbackNewContainer extends Component {
 
     const initialValues = {
       booking: feedbackEligibleBookings[0].id,
-      feedback: '### Things I Liked\nTell us what you liked! :)\n\n### Things I Didn\'t Like\nTell us what you *didn\'t* like. :(\n\n### Journal or Event History\nFrom an in-game or out-of-game perspective.\n\n### Some Things Staff Probably Doesn\'t Know (But Should)\n- We\'re human, we miss things.\n- Tell us about your experience.'
+      feedback: 'Event Rating [from 1 to 10]:\n\n### Things I Liked\nTell us what you liked! :)\n\n### Things I Didn\'t Like\nTell us what you *didn\'t* like. :(\n\n### Journal or Event History\nFrom an in-game or out-of-game perspective.\n\n### Some Things Staff Probably Doesn\'t Know (But Should)\n- We\'re human, we miss things.\n- Tell us about your experience.'
     }
 
     const handleSubmit = values => {

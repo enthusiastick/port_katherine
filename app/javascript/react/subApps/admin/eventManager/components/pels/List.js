@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import { Table, Td, Th, Thead, Tr } from 'reactable'
 
 const List = ({bookings, eventSlug}) => {
-  const playerBookings = bookings.filter(booking => { return booking.category === 'player' })
-
-  if (playerBookings.length === 0) {
+  if (bookings.length === 0) {
     return(
       <p className='text-center'>
         <em>No PELs received.</em>
@@ -13,7 +11,7 @@ const List = ({bookings, eventSlug}) => {
     )
   }
 
-  const pelRows = playerBookings.map(booking => {
+  const pelRows = bookings.map(booking => {
     return(
       <Tr key={booking.id}>
         <Td column='user' value={booking.userLabel}>
