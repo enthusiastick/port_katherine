@@ -4,7 +4,7 @@ class Api::V1::FeedbackController < Api::ApiController
   def create
     pel = Pel.new(params[:booking_id], feedback_params)
     if pel.record!
-      render json: pel.booking, serializer: ::BetweenGames::PastBookingSerializer
+      render json: pel.booking, serializer: ::Booking::PastSerializer
     else
       render_object_errors(pel.booking)
     end
