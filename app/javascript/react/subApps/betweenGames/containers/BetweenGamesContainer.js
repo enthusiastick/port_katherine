@@ -21,6 +21,16 @@ class BetweenGamesContainer extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selected === '') {
+      const { meta } = this.props
+      const { slug } = meta
+      if (slug) {
+        this.setState({ selected: slug })
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.props.authenticateSignedInUser(nextProps.isSignedIn)
   }
@@ -34,6 +44,16 @@ class BetweenGamesContainer extends Component {
     let bgsDeadline
 
     if (isFetching) { return <LoadingSpinner /> }
+
+    if (pastBookings.length === 0 && futureBookings.length === 0) {
+      return(
+        <div className='row'>
+          <div className='small-12 columns'>
+            <h1 className='text-center top-padded'>You have not registered for any events.</h1>
+          </div>
+        </div>
+      )
+    }
 
     if (meta.bgsDeadlineInWords) {
       const { name, slug, bgsDeadlineInWords } = meta
@@ -90,13 +110,11 @@ class BetweenGamesContainer extends Component {
             </div>
           </div>
           <div className='grid-container'>
-            <div className='grid-x medium-grid-frame-y'>
-              <div className='cell small-12 medium-6 large-3 medium-cell-block-y'>
-                <div className='button-group expanded stacked'>
-                  {bookingsNavButtons}
-                </div>
+            <div className='grid-x'>
+              <div className='bottomless button-group stacked cell small-12 medium-6 large-3'>
+                {bookingsNavButtons}
               </div>
-              <div className='card cell small-12 medium-6 large-9 medium-cell-block-y'>
+              <div className='bottomless card cell small-12 medium-6 large-9'>
                 <SelectedBooking booking={selectedBooking} />
               </div>
             </div>
