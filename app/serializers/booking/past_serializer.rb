@@ -2,6 +2,11 @@ class Booking::PastSerializer < ActiveModel::Serializer
   attributes :id, :category, :checked_in_at, :event_slug, :feedback,
     :feedback_entered_at, :is_pel_eligible, :label
 
+  has_many :bgs do
+    object.character.present? ?
+      BetweenGame.where(character: object.character, event: object.event) : []
+  end
+
   def event_slug
     object.event.slug
   end
@@ -12,6 +17,11 @@ class Booking::PastSerializer < ActiveModel::Serializer
 
   def label
     object.event.name
+  end
+
+  def self.serializer_for(model, options)
+    return ::BetweenGame::IndexSerializer if model.class.name == "BetweenGame"
+    super
   end
 
   private
