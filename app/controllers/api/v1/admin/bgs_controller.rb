@@ -18,7 +18,13 @@ class Api::V1::Admin::BgsController < Api::ApiController
   end
 
   def events
-    Event.upcoming.soonest_first.map { |event| { name: event.name, slug: event.slug } }
+    Event.bgs_eligible.soonest_first.map do |event|
+      { 
+        name: event.name,
+        past: event.end_time.past?, 
+        slug: event.slug 
+      }
+    end
   end
 
   def meta

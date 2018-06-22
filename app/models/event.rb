@@ -11,6 +11,7 @@ class Event < ApplicationRecord
   has_many :receipts, through: :bookings
   has_many :users, through: :bookings
 
+  scope :bgs_eligible, -> { where.not(bgs_deadline: nil) }
   scope :soonest_first, -> { order(:start_time) }
   scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).soonest_first }
 
