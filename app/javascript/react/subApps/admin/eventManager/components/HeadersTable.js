@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Table, Td, Th, Thead, Tr } from 'reactable'
 
-const MerchantsTable = ({characters}) => {
+const MerchantsTable = ({characters, meta}) => {
+  if (!meta) { return null }
+
   const tableRows = characters.map(character => {
     return(
       <Tr key={character.id}>
@@ -16,7 +18,7 @@ const MerchantsTable = ({characters}) => {
             {character.userLabel}
           </Link>
         </Td>
-        <Td className='text-right' column='lots' data={character.lots} />
+        <Td className='text-right' column={meta.linkedFirstSkillName} data={character.ranks} />
       </Tr>
     )
   })
@@ -26,7 +28,7 @@ const MerchantsTable = ({characters}) => {
       <Thead>
         <Th column='character'>Character</Th>
         <Th column='user'>User</Th>
-        <Th column='lots'>Lots</Th>
+        <Th column={meta.linkedFirstSkillName}>{meta.linkedFirstSkillName}</Th>
       </Thead>
       {tableRows}
     </Table>

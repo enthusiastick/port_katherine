@@ -16,7 +16,7 @@ import AdminShowCharacter from './characterManager/connectors/AdminShowCharacter
 import AdminEventCheckIn from './eventManager/connectors/AdminEventCheckIn'
 import AdminEventEdit from './eventManager/connectors/AdminEventEdit'
 import AdminEventEnvelopesIndex from './eventManager/connectors/AdminEventEnvelopesIndex'
-import AdminEventMerchantsIndex from './eventManager/connectors/AdminEventMerchantsIndex'
+import AdminEventHeadersIndex from './eventManager/connectors/AdminEventHeadersIndex'
 import AdminEventPelShow from './eventManager/connectors/AdminEventPelShow'
 import AdminEventPelsIndex from './eventManager/connectors/AdminEventPelsIndex'
 import AdminEventReportsIndex from './eventManager/connectors/AdminEventReportsIndex'
@@ -55,7 +55,7 @@ const Admin = props => {
         <Route exact path='/admin/events/:eventSlug/check-in' component={AdminEventCheckIn} />
         <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
         <Route exact path='/admin/events/:eventSlug/envelopes' component={AdminEventEnvelopesIndex} />
-        <Route exact path='/admin/events/:eventSlug/merchants' component={AdminEventMerchantsIndex} />
+        <Route exact path='/admin/events/:eventSlug/merchants' component={AdminEventHeadersIndex} />
         <Route exact path='/admin/events/:eventSlug/pels/:userHandle' component={AdminEventPelShow} />
         <Route exact path='/admin/events/:eventSlug/pels' component={AdminEventPelsIndex} />
         <Route exact path='/admin/events/:eventSlug/reports' component={AdminEventReportsIndex} />

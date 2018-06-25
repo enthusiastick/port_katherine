@@ -1,6 +1,13 @@
 class Api::V1::Admin::CharacterHeadersController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
+  def index
+    @header = Header.merchant
+    @event = Event.find_by(slug: params[:event_id])
+    characters = @event.characters.alpha_by_name.select { |character| character.headers.include?(@header) }
+    render json: characters, each_serializer: ::Admin::ProfessionSerializer, header_id: @header.id, meta: meta
+  end
+
   def show
     @header = Header.find(params[:id])
     @event = Event.find_by(slug: params[:event_id])

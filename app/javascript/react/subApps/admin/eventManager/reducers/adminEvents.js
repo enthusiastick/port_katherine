@@ -11,10 +11,10 @@ import {
 } from '../actions/getAdminEventEnvelopes'
 
 import {
-  GET_ADMIN_EVENT_MERCHANTS,
-  GET_ADMIN_EVENT_MERCHANTS_SUCCESS,
-  GET_ADMIN_EVENT_MERCHANTS_FAILURE
-} from '../actions/getAdminEventMerchants'
+  GET_ADMIN_EVENT_HEADERS,
+  GET_ADMIN_EVENT_HEADERS_SUCCESS,
+  GET_ADMIN_EVENT_HEADERS_FAILURE
+} from '../actions/getAdminEventHeaders'
 
 import {
   GET_ADMIN_EVENT_PELS,
@@ -40,11 +40,11 @@ import {
 
 let initialState = {
   envelopes: { characters: [] },
-  merchants: { characters: [] },
+  headers: { characters: [] },
   pels: { bookings: []},
   isFetching: false,
   isFetchingEnvelopes: false,
-  isFetchingMerchants: false,
+  isFetchingHeaders: false,
   isFetchingPels: false,
   items: []
 }
@@ -68,17 +68,17 @@ const adminEvents = (state = initialState, action) => {
       return { ...state, envelopes: action.envelopes, isFetchingEnvelopes: false }
     case FETCH_ADMIN_EVENT_ENVELOPES_FAILURE:
       return { ...state, isFetchingEnvelopes: false }
-    case GET_ADMIN_EVENT_MERCHANTS:
-      return { ...state, isFetchingMerchants: true }
-    case GET_ADMIN_EVENT_MERCHANTS_SUCCESS:
+    case GET_ADMIN_EVENT_HEADERS:
+      return { ...state, isFetchingHeaders: true }
+    case GET_ADMIN_EVENT_HEADERS_SUCCESS:
       return {
         ...state,
-        merchants: action.merchants,
-        isFetchingMerchants: false
+        headers: action.characters,
+        isFetchingHeaders: false
       }
       return state
-    case GET_ADMIN_EVENT_MERCHANTS_FAILURE:
-      return { ...state, isFetchingMerchants: false }
+    case GET_ADMIN_EVENT_HEADERS_FAILURE:
+      return { ...state, isFetchingHeaders: false }
     case GET_ADMIN_EVENT_PELS:
       return { ...state, isFetchingPels: true }
     case GET_ADMIN_EVENT_PELS_SUCCESS:

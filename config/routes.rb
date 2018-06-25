@@ -70,7 +70,7 @@ Rails.application.routes.draw do
         end
         resources :events, only: [:create, :destroy, :index, :update] do
           resources :bgs, only: [:index]
-          resources :character_headers, only: [:show]
+          resources :character_headers, only: [:index, :show]
           resources :envelopes, only: [:index]
           resources :pels, only: [:index]
           resources :merchants, only: [:index]

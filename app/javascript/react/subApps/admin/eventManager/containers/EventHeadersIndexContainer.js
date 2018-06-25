@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
-import MerchantsTable from '../components/MerchantsTable'
+import HeadersTable from '../components/HeadersTable'
 
-class EventMerchantsIndexContainer extends Component {
+class EventHeadersIndexContainer extends Component {
   constructor(props) {
     super(props)
   }
 
   componentDidMount() {
-    if (this.props.eventMerchants.characters.length === 0) {
-      this.props.getAdminEventMerchants(this.props.eventSlug)
+    if (this.props.eventHeaders.characters.length === 0) {
+      this.props.getAdminEventHeaders(this.props.eventSlug)
     }
   }
 
@@ -20,10 +20,10 @@ class EventMerchantsIndexContainer extends Component {
   }
 
   render() {
-    const { eventMerchants, eventSlug, isFetchingMerchants } = this.props
-    const { characters, meta } = eventMerchants
+    const { eventHeaders, eventSlug, isFetchingHeaders } = this.props
+    const { characters, meta } = eventHeaders
 
-    if (isFetchingMerchants) { return <LoadingSpinner /> }
+    if (isFetchingHeaders) { return <LoadingSpinner /> }
 
     let breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
 
@@ -35,13 +35,13 @@ class EventMerchantsIndexContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Merchants' />
-          <h1 className='text-center top-padded'>{meta && meta.eventName} Merchants</h1>
-          <MerchantsTable characters={characters} />
+          <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Headers' />
+          <h1 className='text-center top-padded'>{meta && `${meta.eventName} ${meta.headerName}s`}</h1>
+          <HeadersTable characters={characters} meta={meta} />
         </div>
       </div>
     )
   }
 }
 
-export default EventMerchantsIndexContainer
+export default EventHeadersIndexContainer

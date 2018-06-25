@@ -1,16 +1,16 @@
 import { connect } from 'react-redux'
 
-import EventMerchantsIndexContainer from '../containers/EventMerchantsIndexContainer'
+import EventHeadersIndexContainer from '../containers/EventHeadersIndexContainer'
 
 import { authenticateSignedInPlotStaff } from '../../../../sharedResources/actions/authenticateUser'
-import { getAdminEventMerchants } from '../actions/getAdminEventMerchants'
+import { getAdminEventHeaders } from '../actions/getAdminEventHeaders'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    eventMerchants: state.adminEvents.merchants,
+    eventHeaders: state.adminEvents.headers,
     eventSlug: ownProps.match.params.eventSlug,
-    isFetchingMerchants: state.adminEvents.isFetchingMerchants,
+    isFetchingHeaders: state.adminEvents.isFetchingHeaders,
     isPlotStaff: isPlotStaff(state)
   }
 }
@@ -18,13 +18,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     authenticateSignedInPlotStaff: authorized => { dispatch(authenticateSignedInPlotStaff(authorized)) },
-    getAdminEventMerchants: slug => { dispatch(getAdminEventMerchants(slug)) }
+    getAdminEventHeaders: (eventSlug, headerId) => { dispatch(getAdminEventHeaders(eventSlug, headerId)) }
   }
 }
 
-const AdminEventMerchantsIndex = connect(
+const AdminEventHeadersIndex = connect(
   mapStateToProps,
   mapDispatchToProps
-)(EventMerchantsIndexContainer)
+)(EventHeadersIndexContainer)
 
-export default AdminEventMerchantsIndex
+export default AdminEventHeadersIndex
