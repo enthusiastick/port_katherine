@@ -32,7 +32,7 @@ class Api::V1::Admin::CharacterHeadersController < Api::ApiController
   def meta
     {
       header_id: @header.id,
-      header_name: @header.name,
+      header_name: @header.name.pluralize,
       linked_first_skill_name: linked_first_skill_name,
       event_name: @event.name,
       event_slug: @event.slug

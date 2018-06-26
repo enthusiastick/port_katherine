@@ -1,6 +1,6 @@
 import humps from 'humps'
 
-import baseUrl from '../../../sharedResources/constants/baseUrl'
+import baseUrl from '../constants/baseUrl'
 
 const FETCH_HEADERS = 'FETCH_HEADERS'
 const FETCH_HEADERS_SUCCESS = 'FETCH_HEADERS_SUCCESS'

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
 import { createCharacter } from '../actions/createCharacter'
-import { getHeaders } from '../actions/getHeaders'
+import { getHeaders } from '../../../sharedResources/actions/getHeaders'
 import NewCharacterForm from '../forms/NewCharacterForm'
 
 import { isSignedIn } from '../../../sharedResources/selectors/authorizeUser'

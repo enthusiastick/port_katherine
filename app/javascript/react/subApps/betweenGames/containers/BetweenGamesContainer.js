@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import LoadingSpinner from '../../../sharedResources/components/LoadingSpinner'
 
-import NavButton from '../components/NavButton'
+import NavButton from '../../../sharedResources/components/NavButton'
 import SelectedBooking from '../components/SelectedBooking'
 
 class BetweenGamesContainer extends Component {

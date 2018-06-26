@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       end
       get "check-in", to: "check_ins#index", as: :check_ins
       resources :envelopes, only: [:index]
-      resources :merchants, only: [:index]
+      resources :headers_professions, only: [:index]
       resources :pels, only: [:index, :show]
       resources :reports, only: [:index]
       resources :self_reports, only: [:index]

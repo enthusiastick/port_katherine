@@ -55,7 +55,7 @@ const Admin = props => {
         <Route exact path='/admin/events/:eventSlug/check-in' component={AdminEventCheckIn} />
         <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
         <Route exact path='/admin/events/:eventSlug/envelopes' component={AdminEventEnvelopesIndex} />
-        <Route exact path='/admin/events/:eventSlug/merchants' component={AdminEventHeadersIndex} />
+        <Route exact path='/admin/events/:eventSlug/headers_professions' component={AdminEventHeadersIndex} />
         <Route exact path='/admin/events/:eventSlug/pels/:userHandle' component={AdminEventPelShow} />
         <Route exact path='/admin/events/:eventSlug/pels' component={AdminEventPelsIndex} />
         <Route exact path='/admin/events/:eventSlug/reports' component={AdminEventReportsIndex} />
