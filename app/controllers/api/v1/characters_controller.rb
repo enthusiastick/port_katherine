@@ -12,7 +12,7 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def destroy
-    character = Character.find_by(non_sequential_id: params[:id])
+    character = Character.deobfuscate(params[:id])
     if authorize_record_owner_or_admin?(character) && character.archive_via!(current_user)
       render json: current_user_characters, each_serializer: Character::IndexSerializer,
         meta: meta, status: :accepted
@@ -22,7 +22,7 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def edit
-    character = Character.find_by(non_sequential_id: params[:id])
+    character = Character.deobfuscate(params[:id])
     if authorize_record_owner_or_plot_staff?(character)
       render json: character, serializer: Character::EditSerializer
     else
@@ -36,7 +36,7 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def show
-    character = Character.find_by(non_sequential_id: params[:id])
+    character = Character.deobfuscate(params[:id])
     if authorize_record_owner_or_plot_staff?(character)
       render json: character, serializer: Character::ShowSerializer
     else

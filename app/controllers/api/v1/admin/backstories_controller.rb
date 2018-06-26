@@ -2,7 +2,7 @@ class Api::V1::Admin::BackstoriesController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
   def index
-    character = Character.find_by(non_sequential_id: params[:character_id])
+    character = Character.deobfuscate(params[:character_id])
     if character.present?
       meta = {
         character_id: character.non_sequential_id,

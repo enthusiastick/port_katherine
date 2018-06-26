@@ -1,6 +1,6 @@
 class CharacterAdvancer
   def initialize(params, user_id)
-    @character = Character.find_by(non_sequential_id: params[:id])
+    @character = Character.deobfuscate(params[:id])
     @character_skills = params[:character_skills]
     @new_header_ids = params[:new_headers]
     @new_skills = params[:new_skills]

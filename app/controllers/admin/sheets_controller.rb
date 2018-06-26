@@ -3,7 +3,7 @@ class Admin::SheetsController < ApplicationController
 
   def index
     if params[:character_id].present?
-      @character = Character.find_by(non_sequential_id: params[:character_id])
+      @character = Character.deobfuscate(params[:character_id])
     else
       @event = Event.find_by(slug: params[:event_id])
       @characters = @event.characters.alpha_by_name

@@ -7,7 +7,7 @@ class Api::V1::Admin::BgsController < Api::ApiController
   end
 
   def show
-    bgs = BetweenGame.find_by(non_sequential_id: params[:id])
+    bgs = BetweenGame.deobfuscate(params[:id])
     render json: bgs, meta: meta, serializer: ::Admin::BetweenGames::ShowSerializer
   end
 
@@ -19,10 +19,10 @@ class Api::V1::Admin::BgsController < Api::ApiController
 
   def events
     Event.bgs_eligible.soonest_first.map do |event|
-      { 
+      {
         name: event.name,
-        past: event.end_time.past?, 
-        slug: event.slug 
+        past: event.end_time.past?,
+        slug: event.slug
       }
     end
   end

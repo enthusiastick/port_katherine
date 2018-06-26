@@ -2,7 +2,7 @@ class Api::V1::DefaultCharactersController < Api::ApiController
   before_action :authenticate_user_api!
 
   def update
-    character = Character.find_by(non_sequential_id: params[:id])
+    character = Character.deobfuscate(params[:id])
     if current_user.update(default_character: character) && upcoming_bookings.map { |booking| booking.update(character: character) }
       render json: { default_character_id: character.non_sequential_id }
     else

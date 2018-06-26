@@ -2,7 +2,7 @@ class Api::V1::Admin::AssigneesController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
   def update
-    @bgs = BetweenGame.find_by(non_sequential_id: params[:bg_id])
+    @bgs = BetweenGame.deobfuscate(params[:bg_id])
     @assignee = User.find_by(handle: params[:id])
     if @bgs.update(assignee: @assignee) && comment.save
       render json: @bgs, serializer: ::Admin::BetweenGames::ShowSerializer

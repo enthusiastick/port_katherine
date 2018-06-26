@@ -24,7 +24,7 @@ class Api::V1::BetweenGamesController < Api::ApiController
   end
 
   def show
-    bgs = BetweenGame.find_by(non_sequential_id: params[:id])
+    bgs = BetweenGame.deobfuscate(params[:id])
     if bgs.present? && authorize_record_owner(bgs)
       render json: bgs, serializer: ::BetweenGame::ShowSerializer
     elsif bgs.present?
@@ -36,7 +36,7 @@ class Api::V1::BetweenGamesController < Api::ApiController
 
   def update
     booking = Booking.find(params[:booking_id])
-    bgs = BetweenGame.find_by(non_sequential_id: params[:id])
+    bgs = BetweenGame.deobfuscate(params[:id])
     bgs.event = booking.event
     bgs.assign_attributes(between_game_params)
     comment = Comment.new(

@@ -2,7 +2,7 @@ class Api::V1::Admin::AnswersController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
   def create
-    @bgs = BetweenGame.find_by(non_sequential_id: params[:bg_id])
+    @bgs = BetweenGame.deobfuscate(params[:bg_id])
     comment = automated_comment
     @bgs.assign_attributes(response_params)
     @bgs.respondent = current_user

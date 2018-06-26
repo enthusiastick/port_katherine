@@ -3,7 +3,7 @@ class Api::V1::BackstoriesController < Api::ApiController
 
   def create
     backstory = Backstory.new(new_backstory_params)
-    character = Character.find_by(non_sequential_id: params[:character_id])
+    character = Character.deobfuscate(params[:character_id])
     backstory.character = character
     backstory.user = current_user
     if authorize_record_owner_or_admin?(character) && backstory.save
