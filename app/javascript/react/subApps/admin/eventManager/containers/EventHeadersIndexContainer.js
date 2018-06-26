@@ -54,7 +54,7 @@ class EventHeadersIndexContainer extends Component {
             <p>
               <strong>Warning:</strong> The contents of this report are
               current, <em>not</em> historical. That is to say, they represent
-              characters as they <em>currently are</em> in the database,
+              characters as they <em>currently are</em> in the database,&nbsp;
               <em>not</em> as they were at the time of the event.
             </p>
           </div>
