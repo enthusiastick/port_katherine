@@ -40,7 +40,7 @@ class CharacterAdvancer
         description: "raised '#{skill_to_update.name}' from #{starting_rank} to #{ending_rank} for #{cost} CP.",
         user: @user
       )
-      @character.spend!(cost) && skill_to_update.update(character_skill.slice(:ranks)) && tally.save && tally.update_annotation_for_character(@character)
+      !skill_to_update.locked && @character.spend!(cost) && skill_to_update.update(character_skill.slice(:ranks)) && tally.save && tally.update_annotation_for_character(@character)
     end
   end
 

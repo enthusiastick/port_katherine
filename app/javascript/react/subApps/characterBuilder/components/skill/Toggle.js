@@ -1,9 +1,13 @@
 import React from 'react'
 
-const Toggle = ({characterSkillId, handleDecrease, handleIncrease, ranks, saveEligible}) => {
+const Toggle = ({characterSkillId, handleDecrease, handleIncrease, locked, ranks, saveEligible}) => {
   let button, className
 
   className = 'four-wide left-margin-spacer button bottomless'
+
+  if (locked) {
+    className += ' disabled'
+  }
 
   button = (
     <div

@@ -12,7 +12,7 @@ const Tile = props => {
   let rankColorClass = 'four-wide hollow button'
   if (props.ranks) { ranks = props.ranks }
 
-  if (props.maxRank != 0 && props.maxRank === ranks) {
+  if ((props.maxRank != 0 && props.maxRank === ranks) || props.locked) {
     increaseClass = 'button disabled'
   }
 
@@ -41,6 +41,7 @@ const Tile = props => {
   const costOfNextRank = calculateSkillCostOfNextRank({ rank: ranks, skill: props })
 
   let handleIncrease = () => {
+    if (props.locked) { return null }
     let existingSkill, maxRank
 
     if (props.maxRank !== 0) { maxRank = props.maxRank }
@@ -63,6 +64,7 @@ const Tile = props => {
   }
 
   let handleDecrease = () => {
+    if (props.locked) { return null }
     let existingSkill
     if (props.deltaCharacterSkill) { existingSkill = props.deltaCharacterSkill }
     if (props.deltaSkill) { existingSkill = props.deltaSkill }
@@ -85,6 +87,7 @@ const Tile = props => {
         <div className='small-6 cell'>
           <p className='bottomless text-right top-padded'>
             <strong>
+              {props.locked && <span><i className='fa fa-lock' />&nbsp;</span>}
               {props.name}
             </strong>
           </p>
@@ -99,6 +102,7 @@ const Tile = props => {
             characterSkillId={props.characterSkillId}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
+            locked={props.locked}
             ranks={ranks}
             saveEligible={props.saveEligible}
           />
