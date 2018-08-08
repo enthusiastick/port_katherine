@@ -20,6 +20,14 @@ class Skill < ApplicationRecord
   validates_numericality_of :starting_cost,
     greater_than_or_equal_to: 0, only_integer: true
 
+  def self.avoid_trap
+    find_or_create_by(name: "Avoid Trap")
+  end
+
+  def self.crime
+    find_or_create_by(name: "Crime")
+  end
+
   def self.envelope
     where(name: ENVELOPE_NAMES)
   end

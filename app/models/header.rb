@@ -30,6 +30,10 @@ class Header < ApplicationRecord
     find_or_create_by(name: "Open")
   end
 
+  def self.criminal
+    find_or_create_by(name: "Criminal", category: :profession)
+  end
+
   def self.merchant
     find_or_create_by(name: "Merchant", category: :profession)
   end

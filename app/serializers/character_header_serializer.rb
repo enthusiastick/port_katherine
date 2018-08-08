@@ -35,16 +35,28 @@ class CharacterHeaderSerializer < ActiveModel::Serializer
     object.header.header_skills.where(hidden: false)
   end
 
+  def character_skills
+    object.character.skills & object.header.skills
+  end
+
   def combined_skills
+    criminal? && unlocked_crime? ? combined_skills_criminal_exception : default_combined_skills
+  end
+
+  def combined_skills_criminal_exception
+    default_combined_skills - [Skill.avoid_trap]
+  end
+
+  def criminal?
+    object.header == Header.criminal
+  end
+
+  def default_combined_skills
     (header_skills_to_serialize.map(&:skill) + character_skills).uniq
   end
 
   def first_true_header?
     instance_options[:first_true_header]
-  end
-
-  def character_skills
-    object.character.skills & object.header.skills
   end
 
   def header_skills_to_serialize
@@ -53,5 +65,9 @@ class CharacterHeaderSerializer < ActiveModel::Serializer
 
   def non_true_header_skills_only
     object.header.header_skills.where(hidden: false, true_skill: false)
+  end
+
+  def unlocked_crime?
+    !object.character.character_skills.find_by(skill: Skill.crime).locked
   end
 end
