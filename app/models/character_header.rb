@@ -53,6 +53,6 @@ class CharacterHeader < ApplicationRecord
   private
 
   def skills_with_ranks_and_max_rank
-    (character.skills & header.skills).map { |skill| { skill.name => [character.skill_ranks(skill), skill.max_rank] } }
+    (character.purchased_skills & header.skills).map { |skill| { skill.name => [character.skill_ranks(skill), skill.max_rank] } }
   end
 end

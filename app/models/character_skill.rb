@@ -5,11 +5,12 @@ class CharacterSkill < ApplicationRecord
   delegate :cost_increase_amount, :cost_increase_rank, :description, :name,
     :max_rank, :starting_cost, to: :skill
 
+  scope :purchased, -> { where("ranks > ?", 0) }
+
   validates_uniqueness_of :character, scope: :skill
   validates_inclusion_of :locked, in: [true, false]
   validates_numericality_of :ranks,
     greater_than_or_equal_to: 0, only_integer: true
-
 
   def cost_of_delta(starting_rank, ending_rank)
     cost = 0

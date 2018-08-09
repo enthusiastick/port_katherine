@@ -14,9 +14,9 @@ const Ranks = props => {
 
 const Summary = props => {
   const skillList = props.skills.map(skill => {
-    if (skill.characterSkillId) {
+    if (skill.characterSkillId && (skill.ranks > 0)) {
       return(
-        <li key={skill.characterSkillId}>{skill.name} <Ranks {...skill} /></li>
+        <li key={skill.characterSkillId}>{skill.name} <Ranks {...skill} /> {skill.locked && <i className='fa fa-lock' />}</li>
       )
     }
   })

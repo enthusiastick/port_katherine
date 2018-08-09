@@ -18,7 +18,9 @@ class Character < ApplicationRecord
   has_many :character_headers
   has_many :headers, -> { alpha_by_name }, through: :character_headers
   has_many :character_skills
+  has_many :purchased_character_skills, -> { purchased }, class_name: :CharacterSkill
   has_many :skills, through: :character_skills
+  has_many :purchased_skills, through: :purchased_character_skills, source: :skill
   has_many :tallies
 
   validates_numericality_of :available, greater_than_or_equal_to: 0
