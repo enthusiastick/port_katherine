@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 
 import AdminIndex from './connectors/AdminIndex'
 import AdminPointDispenser from './connectors/AdminPointDispenser'
+import AdminPointTransferer from './connectors/AdminPointTransferer'
 
 import AdminBgsIndex from './betweenGames/connectors/Index'
 import AdminBgsShow from './betweenGames/connectors/Show'
@@ -33,6 +34,7 @@ const Admin = props => {
     <div>
       <Route exact path='/admin' component={AdminIndex} />
       <Route exact path='/admin/award_character_points' component={AdminPointDispenser} />
+      <Route exact path='/admin/transfer_character_points' component={AdminPointTransferer} />
 
       <Switch>
         <Route exact path='/admin/bgs' component={AdminBgsIndex} />

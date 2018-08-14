@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       resources :sheets, only: [:index]
     end
     resources :users, only: [:index, :show]
+    resources :transfer_character_points, only: [:index]
   end
 
   resources :account_confirmations, only: [:edit]

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
+import { Link } from 'react-router-dom'
 
 import AdminPointDispenserForm from '../forms/AdminPointDispenserForm'
 
@@ -31,6 +32,11 @@ class AdminPointDispenserContainer extends Component {
     return errors
   }
 
+  handleSubmit = (values, actions) => {
+    this.props.awardCP(values)
+    actions.resetForm()
+  }
+
   render() {
     const initialValues = {
       points: 0,
@@ -38,19 +44,17 @@ class AdminPointDispenserContainer extends Component {
       users: []
     }
 
-    const handleSubmit = (values, actions) => {
-      this.props.awardCP(values)
-      actions.resetForm()
-    }
-
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='text-center top-padded'>Award CP to Users</h1>
+          <div className='text-center top-padded'>
+            <h1>Award CP to Users</h1>
+            <Link to='/admin/transfer_character_points' className='button'>Transfer</Link>
+          </div>
           <Formik
             component={AdminPointDispenserForm}
             initialValues={initialValues}
-            onSubmit={handleSubmit}
+            onSubmit={this.handleSubmit}
             validate={this.validate}
           />
         </div>

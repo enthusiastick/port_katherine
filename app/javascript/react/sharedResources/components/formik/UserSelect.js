@@ -28,11 +28,11 @@ class UserSelect extends Component {
   }
 
   handleChange = value => {
-    this.props.onChange('users', value);
+    this.props.onChange(this.props.name, value);
   };
 
   handleBlur = () => {
-    this.props.onBlur('users', true);
+    this.props.onBlur(this.props.name, true);
   };
 
   render() {
@@ -44,13 +44,16 @@ class UserSelect extends Component {
       <fieldset>
         <label
           className={ this.props.touched && this.props.errors && 'is-invalid-label' }
-          htmlFor='users'
+          htmlFor={this.props.name}
         >
-          Users (select at least 1){' '}
+          { this.props.multi ?
+            'Users (select at least 1)' :
+            'User (select 1)'
+          }{' '}
           <Select
-            id='users'
+            id={this.props.name}
             options={options}
-            multi={true}
+            multi={this.props.multi}
             onChange={this.handleChange}
             onBlur={this.handleBlur}
             value={this.props.value}

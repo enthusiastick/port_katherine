@@ -20,6 +20,8 @@ const AdminPointDispenserForm = ({
          <UserSelect
             errors={errors.users}
             value={values.users}
+            multi={true}
+            name='users'
             onChange={setFieldValue}
             onBlur={setFieldTouched}
             touched={touched.users}
