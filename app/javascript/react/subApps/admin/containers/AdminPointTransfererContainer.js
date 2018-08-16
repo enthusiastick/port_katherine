@@ -31,7 +31,13 @@ class AdminPointTransfererContainer extends Component {
   }
 
   handleSubmit = (values, {resetForm}) => {
-    console.log(values)
+    const { donor, points, recipient } = values
+    const payload = {
+      donorHandle: donor.value,
+      recipientHandle: recipient.value,
+      points
+    }
+    this.props.transferCP(payload)
     resetForm()
   }
 
