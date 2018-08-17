@@ -1,4 +1,4 @@
-class CharacterPointGiver
+class CharacterPoint::Giver
   def initialize(params, user_id)
     @user = User.find(user_id)
     @points = params[:points]

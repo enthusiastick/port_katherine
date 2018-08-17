@@ -2,7 +2,7 @@ class Api::V1::Admin::CharacterPointsController < Api::ApiController
   before_action :authenticate_admin_api!
 
   def create
-    giver = CharacterPointGiver.new(character_point_params, current_user.id)
+    giver = ::CharacterPoint::Giver.new(character_point_params, current_user.id)
     if giver.give!
       render json: giver.recipients, status: :created
     else

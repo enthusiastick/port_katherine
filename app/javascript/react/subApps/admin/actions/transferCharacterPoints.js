@@ -1,6 +1,7 @@
 import humps from 'humps'
 
 import baseUrl from '../../../sharedResources/constants/baseUrl'
+import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
 
 const TRANSFER_CHARACTER_POINTS = 'TRANSFER_CHARACTER_POINTS'
 const TRANSFER_CHARACTER_POINTS_SUCCESS = 'TRANSFER_CHARACTER_POINTS_SUCCESS'
@@ -25,7 +26,7 @@ const transferCPFailure = () => ({
   type: TRANSFER_CHARACTER_POINTS_FAILURE
 })
 
-const transferCP = values => dispatch => {
+const transferCP = (values, resetForm, setSubmitting) => dispatch => {
   dispatch(fetchTransferCP())
   const payload = JSON.stringify(humps.decamelizeKeys(values))
   return fetch(`${baseUrl}/api/v1/admin/transfer_character_points.json`, {
@@ -40,11 +41,16 @@ const transferCP = values => dispatch => {
       throw data.error
     } else {
       dispatch(transferCPSuccess(humps.decamelizeKeys(data)))
+      dispatch(clearNotices())
+      dispatch(flashNotice({ success: 'CP transferred successfully.' }))
+      resetForm()
     }
-    return data
   })
   .catch(errors => {
     dispatch(transferCPFailure())
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem processing your request.' }))
+    setSubmitting(false)
     throw errors
   })
 }

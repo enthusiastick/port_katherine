@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     authenticateSignedInAdmin: authorized => { dispatch(authenticateSignedInPlotStaff(authorized)) },
-    transferCP: values => { dispatch(transferCP(values)) }
+    transferCP: (values, resetForm, setSubmitting) => { dispatch(transferCP(values, resetForm, setSubmitting)) }
   }
 }
 
