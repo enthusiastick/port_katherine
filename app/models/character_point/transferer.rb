@@ -31,7 +31,7 @@ class CharacterPoint::Transferer
 
   def debit_from_donor
     new_donor_total = @donor.available -= @points
-    if new_donor_total > 0
+    if new_donor_total >= 0
       @donor.assign_attributes(available: new_donor_total)
       @tallies << Tally.new(
         annotation: "[#{new_donor_total}]",
