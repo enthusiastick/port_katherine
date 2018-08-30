@@ -100,6 +100,7 @@ const Tile = props => {
         {(props.maxRank === 1) &&
           <Toggle
             characterSkillId={props.characterSkillId}
+            existingRanks={props.ranks}
             handleDecrease={handleDecrease}
             handleIncrease={handleIncrease}
             locked={props.locked}

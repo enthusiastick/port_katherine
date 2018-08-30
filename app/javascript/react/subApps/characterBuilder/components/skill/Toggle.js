@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Toggle = ({characterSkillId, handleDecrease, handleIncrease, locked, ranks, saveEligible}) => {
+const Toggle = ({characterSkillId, existingRanks, handleDecrease, handleIncrease, locked, ranks, saveEligible}) => {
   let button, className
 
   className = 'four-wide left-margin-spacer button bottomless'
@@ -27,7 +27,7 @@ const Toggle = ({characterSkillId, handleDecrease, handleIncrease, locked, ranks
     )
   }
 
-  if (!characterSkillId && ranks === 1) {
+  if ((!characterSkillId || existingRanks === 0) && ranks === 1) {
     if (saveEligible.disabled) {
       className += ' bg-solarized-orange'
     } else {
