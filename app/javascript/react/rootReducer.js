@@ -5,6 +5,7 @@ import { routerReducer } from 'react-router-redux'
 import adminBgs        from './subApps/admin/betweenGames/reducers/adminBgs'
 import adminCharacters from './subApps/admin/characterManager/reducers/adminCharacters'
 import adminEvents     from './subApps/admin/eventManager/reducers/adminEvents'
+import adminSkills     from './subApps/admin/skillDesigner/reducers/adminSkills'
 import adminUsers      from './subApps/admin/userManager/reducers/adminUsers'
 import betweenGames    from './subApps/betweenGames/reducers/betweenGames'
 import characters      from './subApps/characterBuilder/reducers/characters'
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
   adminBgs,
   adminCharacters,
   adminEvents,
+  adminSkills,
   adminUsers,
   betweenGames,
   characters,

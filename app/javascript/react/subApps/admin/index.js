@@ -29,6 +29,8 @@ import AdminEventsNew from './eventManager/connectors/AdminEventsNew'
 import AdminUsersIndex from './userManager/connectors/AdminUsersIndex'
 import AdminUserShow from './userManager/connectors/AdminUserShow'
 
+import SkillDesigner from './skillDesigner/index'
+
 const Admin = props => {
   return(
     <div>
@@ -68,6 +70,8 @@ const Admin = props => {
         <Route exact path='/admin/users' component={AdminUsersIndex} />
         <Route exact path='/admin/users/:userId' component={AdminUserShow} />
       </Switch>
+
+      <SkillDesigner />
     </div>
   )
 }
