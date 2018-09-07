@@ -38,6 +38,9 @@ class AdminIndexContainer extends Component {
             <Link className='button' to='/admin/events'>
               <h2>Events</h2>
             </Link>
+            <Link className='button' to='/admin/skills'>
+              <h2>Headers & Skills</h2>
+            </Link>
             <Link className='button' to='/admin/users'>
               <h2>Users</h2>
             </Link>

@@ -22,7 +22,7 @@ class SkillsIndexContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns top-padded'>
-          <h1 className='text-center'>Skills</h1>
+          <h1 className='text-center'>Headers & Skills</h1>
           <SkillsTable isFetching={isFetching} skills={skills} />
         </div>
       </div>
