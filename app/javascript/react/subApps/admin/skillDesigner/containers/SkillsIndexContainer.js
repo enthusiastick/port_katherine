@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import SkillsTable from '../components/SkillsTable'
 
 class SkillsIndexContainer extends Component {

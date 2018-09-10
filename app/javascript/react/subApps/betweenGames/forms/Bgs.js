@@ -40,6 +40,7 @@ class Bgs extends Component {
           touched={touched.title}
           handleBlur={handleBlur}
           handleChange={handleChange}
+          label='Title'
           name='title'
           value={values.title}
         />

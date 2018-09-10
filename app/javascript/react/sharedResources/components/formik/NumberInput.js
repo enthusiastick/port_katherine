@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TextInput = ({
+const NumberInput = ({
   disabled,
   error,
   touched,
@@ -18,7 +18,7 @@ const TextInput = ({
         className={ touched && error && 'is-invalid-input' }
         disabled={disabled}
         name={name}
-        type='text'
+        type='number'
         onChange={handleChange}
         onBlur={handleBlur}
         value={value}
@@ -28,4 +28,4 @@ const TextInput = ({
   )
 }
 
-export default TextInput
+export default NumberInput

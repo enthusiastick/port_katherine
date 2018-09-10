@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 
 import HeaderShow from './connectors/HeaderShow'
 
+import NewSkill    from './connectors/NewSkill'
 import SkillShow   from './connectors/SkillShow'
 import SkillsIndex from './connectors/SkillsIndex'
 
@@ -13,6 +14,7 @@ const SkillDesigner = () => (
     </Switch>
     <Switch>
       <Route exact path='/admin/skills' component={SkillsIndex} />
+      <Route exact path='/admin/skills/new' component={NewSkill} />
       <Route exact path='/admin/skills/:skillId' component={SkillShow} />
     </Switch>
   </div>
