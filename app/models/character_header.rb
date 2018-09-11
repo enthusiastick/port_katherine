@@ -12,7 +12,7 @@ class CharacterHeader < ApplicationRecord
   validates_inclusion_of :true_header, in: [true, false]
 
   def build_header_linked_skill!
-    if header.profession?
+    if header.profession? || header.hidden?
       header_skill = HeaderSkill.find_by(header: header, skill: header.linked_first_skill)
       if header_skill.present?
         if header_skill.hidden?
