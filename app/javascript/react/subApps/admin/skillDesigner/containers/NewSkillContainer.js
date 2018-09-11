@@ -38,6 +38,11 @@ class NewSkillContainer extends Component {
     ]
 
     const initialValues = {
+      costIncreaseAmount: 1,
+      costIncreaseRank: 10,
+      headers: [],
+      description: '',
+      maxRank: 0,
       name: '',
       startingCost: 1
     }
@@ -53,7 +58,7 @@ class NewSkillContainer extends Component {
             validate={this.validate}
             render={formikProps => (
               <SkillForm
-                headers={headers}
+                headers={headers.map(header => ({ label: header.name, value: header.id }))}
                 {...formikProps}
               />
             )}

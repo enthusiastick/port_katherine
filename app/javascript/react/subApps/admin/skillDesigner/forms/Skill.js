@@ -1,37 +1,93 @@
 import React from 'react'
 
+import FilterSelect from '../../../../sharedResources/components/formik/FilterSelect'
 import NumberInput from '../../../../sharedResources/components/formik/NumberInput'
 import TextInput from '../../../../sharedResources/components/formik/TextInput'
+import TextArea from '../../../../sharedResources/components/formik/TextArea'
 
 const Skill = ({
   errors,
   handleBlur,
   handleChange,
   handleSubmit,
+  headers,
   isSubmitting,
+  setFieldValue,
+  setFieldTouched,
   touched,
   values
 }) => (
   <form onSubmit={handleSubmit}>
     <div className='form-inputs'>
-      <TextInput
-        error={errors.name}
-        touched={touched.name}
-        handleBlur={handleBlur}
-        handleChange={handleChange}
-        label='Name'
-        name='name'
-        value={values.name}
-      />
-      <NumberInput
-        error={errors.startingCost}
-        touched={touched.startingCost}
-        handleBlur={handleBlur}
-        handleChange={handleChange}
-        label='Starting Cost'
-        name='startingCost'
-        values={values.startingCost}
-      />
+      <div className='row'>
+        <div className='small-12 medium-7 small-centered columns'>
+          <TextInput
+            error={errors.name}
+            touched={touched.name}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            label='Name'
+            name='name'
+            value={values.name}
+          />
+          <TextArea
+            error={errors.description}
+            touched={touched.description}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+            label='Description'
+            name='description'
+            value={values.description}
+          />
+          <NumberInput
+            error={errors.startingCost}
+            touched={touched.startingCost}
+            inlineLabel='CP'
+            label='Starting Cost'
+            name='startingCost'
+            values={values.startingCost}
+          />
+          <div className='row'>
+            <div className='small-12 medium-6 columns'>
+              <NumberInput
+                error={errors.costIncreaseAmount}
+                touched={touched.costIncreaseAmount}
+                inlineLabel='CP'
+                label='Starting Cost'
+                name='costIncreaseAmount'
+                values={values.costIncreaseAmount}
+              />
+            </div>
+            <div className='small-12 medium-6 columns'>
+              <NumberInput
+                error={errors.costIncreaseRank}
+                touched={touched.costIncreaseRank}
+                inlineLabel='Purchases'
+                label='Every'
+                name='costIncreaseRank'
+                values={values.costIncreaseRank}
+              />
+            </div>
+          </div>
+          <NumberInput
+            error={errors.maxRank}
+            touched={touched.maxRank}
+            label='Maximum Purchases'
+            name='maxRank'
+            values={values.maxRank}
+          />
+          <FilterSelect
+            error={errors.headers}
+            onBlur={setFieldTouched}
+            onChange={setFieldValue}
+            options={headers}
+            multi={true}
+            name='headers'
+            touched={errors.headers}
+            value={values.headers}
+          />
+        </div>
+      </div>
     </div>
     <div className='form-actions'>
       <button className='button' type='submit' disabled={isSubmitting}>
