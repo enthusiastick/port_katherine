@@ -1,14 +1,14 @@
 import React from 'react'
 
 const Switch = ({
-    error,
-    touched,
+    errors,
     label,
     name,
     setFieldValue,
-    value
+    touched,
+    values
   }) => {
-  let switchHandler = (event) => {
+  const switchHandler = (event) => {
     setFieldValue(name, event.target.checked)
   }
 

@@ -22,8 +22,8 @@ class FilterSelect extends Component {
           htmlFor={this.props.name}
         >
           { this.props.multi ?
-            'Users (select at least 1)' :
-            'User (select 1)'
+            `${this.props.label} (select at least 1)` :
+            `${this.props.label} (select 1)`
           }{' '}
           <Select
             id={this.props.name}

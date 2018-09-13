@@ -1,6 +1,7 @@
 import React from 'react'
 
 import FilterSelect from '../../../../sharedResources/components/formik/FilterSelect'
+import HeaderFields from './HeaderFields'
 import NumberInput from '../../../../sharedResources/components/formik/NumberInput'
 import TextInput from '../../../../sharedResources/components/formik/TextInput'
 import TextArea from '../../../../sharedResources/components/formik/TextArea'
@@ -81,11 +82,22 @@ const Skill = ({
             onBlur={setFieldTouched}
             onChange={setFieldValue}
             options={headers}
+            label='Headers'
             multi={true}
             name='headers'
             touched={errors.headers}
             value={values.headers}
           />
+          {values.headers.map(header => (
+            <HeaderFields
+              key={header.value}
+              errors={errors}
+              header={header}
+              setFieldValue={setFieldValue}
+              touched={touched}
+              values={values}
+            />
+          ))}
         </div>
       </div>
     </div>
