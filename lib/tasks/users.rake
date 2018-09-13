@@ -16,4 +16,12 @@ namespace :users do
       print "\nFoob created." if user.save
     end
   end
+  desc "Set password for all users to 'password'."
+  task endanger: :environment do
+    if !Rails.env.development?
+      puts "Error! This rake task is not intended to be run in the #{Rails.env} environment."
+    else
+      User.all.each { |user| print "#{user.label}. " if user.update(password: "password") }
+    end
+  end
 end
