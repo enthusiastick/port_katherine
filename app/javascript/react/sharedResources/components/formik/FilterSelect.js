@@ -7,7 +7,7 @@ class FilterSelect extends Component {
   }
 
   handleChange = value => {
-    this.props.onChange(this.props.name, value)
+    this.props.setFieldValue(this.props.name, value)
   }
 
   handleBlur = () => {
@@ -16,9 +16,9 @@ class FilterSelect extends Component {
 
   render() {
     return(
-      <fieldset>
+      <fieldset className='bottom-margin'>
         <label
-          className={ this.props.touched && this.props.errors && 'is-invalid-label' }
+          className={ this.props.touched && this.props.error && 'is-invalid-label' }
           htmlFor={this.props.name}
         >
           { this.props.multi ?
@@ -29,12 +29,12 @@ class FilterSelect extends Component {
             id={this.props.name}
             options={this.props.options}
             multi={this.props.multi}
-            onChange={this.handleChange}
+            onChange={(this.props.onChange) ? this.props.onChange : this.handleChange}
             onBlur={this.handleBlur}
             value={this.props.value}
           />
         </label>
-        { this.props.touched && this.props.errors && <div style={{ marginTop: '.5rem' }}><span className='form-error is-visible'>{this.props.errors}</span></div> }
+        { this.props.touched && this.props.error && <div style={{ marginTop: '.5rem' }}><span className='form-error is-visible'>{this.props.error}</span></div> }
       </fieldset>
     )
   }

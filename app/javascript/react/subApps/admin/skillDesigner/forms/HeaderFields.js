@@ -6,17 +6,23 @@ const HeaderFields = ({
   header,
   setFieldValue,
   touched,
-  value
+  values
 }) => (
   <fieldset className='fieldset'>
     <legend>{header.label}</legend>
     <Switch
-      error=''
       label='Hidden'
-      name='hidden'
+      name={`headers.${header.value}.hidden`}
       setFieldValue={setFieldValue}
-      touched={false}
-      value={true}
+      touched={touched.hidden}
+      value={values.hidden}
+    />
+    <Switch
+      label='True Skill'
+      name={`headers.${header.value}.trueSkill`}
+      setFieldValue={setFieldValue}
+      touched={touched.trueSkill}
+      values={values.trueSkill}
     />
   </fieldset>
 )

@@ -79,7 +79,7 @@ Rails.application.routes.draw do
           resources :merchants, only: [:index]
         end
         resources :headers, only: [:index, :show]
-        resources :skills, only: [:index, :show]
+        resources :skills, only: [:create, :index, :show]
         resources :transfer_character_points, only: [:create]
         resources :users, only: [:index, :show]
       end

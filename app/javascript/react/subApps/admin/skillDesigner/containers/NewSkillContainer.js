@@ -3,12 +3,12 @@ import { Formik } from 'formik'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import { default as SkillForm } from '../forms/Skill'
+import validateSkill from '../constants/validateSkill'
 
 class NewSkillContainer extends Component {
   constructor(props) {
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
-    this.validate = this.validate.bind(this)
   }
 
   componentDidMount() {
@@ -23,11 +23,7 @@ class NewSkillContainer extends Component {
 
   onSubmit(values) {
     console.log(values)
-  }
-
-  validate(values) {
-    console.log(values)
-    return {}
+    this.props.createAdminSkill(values)
   }
 
   render() {
@@ -55,7 +51,7 @@ class NewSkillContainer extends Component {
           <Formik
             initialValues={initialValues}
             onSubmit={this.onSubmit}
-            validate={this.validate}
+            validate={validateSkill}
             render={formikProps => (
               <SkillForm
                 headers={headers.map(header => ({ label: header.name, value: header.id }))}
