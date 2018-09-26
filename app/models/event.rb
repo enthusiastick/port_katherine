@@ -75,6 +75,10 @@ class Event < ApplicationRecord
     self.slug = name.parameterize
   end
 
+  def registerable?
+    !passes.empty?
+  end
+
   def set_bgs_deadline!
     update(bgs_deadline: end_time.at_beginning_of_day - 3.weeks + 1.day + 6.hours)
   end
