@@ -28,10 +28,16 @@ class RegistrationFormContainer extends Component {
       this.props.push('/sign-in')
     }
 
-    if (this.props.event && this.props.event['capped?']) {
-      this.props.clearNotices()
-      this.props.flashNotice({ alert: 'Player passes for this event are sold out. Please email staff@portkatherine.com about our waiting list.' })
-      this.props.push('/events')
+    if (this.props.event) {
+      if (this.props.event['capped?']) {
+        this.props.clearNotices()
+        this.props.flashNotice({ alert: 'Player passes for this event are sold out. Please email staff@portkatherine.com about our waiting list.' })
+        this.props.push('/events')
+      } else if (!this.props.event['registerable?']) {
+        this.props.clearNotices()
+        this.props.flashNotice({ alert: 'Registration for this event is not currently available.' })
+        this.props.push('/events')
+      }
     }
 
     if (this.props.event && this.props.event.userBooking) {

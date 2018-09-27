@@ -19,6 +19,12 @@ class VolunteerFormContainer extends Component {
       this.props.push('/sign-in')
     }
 
+    if (this.props.event && !this.props.event['registerable?']) {
+      this.props.clearNotices()
+      this.props.flashNotice({ alert: 'Volunteer sign-ups for this event is not currently available.' })
+      this.props.push('/events')
+    }
+
     if (this.props.event && this.props.event.userBooking) {
       this.props.clearNotices()
       this.props.flashNotice({ alert: 'You are already registered for this event.' })

@@ -44,6 +44,22 @@ const EventTile = props => {
     )
   }
 
+  const callToAction = (
+    <p className="bottomless">
+      <strong>
+        <Link className="button bottomless" to={volunteerLink}>
+          Volunteer
+        </Link>
+        &nbsp;
+        {!props["capped?"] && (
+          <Link className="button bottomless" to={registerLink}>
+            Register
+          </Link>
+        )}
+      </strong>
+    </p>
+  );
+
   return (
     <div className="callout secondary" key={props.slug}>
       <div className="text-center">
@@ -51,19 +67,7 @@ const EventTile = props => {
           <Link to={linkTo}>{props.name}</Link>
         </h3>
         <p>{props.dates}</p>
-        <p className="bottomless">
-          <strong>
-            <Link className="button bottomless" to={volunteerLink}>
-              Volunteer
-            </Link>
-            &nbsp;
-            {!props["capped?"] && (
-              <Link className="button bottomless" to={registerLink}>
-                Register
-              </Link>
-            )}
-          </strong>
-        </p>
+        {props["registerable?"] && callToAction}
       </div>
     </div>
   )
