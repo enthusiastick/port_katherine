@@ -28,7 +28,16 @@ const createAdminSkillFailure = errrors => ({
 
 const createAdminSkill = values => dispatch => {
   dispatch(fetchCreateAdminSkill())
-  const payload = JSON.stringify(humps.decamelizeKeys(values))
+  const headerSkills = Object.keys(values.headers).map(headerId => {
+    const formHeader = values.headers[headerId]
+    const { hidden, trueSkill } = formHeader
+    return {
+      headerId,
+      hidden,
+      trueSkill
+    }
+  })
+  const payload = JSON.stringify(humps.decamelizeKeys({ headerSkills, ...values }))
   return fetch(`${baseUrl}/api/v1/admin/skills.json`, {
     credentials: 'same-origin',
     method: 'POST',

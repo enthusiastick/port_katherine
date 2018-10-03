@@ -95,7 +95,7 @@ const Skill = ({
               onBlur={setFieldTouched}
               onChange={headerHandler}
               setFieldValue={setFieldValue}
-              touched={errors.headers}
+              touched={touched.headers}
               value={Object.values(values.headers)}
             />
             {Object.values(values.headers).map(header => (
