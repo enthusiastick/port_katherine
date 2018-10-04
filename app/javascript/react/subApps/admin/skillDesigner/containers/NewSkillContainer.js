@@ -22,7 +22,6 @@ class NewSkillContainer extends Component {
   }
 
   onSubmit(values) {
-    console.log(values)
     this.props.createAdminSkill(values)
   }
 

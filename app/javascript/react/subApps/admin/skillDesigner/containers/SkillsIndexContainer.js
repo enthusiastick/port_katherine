@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import SkillsTable from '../components/SkillsTable'
 
@@ -23,7 +24,13 @@ class SkillsIndexContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns top-padded'>
-          <h1 className='text-center'>Headers & Skills</h1>
+          <div className='text-center'>
+            <h1>Headers & Skills</h1>
+            <Link to='/admin/skills/new' className='button large'>
+              <i className='fa fa-plus' />
+              &nbsp;Add New Skill
+            </Link>
+          </div>
           <SkillsTable isFetching={isFetching} skills={skills} />
         </div>
       </div>

@@ -1,6 +1,8 @@
 import humps from 'humps'
+import { push } from 'react-router-redux'
 
 import baseUrl from '../../../../sharedResources/constants/baseUrl'
+import { clearNotices, flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
 const CREATE_ADMIN_SKILL = 'CREATE_ADMIN_SKILL'
 const CREATE_ADMIN_SKILL_SUCCESS = 'CREATE_ADMIN_SKILL_SUCCESS'
@@ -17,12 +19,12 @@ const fetchCreateAdminSkill = () => ({
 })
 
 const createAdminSkillSuccess = skill => ({
-  type: CREATE_BGS_SUCCESS,
+  type: CREATE_ADMIN_SKILL_SUCCESS,
   skill
 })
 
 const createAdminSkillFailure = errrors => ({
-  type: CREATE_BGS_FAILURE,
+  type: CREATE_ADMIN_SKILL_FAILURE,
   errors
 })
 
@@ -48,9 +50,14 @@ const createAdminSkill = values => dispatch => {
   .then(data => {
     const result = humps.camelizeKeys(data)
     dispatch(createAdminSkillSuccess(result.skill))
+    dispatch(clearNotices())
+    dispatch(flashNotice({ success: 'Skill created successfully.' }))
+    dispatch(push(`/admin/skills/${result.skill.id}`))
   })
   .catch(error => {
     dispatch(createAdminSkillFailure(error))
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem processing your request.' }))
   })
 }
 
