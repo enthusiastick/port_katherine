@@ -4,4 +4,8 @@ class Admin::Header::IndexSerializer < ActiveModel::Serializer
   def category
     object.category.humanize.titleize
   end
+
+  def name
+    object.advanced? && object.parent_header.present? ? "[#{object.parent_header.name}] #{object.name}" : object.name
+  end
 end
