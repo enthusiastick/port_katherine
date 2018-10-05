@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       resources :sheets, only: [:index]
     end
     resources :headers, only: [:show]
-    resources :skills, only: [:index, :new, :show]
+    resources :skills, only: [:edit, :index, :new, :show]
     resources :transfer_character_points, only: [:index]
     resources :users, only: [:index, :show]
   end
@@ -79,7 +79,7 @@ Rails.application.routes.draw do
           resources :merchants, only: [:index]
         end
         resources :headers, only: [:index, :show]
-        resources :skills, only: [:create, :index, :show]
+        resources :skills, only: [:create, :index, :show, :update]
         resources :transfer_character_points, only: [:create]
         resources :users, only: [:index, :show]
       end

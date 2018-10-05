@@ -2,16 +2,20 @@ import React, { Component } from 'react'
 import { Formik } from 'formik'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
+import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 import { default as SkillForm } from '../forms/Skill'
 import validateSkill from '../constants/validateSkill'
 
-class NewSkillContainer extends Component {
+class EditSkillContainer extends Component {
   constructor(props) {
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
   }
 
   componentDidMount() {
+    if (this.props.skill.id !== this.props.skillId) {
+      this.props.editAdminSkill(this.props.skillId)
+    }
     if (this.props.headers.length === 0) {
       this.props.getAdminHeaders()
     }
@@ -22,32 +26,29 @@ class NewSkillContainer extends Component {
   }
 
   onSubmit(values) {
-    this.props.createAdminSkill(values)
+    this.props.updateAdminSkill(values)
   }
 
   render() {
-    const { isFetching, headers } = this.props
+    const { isFetching, headers, skill, skillId } = this.props
+
+    if (isFetching) { return <LoadingSpinner /> }
+
+    const { name } = skill
 
     const breadcrumbs = [
-      { to: '/admin/skills', label: 'Headers & Skills' }
+      { to: '/admin/skills', label: 'Headers & Skills' },
+      { to: `/admin/skills/${skillId}`, label: `Skill: ${name}` }
     ]
 
-    const initialValues = {
-      costIncreaseAmount: 1,
-      costIncreaseRank: 10,
-      headers: {},
-      description: '',
-      maxRank: 0,
-      name: '',
-      startingCost: 1
-    }
+    const initialValues = { ...skill }
 
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <BreadcrumbsNav breadcrumbs={breadcrumbs} current='New Skill' />
-          <h1 className='text-center top-padded'>New Skill</h1>
-          <Formik
+          <BreadcrumbsNav breadcrumbs={breadcrumbs} current='Edit' />
+          <h1 className='text-center top-padded'>Edit {name}</h1>
+          {initialValues.id && <Formik
             initialValues={initialValues}
             onSubmit={this.onSubmit}
             validate={validateSkill}
@@ -57,11 +58,11 @@ class NewSkillContainer extends Component {
                 {...formikProps}
               />
             )}
-          />
+          />}
         </div>
       </div>
     )
   }
 }
 
-export default NewSkillContainer
+export default EditSkillContainer

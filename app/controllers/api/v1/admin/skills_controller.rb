@@ -21,6 +21,22 @@ class Api::V1::Admin::SkillsController < Api::ApiController
     render json: skill, serializer: ::Admin::Skill::ShowSerializer
   end
 
+  def update
+    skill = Skill.find(params[:id])
+    skill.assign_attributes(skill_params)
+    header_skills = Array.new
+    header_skills_params.each do |hs_params|
+      hs = HeaderSkill.find_or_initialize_by(header_id: hs_params[:header_id], skill: skill)
+      hs.assign_attributes(hs_params)
+      header_skills << hs
+    end
+    if skill.save && header_skills.map(&:save)
+      render json: skill, serializer: ::Admin::Skill::ShowSerializer
+    else
+      render_object_errors(skill)
+    end
+  end
+
   protected
 
   def skill_params
