@@ -35,7 +35,7 @@ class NewSkillContainer extends Component {
     const initialValues = {
       costIncreaseAmount: 1,
       costIncreaseRank: 10,
-      headers: [],
+      headers: {},
       description: '',
       maxRank: 0,
       name: '',

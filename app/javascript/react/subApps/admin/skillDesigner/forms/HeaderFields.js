@@ -22,7 +22,7 @@ const HeaderFields = ({
       name={`headers.${header.value}.trueSkill`}
       setFieldValue={setFieldValue}
       touched={touched.trueSkill}
-      values={values.trueSkill}
+      value={values.trueSkill}
     />
   </fieldset>
 )

@@ -11,6 +11,8 @@ const Switch = ({
     setFieldValue(name, event.target.checked)
   }
 
+  if (value === undefined) { return null }
+
   return(
     <fieldset className='no-padding'>
       <div className='row'>

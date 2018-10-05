@@ -5,12 +5,19 @@ import {
 } from '../actions/getAdminSkills'
 
 import {
+  EDIT_ADMIN_SKILL,
+  EDIT_ADMIN_SKILL_SUCCESS,
+  EDIT_ADMIN_SKILL_FAILURE
+} from '../actions/editAdminSkill'
+
+import {
   SHOW_ADMIN_SKILL,
   SHOW_ADMIN_SKILL_SUCCESS,
   SHOW_ADMIN_SKILL_FAILURE
 } from '../actions/showAdminSkill'
 
 const initialState = {
+  edit: {},
   index: [],
   isFetching: false,
   show: {}
@@ -28,6 +35,16 @@ const adminSkills = (state = initialState, action) => {
       }
     case GET_ADMIN_SKILLS_FAILURE:
       return { ...state, isFetching: false }
+    case EDIT_ADMIN_SKILL:
+      return { ...state, isFetching: true }
+    case EDIT_ADMIN_SKILL_SUCCESS:
+      return {
+        ...state,
+        edit: action.edit.skill,
+        isFetching: false
+      }
+    case EDIT_ADMIN_SKILL_FAILURE:
+     return { ...state, isFetching: false }
     case SHOW_ADMIN_SKILL:
       return { ...state, isFetching: true }
     case SHOW_ADMIN_SKILL_SUCCESS:
