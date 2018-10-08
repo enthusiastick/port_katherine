@@ -69,6 +69,7 @@ Rails.application.routes.draw do
         end
         resources :character_points, only: [:create]
         resources :characters, only: [:index] do
+          resources :available_headers, only: [:index]
           resources :backstories, only: [:index]
         end
         resources :events, only: [:create, :destroy, :index, :update] do
