@@ -4,7 +4,7 @@ class Api::V1::Admin::AvailableHeadersController < Api::ApiController
   def index
     character = Character.deobfuscate(params[:character_id])
     if character.present?
-      headers = (Header.alpha_by_name - [Header.open] - character.headers)
+      headers = (Header.advanced.alpha_by_name + Header.hidden.alpha_by_name - [Header.open] - character.headers)
       meta = {
         character_id: character.non_sequential_id,
         character_name: character.name,

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :characters, only: [:edit, :index, :show] do
       resources :backstories, only: [:index]
       resources :build_logs, only: [:index]
+      resources :headers, only: [:new]
       resources :sheets, only: [:index]
     end
     resources :events, only: [:edit, :index, :new, :show] do
