@@ -24,6 +24,22 @@ class AdminCharacterNewHeaderContainer extends Component {
     console.log(values)
   }
 
+  validate(values) {
+    let errors = {}
+
+    if (isNaN(parseInt(values.cost))) {
+      errors.cost = 'Cost per header may not be blank.'
+    } else if (values.cost < 0) {
+      errors.cost = 'Cost per header must be greater than or equal to zero.'
+    }
+
+    if (values.headers.length === 0) {
+      errors.headers = 'You must select at least one header.'
+    }
+
+    return errors
+  }
+
   render() {
     if (this.props.isFetching) {
       return <LoadingSpinner />
@@ -35,7 +51,7 @@ class AdminCharacterNewHeaderContainer extends Component {
     const breadcrumbs = [
       { to: '/admin/users', label: 'Users' },
       { to: `/admin/users/${userId}`, label: userId},
-      { to: `/admin/characters/${characterId}`, label: characterName }
+      { to: `/admin/characters/${characterId}`, label: `Character: ${characterName}` }
     ]
 
     const initialValues = {
@@ -54,6 +70,7 @@ class AdminCharacterNewHeaderContainer extends Component {
           <Formik
             initialValues={initialValues}
             onSubmit={this.onSubmit}
+            validate={this.validate}
             render={formikProps => (
               <HeadersForm
                 headers={headers.map(header => ({ label: header.name, value: header.id }))}
