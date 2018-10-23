@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         resources :bookings, only: [] do
           resources :check_ins, only: [:create, :destroy]
         end
+        resources :character_headers, only: [:create]
         resources :character_points, only: [:create]
         resources :characters, only: [:index] do
           resources :available_headers, only: [:index]

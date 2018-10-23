@@ -8,6 +8,7 @@ import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinne
 class AdminCharacterNewHeaderContainer extends Component {
   constructor(props) {
     super(props)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -21,7 +22,9 @@ class AdminCharacterNewHeaderContainer extends Component {
   }
 
   onSubmit(values) {
-    console.log(values)
+    const { characterId } = this.props
+    const params = { characterId, ...values }
+    this.props.createAdminCharacterHeader(params)
   }
 
   validate(values) {

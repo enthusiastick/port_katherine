@@ -23,7 +23,7 @@ const createAdminSkillSuccess = skill => ({
   skill
 })
 
-const createAdminSkillFailure = errrors => ({
+const createAdminSkillFailure = errors => ({
   type: CREATE_ADMIN_SKILL_FAILURE,
   errors
 })

@@ -1,6 +1,10 @@
 class Api::V1::Admin::CharacterHeadersController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
+  def create
+    binding.pry
+  end
+
   def index
     @header = Header.merchant
     @event = Event.find_by(slug: params[:event_id])
