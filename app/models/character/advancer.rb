@@ -1,4 +1,4 @@
-class CharacterAdvancer
+class Character::Advancer
   def initialize(params, user_id)
     @character = Character.deobfuscate(params[:id])
     @character_skills = params[:character_skills]

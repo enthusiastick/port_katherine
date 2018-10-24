@@ -45,7 +45,7 @@ class Api::V1::CharactersController < Api::ApiController
   end
 
   def update
-    advancer = CharacterAdvancer.new(update_character_params, current_user.id)
+    advancer = ::Character::Advancer.new(update_character_params, current_user.id)
     if authorize_record_owner_or_plot_staff?(advancer.character) && advancer.advance!
       render json: advancer.character, serializer: Character::ShowSerializer
     else

@@ -2,7 +2,12 @@ class Api::V1::Admin::CharacterHeadersController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
   def create
-    binding.pry
+    opener = ::Character::HeaderOpener.new(character_header_params, current_user.id)
+    if opener.open!
+      render json: { character: opener.character }
+    else
+      render json: { error: opener.character.errors }, status: :unprocessable_entity
+    end
   end
 
   def index
@@ -20,6 +25,10 @@ class Api::V1::Admin::CharacterHeadersController < Api::ApiController
   end
 
   private
+
+  def character_header_params
+    params.require(:character_header).permit(:character_id, :cost, headers: [])
+  end
 
   def linked_first_skill
     @linked_first_skill ||= @header.linked_first_skill
