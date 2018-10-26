@@ -4,6 +4,10 @@ import {
   GET_ADMIN_AVAILABLE_HEADERS_FAILURE
 } from '../actions/getAdminCharacterAvailableHeaders'
 
+import {
+  CREATE_ADMIN_CHARACTER_HEADER_SUCCESS
+} from '../actions/createAdminCharacterHeader'
+
 const initialState = {
   isFetching: false,
   headers: { items: [], meta: {} }
@@ -24,6 +28,8 @@ const adminCharacterOptions = (state = initialState, action) => {
       }
     case GET_ADMIN_AVAILABLE_HEADERS_FAILURE:
       return { ...state, isFetching: false }
+    case CREATE_ADMIN_CHARACTER_HEADER_SUCCESS:
+      return initialState
     default:
       return state
   }

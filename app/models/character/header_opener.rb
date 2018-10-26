@@ -14,6 +14,8 @@ class Character::HeaderOpener
       ApplicationRecord.transaction do
         purchase_headers!
       end
+    else
+      raise ActiveRecord::RecordInvalid
     end
   end
 

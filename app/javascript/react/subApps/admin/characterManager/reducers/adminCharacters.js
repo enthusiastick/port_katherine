@@ -18,6 +18,10 @@ import {
   UPDATE_CHARACTER_SUCCESS
 } from '../../../characterBuilder/actions/updateCharacter'
 
+import {
+  CREATE_ADMIN_CHARACTER_HEADER_SUCCESS
+} from '../actions/createAdminCharacterHeader'
+
 let initialState = {
   isFetching: false,
   backstories: {
@@ -51,6 +55,11 @@ const adminCharacters = (state = initialState, action) => {
     case FETCH_ADMIN_BACKSTORIES_SUCCESS:
       return Object.assign({}, state, { backstories: { meta: action.payload.meta, items: action.payload.backstories } })
     case UPDATE_CHARACTER_SUCCESS:
+      return {
+        ...state,
+        show: action.character
+      }
+    case CREATE_ADMIN_CHARACTER_HEADER_SUCCESS:
       return {
         ...state,
         show: action.character

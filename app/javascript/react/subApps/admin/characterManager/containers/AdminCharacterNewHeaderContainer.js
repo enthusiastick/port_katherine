@@ -21,10 +21,11 @@ class AdminCharacterNewHeaderContainer extends Component {
     this.props.authenticateSignedInPlotStaff(nextProps.isPlotStaff)
   }
 
-  onSubmit(values) {
+  onSubmit(values, {resetForm}) {
     const { characterId } = this.props
     const params = { characterId, ...values }
     this.props.createAdminCharacterHeader(params)
+    resetForm()
   }
 
   validate(values) {

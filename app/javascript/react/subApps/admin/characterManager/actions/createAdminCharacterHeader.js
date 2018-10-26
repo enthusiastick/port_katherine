@@ -1,6 +1,8 @@
 import humps from 'humps'
+import { push } from 'react-router-redux'
 
 import baseUrl from '../../../../sharedResources/constants/baseUrl'
+import { clearNotices, flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
 const CREATE_ADMIN_CHARACTER_HEADER = 'CREATE_ADMIN_CHARACTER_HEADER'
 const CREATE_ADMIN_CHARACTER_HEADER_SUCCESS = 'CREATE_ADMIN_CHARACTER_HEADER_SUCCESS'
@@ -16,9 +18,9 @@ const fetchCreateAdminCharacterHeader = () => ({
   type: CREATE_ADMIN_CHARACTER_HEADER
 })
 
-const createAdminCharacterHeaderSuccess = characterHeaders => ({
+const createAdminCharacterHeaderSuccess = character => ({
   type: CREATE_ADMIN_CHARACTER_HEADER_SUCCESS,
-  characterHeaders
+  character
 })
 
 const createAdminCharacterHeaderFailure = errors => ({
@@ -44,10 +46,15 @@ const createAdminCharacterHeader = values => dispatch => {
   .then(response => { return response.json() })
   .then(data => {
     const result = humps.camelizeKeys(data)
-    dispatch(createAdminCharacterHeaderSuccess(result.characterHeaders))
+    dispatch(createAdminCharacterHeaderSuccess(result.character))
+    dispatch(clearNotices())
+    dispatch(flashNotice({ success: 'Header(s) opened succesfully.' }))
+    dispatch(push(`/admin/characters/${result.character.id}`))
   })
   .catch(error => {
     dispatch(createAdminCharacterHeaderFailure(error))
+    dispatch(clearNotices())
+    dispatch(flashNotice({ alert: 'There was a problem processing your request.' }))
   })
 }
 

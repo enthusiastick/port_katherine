@@ -4,7 +4,7 @@ class Api::V1::Admin::CharacterHeadersController < Api::ApiController
   def create
     opener = ::Character::HeaderOpener.new(character_header_params, current_user.id)
     if opener.open!
-      render json: { character: opener.character }
+      render json: opener.character, serializer: Character::ShowSerializer
     else
       render json: { error: opener.character.errors }, status: :unprocessable_entity
     end
