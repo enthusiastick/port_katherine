@@ -1,4 +1,10 @@
 class FixDefaultCharacterSpentCycle < ActiveRecord::Migration[5.1]
+  class Character < ApplicationRecord
+  end
+
+  class Tally < ApplicationRecord
+  end
+
   def up
     change_column :characters, :spent_cycle, :integer, default: -30, null: false
     Character.all.each do |character|
