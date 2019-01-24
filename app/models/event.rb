@@ -20,6 +20,10 @@ class Event < ApplicationRecord
   validates_uniqueness_of :slug
   validate :end_after_start
 
+  def any_registration_open?
+    limited_registration_open? || unlimited_registration_open?
+  end
+
   def archive!
     update(archived: true)
   end
@@ -46,6 +50,10 @@ class Event < ApplicationRecord
 
   def generate_slug
     self.slug ||= name.parameterize if name.present?
+  end
+
+  def limited_registration_open?
+    limited_registration_opened_at.present? && limited_registration_opened_at.past?
   end
 
   def lodging_questionnaire_csv
@@ -76,7 +84,7 @@ class Event < ApplicationRecord
   end
 
   def registerable?
-    !passes.empty?
+    !passes.empty? && any_registration_open?
   end
 
   def set_bgs_deadline!
@@ -89,5 +97,9 @@ class Event < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def unlimited_registration_open?
+    unlimited_registration_opened_at.present? && unlimited_registration_opened_at.past?
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_18_174415) do
+ActiveRecord::Schema.define(version: 2019_01_24_160722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 2018_05_18_174415) do
     t.boolean "show_lodging_questionnaire", default: false, null: false
     t.datetime "closed_at"
     t.datetime "bgs_deadline"
+    t.datetime "limited_registration_opened_at"
+    t.datetime "unlimited_registration_opened_at"
     t.index ["slug"], name: "index_events_on_slug", unique: true
   end
 
