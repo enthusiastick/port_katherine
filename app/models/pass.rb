@@ -17,12 +17,24 @@ class Pass < ApplicationRecord
   validates_uniqueness_of :slug
   validate :only_discount_singles
 
+  def all_events_unlimited_registration_open?
+    events.all? { |event| event.unlimited_registration_open? }
+  end
+
   def any_event_capped?
     events.any? { |event| event.capped? }
   end
 
+  def first_event
+    @first_event ||= events.soonest_first.first
+  end
+
   def generate_slug
     self.slug ||= name.parameterize if name.present?
+  end
+
+  def limited_registration_open_and_user_eligible?(user)
+    first_event.limited_registration_open? && user.eligible_for_limited_registration_for_event?(first_event)
   end
 
   def multi_event?

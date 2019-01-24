@@ -12,7 +12,10 @@ class Registrar
 
   def register!
     if @pass.present? && @nonce.present?
-      if @pass.any_event_capped?
+      if !ready?
+        @response = { error: { pass: "You are not eligible to register #{@pass.name}." } }
+        @status = :unprocessable_entity
+      elsif @pass.any_event_capped?
         @response = { error: { pass: "#{@pass.name} is sold out." } }
         @status = :unprocessable_entity
       else
@@ -24,6 +27,10 @@ class Registrar
   end
 
   private
+
+  def ready?
+    @pass.all_events_unlimited_registration_open? || @pass.limited_registration_open_and_user_eligible?(@user)
+  end
 
   def register_player!
     sale_amount = new_player_discount? ? 50.0 : @pass.price_including_earlybird_discount

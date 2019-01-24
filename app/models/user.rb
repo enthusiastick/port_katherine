@@ -64,6 +64,10 @@ class User < ApplicationRecord
     self.email.downcase!
   end
 
+  def eligible_for_limited_registration_for_event?(event)
+    !Booking.where(event: event.two_previous_full_weekends, user: self).empty?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -40,12 +40,20 @@ class Event < ApplicationRecord
     end
   end
 
+  def duration_in_hours
+     (end_time - start_time) / 3600
+  end
+
   def end_after_start
     unless end_time.nil?
       if end_time < start_time
         errors.add(:end_time, "can't be before start date")
       end
     end
+  end
+
+  def full_weekend?
+    !one_day?
   end
 
   def generate_slug
@@ -65,6 +73,10 @@ class Event < ApplicationRecord
 
       questionnaire_bookings.each { |booking| csv << booking.lodging_questionnaire_row }
     end
+  end
+
+  def one_day?
+    duration_in_hours < 24.0
   end
 
   def players
@@ -97,6 +109,10 @@ class Event < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def two_previous_full_weekends
+    @two_previous_full_weekends ||= Event.where(["end_time <= ?", (self.start_time)]).soonest_first.select { |event| event.full_weekend? }.last(2)
   end
 
   def unlimited_registration_open?
