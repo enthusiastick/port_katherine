@@ -33,7 +33,7 @@ class Registrar
   end
 
   def register_player!
-    sale_amount = new_player_discount? ? 50.0 : @pass.price_including_earlybird_discount
+    sale_amount = new_player_discount? ? Pass::NEW_PLAYER_DISCOUNT_PRICE : @pass.price_including_earlybird_discount
     @sale = pk_braintree.sale(sale_amount)
     if @sale.success? && persist_records_to_database
       @pass.send_purchase_notification(@user.id)
@@ -70,7 +70,7 @@ class Registrar
   end
 
   def new_player_discount?
-    @new_player_discount ||= user_new_player_discount_eligible? && !@pass.multi_event?
+    @new_player_discount ||= @pass.price > Pass::NEW_PLAYER_DISCOUNT_PRICE && user_new_player_discount_eligible? && !@pass.multi_event?
   end
 
   def pk_braintree
