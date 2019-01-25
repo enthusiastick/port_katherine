@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :build_logs, only: [:index]
       resources :headers, only: [:new]
       resources :sheets, only: [:index]
+      resources :skills, only: [:new]
     end
     resources :events, only: [:edit, :index, :new, :show] do
       resources :bgs, only: [:index] do
@@ -72,6 +73,7 @@ Rails.application.routes.draw do
         resources :character_points, only: [:create]
         resources :characters, only: [:index] do
           resources :available_headers, only: [:index]
+          resources :available_skills, only: [:index]
           resources :backstories, only: [:index]
         end
         resources :events, only: [:create, :destroy, :index, :update] do

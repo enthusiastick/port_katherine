@@ -41,4 +41,8 @@ class Header < ApplicationRecord
   def self.military_officer
     find_or_create_by(name: "Military Officer", category: :profession)
   end
+
+  def hidden_header_skills
+    header_skills.where(hidden: true)
+  end
 end

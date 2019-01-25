@@ -9,6 +9,7 @@ import AdminBgsIndex from './betweenGames/connectors/Index'
 import AdminBgsShow from './betweenGames/connectors/Show'
 
 import AdminCharacterNewHeader from './characterManager/connectors/AdminCharacterNewHeader'
+import AdminCharacterNewSkill from './characterManager/connectors/AdminCharacterNewSkill'
 import AdminEditCharacter from './characterManager/connectors/AdminEditCharacter'
 import AdminIndexBackstories from './characterManager/connectors/AdminIndexBackstories'
 import AdminIndexCharacters from './characterManager/connectors/AdminIndexCharacters'
@@ -32,50 +33,49 @@ import AdminUserShow from './userManager/connectors/AdminUserShow'
 
 import SkillDesigner from './skillDesigner/index'
 
-const Admin = props => {
-  return(
-    <div>
-      <Route exact path='/admin' component={AdminIndex} />
-      <Route exact path='/admin/award_character_points' component={AdminPointDispenser} />
-      <Route exact path='/admin/transfer_character_points' component={AdminPointTransferer} />
+const Admin = props => (
+  <div>
+    <Route exact path='/admin' component={AdminIndex} />
+    <Route exact path='/admin/award_character_points' component={AdminPointDispenser} />
+    <Route exact path='/admin/transfer_character_points' component={AdminPointTransferer} />
 
-      <Switch>
-        <Route exact path='/admin/bgs' component={AdminBgsIndex} />
-        <Route exact path='/admin/bgs/:bgsId' component={AdminBgsShow} />
-      </Switch>
+    <Switch>
+      <Route exact path='/admin/bgs' component={AdminBgsIndex} />
+      <Route exact path='/admin/bgs/:bgsId' component={AdminBgsShow} />
+    </Switch>
 
-      <Switch>
-        <Route exact path='/admin/characters' component={AdminIndexCharacters} />
-        <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
-        <Route exact path='/admin/characters/:characterId/backstories' component={AdminIndexBackstories} />
-        <Route exact path='/admin/characters/:characterId/build_logs' component={AdminIndexTallies} />
-        <Route exact path='/admin/characters/:characterId/edit' component={AdminEditCharacter} />
-        <Route exact path='/admin/characters/:characterId/headers/new' component={AdminCharacterNewHeader} />
-      </Switch>
+    <Switch>
+      <Route exact path='/admin/characters' component={AdminIndexCharacters} />
+      <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
+      <Route exact path='/admin/characters/:characterId/backstories' component={AdminIndexBackstories} />
+      <Route exact path='/admin/characters/:characterId/build_logs' component={AdminIndexTallies} />
+      <Route exact path='/admin/characters/:characterId/edit' component={AdminEditCharacter} />
+      <Route exact path='/admin/characters/:characterId/headers/new' component={AdminCharacterNewHeader} />
+      <Route exact path='/admin/characters/:characterId/skills/new' component={AdminCharacterNewSkill} />
+    </Switch>
 
-      <Switch>
-        <Route exact path='/admin/events' component={AdminEventsIndex} />
-        <Route exact path='/admin/events/new' component={AdminEventsNew} />
-        <Route exact path='/admin/events/:eventSlug' component={AdminEventShow} />
-        <Route exact path='/admin/events/:eventSlug/bgs' component={AdminBgsIndex} />
-        <Route exact path='/admin/events/:eventSlug/check-in' component={AdminEventCheckIn} />
-        <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
-        <Route exact path='/admin/events/:eventSlug/envelopes' component={AdminEventEnvelopesIndex} />
-        <Route exact path='/admin/events/:eventSlug/headers_professions' component={AdminEventHeadersIndex} />
-        <Route exact path='/admin/events/:eventSlug/pels/:userHandle' component={AdminEventPelShow} />
-        <Route exact path='/admin/events/:eventSlug/pels' component={AdminEventPelsIndex} />
-        <Route exact path='/admin/events/:eventSlug/reports' component={AdminEventReportsIndex} />
-        <Route exact path='/admin/events/:eventSlug/self_reports' component={AdminEventSelfReportsIndex} />
-      </Switch>
+    <Switch>
+      <Route exact path='/admin/events' component={AdminEventsIndex} />
+      <Route exact path='/admin/events/new' component={AdminEventsNew} />
+      <Route exact path='/admin/events/:eventSlug' component={AdminEventShow} />
+      <Route exact path='/admin/events/:eventSlug/bgs' component={AdminBgsIndex} />
+      <Route exact path='/admin/events/:eventSlug/check-in' component={AdminEventCheckIn} />
+      <Route exact path='/admin/events/:eventSlug/edit' component={AdminEventEdit} />
+      <Route exact path='/admin/events/:eventSlug/envelopes' component={AdminEventEnvelopesIndex} />
+      <Route exact path='/admin/events/:eventSlug/headers_professions' component={AdminEventHeadersIndex} />
+      <Route exact path='/admin/events/:eventSlug/pels/:userHandle' component={AdminEventPelShow} />
+      <Route exact path='/admin/events/:eventSlug/pels' component={AdminEventPelsIndex} />
+      <Route exact path='/admin/events/:eventSlug/reports' component={AdminEventReportsIndex} />
+      <Route exact path='/admin/events/:eventSlug/self_reports' component={AdminEventSelfReportsIndex} />
+    </Switch>
 
-      <Switch>
-        <Route exact path='/admin/users' component={AdminUsersIndex} />
-        <Route exact path='/admin/users/:userId' component={AdminUserShow} />
-      </Switch>
+    <Switch>
+      <Route exact path='/admin/users' component={AdminUsersIndex} />
+      <Route exact path='/admin/users/:userId' component={AdminUserShow} />
+    </Switch>
 
-      <SkillDesigner />
-    </div>
-  )
-}
+    <SkillDesigner />
+  </div>
+)
 
 export default Admin

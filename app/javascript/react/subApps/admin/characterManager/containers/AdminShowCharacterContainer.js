@@ -72,6 +72,9 @@ class AdminShowCharacterContainer extends Component {
                 <Link className='button' to={`/admin/characters/${this.props.character.id}/headers/new`}>
                   <i className='fa fa-plus-circle' /> Add Headers
                 </Link>
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/skills/new`}>
+                  <i className='fa fa-eye-slash' /> Reveal Skills
+                </Link>
               </div>
             </div>
           </div>
