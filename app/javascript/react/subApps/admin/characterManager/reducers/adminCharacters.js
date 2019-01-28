@@ -22,6 +22,11 @@ import {
   CREATE_ADMIN_CHARACTER_HEADER_SUCCESS
 } from '../actions/createAdminCharacterHeader'
 
+import {
+  CREATE_ADMIN_CHARACTER_SKILL_SUCCESS
+} from '../actions/createAdminCharacterSkill'
+
+
 let initialState = {
   isFetching: false,
   backstories: {
@@ -60,6 +65,11 @@ const adminCharacters = (state = initialState, action) => {
         show: action.character
       }
     case CREATE_ADMIN_CHARACTER_HEADER_SUCCESS:
+      return {
+        ...state,
+        show: action.character
+      }
+    case CREATE_ADMIN_CHARACTER_SKILL_SUCCESS:
       return {
         ...state,
         show: action.character
