@@ -19,6 +19,8 @@ class Character::HeaderOpener
     end
   end
 
+  private
+
   def purchase_headers!
     @header_ids.each do |header_id|
       header = Header.find(header_id)

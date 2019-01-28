@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 
 import AdminCharacterNewSkillContainer from '../containers/AdminCharacterNewSkillContainer'
 import { authenticateSignedInPlotStaff } from '../../../../sharedResources/actions/authenticateUser'
+import { createAdminCharacterSkill } from '../actions/createAdminCharacterSkill'
 import { getAdminAvailableSkills } from '../actions/getAdminCharacterAvailableSkills'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
@@ -18,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     authenticateSignedInPlotStaff: authorized => { dispatch(authenticateSignedInPlotStaff(authorized)) },
+    createAdminCharacterSkill: values => { dispatch(createAdminCharacterSkill(values)) },
     getAdminAvailableSkills: characterId => { dispatch(getAdminAvailableSkills(characterId)) }
   }
 }

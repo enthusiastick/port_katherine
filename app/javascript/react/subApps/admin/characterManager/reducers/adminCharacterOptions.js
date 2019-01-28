@@ -14,6 +14,10 @@ import {
   CREATE_ADMIN_CHARACTER_HEADER_SUCCESS
 } from '../actions/createAdminCharacterHeader'
 
+import {
+  CREATE_ADMIN_CHARACTER_SKILL_SUCCESS
+} from '../actions/createAdminCharacterSkill'
+
 const initialState = {
   isFetching: false,
   headers: { items: [], meta: {} },
@@ -49,6 +53,8 @@ const adminCharacterOptions = (state = initialState, action) => {
     case GET_ADMIN_AVAILABLE_SKILLS_FAILURE:
       return { ...state, isFetching: false }
     case CREATE_ADMIN_CHARACTER_HEADER_SUCCESS:
+      return initialState
+    case CREATE_ADMIN_CHARACTER_SKILL_SUCCESS:
       return initialState
     default:
       return state

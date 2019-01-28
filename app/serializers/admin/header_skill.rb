@@ -1,11 +1,11 @@
 class Admin::HeaderSkill < ActiveModel::Serializer
-  attributes :id, :name
-
-  def id
-    object.skill.id
-  end
+  attributes :name, :skill_id
 
   def name
     "[#{object.header.name}] #{object.skill.name} (id: #{object.skill.id})"
+  end
+
+  def skill_id
+    object.skill.id
   end
 end

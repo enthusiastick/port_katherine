@@ -71,6 +71,7 @@ Rails.application.routes.draw do
         end
         resources :character_headers, only: [:create]
         resources :character_points, only: [:create]
+        resources :character_skills, only: [:create]
         resources :characters, only: [:index] do
           resources :available_headers, only: [:index]
           resources :available_skills, only: [:index]
