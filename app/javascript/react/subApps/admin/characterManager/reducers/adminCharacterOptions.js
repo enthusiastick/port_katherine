@@ -42,14 +42,24 @@ const adminCharacterOptions = (state = initialState, action) => {
     case GET_ADMIN_AVAILABLE_SKILLS:
       return { ...state, isFetching: true }
     case GET_ADMIN_AVAILABLE_SKILLS_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        skills: {
-          items: action.payload.headerSkills,
-          meta: action.payload.meta
+      return (Object.keys(action.payload).includes("headerSkills")) ?
+        {
+          ...state,
+          isFetching: false,
+          skills: {
+            items: action.payload.headerSkills,
+            meta: action.payload.meta
+          }
         }
-      }
+        :
+        {
+          ...state,
+          isFetching: false,
+          skills: {
+            items: [],
+            meta: action.payload.meta
+          }
+        }
     case GET_ADMIN_AVAILABLE_SKILLS_FAILURE:
       return { ...state, isFetching: false }
     case CREATE_ADMIN_CHARACTER_HEADER_SUCCESS:

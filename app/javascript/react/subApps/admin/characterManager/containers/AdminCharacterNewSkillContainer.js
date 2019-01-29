@@ -43,10 +43,6 @@ class AdminCharacterNewSkillContainer extends Component {
       return <LoadingSpinner />
     }
 
-    if (!this.props.isFetching && !this.props.skills) {
-      return <h1 className='text-center top-padded'>No matching skills found.</h1>
-    }
-
     const { skills, meta } = this.props
     const { characterId, characterName, userId } = meta
 
