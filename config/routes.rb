@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :backstories, only: [:index]
       resources :build_logs, only: [:index]
       resources :headers, only: [:new]
+      resources :locks, only: [:index]
       resources :sheets, only: [:index]
       resources :skills, only: [:new]
     end

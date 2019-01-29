@@ -8,6 +8,7 @@ import AdminPointTransferer from './connectors/AdminPointTransferer'
 import AdminBgsIndex from './betweenGames/connectors/Index'
 import AdminBgsShow from './betweenGames/connectors/Show'
 
+import AdminCharacterLocks from './characterManager/connectors/AdminCharacterLocks'
 import AdminCharacterNewHeader from './characterManager/connectors/AdminCharacterNewHeader'
 import AdminCharacterNewSkill from './characterManager/connectors/AdminCharacterNewSkill'
 import AdminEditCharacter from './characterManager/connectors/AdminEditCharacter'
@@ -50,6 +51,7 @@ const Admin = props => (
       <Route exact path='/admin/characters/:characterId/backstories' component={AdminIndexBackstories} />
       <Route exact path='/admin/characters/:characterId/build_logs' component={AdminIndexTallies} />
       <Route exact path='/admin/characters/:characterId/edit' component={AdminEditCharacter} />
+      <Route exact path='/admin/characters/:characterId/locks' component={AdminCharacterLocks} />
       <Route exact path='/admin/characters/:characterId/headers/new' component={AdminCharacterNewHeader} />
       <Route exact path='/admin/characters/:characterId/skills/new' component={AdminCharacterNewSkill} />
     </Switch>

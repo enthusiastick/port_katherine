@@ -56,6 +56,9 @@ class AdminShowCharacterContainer extends Component {
             </div>
             <div className='small-12 medium-3 columns'>
               <div className='button-group stacked'>
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/headers/new`}>
+                  <i className='fa fa-plus-circle' /> Add Headers
+                </Link>
                 {this.props.character.backstoriesCount > 0 && <Link className='button' to={`/admin/characters/${this.props.character.id}/backstories`}>
                   <i className='fa fa-book' /> Backstory
                 </Link>}
@@ -66,14 +69,14 @@ class AdminShowCharacterContainer extends Component {
                 >
                   <i className='fa fa-print' /> Character Sheet
                 </a>
-                <Link className='button' to={`/admin/characters/${this.props.character.id}/edit`}>
-                  <i className='fa fa-edit' /> Spend CP
-                </Link>
-                <Link className='button' to={`/admin/characters/${this.props.character.id}/headers/new`}>
-                  <i className='fa fa-plus-circle' /> Add Headers
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/locks`}>
+                  <i className='fa fa-unlock' /> Lock & Unlock Skills
                 </Link>
                 <Link className='button' to={`/admin/characters/${this.props.character.id}/skills/new`}>
                   <i className='fa fa-eye-slash' /> Reveal Skills
+                </Link>
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/edit`}>
+                  <i className='fa fa-edit' /> Spend CP
                 </Link>
               </div>
             </div>
