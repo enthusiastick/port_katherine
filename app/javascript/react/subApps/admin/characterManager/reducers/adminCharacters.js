@@ -1,4 +1,12 @@
 import {
+  CREATE_ADMIN_CHARACTER_HEADER_SUCCESS
+} from '../actions/createAdminCharacterHeader'
+
+import {
+  CREATE_ADMIN_CHARACTER_SKILL_SUCCESS
+} from '../actions/createAdminCharacterSkill'
+
+import {
   FETCH_CHARACTER,
   FETCH_CHARACTER_SUCCESS,
   FETCH_CHARACTER_FAILURE
@@ -19,16 +27,14 @@ import {
 } from '../../../characterBuilder/actions/updateCharacter'
 
 import {
-  CREATE_ADMIN_CHARACTER_HEADER_SUCCESS
-} from '../actions/createAdminCharacterHeader'
-
-import {
-  CREATE_ADMIN_CHARACTER_SKILL_SUCCESS
-} from '../actions/createAdminCharacterSkill'
-
+  UPDATE_ADMIN_CHARACTER_SKILL_LOCK,
+  UPDATE_ADMIN_CHARACTER_SKILL_LOCK_SUCCESS,
+  UPDATE_ADMIN_CHARACTER_SKILL_LOCK_FAILURE
+} from '../actions/updateAdminCharacterSkillLock'
 
 let initialState = {
   isFetching: false,
+  isLocking: false,
   backstories: {
     meta: {},
     items: []
@@ -73,6 +79,21 @@ const adminCharacters = (state = initialState, action) => {
       return {
         ...state,
         show: action.character
+      }
+    case UPDATE_ADMIN_CHARACTER_SKILL_LOCK:
+      return {
+        ...state,
+        isLocking: true
+      }
+    case UPDATE_ADMIN_CHARACTER_SKILL_LOCK_SUCCESS:
+      return {
+        ...state,
+        isLocking: false
+      }
+    case UPDATE_ADMIN_CHARACTER_SKILL_LOCK_FAILURE:
+      return {
+        ...state,
+        isLocking: false
       }
     default:
       return state

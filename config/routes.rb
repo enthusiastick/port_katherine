@@ -70,6 +70,7 @@ Rails.application.routes.draw do
         resources :bookings, only: [] do
           resources :check_ins, only: [:create, :destroy]
         end
+        resources :character_skill_locks, only: [:update]
         resources :character_headers, only: [:create]
         resources :character_points, only: [:create]
         resources :character_skills, only: [:create]

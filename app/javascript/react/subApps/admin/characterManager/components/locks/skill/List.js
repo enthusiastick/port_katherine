@@ -1,9 +1,15 @@
 import React from 'react'
 import {default as SkillItem} from './Item'
 
-const List = ({skills, toggleLock}) => {
+const List = ({isLocking, lastToggledId, skills, toggleLock}) => {
   const list = skills.filter(skill => skill.characterSkillId).map(skill => (
-    <SkillItem key={skill.skillId} {...skill} toggleLock={toggleLock} />
+    <SkillItem
+      key={skill.skillId}
+      isLocking={isLocking}
+      lastToggledId={lastToggledId}
+      toggleLock={toggleLock}
+      {...skill}
+    />
   ))
 
   return(

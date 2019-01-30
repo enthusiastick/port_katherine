@@ -4,12 +4,14 @@ import AdminCharacterLocksContainer from '../containers/AdminCharacterLocksConta
 import { authenticateSignedInPlotStaff } from '../../../../sharedResources/actions/authenticateUser'
 import { editCharacter } from '../../../../subApps/characterBuilder/actions/editCharacter'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
+import { updateAdminCharacterSkillLock } from '../actions/updateAdminCharacterSkillLock'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     character: state.characters.edit,
     characterId: ownProps.match.params.characterId,
     isFetching: state.characters.isFetching,
+    isLocking: state.adminCharacters.isLocking,
     isPlotStaff: isPlotStaff(state)
   }
 }
@@ -17,7 +19,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     authenticateSignedInPlotStaff: authorized => { dispatch(authenticateSignedInPlotStaff(authorized)) },
-    editCharacter: characterId => { dispatch(editCharacter(characterId)) }
+    editCharacter: characterId => { dispatch(editCharacter(characterId)) },
+    updateAdminCharacterSkillLock: values => { dispatch(updateAdminCharacterSkillLock(values)) }
   }
 }
 

@@ -43,6 +43,10 @@ import {
   UPDATE_DEFAULT_CHARACTER_SUCCESS
 } from '../actions/updateDefaultCharacter'
 
+import {
+  UPDATE_ADMIN_CHARACTER_SKILL_LOCK_SUCCESS
+} from '../../../subApps/admin/characterManager/actions/updateAdminCharacterSkillLock'
+
 let initialState = {
   isFetching: false,
   defaultCharacterId: null,
@@ -130,6 +134,11 @@ const characters = (state = initialState, action) => {
       return Object.assign({}, state, {
         defaultCharacterId: action.defaultCharacterId
       })
+    case UPDATE_ADMIN_CHARACTER_SKILL_LOCK_SUCCESS:
+      return {
+        ...state,
+        edit: action.character
+      }
     default:
       return state
   }

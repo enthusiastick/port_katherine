@@ -7,11 +7,16 @@ import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinne
 class AdminCharacterLocksContainer extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      lastToggledId: null
+    }
     this.toggleLock = this.toggleLock.bind(this)
   }
 
   toggleLock(characterSkillId) {
-    console.log(characterSkillId)
+    this.setState({lastToggledId: characterSkillId})
+    const values = { characterSkillId }
+    this.props.updateAdminCharacterSkillLock(values)
   }
 
   componentDidMount() {
@@ -29,7 +34,7 @@ class AdminCharacterLocksContainer extends Component {
       return <LoadingSpinner />
     }
 
-    const { character } = this.props
+    const { character, isLocking } = this.props
     const { headers, id, name, userHandle } = character
 
     const breadcrumbs = [
@@ -46,7 +51,12 @@ class AdminCharacterLocksContainer extends Component {
             <i className='fa fa-unlock' />
             &nbsp;Lock & Unlock Skills for {name}
           </h1>
-          <HeadersList headers={headers} toggleLock={this.toggleLock} />
+          <HeadersList
+            headers={headers}
+            isLocking={isLocking}
+            lastToggledId={this.state.lastToggledId}
+            toggleLock={this.toggleLock}
+          />
         </div>
       </div>
     )
