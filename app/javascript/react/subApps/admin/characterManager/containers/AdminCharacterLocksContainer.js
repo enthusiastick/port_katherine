@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
-import HeadersList from '../components/locks/HeadersList'
+import {default as HeadersList} from '../components/locks/header/List'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class AdminCharacterLocksContainer extends Component {
   constructor(props) {
     super(props)
+    this.toggleLock = this.toggleLock.bind(this)
+  }
+
+  toggleLock(characterSkillId) {
+    console.log(characterSkillId)
   }
 
   componentDidMount() {
@@ -41,7 +46,7 @@ class AdminCharacterLocksContainer extends Component {
             <i className='fa fa-unlock' />
             &nbsp;Lock & Unlock Skills for {name}
           </h1>
-          <HeadersList headers={headers} />
+          <HeadersList headers={headers} toggleLock={this.toggleLock} />
         </div>
       </div>
     )

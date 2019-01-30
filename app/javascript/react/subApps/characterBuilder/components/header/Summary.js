@@ -23,7 +23,7 @@ const Summary = props => {
 
   return(
     <div className='callout'>
-      <p><strong>{props.name}</strong></p>
+      <p><strong>{props.trueHeader && 'True '}{props.name}</strong></p>
       <ul>
         {skillList}
       </ul>
