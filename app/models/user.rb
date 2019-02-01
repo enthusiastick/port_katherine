@@ -65,7 +65,15 @@ class User < ApplicationRecord
   end
 
   def eligible_for_limited_registration_for_event?(event)
-    !Booking.where(event: event.two_previous_full_weekends, user: self).empty?
+    eligible_for_limited_registration_for_event_as_player?(event) || eligible_for_limited_registration_for_event_as_staff?(event)
+  end
+
+  def eligible_for_limited_registration_for_event_as_player?(event)
+    !Booking.player.where(event: event.two_previous_full_weekends, user: self).where.not(checked_in_at: nil).empty?
+  end
+
+  def eligible_for_limited_registration_for_event_as_staff?(event)
+    !Booking.staff.where(event: event.two_previous_full_weekends, user: self).empty?
   end
 
   def full_name
