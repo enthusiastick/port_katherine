@@ -1,7 +1,7 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :name, :slug, :dates, :address, :capped?, :description,
-    :latitude, :longitude, :registerable?, :show_lodging_questionnaire,
-    :user_booking, :users, :whos_coming
+    :latitude, :longitude, :new_player_discount_eligible?, :registerable?,
+    :show_lodging_questionnaire, :user_booking, :users, :whos_coming
 
   has_many :passes do
     object.passes.select { |pass| !pass.any_event_capped? }

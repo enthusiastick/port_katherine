@@ -75,6 +75,10 @@ class Event < ApplicationRecord
     end
   end
 
+  def new_player_discount_eligible?
+    passes.any? { |pass| pass.price > Pass::NEW_PLAYER_DISCOUNT_PRICE }
+  end
+
   def one_day?
     duration_in_hours < 24.0
   end

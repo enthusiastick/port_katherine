@@ -59,7 +59,7 @@ class RegistrationFormContainer extends Component {
 
       let heading = `Register for ${this.props.event.name}`
 
-      if (!this.props.currentUser.newPlayerDiscountedAt) {
+      if (!this.props.currentUser.newPlayerDiscountedAt && this.props.event["newPlayerDiscountEligible?"]) {
         newPlayerDiscountNotice =
           <p className='callout warning'><strong>Notice:</strong>
           &nbsp;As a new player, single event passes will automatically be
