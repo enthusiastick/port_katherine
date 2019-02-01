@@ -2,6 +2,7 @@ import React from 'react'
 import { reduxForm, SubmissionError } from 'redux-form'
 import { push } from 'react-router-redux'
 
+import LimitedRegistrationWarning from '../components/LimitedRegistrationWarning'
 import RegistrationFormContainer from '../containers/RegistrationFormContainer'
 
 import { clearNotices, flashNotice } from '../../../sharedResources/actions/flashNotice'
@@ -47,6 +48,10 @@ let onSubmit = (values, dispatch) => {
 }
 
 const RegistrationForm = props => {
+  if (props.event && props.event.showLimitedRegistrationWarning) {
+    return <LimitedRegistrationWarning {...props.event} />
+  }
+
   let initialValues = {
     cardholderName: `${props.currentUser.firstName} ${props.currentUser.lastName}`,
     user: props.currentUser.handle,
