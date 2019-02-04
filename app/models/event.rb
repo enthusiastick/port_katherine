@@ -14,6 +14,7 @@ class Event < ApplicationRecord
   scope :bgs_eligible, -> { where.not(bgs_deadline: nil) }
   scope :soonest_first, -> { order(:start_time) }
   scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).soonest_first }
+  scope :past, -> { where(["end_time < ?", (Time.now)]) }
 
   validates_inclusion_of :archived, in: [true, false]
   validates_presence_of :name, :start_time, :end_time
@@ -116,7 +117,7 @@ class Event < ApplicationRecord
   end
 
   def two_previous_full_weekends
-    @two_previous_full_weekends ||= Event.where(["end_time <= ?", (self.start_time)]).soonest_first.select { |event| event.full_weekend? }.last(2)
+    @two_previous_full_weekends ||= Event.past.where(["end_time <= ?", (self.start_time)]).soonest_first.select { |event| event.full_weekend? }.last(2)
   end
 
   def unlimited_registration_open?
