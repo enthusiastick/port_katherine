@@ -20,7 +20,8 @@ class CharacterPoint::Transferer
 
   def credit_to_recipient
     new_recipient_total = @recipient.available += @points
-    @recipient.assign_attributes(available: new_recipient_total)
+    new_recipient_received = @recipient.received_cycle += @points
+    @recipient.assign_attributes(available: new_recipient_total, received_cycle: new_recipient_received)
     @tallies << Tally.new(
       annotation: "[#{new_recipient_total}]",
       description: "received #{@points} CP from #{@donor.label}.",

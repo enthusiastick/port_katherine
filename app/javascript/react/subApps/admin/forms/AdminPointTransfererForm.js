@@ -1,4 +1,6 @@
 import React from 'react'
+
+import RecipientInfo  from '../components/RecipientInfo'
 import UserSelect from '../../../sharedResources/components/formik/UserSelect'
 
 const AdminPointTransfererForm = ({
@@ -61,6 +63,7 @@ const AdminPointTransfererForm = ({
                 onBlur={setFieldTouched}
                 touched={touched.recipient}
              />
+            {(values.recipient) && <RecipientInfo points={values.points} {...values.recipient} />}
           </fieldset>
         </div>
       </div>
