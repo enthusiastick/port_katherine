@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_192428) do
     t.datetime "updated_at", null: false
     t.datetime "archived_at"
     t.integer "archived_by_id"
-    t.decimal "gifts_received_cycle", precision: 4, scale: 2, default: "0.0"
     t.index ["non_sequential_id"], name: "index_characters_on_non_sequential_id", unique: true
   end
 
@@ -230,6 +229,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_192428) do
     t.decimal "available", precision: 6, scale: 2, default: "0.0"
     t.integer "default_character_id"
     t.string "forum_title"
+    t.decimal "received_cycle", precision: 4, scale: 2, default: "0.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["handle"], name: "index_users_on_handle", unique: true
     t.index ["non_sequential_id"], name: "index_users_on_non_sequential_id", unique: true
