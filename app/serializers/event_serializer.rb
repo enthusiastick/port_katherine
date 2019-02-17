@@ -13,7 +13,7 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def show_limited_registration_warning
-    object.limited_registration_open? && !object.unlimited_registration_open? && !current_user.eligible_for_limited_registration_for_event?(object)
+    current_user.present? ? object.limited_registration_open? && !object.unlimited_registration_open? && !current_user.eligible_for_limited_registration_for_event?(object) : false
   end
 
   def unlimited_registration_date
