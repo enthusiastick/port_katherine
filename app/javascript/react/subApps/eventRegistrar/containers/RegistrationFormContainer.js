@@ -63,7 +63,7 @@ class RegistrationFormContainer extends Component {
         newPlayerDiscountNotice =
           <p className='callout warning'><strong>Notice:</strong>
           &nbsp;As a new player, single event passes will automatically be
-          discounted to $50</p>
+          discounted to $20</p>
       }
 
       let passOptions = passObjects.map(pass => {

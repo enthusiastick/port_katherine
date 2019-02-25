@@ -1,5 +1,5 @@
 class Pass < ApplicationRecord
-  NEW_PLAYER_DISCOUNT_PRICE = 50.0
+  NEW_PLAYER_DISCOUNT_PRICE = 20.0
 
   before_validation :generate_slug
 
