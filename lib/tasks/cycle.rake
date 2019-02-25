@@ -4,8 +4,8 @@ namespace :cycle do
     puts "Reset the cycle: are you sure? [y/N]"
     input = STDIN.gets.chomp
     if input.downcase == "y"
-      Character.all.update(spent_cycle: 0)
-      User.all.update(received_cycle: 0)
+      Character.where("spent_cycle > ?", 0).update(spent_cycle: 0)
+      User.where("received_cycle > ?", 0).update(received_cycle: 0)
       print "Reset complete."
     else
       raise "Aborting cycle reset"
