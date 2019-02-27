@@ -5,6 +5,12 @@ import {
 } from '../actions/getAdminEvents'
 
 import {
+  GET_ADMIN_EVENTS_V2,
+  GET_ADMIN_EVENTS_SUCCESS_V2,
+  GET_ADMIN_EVENTS_FAILURE_V2
+} from '../actions/getAdminEventsV2'
+
+import {
   FETCH_ADMIN_EVENT_ENVELOPES,
   FETCH_ADMIN_EVENT_ENVELOPES_SUCCESS,
   FETCH_ADMIN_EVENT_ENVELOPES_FAILURE
@@ -46,6 +52,10 @@ let initialState = {
   isFetchingEnvelopes: false,
   isFetchingHeaders: false,
   isFetchingPels: false,
+  index: {
+    past: [],
+    upcoming: []
+  },
   items: []
 }
 
@@ -62,6 +72,16 @@ const adminEvents = (state = initialState, action) => {
       })
     case FETCH_ADMIN_EVENTS_FAILURE:
       return Object.assign({}, state, { isFetching: false })
+    case GET_ADMIN_EVENTS_V2:
+      return { ...state, isFetching: true }
+    case GET_ADMIN_EVENTS_SUCCESS_V2:
+      return {
+        ...state,
+        index: action.events,
+        isFetching: false
+      }
+    case GET_ADMIN_EVENTS_FAILURE_V2:
+      return { ...state, isFetching: false }
     case FETCH_ADMIN_EVENT_ENVELOPES:
       return { ...state, isFetchingEnvelopes: true }
     case FETCH_ADMIN_EVENT_ENVELOPES_SUCCESS:

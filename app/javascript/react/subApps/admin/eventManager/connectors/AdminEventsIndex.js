@@ -4,13 +4,13 @@ import { push } from 'react-router-redux'
 
 import EventsIndexContainer from '../containers/EventsIndexContainer'
 import { deleteAdminEvent } from '../actions/deleteAdminEvent'
-import { getAdminEvents } from '../actions/getAdminEvents'
+import { getAdminEventsV2 } from '../actions/getAdminEventsV2'
 import { isAdmin, isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 
 const mapStateToProps = state => {
   return {
-    adminEvents: state.adminEvents.items,
+    adminEvents: state.adminEvents.index,
     currentUser: state.currentUser.item,
     isCurrentUserAdmin: isAdmin(state),
     isPlotStaff: isPlotStaff(state)
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteAdminEvent: (eventSlug) => { dispatch(deleteAdminEvent(eventSlug)) },
     flashNotice: (notice) => { dispatch(flashNotice(notice)) },
-    getAdminEvents: () => { dispatch(getAdminEvents()) },
+    getAdminEventsV2: () => { dispatch(getAdminEventsV2()) },
     push: (path) => { dispatch(push(path)) }
   }
 }

@@ -17,7 +17,7 @@ const Table = props => {
     tableRows = props.events.map(event => {
       return(
         <Row
-          key={event.id}
+          key={event.slug}
           deleteAdminEvent={props.deleteAdminEvent}
           isCurrentUserAdmin={props.isCurrentUserAdmin}
           event={event}

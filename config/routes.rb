@@ -118,6 +118,11 @@ Rails.application.routes.draw do
         end
       end
     end
+    namespace :v2 do
+      namespace :admin do
+        resources :events, only: [:index]
+      end
+    end
   end
 
   # Arbitrary data (e.g. CSV) routes

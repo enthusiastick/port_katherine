@@ -12,9 +12,9 @@ class Event < ApplicationRecord
   has_many :users, through: :bookings
 
   scope :bgs_eligible, -> { where.not(bgs_deadline: nil) }
+  scope :past, -> { where(["end_time < ?", (Time.now)]) }
   scope :soonest_first, -> { order(:start_time) }
   scope :upcoming, -> { where(["end_time >= ?", (Time.now)]).soonest_first }
-  scope :past, -> { where(["end_time < ?", (Time.now)]) }
 
   validates_inclusion_of :archived, in: [true, false]
   validates_presence_of :name, :start_time, :end_time
