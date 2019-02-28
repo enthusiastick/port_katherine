@@ -6,4 +6,13 @@ class Api::V2::Admin::EventsController < Api::ApiController
     upcoming = ActiveModel::Serializer::CollectionSerializer.new(Event.upcoming, serializer: ::Admin::Event::IndexSerializer).as_json
     render json: { past: past, upcoming: upcoming }
   end
+
+  def show
+    event = Event.find_by(slug: params[:id])
+    if event.present?
+      render json: event, serializer: ::Admin::EventSerializer
+    else
+      render json: { error: "Not found" }, status: :not_found
+    end
+  end
 end

@@ -4,13 +4,13 @@ import { push } from 'react-router-redux'
 
 import EventShowContainer from '../containers/EventShowContainer'
 import { adminEventBySlug } from '../selectors/adminEvents'
-import { getAdminEvents } from '../actions/getAdminEvents'
+import { getAdminEvent } from '../actions/getAdminEvent'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    event: adminEventBySlug(state, ownProps),
+    event: state.adminEvents.show,
     eventSlug: ownProps.match.params.eventSlug,
     isFetching: state.adminEvents.isFetching,
     isPlotStaff: isPlotStaff(state)
@@ -19,9 +19,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    flashNotice: (notice) => { dispatch(flashNotice(notice)) },
-    getAdminEvents: () => { dispatch(getAdminEvents()) },
-    push: (path) => { dispatch(push(path)) }
+    flashNotice: notice => { dispatch(flashNotice(notice)) },
+    getAdminEvent: slug => { dispatch(getAdminEvent(slug)) },
+    push: path => { dispatch(push(path)) }
   }
 }
 

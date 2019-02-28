@@ -120,7 +120,7 @@ Rails.application.routes.draw do
     end
     namespace :v2 do
       namespace :admin do
-        resources :events, only: [:index]
+        resources :events, only: [:index, :show]
       end
     end
   end

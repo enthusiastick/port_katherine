@@ -1,4 +1,10 @@
 import {
+  GET_ADMIN_EVENT,
+  GET_ADMIN_EVENT_SUCCESS,
+  GET_ADMIN_EVENT_FAILURE
+} from '../actions/getAdminEvent'
+
+import {
   FETCH_ADMIN_EVENTS,
   FETCH_ADMIN_EVENTS_SUCCESS,
   FETCH_ADMIN_EVENTS_FAILURE
@@ -45,18 +51,19 @@ import {
 } from '../actions/deleteCheckIn'
 
 let initialState = {
-  envelopes: { characters: [] },
-  headers: { characters: [] },
-  pels: { bookings: []},
   isFetching: false,
   isFetchingEnvelopes: false,
   isFetchingHeaders: false,
   isFetchingPels: false,
+  envelopes: { characters: [] },
+  headers: { characters: [] },
   index: {
     past: [],
     upcoming: []
   },
-  items: []
+  items: [],
+  pels: { bookings: []},
+  show: {}
 }
 
 const adminEvents = (state = initialState, action) => {
@@ -72,6 +79,16 @@ const adminEvents = (state = initialState, action) => {
       })
     case FETCH_ADMIN_EVENTS_FAILURE:
       return Object.assign({}, state, { isFetching: false })
+    case GET_ADMIN_EVENT:
+      return { ...state, isFetching: true }
+    case GET_ADMIN_EVENT_SUCCESS:
+      return {
+        ...state,
+        show: action.event,
+        isFetching: false
+      }
+    case GET_ADMIN_EVENT_FAILURE:
+      return { ...state, isFetching: false }
     case GET_ADMIN_EVENTS_V2:
       return { ...state, isFetching: true }
     case GET_ADMIN_EVENTS_SUCCESS_V2:
