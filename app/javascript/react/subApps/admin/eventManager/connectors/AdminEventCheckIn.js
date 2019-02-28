@@ -5,13 +5,13 @@ import EventCheckInContainer from '../containers/EventCheckInContainer'
 import { adminEventBySlug } from '../selectors/adminEvents'
 import { createCheckIn } from '../actions/createCheckIn'
 import { deleteCheckIn } from '../actions/deleteCheckIn'
-import { getAdminEvents } from '../actions/getAdminEvents'
+import { getAdminEvent } from '../actions/getAdminEvent'
 import { flashNotice } from '../../../../sharedResources/actions/flashNotice'
 import { isPlotStaff } from '../../../../sharedResources/selectors/authorizeUser'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    event: adminEventBySlug(state, ownProps),
+    event: state.adminEvents.show,
     eventSlug: ownProps.match.params.eventSlug,
     isFetching: state.adminEvents.isFetching,
     isPlotStaff: isPlotStaff(state)
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
     createCheckIn: values => { dispatch(createCheckIn(values)) },
     deleteCheckIn: values => { dispatch(deleteCheckIn(values)) },
     flashNotice: notice => { dispatch(flashNotice(notice)) },
-    getAdminEvents: () => { dispatch(getAdminEvents()) },
+    getAdminEvent: slug => { dispatch(getAdminEvent(slug)) },
     push: path => { dispatch(push(path)) }
   }
 }

@@ -13,7 +13,7 @@ class EventReportsIndexContainer extends Component {
 
   componentWillMount() {
     if (this.props.eventSlug != this.props.event.slug) {
-      this.props.getAdminEvents()
+      this.props.getAdminEvent(this.props.eventSlug)
     }
   }
 

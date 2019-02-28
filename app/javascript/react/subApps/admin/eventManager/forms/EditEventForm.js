@@ -67,10 +67,11 @@ const EditEventForm = props => {
     <ConnectedEventForm
       currentUser={props.currentUser}
       event={props.event}
-      eventSlug={props.match.params.eventSlug}
+      eventSlug={props.eventSlug}
       flashNotice={props.flashNotice}
-      getAdminEvents={props.getAdminEvents}
+      getAdminEvent={props.getAdminEvent}
       isAdmin={props.isAdmin}
+      isFetching={props.isFetching}
       push={props.push}
     />
   )

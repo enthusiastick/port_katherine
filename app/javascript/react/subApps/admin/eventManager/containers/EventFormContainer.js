@@ -6,6 +6,7 @@ import { authorizeUserRole } from '../../constants/restrictAccess'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import DateTime from '../../../../sharedResources/components/formFields/DateTime'
+import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 import NumberInput from '../../../../sharedResources/components/formFields/NumberInput'
 import TextArea from '../../../../sharedResources/components/formFields/TextArea'
 import TextInput from '../../../../sharedResources/components/formFields/TextInput'
@@ -16,8 +17,8 @@ class EventFormContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.eventSlug && !this.props.event) {
-      this.props.getAdminEvents()
+    if (this.props.eventSlug != this.props.event.slug) {
+      this.props.getAdminEvent(this.props.eventSlug)
     }
   }
 
@@ -26,6 +27,10 @@ class EventFormContainer extends Component {
   }
 
   render() {
+    if (this.props.isFetching) {
+      return <LoadingSpinner />
+    }
+
     let breadcrumbs = [{ to: '/admin/events', label: 'Events' }]
 
     let label
