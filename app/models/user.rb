@@ -98,6 +98,10 @@ class User < ApplicationRecord
     failed_sign_in_attempts > 5
   end
 
+  def newbie?
+    !bookings.player.empty? && !bookings.player.any? { |booking| !booking.checked_in_at.nil? }
+  end
+
   def password_reset_expired?
     (password_reset_sent_at + 2.hours).past?
   end
