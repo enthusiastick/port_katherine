@@ -2,7 +2,7 @@ class CharacterPoint::Transferer
   def initialize(params)
     @donor = User.find_by(handle: params[:donor_handle])
     @recipient = User.find_by(handle: params[:recipient_handle])
-    @points = params[:points]
+    @points = params[:points].to_f
     @tallies = Array.new
   end
 
