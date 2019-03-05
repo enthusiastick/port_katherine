@@ -15,10 +15,12 @@ const BookingsTable = props => {
 
 const PlayersTable = props => {
   const tableRows = props.bookings.map(booking => {
+    const playerLink = booking.newPlayer ? <strong><Link to={`/admin/users/${booking.userHandle}`}>{booking.user}</Link></strong> : <Link to={`/admin/users/${booking.userHandle}`}>{booking.user}</Link>
+
     return(
       <Tr key={booking.id}>
         <Td column='user' value={booking.user}>
-          <Link to={`/admin/users/${booking.userHandle}`}>{booking.user}</Link>
+          {playerLink}
         </Td>
         <Td column='character' value={booking.character.name}>
           <Link to={`/admin/characters/${booking.character.id}`}>{booking.character.name}</Link>

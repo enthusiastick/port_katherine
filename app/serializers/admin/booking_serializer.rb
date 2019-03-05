@@ -1,9 +1,13 @@
 class Admin::BookingSerializer < ActiveModel::Serializer
-  attributes :id, :category, :character, :checked_in_at, :paid, :pass,
-    :purchased_at, :receipt, :self_report, :user, :user_handle
+  attributes :id, :category, :character, :checked_in_at, :new_player, :paid,
+    :pass, :purchased_at, :receipt, :self_report, :user, :user_handle
 
   def character
     object.character.present? ? character_hash : {}
+  end
+
+  def new_player
+    object.user.newbie?
   end
 
   def purchased_at
