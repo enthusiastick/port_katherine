@@ -1,6 +1,6 @@
 class Admin::UserSerializer < ActiveModel::Serializer
-  attributes :available, :handle, :email, :last_sign_in, :name, :self_report,
-    :since, :sign_in_count
+  attributes :available, :handle, :email, :last_sign_in, :name,
+    :received_cycle, :self_report, :since, :sign_in_count
 
   has_many :characters do
     object.characters.alpha_by_name.map{ |character| ::Admin::CharacterSerializer.new(character).as_json }

@@ -30,6 +30,7 @@ class UserShowContainer extends Component {
       handle,
       lastSignIn,
       name,
+      receivedCycle,
       selfReport,
       signInCount,
       since,
@@ -61,12 +62,11 @@ class UserShowContainer extends Component {
             </div>
             <div className='card-section'>
               <p><i className='fa fa-envelope' /> <a href={`to:${email}`}>{email}</a></p>
-              <p>
-                <strong>User For:</strong> {since}<br/>
-                <strong>Last Sign In:</strong> {lastSignIn}<br/>
-                <strong>Sign In Count:</strong> {signInCount}<br />
-                <strong>Player CP Available:</strong> {available}
-              </p>
+              <p className='bottomless'><strong>User For:</strong> {since}</p>
+              <p className='bottomless'><strong>Last Sign In:</strong> {lastSignIn}</p>
+              <p className='bottomless'><strong>Sign In Count:</strong> {signInCount}</p>
+              <p className='bottomless'><strong>Player CP Available:</strong> {available}</p>
+              <p className='bottomless'><strong>CP Gifts Received This Cycle:</strong> {receivedCycle}</p>
             </div>
           </div>
           {showCharactersTable &&

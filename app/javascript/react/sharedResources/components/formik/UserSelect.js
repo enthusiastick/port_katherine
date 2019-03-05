@@ -37,7 +37,7 @@ class UserSelect extends Component {
 
   render() {
     const options = this.props.adminUsers.map(user => {
-      return { label: user.name, value: user.handle }
+      return { label: user.name, receivedCycle: user.receivedCycle, value: user.handle }
     })
 
     return (
