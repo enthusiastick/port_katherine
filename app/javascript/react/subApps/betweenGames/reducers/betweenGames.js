@@ -19,6 +19,12 @@ import {
 } from '../actions/createBgs'
 
 import {
+  LOCK_BGS,
+  LOCK_BGS_SUCCESS,
+  LOCK_BGS_FAILURE
+} from '../actions/lockBgs'
+
+import {
   UPDATE_BGS_SUCCESS
 } from '../actions/updateBgs'
 
@@ -28,7 +34,8 @@ const initialState = {
   pastBookings: [],
   meta: {},
   isFetching: false,
-  isFetchingBgs: false
+  isFetchingBgs: false,
+  isFetchingBgsLock: false
 }
 
 const BetweenGames = (state = initialState, action) => {
@@ -73,6 +80,18 @@ const BetweenGames = (state = initialState, action) => {
         ...state,
         pastBookings: updatedPastBookings
       }
+    case LOCK_BGS:
+      return { ...state, isFetchingBgsLock: true }
+    case LOCK_BGS_SUCCESS:
+      return {
+        ...state,
+        bgs: action.bgs,
+        futureBookings: [],
+        pastBookings: [],
+        isFetchingBgsLock: false
+      }
+    case LOCK_BGS_FAILURE:
+      return { ...state, isFetchingBgsLock: false }
     case UPDATE_BGS_SUCCESS:
       updatedFutureBookings = state.futureBookings.map(booking => {
         if (booking.id === action.booking.id) {

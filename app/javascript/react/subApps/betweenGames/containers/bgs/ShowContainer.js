@@ -8,6 +8,13 @@ import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinne
 class BgsShowContainer extends Component {
   constructor(props) {
     super(props)
+    this.handleLock = this.handleLock.bind(this)
+  }
+
+  handleLock() {
+    if (!this.props.isLocking && confirm('Locking this BGS will submit it to staff, and you will no longer be able to edit it. Do you wish to proceed?')) {
+      this.props.lockBgs(this.props.bgsId)
+    }
   }
 
   componentWillMount() {
@@ -22,9 +29,9 @@ class BgsShowContainer extends Component {
 
   render() {
     let markdownParsedBody, markdownParsedResponse, renderedBodyHTML,
-      renderedResponseHTML, bgsDiv, responseDiv
-    const { bgsId, isFetching } = this.props
-    const { body, category, isDeadlinePast, responseBody, responseTitle, title } = this.props.bgs
+      renderedResponseHTML, bgsDiv, responseDiv, lockClass
+    const { bgsId, isFetching, isLocking } = this.props
+    const { body, category, isDeadlinePast, isLocked, responseBody, responseTitle, title } = this.props.bgs
 
     if (isFetching) { return <LoadingSpinner /> }
 
@@ -49,19 +56,35 @@ class BgsShowContainer extends Component {
       )
     }
 
+    lockClass = 'large warning button'
+
+    if (isLocking) {
+      lockClass += ' disabled'
+    }
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
           <div className='top-padded'>
             <div className='callout primary'>
-              {!isDeadlinePast && <div className='float-right'>
-                <Link to={`/bgs/${bgsId}/edit`}>
-                  <i className='fa fa-pencil-square fa-3x' /> Edit
-                </Link>
-              </div>}
+              {!isDeadlinePast && !isLocked &&
+                <div className='float-right'>
+                  <Link to={`/bgs/${bgsId}/edit`}>
+                    <i className='fa fa-pencil-square fa-3x' /> Edit
+                  </Link>
+                </div>
+              }
               <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
               {bgsDiv}
             </div>
+            {!isDeadlinePast && !isLocked &&
+              <div className='text-right'>
+                <div className={lockClass} onClick={this.handleLock}>
+                  <i className='fa fa-lock' />
+                  &nbsp;Lock
+                </div>
+              </div>
+            }
             {responseDiv}
           </div>
         </div>

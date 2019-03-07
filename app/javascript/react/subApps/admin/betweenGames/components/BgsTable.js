@@ -14,6 +14,7 @@ const BgsTable = ({bgs}) => {
       eventName,
       eventSlug,
       isAnswered,
+      isLocked,
       submittedAt,
       submittedAtLabel,
       title
@@ -23,7 +24,7 @@ const BgsTable = ({bgs}) => {
       <Tr key={id}>
         <Td column='title' value={title}>
           <Link to={`/admin/bgs/${id}`}>
-            <BgsIcon category={category} /> {title}
+            <BgsIcon category={category} /> {title} {isLocked && <i className='fa fa-lock' />}
           </Link>
         </Td>
         <Td column='event' value={eventName}>

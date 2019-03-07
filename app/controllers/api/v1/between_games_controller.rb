@@ -47,7 +47,7 @@ class Api::V1::BetweenGamesController < Api::ApiController
     )
     if !bgs.changed?
       render json: bgs.booking, serializer: ::Booking::FutureSerializer
-    elsif bgs.event.bgs_deadline.future? && bgs.save && comment.save
+    elsif bgs.event.bgs_deadline.future? &&  !bgs.locked? &&bgs.save && comment.save
       render json: bgs.booking, serializer: ::Booking::FutureSerializer
     else
       render_object_errors(bgs)

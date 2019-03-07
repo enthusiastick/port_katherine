@@ -1,7 +1,7 @@
 class Admin::BetweenGames::IndexSerializer < ActiveModel::Serializer
   attributes :id, :assignee_handle, :assignee_label, :category, :character_id,
-    :character_name, :is_answered, :submitted_at, :submitted_at_label,
-    :event_name, :event_slug, :title
+    :character_name, :is_answered, :is_locked, :submitted_at,
+      :submitted_at_label, :event_name, :event_slug, :title
 
   def assignee_handle
     object.assignee.present? ? object.assignee.handle : nil
@@ -17,6 +17,10 @@ class Admin::BetweenGames::IndexSerializer < ActiveModel::Serializer
 
   def is_answered
     !object.response.blank?
+  end
+
+  def is_locked
+    object.locked?
   end
 
   def character_id

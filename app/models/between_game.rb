@@ -42,6 +42,18 @@ class BetweenGame < ApplicationRecord
     event.end_time.past? ? checked_in? : true
   end
 
+  def locked?
+    locked_at.present? && locked_at.past?
+  end
+
+  def send_lock_notification
+    BetweenGameMailer.lock_notification(self.id).deliver_now
+  end
+
+  def to_param
+    non_sequential_id
+  end
+
   def user
     character.user
   end

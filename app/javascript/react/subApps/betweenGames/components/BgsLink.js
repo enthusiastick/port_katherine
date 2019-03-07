@@ -7,7 +7,7 @@ const BgsLink = ({bgs}) => {
   return(
     <p className='bottomless' key={bgs.id}>
       <Link to={`/bgs/${bgs.id}`}>
-        <BgsIcon category={bgs.category} /> {bgs.title}
+        <BgsIcon category={bgs.category} /> {bgs.title} {bgs.isLocked && <i className='fa fa-lock' />}
       </Link>
     </p>
   )

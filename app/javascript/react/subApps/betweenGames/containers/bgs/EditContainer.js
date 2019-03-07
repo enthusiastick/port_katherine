@@ -25,10 +25,10 @@ class BgsEditContainer extends Component {
 
   render() {
     const { bgsEligibleBookings, bgs, bgsId, isFetching, updateBgs } = this.props
-    const { body, bookingId, category, isDeadlinePast, title } = bgs
+    const { body, bookingId, category, isDeadlinePast, isLocked, title } = bgs
 
     if (!this.props.bgs.id && isFetching) { return <LoadingSpinner /> }
-    if (isDeadlinePast) { return <LoadingSpinner /> }
+    if (isDeadlinePast || isLocked) { return <LoadingSpinner /> }
 
     const initialValues = {
       id: bgsId,

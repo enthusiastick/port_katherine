@@ -48,9 +48,9 @@ class BgsShowContainer extends Component {
 
     const { id, afterEventRelease, assigneeHandle, assigneeLabel,
       beforeEventRelease, body, category, characterId, characterName,
-      comments, eventName, eventSlug, isVisibleNow, respondentHandle,
-      respondentLabel, response, responseTitle, responseReleasedAt,
-      submittedAtLabel, title } = bgs
+      comments, eventName, eventSlug, isLocked, isVisibleNow,
+      respondentHandle, respondentLabel, response, responseTitle,
+      responseReleasedAt, submittedAtLabel, title } = bgs
 
     const breadcrumbs = [
       { to: '/admin/bgs', label: 'Between-Game Skills'}
@@ -204,7 +204,7 @@ class BgsShowContainer extends Component {
               </div>
             </div>
             <hr className='topless' />
-            <h2 className='text-center'><BgsIcon category={category} /> {title}</h2>
+            <h2 className='text-center'><BgsIcon category={category} /> {title} {isLocked && <i className='fa fa-lock' />}</h2>
             {bgsDiv}
           </div>
           {responseDiv}

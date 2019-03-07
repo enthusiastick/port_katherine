@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_192428) do
+ActiveRecord::Schema.define(version: 2019_03_06_144001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_192428) do
     t.datetime "updated_at", null: false
     t.integer "assignee_id"
     t.datetime "response_released_at"
+    t.datetime "locked_at"
     t.index ["non_sequential_id"], name: "index_between_games_on_non_sequential_id", unique: true
   end
 
