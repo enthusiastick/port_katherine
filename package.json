@@ -10,6 +10,7 @@
     "braintree-web": "^3.23.0",
     "dotenv": "^4.0.0",
     "formik": "^0.11.11",
+    "formik-effect": "^1.2.0",
     "humps": "^2.0.1",
     "marked": "^0.3.6",
     "moment": "^2.22.0",

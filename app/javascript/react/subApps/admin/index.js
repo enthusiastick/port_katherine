@@ -6,6 +6,7 @@ import AdminPointDispenser from './connectors/AdminPointDispenser'
 import AdminPointTransferer from './connectors/AdminPointTransferer'
 
 import AdminBgsIndex from './betweenGames/connectors/Index'
+import AdminBgsNew from './betweenGames/connectors/New'
 import AdminBgsShow from './betweenGames/connectors/Show'
 
 import AdminCharacterLocks from './characterManager/connectors/AdminCharacterLocks'
@@ -42,6 +43,7 @@ const Admin = props => (
 
     <Switch>
       <Route exact path='/admin/bgs' component={AdminBgsIndex} />
+      <Route exact path='/admin/bgs/new' component={AdminBgsNew} />
       <Route exact path='/admin/bgs/:bgsId' component={AdminBgsShow} />
     </Switch>
 
