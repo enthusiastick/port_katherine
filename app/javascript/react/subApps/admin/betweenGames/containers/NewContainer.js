@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Formik } from 'formik'
 
 import BgsForm from '../forms/bgs/Base'
+import validateAdminBgs from '../constants/validateAdminBgs'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class BgsNewContainer extends Component {
@@ -31,7 +32,8 @@ class BgsNewContainer extends Component {
     if (events.length === 0) { return <LoadingSpinner /> }
 
     const initialValues = {
-      body: '',
+      body: 'Staff entered.',
+      category: 'skill',
       character: {},
       event: {},
       title: ''
@@ -44,6 +46,7 @@ class BgsNewContainer extends Component {
           <Formik
             initialValues={initialValues}
             onSubmit={this.handleSubmit}
+            validate={validateAdminBgs}
             render={formikProps => (
               <BgsForm
                 events={events.map(event => ({ label: event.name, value: event.slug }))}

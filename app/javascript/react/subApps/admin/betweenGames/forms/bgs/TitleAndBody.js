@@ -1,5 +1,6 @@
 import React from 'react'
 
+import CategoryRadioButtons from '../../../../../subApps/betweenGames/forms/CategoryRadioButtons'
 import TextArea from '../../../../../sharedResources/components/formik/TextArea'
 import TextInput from '../../../../../sharedResources/components/formik/TextInput'
 
@@ -7,6 +8,7 @@ const BgsTitleAndBody = ({
   bodyError,
   bodyTouched,
   bodyValue,
+  categoryValue,
   handleBlur,
   handleChange,
   selectedCharacter,
@@ -15,12 +17,18 @@ const BgsTitleAndBody = ({
   titleTouched,
   titleValue
 }) => {
-  if (!selectedCharacter.value || !selectedEvent.value) {
-    return null
+  if (selectedCharacter && selectedEvent) {
+    if (!selectedCharacter.value || !selectedEvent.value) {
+      return null
+    }
   }
 
   return(
     <div>
+      <CategoryRadioButtons
+        handleChange={handleChange}
+        value={categoryValue}
+      />
       <TextInput
         error={titleError}
         touched={titleTouched}
@@ -31,6 +39,7 @@ const BgsTitleAndBody = ({
         value={titleValue}
       />
       <TextArea
+        disabled
         error={bodyError}
         touched={bodyTouched}
         handleBlur={handleBlur}

@@ -21,8 +21,10 @@ const BgsForm = ({
 }) => (
   <form onSubmit={handleSubmit}>
     <Effect onChange={(currentFormikState, nextFormikState) => {
-        if (currentFormikState.values.event.value !== nextFormikState.values.event.value) {
-          handleEventChange(nextFormikState.values.event.value)
+        if (currentFormikState.values.event && nextFormikState.values.event) {
+          if (currentFormikState.values.event.value !== nextFormikState.values.event.value) {
+            handleEventChange(nextFormikState.values.event.value)
+          }
         }
       }}
     />
@@ -53,6 +55,7 @@ const BgsForm = ({
         bodyError={errors.body}
         bodyTouched={touched.body}
         bodyValue={values.body}
+        categoryValue={values.category}
         handleBlur={handleBlur}
         handleChange={handleChange}
         selectedCharacter={values.character}
@@ -61,6 +64,11 @@ const BgsForm = ({
         titleTouched={touched.title}
         titleValue={values.title}
       />
+    </div>
+    <div className='form-actions'>
+     <button className='button' type='submit' disabled={isSubmitting}>
+        Submit
+      </button>
     </div>
   </form>
 )

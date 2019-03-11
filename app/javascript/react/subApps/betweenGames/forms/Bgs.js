@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Field, FieldArray } from 'formik'
+import { Field } from 'formik'
 import marked from 'marked'
 
+import CategoryRadioButtons from './CategoryRadioButtons'
 import BgsIcon from '../../../sharedResources/components/BgsIcon'
 import TextArea from '../../../sharedResources/components/formik/TextArea'
 import TextInput from '../../../sharedResources/components/formik/TextInput'
@@ -23,12 +24,6 @@ class Bgs extends Component {
       handleSubmit,
       isSubmitting
     } = this.props
-
-    const categories = [
-      { id: 'focus', name: 'Focus' },
-      { id: 'lesson', name: 'Lesson' },
-      { id: 'skill', name: 'Skill' }
-    ]
 
     const closePreview = event => { this.setState({showPreview: false}) }
     const openPreview = event => { this.setState({showPreview: true}) }
@@ -93,33 +88,10 @@ class Bgs extends Component {
               </Field>
             </label>
           </fieldset>
-          <fieldset className='fieldset topless'>
-            <legend>Select type:</legend>
-            <FieldArray
-              name='category'
-              render={arrayHelpers => (
-                <div className='row'>
-                  {categories.map(category => (
-                    <div className='small-12 medium-4 columns' key={category.id}>
-                      <div className='text-center'>
-                        <label>
-                          <input
-                            className='bottomless'
-                            name='category'
-                            type='radio'
-                            value={category.id}
-                            checked={values.category === category.id}
-                            onChange={handleChange}
-                          />
-                          <BgsIcon category={category.id} /> {category.name}
-                        </label>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            />
-          </fieldset>
+          <CategoryRadioButtons
+            handleChange={handleChange}
+            value={values.category}
+          />
           {titleAndBodySection}
         </div>
         <div className='form-actions'>
