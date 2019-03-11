@@ -23,7 +23,15 @@ class BgsNewContainer extends Component {
   }
 
   handleSubmit(values) {
-    console.log(values)
+    const { body, category, character, event, title } = values
+    const payload = {
+      body,
+      category,
+      characterId: character.value,
+      eventSlug: event.value,
+      title
+    }
+    this.props.createAdminBgs(payload)
   }
 
   render() {
