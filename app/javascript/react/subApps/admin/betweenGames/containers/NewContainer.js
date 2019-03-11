@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 
-import BgsForm from '../forms/Bgs'
+import BgsForm from '../forms/bgs/Base'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 
 class BgsNewContainer extends Component {
@@ -30,11 +30,11 @@ class BgsNewContainer extends Component {
 
     if (events.length === 0) { return <LoadingSpinner /> }
 
-    console.log(event)
-
     const initialValues = {
+      body: '',
       character: {},
-      event: {}
+      event: {},
+      title: ''
     }
 
     return(
@@ -48,6 +48,7 @@ class BgsNewContainer extends Component {
               <BgsForm
                 events={events.map(event => ({ label: event.name, value: event.slug }))}
                 handleEventChange={this.handleEventChange}
+                fetchedEvent={event}
                 {...formikProps}
               />
             )}
