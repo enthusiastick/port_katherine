@@ -7,7 +7,13 @@ class Api::V1::Admin::BgsController < Api::ApiController
     event = Event.find_by(slug: params[:event_slug])
     bgs.character = character
     bgs.event = event
-    if bgs.save
+    comment = Comment.new(
+      automated: true,
+      between_game: bgs,
+      body: "#{current_user.handle} created.",
+      user: current_user
+    )
+    if bgs.save && comment.save
       render json: bgs, meta: meta, serializer: ::Admin::BetweenGames::ShowSerializer
     else
       render_object_errors(bgs)

@@ -18,6 +18,10 @@ class BgsNewContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.authenticateSignedInPlotStaff(nextProps.isPlotStaff)
+  }
+
   handleEventChange(eventSlug) {
     this.props.getAdminEvent(eventSlug)
   }
