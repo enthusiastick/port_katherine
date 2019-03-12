@@ -20,7 +20,7 @@ const BgsCharacterSelect = ({
     return null
   }
 
-  const options = fetchedEvent.bookings.player.filter(booking => booking.character.id).map(booking => ( { label: booking.character.name, value: booking.character.id } ))
+  const options = fetchedEvent.bookings.player.filter(booking => booking.character.id).map(booking => ( { label: `${booking.character.name} (${booking.userFullName})`, value: booking.character.id } ))
 
   return(
     <fieldset>

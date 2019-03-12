@@ -7,6 +7,7 @@ class Api::V1::Admin::BgsController < Api::ApiController
     event = Event.find_by(slug: params[:event_slug])
     bgs.character = character
     bgs.event = event
+    bgs.locked_at = Time.now
     comment = Comment.new(
       automated: true,
       between_game: bgs,
