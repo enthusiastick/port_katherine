@@ -1,6 +1,25 @@
 class Api::V1::Admin::BgsController < Api::ApiController
   before_action :authenticate_plot_staff_api!
 
+  def create
+    bgs = BetweenGame.new(bgs_params)
+    character = Character.deobfuscate(params[:character_id])
+    event = Event.find_by(slug: params[:event_slug])
+    bgs.character = character
+    bgs.event = event
+    comment = Comment.new(
+      automated: true,
+      between_game: bgs,
+      body: "#{current_user.handle} created.",
+      user: current_user
+    )
+    if bgs.save && comment.save
+      render json: bgs, meta: meta, serializer: ::Admin::BetweenGames::ShowSerializer
+    else
+      render_object_errors(bgs)
+    end
+  end
+
   def index
     bgs = params[:event_id].present? ? Event.find_by(slug: params[:event_id]).between_games : all_bgs
     render json: bgs, meta: events, each_serializer: ::Admin::BetweenGames::IndexSerializer
@@ -15,6 +34,10 @@ class Api::V1::Admin::BgsController < Api::ApiController
 
   def all_bgs
     BetweenGame.future_events.by_soonest_events_first
+  end
+
+  def bgs_params
+    params.require(:bg).permit(:body, :category, :title)
   end
 
   def events

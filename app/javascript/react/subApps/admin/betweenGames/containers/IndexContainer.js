@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import BgsTable from '../components/BgsTable'
 import BgsWithAssigneeTable from '../components/BgsWithAssigneeTable'
@@ -61,7 +62,13 @@ class BgsIndexContainer extends Component {
     return(
       <div className='row'>
         <div className='small-12 columns'>
-          <h1 className='text-center top-padded'>Between-Games Skills</h1>
+          <div className='text-center'>
+            <h1 className='top-padded'>Between-Games Skills</h1>
+            <Link className='button large' to='/admin/bgs/new'>
+              <i className='fa fa-plus' />
+              &nbsp;Add BGS
+            </Link>
+          </div>
           <EventsNav events={events} eventSlug={eventSlug} />
           <div className='button-group bottomless expanded'>
             {navigationButtons}

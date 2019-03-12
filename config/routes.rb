@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :award_character_points, only: [:index]
-    resources :bgs, only: [:index, :show]
+    resources :bgs, only: [:index, :new, :show]
     resources :characters, only: [:edit, :index, :show] do
       resources :backstories, only: [:index]
       resources :build_logs, only: [:index]
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :admin do
-        resources :bgs, only: [:index, :show] do
+        resources :bgs, only: [:create, :index, :show] do
           resources :answers, only: [:create]
           resources :assignees, only: [:update]
           resources :comments, only: [:create, :update]

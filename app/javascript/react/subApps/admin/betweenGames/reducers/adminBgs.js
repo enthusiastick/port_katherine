@@ -1,4 +1,10 @@
 import {
+  CREATE_ADMIN_BGS,
+  CREATE_ADMIN_BGS_SUCCESS,
+  CREATE_ADMIN_BGS_FAILURE
+} from '../actions/createAdminBgs'
+
+import {
   GET_ADMIN_BGS,
   GET_ADMIN_BGS_SUCCESS,
   GET_ADMIN_BGS_FAILURE
@@ -53,6 +59,18 @@ const adminBgs = (state = initialState, action) => {
         isFetching: false
       }
     case GET_ADMIN_BGS_FAILURE:
+      return { ...state, isFetching: false }
+    case CREATE_ADMIN_BGS:
+      return { ...state, isFetching: true }
+    case CREATE_ADMIN_BGS_SUCCESS:
+      return {
+        ...state,
+        index: [],
+        meta: action.create.meta,
+        show: action.create.betweenGame,
+        isFetching: false
+      }
+    case CREATE_ADMIN_BGS_FAILURE:
       return { ...state, isFetching: false }
     case SHOW_ADMIN_BGS:
       return { ...state, hasUpdatedAssignee: false, isFetching: true }
