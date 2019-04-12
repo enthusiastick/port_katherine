@@ -43,6 +43,6 @@ class Header < ApplicationRecord
   end
 
   def hidden_header_skills
-    header_skills.where(hidden: true)
+    header_skills.where(hidden: true).select { |hs| hs.skill.present? }
   end
 end

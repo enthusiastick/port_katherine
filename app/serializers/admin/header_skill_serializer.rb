@@ -1,4 +1,4 @@
-class Admin::HeaderSkill < ActiveModel::Serializer
+class Admin::HeaderSkillSerializer < ActiveModel::Serializer
   attributes :name, :skill_id
 
   def name
