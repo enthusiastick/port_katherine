@@ -23,6 +23,8 @@ class Character < ApplicationRecord
   has_many :purchased_skills, through: :purchased_character_skills, source: :skill
   has_many :tallies
 
+  scope :alpha_by_user_first_name, -> { includes(:user).order("users.first_name") }
+
   validates_numericality_of :available, greater_than_or_equal_to: 0
   validates_inclusion_of :first_true_header, in: Header.stock
   validates_inclusion_of :first_profession, in: Header.profession
