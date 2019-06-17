@@ -3,7 +3,11 @@ class Admin::UserSerializer < ActiveModel::Serializer
     :received_cycle, :self_report, :since, :sign_in_count
 
   has_many :characters do
-    object.characters.alpha_by_name.map{ |character| ::Admin::CharacterSerializer.new(character).as_json }
+    object.characters.alpha_by_name.map { |character| ::Admin::CharacterSerializer.new(character).as_json }
+  end
+
+  has_many :pels do
+    object.bookings.where.not(feedback: nil).map { |booking| ::Admin::Pel::IndexSerializer.new(booking).as_json }
   end
 
   has_many :tallies do

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import CharactersTable from '../components/characters/CharactersTable'
+import PelsTable from '../components/PelsTable'
 import TalliesTable from '../../../../sharedResources/components/tallies/TalliesTable'
 
 class UserShowContainer extends Component {
@@ -30,6 +31,7 @@ class UserShowContainer extends Component {
       handle,
       lastSignIn,
       name,
+      pels,
       receivedCycle,
       selfReport,
       signInCount,
@@ -76,6 +78,12 @@ class UserShowContainer extends Component {
             </div>
           }
           {selfReportElement}
+          {pels && pels.length > 0 &&
+            <div>
+              <h3>PELs</h3>
+              <PelsTable handle={handle} pels={pels} />
+            </div>
+          }
           {showTalliesTable &&
             <div>
               <h3>Recent User Activity</h3>
