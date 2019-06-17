@@ -22,7 +22,7 @@ class UserShowContainer extends Component {
   }
 
   render() {
-    let selfReportElement
+    let icon, selfReportElement
 
     const {
       available,
@@ -33,6 +33,7 @@ class UserShowContainer extends Component {
       name,
       pels,
       receivedCycle,
+      role,
       selfReport,
       signInCount,
       since,
@@ -54,13 +55,35 @@ class UserShowContainer extends Component {
         </div>
       )
     }
+
+    icon = (
+      <i className='fa fa-user-circle-o' />
+    )
+
+    if (role) {
+      if (role === 'admin') {
+        icon = (
+          <i className='fa fa-bolt' />
+        )
+      }
+      if (role === 'plot_staff' ) {
+        icon = (
+          <i className='fa fa-university' />
+        )
+      }
+    }
+
+
     return(
       <div className='row'>
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current={handle} />
           <div className='card'>
             <div className='card-divider'>
-              <h1 className='float-center'><i className='fa fa-user-circle-o' /> {name}</h1>
+              <h1 className='float-center'>
+                {icon}
+                &nbsp;{name}
+              </h1>
             </div>
             <div className='card-section'>
               <p><i className='fa fa-envelope' /> <a href={`to:${email}`}>{email}</a></p>
