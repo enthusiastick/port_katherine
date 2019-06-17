@@ -3,7 +3,7 @@ class Admin::TicketsController < ApplicationController
 
   def index
     @event = Event.find_by(slug: params[:event_id])
-    @bgs = BetweenGame.where(event: @event).answered.joins(:character).order('characters.name').group_by(&:character)
+    @bgs = BetweenGame.where(event: @event).answered.joins(character: :user).order('users.first_name', 'users.last_name').group_by(&:character)
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     @category_mapping = {
       "focus" => "bullseye",

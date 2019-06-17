@@ -6,7 +6,7 @@ class Admin::SheetsController < ApplicationController
       @character = Character.deobfuscate(params[:character_id])
     else
       @event = Event.find_by(slug: params[:event_id])
-      @characters = @event.characters.alpha_by_name
+      @characters = @event.characters.alpha_by_user_first_name
     end
     render layout: "print"
   end
