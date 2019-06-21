@@ -14,7 +14,7 @@ export const bgsEligibleBookings = createSelector(
 export const feedbackEligibleBookings = createSelector(
   pastBookingsSelector,
   (bookings) => {
-    return bookings.filter(booking => { return booking.isPelEligible })
+    return bookings.filter(booking => { return booking.isPelEligible }).reverse()
   }
 )
 
