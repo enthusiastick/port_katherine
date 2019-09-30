@@ -21,6 +21,9 @@ class EventsIndexContainer extends Component {
       loadingBug = <div className='callout secondary'><div className='text-center'><h3>Loading&hellip;</h3><p className='bottomless'>Please wait.</p></div></div>
     }
 
+    if (!isFetchingEvents && events.length === 0) {
+      loadingBug = <div className='callout secondary text-center'><h2>No events currently scheduled.</h2><p>Check back soon!</p></div>    }
+
     const eventTiles = events.map(event => {
       return <EventTile key={event.slug} {...event} />
     })
