@@ -24,23 +24,12 @@ namespace :events do
 
     o.parse!(args)
 
-    event = Event.find_by(slug: options[:slug])
-    if event.present? && event.closed_at.nil?
-      ApplicationRecord.transaction do
-        event.bookings.player.where.not(checked_in_at: nil).each do |booking|
-          new_available_total = booking.user.available += options[:points]
-          tally = Tally.new(
-            annotation: "[#{new_available_total}]",
-            description: "received #{options[:points]} CP (#{booking.event.name} attendance).",
-            recipient: booking.user,
-            user: booking.user
-          )
-          tally.save && booking.user.update(available: new_available_total)
-        end
-        event.update(closed_at: Time.now)
-      end
+    closer = options[:points].present? ? EventCloser.new(options[:slug], options[:points]) : EventCloser.new(options[:slug])
+
+    if closer.close!
+      puts "Done."
     else
-      puts "No event found!"
+      puts "Failed."
     end
   end
 end

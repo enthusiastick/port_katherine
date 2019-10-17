@@ -33,6 +33,10 @@ class Event < ApplicationRecord
     player_count >= player_cap
   end
 
+  def close!
+    update(closed_at: Time.current)
+  end
+
   def dates
     if start_time.to_date == end_time.to_date
       start_time.strftime("%B %-d, %Y")
