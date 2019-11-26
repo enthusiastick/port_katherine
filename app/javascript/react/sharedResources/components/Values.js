@@ -37,7 +37,7 @@ const Values = props => {
             <li>Beth A-B</li>
             <li>Brady T</li>
             <li>Matthew K</li>
-            <li>Brian M</li>
+            <li>Michael F</li>
             <li>Joy P</li>
             <li>Jerrod W</li>
           </ul>
