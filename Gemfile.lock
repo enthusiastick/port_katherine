@@ -141,7 +141,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    puma (3.12.2)
+    puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.6.5)
