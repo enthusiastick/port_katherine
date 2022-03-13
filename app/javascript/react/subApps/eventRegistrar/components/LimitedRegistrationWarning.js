@@ -10,12 +10,12 @@ const LimitedRegistrationWarning = ({name, unlimitedRegistrationDate}) => {
             <p>
               Registration to <strong>{name}</strong> will be opened to the
               public on <strong>{unlimitedRegistrationDate}</strong>. For now,
-              only those community members who attended one of our two
-              preceding full-weekend events may register.
+              only those community members who previously registered for the
+              cancelled events in 2020 may register.
             </p>
             <p>
-              If you believe there is an error (for example, you <em>did</em>
-              &nbsp;attend one of those events, but are still unable to register),
+              If you believe there is an error (for example, you <em>were</em>
+              &nbsp;registered for one of those events, but are still unable to register),
               please contact staff.&nbsp;
               <a href='mailto:staff@portkatherine.com'>
                 <i className='fa fa-envelope' />
