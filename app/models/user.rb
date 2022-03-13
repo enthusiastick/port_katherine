@@ -68,12 +68,8 @@ class User < ApplicationRecord
     eligible_for_limited_registration_for_event_as_player?(event) || eligible_for_limited_registration_for_event_as_staff?(event)
   end
 
-  # def eligible_for_limited_registration_for_event_as_player?(event)
-  #   !Booking.player.where(event: event.two_previous_full_weekends, user: self).where.not(checked_in_at: nil).empty?
-  # end
-
   def eligible_for_limited_registration_for_event_as_player?(event)
-    !Booking.player.where(event: Event.where(slug: Pass::COVID_CANCELLED_GAMES, user: self)).empty?
+    !Booking.player.where(event: Event.covid_cancelled, user: self).where.not(checked_in_at: nil).empty?
   end
 
   def eligible_for_limited_registration_for_event_as_staff?(event)

@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  COVID_CANCELLED_GAMES = ["spring-2020", "summer-2020"]
+
   before_validation :generate_slug
 
   default_scope { where(archived: false) }
@@ -35,6 +37,10 @@ class Event < ApplicationRecord
 
   def close!
     update(closed_at: Time.current)
+  end
+
+  def self.covid_cancelled
+    Event.where(slug: COVID_CANCELLED_GAMES)
   end
 
   def dates

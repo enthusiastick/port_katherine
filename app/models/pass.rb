@@ -1,5 +1,4 @@
 class Pass < ApplicationRecord
-  COVID_CANCELLED_GAMES = ["spring-2020", "summer-2020"]
   NEW_PLAYER_DISCOUNT_PRICE = 20.0
 
   before_validation :generate_slug
