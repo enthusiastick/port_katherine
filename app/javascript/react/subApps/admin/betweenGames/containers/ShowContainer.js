@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 import { Link } from 'react-router-dom'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import AssigneeSelector from '../components/AssigneeSelector'
 import BgsIcon from '../../../../sharedResources/components/BgsIcon'
@@ -75,7 +75,7 @@ class BgsShowContainer extends Component {
     }
 
     if (body) {
-      markdownParsedBody = marked(body)
+      markdownParsedBody = parse(body)
       renderedBodyHTML = { __html: markdownParsedBody }
       bgsDiv = (
         <div dangerouslySetInnerHTML={renderedBodyHTML} />
@@ -130,7 +130,7 @@ class BgsShowContainer extends Component {
         responseTitle
       }
 
-      markdownParsedResponse = marked(response)
+      markdownParsedResponse = parse(response)
       renderedResponseHTML = { __html: markdownParsedResponse }
       responseDiv = (
         <div className='bottomless card'>

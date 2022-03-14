@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import marked from 'marked'
+import { parse } from 'marked'
 
 class FeedbackShowContainer extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class FeedbackShowContainer extends Component {
     const { feedback, label } = this.props.booking
 
     if (feedback) {
-      markdownParsedDescription = marked(feedback)
+      markdownParsedDescription = parse(feedback)
       renderedHTML = { __html: markdownParsedDescription }
       pel = (
         <div className='callout primary' dangerouslySetInnerHTML={renderedHTML} />

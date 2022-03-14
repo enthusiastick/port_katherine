@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Formik } from 'formik'
 import validateComment from '../constants/validateComment'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import CommentForm from '../forms/Comment'
 
@@ -50,7 +50,7 @@ class CommentContainer extends Component {
     if (automated) { className += ' small' }
 
     if (!automated) {
-      const markdownParsedBody = marked(body)
+      const markdownParsedBody = parse(body)
       const renderedHTML = { __html: markdownParsedBody }
       bodyElement = <div className='left-margin-spacer' dangerouslySetInnerHTML={renderedHTML} />
     }

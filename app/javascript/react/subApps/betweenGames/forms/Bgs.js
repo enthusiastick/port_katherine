@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Field } from 'formik'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import CategoryRadioButtons from './CategoryRadioButtons'
 import BgsIcon from '../../../sharedResources/components/BgsIcon'
@@ -59,7 +59,7 @@ class Bgs extends Component {
     })
 
     if (this.state.showPreview) {
-      const markdownParsedDescription = marked(values.body)
+      const markdownParsedDescription = parse(values.body)
       const renderedHTML = { __html: markdownParsedDescription }
 
       titleAndBodySection = (

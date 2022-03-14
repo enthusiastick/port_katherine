@@ -1,4 +1,4 @@
-import marked from 'marked'
+import { parse } from 'marked'
 import React from 'react'
 import { Link } from 'react-router-redux'
 
@@ -7,7 +7,7 @@ import PassList from './PassList'
 const Event = props => {
   let markdownParsedDescription, renderedHTML, whosComing
   if (props.description) {
-    markdownParsedDescription = marked(props.description)
+    markdownParsedDescription = parse(props.description)
     renderedHTML = { __html: markdownParsedDescription }
   }
 

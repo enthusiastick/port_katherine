@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field } from 'formik'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import TextArea from '../../../sharedResources/components/formik/TextArea'
 
@@ -22,7 +22,7 @@ const Feedback = ({
     )
   })
 
-  const markdownParsedDescription = marked(values.feedback)
+  const markdownParsedDescription = parse(values.feedback)
   const renderedHTML = { __html: markdownParsedDescription }
 
   return(

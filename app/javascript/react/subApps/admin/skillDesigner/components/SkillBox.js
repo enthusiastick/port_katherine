@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
 import SkillCharactersTable from './SkillCharactersTable'
@@ -26,7 +26,7 @@ const SkillBox = ({
   const skillName = (maxRank === 1) ? `${name}*` : name
 
   if (description) {
-    markdownParsedDescription = marked(description)
+    markdownParsedDescription = parse(description)
     renderedDescriptionHTML = { __html: markdownParsedDescription }
     descriptionDiv = <div dangerouslySetInnerHTML={renderedDescriptionHTML} />
   }

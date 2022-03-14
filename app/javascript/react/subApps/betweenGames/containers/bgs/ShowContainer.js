@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import BgsIcon from '../../../../sharedResources/components/BgsIcon'
 import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinner'
@@ -36,7 +36,7 @@ class BgsShowContainer extends Component {
     if (isFetching) { return <LoadingSpinner /> }
 
     if (body) {
-      markdownParsedBody = marked(body)
+      markdownParsedBody = parse(body)
       renderedBodyHTML = { __html: markdownParsedBody }
       bgsDiv = (
         <div dangerouslySetInnerHTML={renderedBodyHTML} />
@@ -44,7 +44,7 @@ class BgsShowContainer extends Component {
     }
 
     if (responseBody) {
-      markdownParsedResponse = marked(responseBody)
+      markdownParsedResponse = parse(responseBody)
       renderedResponseHTML = { __html: markdownParsedResponse }
       responseDiv = (
         <div className='card'>

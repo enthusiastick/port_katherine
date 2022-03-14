@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 
@@ -39,7 +39,7 @@ class EventPelShowContainer extends Component {
     ]
 
     if (pel.feedback) {
-      markdownParsedDescription = marked(pel.feedback)
+      markdownParsedDescription = parse(pel.feedback)
       renderedHTML = { __html: markdownParsedDescription }
       pelDiv = (
         <div className='callout primary' dangerouslySetInnerHTML={renderedHTML} />

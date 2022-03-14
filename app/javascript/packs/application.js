@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import { Route, Switch } from 'react-router'
 
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
