@@ -17,6 +17,7 @@
 /yarn-error.log
 
 .env
+.nvmrc
 .ruby-version
 .byebug_history
 latest.dump
