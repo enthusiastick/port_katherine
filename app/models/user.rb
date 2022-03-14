@@ -69,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def eligible_for_limited_registration_for_event_as_player?(event)
-    !Booking.player.where(event: Event.covid_cancelled, user: self).where.not(checked_in_at: nil).empty?
+    !Booking.player.where(event: Event.covid_cancelled, user: self).empty?
   end
 
   def eligible_for_limited_registration_for_event_as_staff?(event)
