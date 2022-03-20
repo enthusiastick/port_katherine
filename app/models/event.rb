@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   COVID_CANCELLED_GAMES = ["spring-2020", "summer-2020"]
+  QUALIFIED_GAMES = ["spring-2019", "summer-2019", "fall-2019", "winter-2019", "spring-2020", "summer-2020", "fall-2020", "winter-2020", "fall-2021"]
 
   before_validation :generate_slug
 
@@ -41,6 +42,10 @@ class Event < ApplicationRecord
 
   def self.covid_cancelled
     Event.where(slug: COVID_CANCELLED_GAMES)
+  end
+
+  def self.qualified_from_2019_onwards
+    Event.where(slug: QUALIFIED_GAMES)
   end
 
   def dates
