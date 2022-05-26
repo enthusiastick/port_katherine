@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :bgs, only: [:index, :new, :show]
     resources :characters, only: [:edit, :index, :show] do
       resources :backstories, only: [:index]
+      resources :bgs, only: [:index]
       resources :build_logs, only: [:index]
       resources :headers, only: [:new]
       resources :locks, only: [:index]
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
           resources :available_headers, only: [:index]
           resources :available_skills, only: [:index]
           resources :backstories, only: [:index]
+          resources :character_bgs, only: [:index]
         end
         resources :events, only: [:create, :destroy, :index, :update] do
           resources :bgs, only: [:index]

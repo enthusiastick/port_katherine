@@ -9,6 +9,7 @@ import AdminBgsIndex from './betweenGames/connectors/Index'
 import AdminBgsNew from './betweenGames/connectors/New'
 import AdminBgsShow from './betweenGames/connectors/Show'
 
+import AdminCharacterBgs from './characterManager/connectors/AdminCharacterBgs'
 import AdminCharacterLocks from './characterManager/connectors/AdminCharacterLocks'
 import AdminCharacterNewHeader from './characterManager/connectors/AdminCharacterNewHeader'
 import AdminCharacterNewSkill from './characterManager/connectors/AdminCharacterNewSkill'
@@ -48,6 +49,7 @@ const Admin = props => (
     </Switch>
 
     <Switch>
+      <Route exact path='/admin/characters/:characterId/bgs' component={AdminCharacterBgs} />
       <Route exact path='/admin/characters' component={AdminIndexCharacters} />
       <Route exact path='/admin/characters/:characterId' component={AdminShowCharacter} />
       <Route exact path='/admin/characters/:characterId/backstories' component={AdminIndexBackstories} />

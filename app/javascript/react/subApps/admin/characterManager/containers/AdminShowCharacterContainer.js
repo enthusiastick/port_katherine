@@ -59,6 +59,9 @@ class AdminShowCharacterContainer extends Component {
                 <Link className='button' to={`/admin/characters/${this.props.character.id}/headers/new`}>
                   <i className='fa fa-plus-circle' /> Add Headers
                 </Link>
+                <Link className='button' to={`/admin/characters/${this.props.character.id}/bgs`}>
+                  <i className='fa fa-key' /> BGS
+                </Link>
                 {this.props.character.backstoriesCount > 0 && <Link className='button' to={`/admin/characters/${this.props.character.id}/backstories`}>
                   <i className='fa fa-book' /> Backstory
                 </Link>}

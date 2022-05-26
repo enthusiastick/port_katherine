@@ -23,6 +23,10 @@ import {
 } from '../actions/getAdminBackstories'
 
 import {
+  GET_ADMIN_CHARACTER_BGS_SUCCESS
+} from '../actions/getAdminCharacterBgs'
+
+import {
   UPDATE_CHARACTER_SUCCESS
 } from '../../../characterBuilder/actions/updateCharacter'
 
@@ -35,6 +39,7 @@ import {
 let initialState = {
   isFetching: false,
   isLocking: false,
+  bgs: {},
   backstories: {
     meta: {},
     items: []
@@ -65,6 +70,8 @@ const adminCharacters = (state = initialState, action) => {
       return Object.assign({}, state, { isFetching: false })
     case FETCH_ADMIN_BACKSTORIES_SUCCESS:
       return Object.assign({}, state, { backstories: { meta: action.payload.meta, items: action.payload.backstories } })
+    case GET_ADMIN_CHARACTER_BGS_SUCCESS:
+      return Object.assign({}, state, { bgs: action.payload } )
     case UPDATE_CHARACTER_SUCCESS:
       return {
         ...state,
