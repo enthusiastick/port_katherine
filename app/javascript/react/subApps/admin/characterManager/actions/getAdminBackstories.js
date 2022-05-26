@@ -31,15 +31,18 @@ let fetchAdminBackstoriesFailure = () => {
   }
 }
 
-let getAdminBackstories = id => dispatch => {
+let getAdminBackstories = characterId => dispatch => {
   dispatch(fetchAdminBackstories())
-  return fetch(`${baseUrl}/api/v1/admin/characters/${id}/backstories.json`, {
+  return fetch(`${baseUrl}/api/v1/admin/characters/${characterId}/backstories.json`, {
     credentials: 'same-origin',
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
   })
   .then(response => { return response.json() })
-  .then(data => { dispatch(fetchAdminBackstoriesSuccess(humps.camelizeKeys(data))) })
+  .then(data => {
+    const result = humps.camelizeKeys(data)
+    dispatch(fetchAdminBackstoriesSuccess(result))
+  })
   .catch(error => {
     dispatch(fetchAdminBackstoriesFailure())
   })
