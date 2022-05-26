@@ -29,7 +29,11 @@ class AdminCharacterBgsContainer extends Component {
       <div className='row'>
         <div className='small-12 columns'>
           <BreadcrumbsNav breadcrumbs={breadcrumbs} current='BGS' />
-          <h1>BGS for {this.props.bgs.name}</h1>
+          <h1 className='text-center'>
+            <i className='fa fa-key' />
+            &nbsp;
+            BGS for {this.props.bgs.name}
+          </h1>
           <BgsEvents characterBgs={this.props.bgs.characterBgs} />
         </div>
       </div>

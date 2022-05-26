@@ -11,11 +11,13 @@ const BgsEvents = props => {
     events = props.characterBgs.map(event => {
       return(
         <div key={event.slug}>
-          <h3>
+          <h5>
             <Link to={`/admin/events/${event.slug}`}>
+              <i className='fa fa-key' />
+              &nbsp;
               {event.name}
             </Link>
-          </h3>
+          </h5>
           <hr className='bottomless topless' />
           <BgsList bgs={event.bgs} />
         </div>
