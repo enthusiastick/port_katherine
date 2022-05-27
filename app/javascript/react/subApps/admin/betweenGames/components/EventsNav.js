@@ -3,7 +3,7 @@ import React from 'react'
 const EventButton = ({event, eventSlug}) => {
   let linkButtonClass = 'button'
 
-  if (event.slug !== eventSlug) { linkButtonClass += ' clear' }
+  if (event.slug !== eventSlug) { linkButtonClass += ' hollow' }
 
   return(
     <a
@@ -29,10 +29,10 @@ const EventsNav = ({events, eventSlug}) => {
 
   let homeButtonClass = 'button'
 
-  if (eventSlug) { homeButtonClass += ' clear' }
+  if (eventSlug) { homeButtonClass += ' hollow' }
 
   return(
-    <div className='button-group'>
+    <div className='small button-group'>
       {pastEventButtons}
       <a className={homeButtonClass} href='/admin/bgs'>
         All Upcoming
