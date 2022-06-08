@@ -2,7 +2,7 @@ include ActionView::Helpers::NumberHelper
 
 class Character::ShowSerializer < ActiveModel::Serializer
   attributes :id, :available, :backstories_count, :birthplace,
-    :bookings, :cycle_spending_cap, :headers, :name, :open,
+    :bookings, :cycle_spending_cap, :has_bgs, :headers, :name, :open,
     :player_available, :spent, :spent_cycle, :user_handle, :user_label
 
   has_many :tallies do
@@ -31,6 +31,10 @@ class Character::ShowSerializer < ActiveModel::Serializer
 
   def id
     object.non_sequential_id
+  end
+
+  def has_bgs
+    !object.between_games.empty?
   end
 
   def headers

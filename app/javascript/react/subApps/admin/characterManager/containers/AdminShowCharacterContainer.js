@@ -24,9 +24,18 @@ class AdminShowCharacterContainer extends Component {
   }
 
   render() {
-    let { bookings, headers, id, name, open, userHandle } = this.props.character
+    let { bookings, hasBgs, headers, id, name, open, userHandle } = this.props.character
 
     let breadcrumbs = [{ to: '/admin/users', label: 'Users' }, { to: `/admin/users/${userHandle}`, label: userHandle }]
+
+    let bgsButton
+    if (hasBgs) {
+      bgsButton = (
+        <Link className='button' to={`/admin/characters/${this.props.character.id}/bgs`}>
+          <i className='fa fa-key' /> BGS
+        </Link>
+      )
+    }
 
     let headerElements
     if (headers) {
@@ -65,9 +74,7 @@ class AdminShowCharacterContainer extends Component {
                 <Link className='button' to={`/admin/characters/${this.props.character.id}/headers/new`}>
                   <i className='fa fa-plus-circle' /> Add Headers
                 </Link>
-                <Link className='button' to={`/admin/characters/${this.props.character.id}/bgs`}>
-                  <i className='fa fa-key' /> BGS
-                </Link>
+                {bgsButton}
                 {this.props.character.backstoriesCount > 0 && <Link className='button' to={`/admin/characters/${this.props.character.id}/backstories`}>
                   <i className='fa fa-book' /> Backstory
                 </Link>}
