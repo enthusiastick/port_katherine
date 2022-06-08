@@ -2,8 +2,8 @@ include ActionView::Helpers::NumberHelper
 
 class Character::ShowSerializer < ActiveModel::Serializer
   attributes :id, :available, :backstories_count, :birthplace,
-    :cycle_spending_cap, :headers, :name, :open, :player_available, :spent,
-    :spent_cycle, :user_handle, :user_label
+    :bookings, :cycle_spending_cap, :headers, :name, :open,
+    :player_available, :spent, :spent_cycle, :user_handle, :user_label
 
   has_many :tallies do
     Tally.where(character: object).or(Tally.where(recipient: object.user)).order(created_at: :desc).limit(10)
@@ -19,6 +19,14 @@ class Character::ShowSerializer < ActiveModel::Serializer
 
   def birthplace
     object.birthplace.titleize
+  end
+
+  def bookings
+    @bookings = Array.new
+    object.bookings.where.not(feedback: nil).order(:feedback_entered_at).each do |booking|
+      @bookings << [booking.event.name, booking.event.slug]
+    end
+    @bookings
   end
 
   def id

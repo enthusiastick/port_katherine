@@ -5,6 +5,7 @@ import { authorizeUserRole } from '../../constants/restrictAccess'
 import BreadcrumbsNav from '../../../../sharedResources/components/BreadcrumbsNav'
 import { default as CharacterBasics } from '../../../characterBuilder/components/character/Basics'
 import { default as HeaderSummary } from '../../../characterBuilder/components/header/Summary'
+import PelsTable from '../components/PelsTable'
 import TalliesTable from '../../../../sharedResources/components/tallies/TalliesTable'
 
 class AdminShowCharacterContainer extends Component {
@@ -23,7 +24,7 @@ class AdminShowCharacterContainer extends Component {
   }
 
   render() {
-    let { headers, id, name, open, userHandle } = this.props.character
+    let { bookings, headers, id, name, open, userHandle } = this.props.character
 
     let breadcrumbs = [{ to: '/admin/users', label: 'Users' }, { to: `/admin/users/${userHandle}`, label: userHandle }]
 
@@ -37,6 +38,11 @@ class AdminShowCharacterContainer extends Component {
     let openElements
     if (open) {
       openElements = (<HeaderSummary name='Open' skills={open} />)
+    }
+
+    let pelElements
+    if (bookings && bookings.length != 0) {
+      pelElements = (<PelsTable bookings={bookings} userHandle={userHandle} />)
     }
 
     return(
@@ -86,6 +92,7 @@ class AdminShowCharacterContainer extends Component {
           </div>
           {openElements}
           {headerElements}
+          {pelElements}
           <h2>Recent Activity <Link to={`/admin/characters/${id}/build_logs`}><i className='fa fa-search' /></Link></h2>
           <TalliesTable tallies={this.props.character.tallies} />
         </div>
