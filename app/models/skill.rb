@@ -1,8 +1,10 @@
 class Skill < ApplicationRecord
   ENVELOPE_NAMES = [
-    "Arcana Mine", "Coal Mine", "Copper Mine", "Day Labor Income", "Field",
-    "Fishery", "Forest", "Heal Tonic Vial", "Income", "Iron Mine",
-    "Lead Mine", "Pasture", "Purify Tonic Vial", "Venom Vial"
+    "Arcana Mine", "Citrine Mine", "Coal Mine", "Copper Mine",
+    "Emerald Mine", "Day Labor Income", "Field", "Gold Mine", "Fishery",
+    "Forest", "Heal Tonic Vial", "Income", "Iron Mine", "Lead Mine",
+    "Magnesium Mine", "Pasture", "Purify Tonic Vial", "Ruby Mine",
+    "Sapphire Mine", "Silver Mine", "Sulphur Mine", "Venom Vial"
   ]
 
   has_many :character_skills

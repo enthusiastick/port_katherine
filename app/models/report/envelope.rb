@@ -5,9 +5,11 @@ class Report::Envelope
   end
 
   SKILL_NAMES = ["Income", "Day Labor Income", "Military Officer",
-    "Arcana Mine", "Coal Mine", "Copper Mine", "Field", "Fishery", "Forest",
-    "Iron Mine", "Lead Mine", "Pasture", "Heal Tonic Vial",
-    "Purify Tonic Vial", "Venom Vial"]
+    "Arcana Mine", "Citrine Mine", "Coal Mine", "Copper Mine",
+    "Emerald Mine", "Gold Mine", "Iron Mine", "Lead Mine", "Magnesium Mine",
+    "Ruby Mine", "Sapphire Mine", "Silver Mine", "Sulphur Mine", "Field",
+    "Fishery", "Forest", "Pasture", "Heal Tonic Vial", "Purify Tonic Vial",
+    "Venom Vial"]
 
   ATTRIBUTES = ["Character", "User"] + SKILL_NAMES
 
