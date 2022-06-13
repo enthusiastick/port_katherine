@@ -13,7 +13,7 @@ class Api::V1::Admin::CharacterBgsController < Api::ApiController
 
   def bgs
     character_bgs = []
-    @character.events.order(:bgs_deadline).each do |event|
+    @character.events.order(bgs_deadline: :desc).each do |event|
       unless event_bgs(event).empty?
         character_bgs << { name: event.name, slug: event.slug, bgs: event_bgs_serialized(event) }
       end

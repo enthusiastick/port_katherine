@@ -23,7 +23,7 @@ class Character::ShowSerializer < ActiveModel::Serializer
 
   def bookings
     @bookings = Array.new
-    object.bookings.where.not(feedback: nil).order(:feedback_entered_at).each do |booking|
+    object.bookings.where.not(feedback: nil).order(feedback_entered_at: :desc).each do |booking|
       @bookings << [booking.event.name, booking.event.slug]
     end
     @bookings
