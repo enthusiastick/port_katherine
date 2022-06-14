@@ -1,7 +1,8 @@
 class Pel
   def initialize(booking_id, feedback)
+    scrubber = Rails::Html::SafeListSanitizer.new
     @booking = Booking.find(booking_id)
-    @feedback = feedback
+    @feedback = scrubber.sanitize(feedback, tags: %w(br))
     @event = @booking.event
     @user = @booking.user
   end

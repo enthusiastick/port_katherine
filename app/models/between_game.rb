@@ -1,5 +1,6 @@
 class BetweenGame < ApplicationRecord
   before_create :generate_identifier
+  before_save :sanitize_body
 
   belongs_to :assignee, class_name: :User, optional: true
   belongs_to :character
@@ -44,6 +45,12 @@ class BetweenGame < ApplicationRecord
 
   def locked?
     locked_at.present? && locked_at.past?
+  end
+
+  def sanitize_body
+    scrubber = Rails::Html::SafeListSanitizer.new
+    scrubbed_body = scrubber.sanitize(body, tags: %w(br))
+    self.assign_attributes(body: scrubbed_body)
   end
 
   def send_lock_notification
