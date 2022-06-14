@@ -49,7 +49,7 @@ class BetweenGame < ApplicationRecord
 
   def sanitize_body
     scrubber = Rails::Html::SafeListSanitizer.new
-    scrubbed_body = scrubber.sanitize(body, tags: %w(br))
+    scrubbed_body = scrubber.sanitize(body, tags: %w(a br))
     self.assign_attributes(body: scrubbed_body)
   end
 
