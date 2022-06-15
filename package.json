@@ -9,7 +9,7 @@
     "babel-preset-react": "^6.24.1",
     "braintree-web": "^3.23.0",
     "dotenv": "^4.0.0",
-    "formik": "^0.11.11",
+    "formik": "^1.5.7",
     "formik-effect": "^1.2.0",
     "humps": "^2.0.1",
     "js-yaml": "^3.13.1",
