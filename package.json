@@ -15,7 +15,7 @@
     "js-yaml": "^3.13.1",
     "marked": "^4.0.12",
     "mem": "^5.1.1",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-async-script": "^0.9.1",
