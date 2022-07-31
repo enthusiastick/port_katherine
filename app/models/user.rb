@@ -65,7 +65,7 @@ class User < ApplicationRecord
   end
 
   def eligible_for_limited_registration_for_event?(event)
-    !Booking.where(event: Event.qualified_from_2019_onwards, user: self).empty?
+    !Booking.where(event: Event.qualified, user: self).empty?
   end
 
   def eligible_for_limited_registration_for_event_as_player?(event)
