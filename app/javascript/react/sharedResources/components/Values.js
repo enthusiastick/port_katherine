@@ -34,12 +34,12 @@ const Values = props => {
           <p className='bottomless'>The Red Feather Roleplaying Board of Trustees:</p>
           <ul>
             <li>Adrian T</li>
-            <li>Beth A-B</li>
             <li>Brady T</li>
-            <li>Matthew K</li>
-            <li>Michael F</li>
+            <li>Cecilia W</li>
             <li>Joy P</li>
-            <li>Jerrod W</li>
+            <li>Matt K</li>
+            <li>Mike F</li>
+            <li>Sarah WM</li>
           </ul>
         </div>
       </div>
