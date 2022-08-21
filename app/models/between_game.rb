@@ -54,7 +54,8 @@ class BetweenGame < ApplicationRecord
   end
 
   def send_lock_notification
-    BetweenGameMailer.lock_notification(self.id).deliver_now
+    # BetweenGameMailer.lock_notification(self.id).deliver_now
+    true
   end
 
   def to_param
