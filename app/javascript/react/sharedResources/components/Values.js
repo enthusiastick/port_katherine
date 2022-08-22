@@ -38,7 +38,6 @@ const Values = props => {
             <li>Cecilia W</li>
             <li>Joy P</li>
             <li>Matt K</li>
-            <li>Mike F</li>
             <li>Sarah WM</li>
           </ul>
         </div>
