@@ -1,5 +1,4 @@
 import React from 'react'
-import { Effect } from 'formik-effect'
 
 import BgsCharacterSelect from './CharacterSelect'
 import BgsTitleAndBody from './TitleAndBody'
@@ -20,28 +19,7 @@ const BgsForm = ({
   values
 }) => (
   <form onSubmit={handleSubmit}>
-    <Effect onChange={(currentFormikState, nextFormikState) => {
-        if (currentFormikState.values.event && nextFormikState.values.event) {
-          if (currentFormikState.values.event.value !== nextFormikState.values.event.value) {
-            handleEventChange(nextFormikState.values.event.value)
-          }
-        }
-      }}
-    />
     <div className='form-inputs'>
-      <fieldset>
-        <FilterSelect
-          error={errors.event}
-          label='Event'
-          options={events}
-          multi={false}
-          name='event'
-          onBlur={setFieldTouched}
-          setFieldValue={setFieldValue}
-          touched={touched.event}
-          value={values.event}
-        />
-      </fieldset>
       <BgsCharacterSelect
         error={errors.character}
         fetchedEvent={fetchedEvent}

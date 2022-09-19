@@ -8,22 +8,18 @@ import LoadingSpinner from '../../../../sharedResources/components/LoadingSpinne
 class BgsNewContainer extends Component {
   constructor(props) {
     super(props)
-    this.handleEventChange = this.handleEventChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentWillMount() {
     if (this.props.events.length === 0) {
       this.props.getAdminEventsV2()
+      this.props.getAdminEvent('fall-2022')
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.props.authenticateSignedInPlotStaff(nextProps.isPlotStaff)
-  }
-
-  handleEventChange(eventSlug) {
-    this.props.getAdminEvent(eventSlug)
   }
 
   handleSubmit(values) {
@@ -47,7 +43,7 @@ class BgsNewContainer extends Component {
       body: 'Staff entered.',
       category: 'skill',
       character: {},
-      event: {},
+      event: { value: 'fall-2022' },
       title: ''
     }
 
