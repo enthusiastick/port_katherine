@@ -4,7 +4,7 @@ class Api::V1::Admin::BgsController < Api::ApiController
   def create
     bgs = BetweenGame.new(bgs_params)
     character = Character.deobfuscate(params[:character_id])
-    event = Event.find_by(slug: params[:event_slug])
+    event = Event.upcoming.where.not(bgs_deadline: nil).first
     bgs.character = character
     bgs.event = event
     bgs.locked_at = Time.now

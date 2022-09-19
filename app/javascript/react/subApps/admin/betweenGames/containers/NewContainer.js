@@ -14,7 +14,14 @@ class BgsNewContainer extends Component {
   componentWillMount() {
     if (this.props.events.length === 0) {
       this.props.getAdminEventsV2()
-      this.props.getAdminEvent('fall-2022')
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.events.length != 0 ) {
+      if (this.props.events[0]) {
+        if (!this.props.event.bookings) { this.props.getAdminEvent(this.props.events[0].slug) }
+      }
     }
   }
 
@@ -28,7 +35,6 @@ class BgsNewContainer extends Component {
       body,
       category,
       characterId: character.value,
-      eventSlug: event.value,
       title
     }
     this.props.createAdminBgs(payload)
@@ -43,7 +49,6 @@ class BgsNewContainer extends Component {
       body: 'Staff entered.',
       category: 'skill',
       character: {},
-      event: { value: 'fall-2022' },
       title: ''
     }
 
@@ -58,7 +63,6 @@ class BgsNewContainer extends Component {
             render={formikProps => (
               <BgsForm
                 events={events.map(event => ({ label: event.name, value: event.slug }))}
-                handleEventChange={this.handleEventChange}
                 fetchedEvent={event}
                 {...formikProps}
               />

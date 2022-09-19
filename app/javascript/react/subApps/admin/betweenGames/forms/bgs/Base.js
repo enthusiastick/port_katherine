@@ -6,7 +6,6 @@ import FilterSelect from '../../../../../sharedResources/components/formik/Filte
 
 const BgsForm = ({
   errors,
-  events,
   handleEventChange,
   handleBlur,
   handleChange,
