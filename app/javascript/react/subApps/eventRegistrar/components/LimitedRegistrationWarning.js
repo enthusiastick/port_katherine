@@ -10,8 +10,9 @@ const LimitedRegistrationWarning = ({name, unlimitedRegistrationDate}) => {
             <p>
               Registration to <strong>{name}</strong> will be opened to the
               public on <strong>{unlimitedRegistrationDate}</strong>. For now,
-              only those community members who previously registered for (and
-              attended) an event from 2019 onwards may register.
+              only those community members who previously registered for &
+              attended one of our two preceding full-weekend events may
+              register.
             </p>
             <p>
               If you believe there is an error (for example, you <em>were</em>
