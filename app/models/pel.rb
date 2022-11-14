@@ -39,7 +39,7 @@ class Pel
   end
 
   def deadline
-    @deadline ||= @event.end_time.at_beginning_of_day + 2.weeks + 1.day + 6.hours
+    @deadline ||= @event.start_time.at_beginning_of_week + 3.weeks + 6.hours
   end
 
   def not_edit?
