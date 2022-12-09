@@ -17,7 +17,7 @@ gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "pg", "~> 1.3"
 gem "puma", "~> 4.3"
-gem "rails", "~> 5.2.8"
+gem "rails", "~> 6.1.7"
 gem "redcarpet"
 gem "sass-rails", "~> 5.0"
 gem "sitemap_generator"
@@ -28,7 +28,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "pry-rails"
   # gem "rails_real_favicon"
-  gem "rspec-rails"
+  # gem "rspec-rails"
 end
 
 group :development do
@@ -41,4 +41,4 @@ end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-ruby "2.7.7"
+ruby "3.1.3"
