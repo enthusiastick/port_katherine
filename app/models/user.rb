@@ -82,12 +82,12 @@ class User < ApplicationRecord
 
   def generate_remember_digest
     self.remember_token = User.new_token
-    update_attributes(remember_digest: User.digest(remember_token))
+    update(remember_digest: User.digest(remember_token))
   end
 
   def generate_reset_digest
     self.password_reset_token = User.new_token
-    update_attributes(password_reset_digest: User.digest(password_reset_token), password_reset_sent_at: Time.current)
+    update(password_reset_digest: User.digest(password_reset_token), password_reset_sent_at: Time.current)
   end
 
   def label
@@ -120,7 +120,7 @@ class User < ApplicationRecord
   end
 
   def terminate_remember_digest
-    update_attributes(remember_digest: nil)
+    update(remember_digest: nil)
   end
 
   def to_param
