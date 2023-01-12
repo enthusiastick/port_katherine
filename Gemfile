@@ -41,4 +41,4 @@ end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-ruby "3.1.3"
+ruby "3.2.0"
