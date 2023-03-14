@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   COVID_CANCELLED_GAMES = ["spring-2020", "summer-2020"]
-  QUALIFIED_GAMES = ["summer-2022","fall-2022"]
+  QUALIFIED_GAMES = ["fall-2022","winter-2022"]
 
   before_validation :generate_slug
 
