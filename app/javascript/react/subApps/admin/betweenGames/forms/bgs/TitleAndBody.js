@@ -1,6 +1,5 @@
 import React from 'react'
 
-import CategoryRadioButtons from '../../../../../subApps/betweenGames/forms/CategoryRadioButtons'
 import TextArea from '../../../../../sharedResources/components/formik/TextArea'
 import TextInput from '../../../../../sharedResources/components/formik/TextInput'
 
@@ -25,10 +24,6 @@ const BgsTitleAndBody = ({
 
   return(
     <div>
-      <CategoryRadioButtons
-        handleChange={handleChange}
-        value={categoryValue}
-      />
       <TextInput
         error={titleError}
         touched={titleTouched}
