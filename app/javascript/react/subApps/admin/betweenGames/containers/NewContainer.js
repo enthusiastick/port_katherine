@@ -47,7 +47,7 @@ class BgsNewContainer extends Component {
 
     const initialValues = {
       body: 'Staff entered.',
-      category: 'skill',
+      category: 'miscellaneous',
       character: {},
       title: ''
     }
