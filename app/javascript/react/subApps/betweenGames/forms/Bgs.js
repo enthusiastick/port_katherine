@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Field } from 'formik'
 import { parse } from 'marked'
 
-import CategoryRadioButtons from './CategoryRadioButtons'
 import BgsIcon from '../../../sharedResources/components/BgsIcon'
+import CategoryDropdown from '../../../sharedResources/components/CategoryDropdown'
 import TextArea from '../../../sharedResources/components/formik/TextArea'
 import TextInput from '../../../sharedResources/components/formik/TextInput'
 
@@ -78,7 +78,7 @@ class Bgs extends Component {
     return(
       <form onSubmit={handleSubmit}>
         <div className='form-inputs tall-text'>
-          <fieldset className='bottomless'>
+          <fieldset>
             <label
                 className={ touched && errors.bookingId && 'is-invalid-label' }
                 htmlFor='bookingId'
@@ -88,10 +88,7 @@ class Bgs extends Component {
               </Field>
             </label>
           </fieldset>
-          <CategoryRadioButtons
-            handleChange={handleChange}
-            value={values.category}
-          />
+          <CategoryDropdown error={errors.category} value={values.category} />
           {titleAndBodySection}
         </div>
         <div className='form-actions'>

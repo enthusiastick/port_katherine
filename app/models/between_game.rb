@@ -8,9 +8,17 @@ class BetweenGame < ApplicationRecord
   belongs_to :respondent, class_name: :User, optional: true
 
   enum category: {
-    skill: 0,
+    miscellaneous: 0,
     focus: 1,
-    lesson: 2
+    lesson: 2,
+    apothecary: 3,
+    calibration: 4,
+    engineering: 5,
+    newspaper: 6,
+    note_to_staff: 7,
+    political_influence: 8,
+    professions: 9,
+    research_experimentation: 10
   }
 
   has_many :comments

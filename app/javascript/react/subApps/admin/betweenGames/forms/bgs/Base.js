@@ -2,6 +2,7 @@ import React from 'react'
 
 import BgsCharacterSelect from './CharacterSelect'
 import BgsTitleAndBody from './TitleAndBody'
+import CategoryDropdown from '../../../../../sharedResources/components/CategoryDropdown'
 import FilterSelect from '../../../../../sharedResources/components/formik/FilterSelect'
 
 const BgsForm = ({
@@ -28,6 +29,7 @@ const BgsForm = ({
         setFieldValue={setFieldValue}
         touched={touched.character}
       />
+      <CategoryDropdown error={errors.category} />
       <BgsTitleAndBody
         bodyError={errors.body}
         bodyTouched={touched.body}

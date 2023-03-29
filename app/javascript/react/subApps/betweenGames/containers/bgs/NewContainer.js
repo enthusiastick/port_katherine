@@ -38,7 +38,7 @@ class BgsNewContainer extends Component {
     const initialValues = {
       bookingId: bgsEligibleBookings[0].id,
       body: '',
-      category: 'skill',
+      category: null,
       title: ''
     }
 
