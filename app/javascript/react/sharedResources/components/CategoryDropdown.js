@@ -1,11 +1,15 @@
 import React from 'react'
 import { Field } from 'formik'
 
-const CategoryDropdown = () => {
+const CategoryDropdown = props => {
+
+  let { error } = props
+
   return(
     <fieldset>
-      <label htmlFor='category'> Type
+      <label className={ error && 'is-invalid-label' } htmlFor='category'> Type
         <Field component='select' name='category'>
+          <option key='pleaseSelect' value=''>– Choose a Type –</option>
           <option key='apothecary' value='apothecary'>Apothecary</option>
           <option key='calibration' value='calibration'>Calibration</option>
           <option key='engineering' value='engineering'>Engineering</option>
@@ -16,9 +20,10 @@ const CategoryDropdown = () => {
           <option key='political_influence' value='political_influence'>Political Influence</option>
           <option key='professions' value='professions'>Professions</option>
           <option key='research_experimentation' value='research_experimentation'>Research/Experimentation</option>
-           <option key='miscellaneous' value='miscellaneous' selected>Miscellaneous</option>
+           <option key='miscellaneous' value='miscellaneous'>Miscellaneous</option>
         </Field>
       </label>
+      { error && <span className='form-error is-visible'>{error}</span> }
     </fieldset>
   )
 }

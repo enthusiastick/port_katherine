@@ -88,7 +88,7 @@ class Bgs extends Component {
               </Field>
             </label>
           </fieldset>
-          <CategoryDropdown />
+          <CategoryDropdown error={errors.category} value={values.category} />
           {titleAndBodySection}
         </div>
         <div className='form-actions'>

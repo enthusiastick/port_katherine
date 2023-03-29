@@ -1,6 +1,10 @@
 const validateBgs = values => {
   let errors = {}
 
+  if (values.category === null) {
+    errors.category = 'Please choose a type for your BGS'
+  }
+
   if (values.title === '') {
     errors.title = 'Please title your BGS'
   }

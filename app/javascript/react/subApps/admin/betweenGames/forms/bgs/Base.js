@@ -29,7 +29,7 @@ const BgsForm = ({
         setFieldValue={setFieldValue}
         touched={touched.character}
       />
-      <CategoryDropdown />
+      <CategoryDropdown error={errors.category} />
       <BgsTitleAndBody
         bodyError={errors.body}
         bodyTouched={touched.body}
