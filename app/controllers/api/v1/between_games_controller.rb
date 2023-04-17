@@ -3,19 +3,23 @@ class Api::V1::BetweenGamesController < Api::ApiController
 
   def create
     booking = Booking.find(params[:booking_id])
-    bgs = BetweenGame.new(between_game_params)
-    bgs.character = booking.character
-    bgs.event = booking.event
-    comment = Comment.new(
-      automated: true,
-      between_game: bgs,
-      body: "#{current_user.handle} created.",
-      user: current_user
-    )
-    if bgs.save && comment.save
-      render json: bgs.booking, serializer: ::Booking::FutureSerializer
+    if booking.event.bgs_deadline.past?
+      render json: { error: "BGS deadline elapsed." }, status: :unprocessable_entity
     else
-      render_object_errors(bgs)
+      bgs = BetweenGame.new(between_game_params)
+      bgs.character = booking.character
+      bgs.event = booking.event
+      comment = Comment.new(
+        automated: true,
+        between_game: bgs,
+        body: "#{current_user.handle} created.",
+        user: current_user
+      )
+      if bgs.save && comment.save
+        render json: bgs.booking, serializer: ::Booking::FutureSerializer
+      else
+        render_object_errors(bgs)
+      end
     end
   end
 
